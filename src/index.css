@@ -11,3 +11,9 @@
   font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;
 }
+
+:root {
+  --color-sec: #282c4a;
+  --color-primary: #191C32;
+  --color-white: #ffffff;
+}

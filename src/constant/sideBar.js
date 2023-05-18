@@ -3,11 +3,11 @@
 
 const menu = [
   { name: "dashboard", link: "/dashboard", amount: "" },
-  { name: "admin control", link: "/admin-control", amount: "" },
-  { name: "gift card tranx", link: "/gift-card-tranx", amount: "" },
-  { name: "P2P tranx", link: "/p2p-tranx", amount: "" },
-  { name: "virtual card", link: "/virtual-card", amount: "" },
-  { name: "crypto tranx", link: "/crypto-tranx", amount: "" },
+  { name: "admin control", link: "/admin-control", amount: "5" },
+  { name: "gift card tranx", link: "/gift-card-tranx", amount: "4" },
+  { name: "P2P tranx", link: "/p2p-tranx", amount: "3" },
+  { name: "virtual card", link: "/virtual-card", amount: "7" },
+  { name: "crypto tranx", link: "/crypto-tranx", amount: "3" },
   { name: "users", link: "/users", amount: "" },
   { name: "news", link: "/news", amount: "" },
   { name: "FAQ", link: "/FAQ", amount: "" },
@@ -30,3 +30,5 @@ const menu = [
   { name: "KYC 3", link: "/KYC-3", amount: "" },
   { name: "KYC 4", link: "/KYC-4", amount: "" },
 ];
+
+export default menu;

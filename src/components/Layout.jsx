@@ -4,9 +4,9 @@ import Footer from "./Footer";
 
 const Layout = ({ children }) => {
   return (
-    <div>
+    <div className="bg-primary">
       <Header />
-      <div className="overflow-y-scroll">{children}</div>
+      <div className="p-2 min-h-[92vh]">{children}</div>
       <Footer />
     </div>
   );

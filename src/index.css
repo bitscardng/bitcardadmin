@@ -4,6 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 * {
   margin: 0;
   padding: 0;
@@ -17,4 +19,9 @@
   --color-primary: #191C32;
   --color-white: #ffffff;
   --color-active: #F09654;
+}
+
+.columnBox {
+  justify-content: space-between;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }

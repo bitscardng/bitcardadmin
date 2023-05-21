@@ -1,6 +1,3 @@
-
-
-
 const menu = [
   { name: "dashboard", link: "/dashboard", count: "" },
   { name: "admin control", link: "/admin-control", count: "5" },
@@ -9,7 +6,7 @@ const menu = [
   { name: "virtual card", link: "/virtual-card", count: "7" },
   { name: "crypto tranx", link: "/crypto-tranx", count: "3" },
   { name: "users", link: "/users", count: "" },
-  { name: "news", link: "/news",countt: "" },
+  { name: "news", link: "/news", countt: "" },
   { name: "FAQ", link: "/faq", count: "" },
   { name: "USD withdrawal", link: "/usd-withdraw", count: "" },
   { name: "NGN withdrawal", link: "/ngn-withdraw", count: "" },

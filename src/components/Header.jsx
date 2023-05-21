@@ -1,5 +1,6 @@
 import React from "react";
 import { BsRobot } from "react-icons/bs";
+import { FiUser } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -9,11 +10,9 @@ const Header = () => {
         <p>
           Today on Bitscard {"May"} {"15"}, {"2023"} {"2:22"} {"PM"}
         </p>
-        <div>
-          <p>
-            {"Super admin"}
-            <div></div>
-          </p>
+        <div className="flex items-center gap-1">
+          <FiUser className="text-2xl font-bold text-active"/>
+          <p>{"Super admin"}</p>
         </div>
       </div>
       <Link className="flex items-center justify-between gap-2 p-3 duration-500 rounded-full hover:bg-active bg-sec">

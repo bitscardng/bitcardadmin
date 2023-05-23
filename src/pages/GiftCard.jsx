@@ -42,7 +42,7 @@ const GiftCard = () => {
             {data.transDate} <span>{data.transTime}</span>
           </td>
           <td className="p-1 px-2 text-xl font-thin duration-500 border hover-text-white">
-            Status
+            {<p className="bg-[green] p-2 rounded-lg">Approved</p>}
           </td>
         </tr>
       );

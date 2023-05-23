@@ -31,8 +31,108 @@ const total = [
   { totalName: "daily virtual card transaction", totalAmount: "77" },
 ];
 
-const testimonials = [];
+//gift card data
+const giftCard = [
+  {
+    email: "xvalz@gmail.com",
+    giftCard: "steam",
+    country: "USA",
+    cardType: "ecode",
+    amount: "100",
+    payout: "66,000",
+    transDate: "22/3/2023",
+    transTime: "8:30",
+  },
+  {
+    email: "xvalz@gmail.com",
+    giftCard: "steam",
+    country: "USA",
+    cardType: "ecode",
+    amount: "200",
+    payout: "66,000",
+    transDate: "22/3/2023",
+    transTime: "8:30",
+  },
+  {
+    email: "xvalz@gmail.com",
+    giftCard: "steam",
+    country: "USA",
+    cardType: "ecode",
+    amount: "300",
+    payout: "66,000",
+    transDate: "22/3/2023",
+    transTime: "8:30",
+  },
+  {
+    email: "xvalz@gmail.com",
+    giftCard: "steam",
+    country: "USA",
+    cardType: "ecode",
+    amount: "400",
+    payout: "66,000",
+    transDate: "22/3/2023",
+    transTime: "8:30",
+  },
+  {
+    email: "xvalz@gmail.com",
+    giftCard: "steam",
+    country: "USA",
+    cardType: "ecode",
+    amount: "500",
+    payout: "66,000",
+    transDate: "22/3/2023",
+    transTime: "8:30",
+  },
+  {
+    email: "xvalz@gmail.com",
+    giftCard: "steam",
+    country: "USA",
+    cardType: "ecode",
+    amount: "600",
+    payout: "66,000",
+    transDate: "22/3/2023",
+    transTime: "8:30",
+  },
+  {
+    email: "xvalz@gmail.com",
+    giftCard: "steam",
+    country: "USA",
+    cardType: "ecode",
+    amount: "700",
+    payout: "66,000",
+    transDate: "22/3/2023",
+    transTime: "8:30",
+  },
+  {
+    email: "xvalz@gmail.com",
+    giftCard: "steam",
+    country: "USA",
+    cardType: "ecode",
+    amount: "800",
+    payout: "66,000",
+    transDate: "22/3/2023",
+    transTime: "8:30",
+  },
+  {
+    email: "xvalz@gmail.com",
+    giftCard: "steam",
+    country: "USA",
+    cardType: "ecode",
+    amount: "900",
+    payout: "66,000",
+    transDate: "22/3/2023",
+    transTime: "8:30",
+  },
+  {
+    email: "xvalz@gmail.com",
+    giftCard: "steam",
+    country: "USA",
+    cardType: "ecode",
+    amount: "200",
+    payout: "66,000",
+    transDate: "22/3/2023",
+    transTime: "8:30",
+  },
+];
 
-const giftCard= []
-
-export { trade, withdraw, testimonials, total, giftCard };
+export { trade, withdraw, total, giftCard };

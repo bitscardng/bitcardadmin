@@ -4,7 +4,7 @@ import { BsRobot } from "react-icons/bs";
 
 const AdminControl = () => {
   return (
-    <div className="pr-4">
+    <div>
       <div className={styles.formField}>
         <div className="flex flex-row items-center gap-2 text-center">
           <div className="p-2 text-center rounded-full bg-[#3b3a62]">
@@ -47,8 +47,8 @@ const AdminControl = () => {
           className="w-full p-2 mx-1 bg-transparent outline-none"
         />
       </div>
-      <div className={styles.formField}>
-        <div className="flex flex-row items-center justify-between w-40 gap-2 text-center">
+      <div className={`${styles.formField}`}>
+        <div className="flex flex-row items-center gap-2 text-center">
           <div className="p-2 text-center rounded-full bg-[#3b3a62]">
             <BsRobot className="text-[#767DFF]" />
           </div>
@@ -57,12 +57,15 @@ const AdminControl = () => {
       </div>
       <div className="flex">
         <div className={styles.formField}>
+          <div className="p-4 rounded-full bg-[#3b3a62]"></div>
           <p>Admin</p>
         </div>
         <div className={styles.formField}>
+          <div className="p-4 rounded-full bg-[#3b3a62]"></div>
           <p>Customer Rep</p>
         </div>
         <div className={styles.formField}>
+          <div className="p-4 rounded-full bg-[#3b3a62]"></div>
           <p>Create User</p>
         </div>
       </div>

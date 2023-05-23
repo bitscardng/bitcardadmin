@@ -1,5 +1,5 @@
 const menu = [
-  { name: "dashboard", link: "/dashboard", count: "" },
+  { name: "Dashboard", link: "/dashboard", count: "" },
   { name: "admin control", link: "/admin-control", count: "5" },
   { name: "gift card tranx", link: "/gift-card-tranx", count: "4" },
   { name: "P2P tranx", link: "/p2p-tranx", count: "3" },

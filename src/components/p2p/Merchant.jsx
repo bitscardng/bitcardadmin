@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import Search from "../components/Search";
-import { giftCard } from "../constant";
 import ReactPaginate from "react-paginate";
+import { giftCard } from "../../constant";
 
-const GiftCard = () => {
+const Merchant = () => {
   const [datas, setDatas] = useState(giftCard);
-  const [search, setSearch] = useState("");
 
   // paginations start
   const [pageNumber, setPageNumber] = useState(0);
@@ -29,20 +27,8 @@ const GiftCard = () => {
             {data.giftCard}
           </td>
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
-            {data.country}
-          </td>
-          <td className="p-1 px-2 font-thin border">{data.cardType}</td>
-          <td className="p-1 px-2 text-xl font-thin duration-500 border">
+            {"$ "}
             {data.amount}
-          </td>
-          <td className="p-1 px-2 text-xl font-thin duration-500 border">
-            {data.payout}
-          </td>
-          <td className="p-1 px-2 text-xl font-thin duration-500 border">
-            {<p className="p-2 rounded-lg bg-active">Pending</p>}
-          </td>
-          <td className="p-1 px-2 text-xl font-thin duration-500 border">
-            {data.transDate} <span>{data.transTime}</span>
           </td>
           <td className="flex flex-col gap-2 p-2 text-xl font-thin border">
             <btn className="bg-[green] p-1 rounded-lg cursor-pointer hover:font-normal duration-500">
@@ -52,6 +38,9 @@ const GiftCard = () => {
               Decline
             </btn>
           </td>
+          <td className="p-1 px-2 text-xl font-thin duration-500 border">
+            {data.cardType}
+          </td>
         </tr>
       );
     });
@@ -59,34 +48,25 @@ const GiftCard = () => {
 
   return (
     <div>
-      <Search
-        value={search}
-        onChange={(e) => {
-          setSearch(e.target.value);
-        }}
-      />
       <div className="p-2 pt-8">
-        <div className="w-full overflow-x-auto">
-          <table className="w-full ">
-            {/* head */}
-            <thead className="">
-              <tr className="rounded-full">
-                <th className="p-2 text-xl font-semibold border"></th>
-                <th className="p-2 text-xl font-semibold border">Email</th>
-                <th className="p-2 text-xl font-semibold border">GiftCard</th>
-                <th className="p-2 text-xl font-semibold border">Country</th>
-                <th className="p-2 text-xl font-semibold border">Card Type</th>
-                <th className="p-2 text-xl font-semibold border">Amount</th>
-                <th className="p-2 text-xl font-semibold border">Payout</th>
-                <th className="p-2 text-xl font-semibold border">Status</th>
-                <th className="p-2 text-xl font-semibold border">
-                  Transaction date
-                </th>
-                <th className="p-2 text-xl font-semibold border">Approval</th>
-              </tr>
-            </thead>
-            <tbody>{displayDatas}</tbody>
-          </table>
+        <div className="w-full">
+          <div className="">
+            <p className="pb-2 text-2xl font-bold text-center">Merchant Escrow</p>
+            <table className="w-full ">
+              {/* head */}
+              <thead className="">
+                <tr className="rounded-full">
+                  <th className="p-2 text-xl font-semibold border"></th>
+                  <th className="p-2 text-xl font-semibold border">Email</th>
+                  <th className="p-2 text-xl font-semibold border">Type</th>
+                  <th className="p-2 text-xl font-semibold border">Amount</th>
+                  <th className="p-2 text-xl font-semibold border">Approval</th>
+                  <th className="p-2 text-xl font-semibold border">Crypto</th>
+                </tr>
+              </thead>
+              <tbody>{displayDatas}</tbody>
+            </table>
+          </div>
         </div>
       </div>
 
@@ -113,4 +93,4 @@ const GiftCard = () => {
   );
 };
 
-export default GiftCard;
+export default Merchant;

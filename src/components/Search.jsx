@@ -3,7 +3,7 @@ import { BiSearch, BiMenuAltRight } from "react-icons/bi";
 
 const Search = ({ value, onChange }) => {
   return (
-    <div className="rounded-full  form-control bg-sec w-fit">
+    <div className="rounded-full form-control bg-sec w-fit">
       <div className="flex items-center px-1 rounded-full">
         <button className="px-4 text-2xl rounded-full bg-sec">
           <BiSearch />

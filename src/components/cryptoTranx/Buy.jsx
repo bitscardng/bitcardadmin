@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
-import Search from "../components/Search";
-import { giftCard } from "../constant";
+import { giftCard } from "../../constant";
+import Search from "../Search";
 
-const Users = () => {
+const Sell = () => {
   const [datas, setDatas] = useState(giftCard);
   const [search, setSearch] = useState("");
 
@@ -23,33 +23,20 @@ const Users = () => {
         <tr className="text-center" key={index}>
           <th className="p-1 px-2 text-xl duration-500 border">{index + 1}</th>
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
-            {"xvalzs"}
-          </td>
-          <td className="p-1 px-2 text-xl font-thin duration-500 border">
             {data.email}
           </td>
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
-            {data.transDate}
+            {data.giftCard}
           </td>
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
             {"$ "}
             {data.amount}
           </td>
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
-            {"$ "}
             {data.amount}
           </td>
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
-            {"N "}
-            {data.amount}
-          </td>
-          <td className="p-1 px-2 text-xl font-thin duration-500 border">
-            Yes
-          </td>
-          <td className="p-1 px-2 text-xl font-thin duration-500 border">
-            <p className="bg-[green] p-1 rounded-lg cursor-pointer hover:font-normal duration-500">
-              Details
-            </p>
+            {data.cardType}
           </td>
         </tr>
       );
@@ -59,33 +46,27 @@ const Users = () => {
   return (
     <div>
       <div className="p-2">
-        <Search
-          value={search}
-          onChange={(e) => {
-            setSearch(e.target.value);
-          }}
-        />
         <div className="w-full">
           <div className="">
-            <table className="w-full mt-8">
+            <div className="flex items-center justify-between pb-2 text-center">
+              <Search
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                }}
+              />
+              <p className="text-2xl font-bold text-end">Buy</p>
+            </div>
+            <table className="w-full ">
               {/* head */}
               <thead className="">
                 <tr className="rounded-full">
                   <th className="p-2 text-xl font-semibold border"></th>
-                  <th className="p-2 text-xl font-semibold border">Username</th>
                   <th className="p-2 text-xl font-semibold border">Email</th>
-                  <th className="p-2 text-xl font-semibold border">Joined</th>
-                  <th className="p-2 text-xl font-semibold border">
-                    Virtual Card Balance
-                  </th>
-                  <th className="p-2 text-xl font-semibold border">
-                    USD Balance
-                  </th>
-                  <th className="p-2 text-xl font-semibold border">
-                    Naira Balance
-                  </th>
-                  <th className="p-2 text-xl font-semibold border">Verified</th>
-                  <th className="p-2 text-xl font-semibold border">Preview</th>
+                  <th className="p-2 text-xl font-semibold border">Type</th>
+                  <th className="p-2 text-xl font-semibold border">Amount</th>
+                  <th className="p-2 text-xl font-semibold border">NGN</th>
+                  <th className="p-2 text-xl font-semibold border">Crypto</th>
                 </tr>
               </thead>
               <tbody>{displayDatas}</tbody>
@@ -117,4 +98,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default Sell;

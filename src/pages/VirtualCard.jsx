@@ -3,7 +3,7 @@ import Search from "../components/Search";
 import ReactPaginate from "react-paginate";
 import { giftCard } from "../constant";
 import { HiOutlineMail } from "react-icons/hi";
-import { styles } from "../styles";
+
 
 const VirtualCard = () => {
   const [search, setSearch] = useState("");

@@ -6,14 +6,26 @@ const menu = [
   { name: "virtual card", link: "/virtual-card", count: "7" },
   { name: "crypto tranx", link: "/crypto-tranx", count: "3" },
   { name: "users", link: "/users", count: "" },
-  { name: "news", link: "/news", countt: "" },
+  { name: "news", link: "/news", count: "" },
   { name: "FAQ", link: "/faq", count: "" },
   { name: "USD withdrawal", link: "/usd-withdraw", count: "" },
   { name: "NGN withdrawal", link: "/ngn-withdraw", count: "" },
   { name: "GHS withdrawal", link: "/ghs-withdraw", count: "" },
   { name: "FX Rate", link: "/fx-Rate", count: "" },
   { name: "Crypto Rate", link: "/crypto-Rate", count: "" },
-  { name: "Gift Card Rate", link: "/gift-card-Rate", count: "" },
+  {
+    name: "Gift Card Rate",
+    subMenu: [
+      {
+        name: "Upload",
+        link: "/giftcard/upload",
+      },
+      {
+        name: "Add",
+        link: "/giftcard/add",
+      },
+    ],
+  },
   { name: "NGN Deposit", link: "/ngn-deposit", count: "" },
   { name: "USD Deposit", link: "/usd-deposit", count: "" },
   { name: "NGN transfer", link: "/ngn-transfer", count: "" },

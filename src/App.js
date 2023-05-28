@@ -2,6 +2,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import Sidebar from "./components/Sidebar";
 import Layout from "./components/Layout";
+import UploadGiftcard from "./components/giftcard/UploadGiftcard";
+import AddGiftcard from "./components/giftcard/AddGiftcard";
+
 import {
   AdminControl,
   AdsCampaign,
@@ -54,7 +57,8 @@ function App() {
                 <Route path="/ghs-withdraw" element={<GhsWithdraw />} />
                 <Route path="/fx-rate" element={<FxRate />} />
                 <Route path="/crypto-rate" element={<CryptoRate />} />
-                <Route path="/gift-card-rate" element={<GiftCardRate />} />
+                <Route path="/giftcard/upload" element={<UploadGiftcard />} />
+                <Route path="/giftcard/add" element={<AddGiftcard />} />
                 <Route path="/ngn-deposit" element={<NgnDeposit />} />
                 <Route path="/usd-deposit" element={<UsdDeposit />} />
                 <Route path="/ngn-transfer" element={<NgnTransfer />} />

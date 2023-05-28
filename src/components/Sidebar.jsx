@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BsRobot } from "react-icons/bs";
+import { BsRobot, BsArrowLeftCircle, BsChevronDown } from "react-icons/bs";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 
@@ -7,7 +7,9 @@ import menu from "../constant/sideBar";
 
 const Sidebar = ({ children }) => {
   const [active, setActive] = useState("");
-  
+  const [open, setOpen] = useState(true);
+  const [subMenuOpen, setSubMenuOpen] = useState(false);
+
   return (
     <div className="flex w-full h-screen">
       <div className="h-screen w-[240px] mr-2 relative">
@@ -29,7 +31,9 @@ const Sidebar = ({ children }) => {
             {menu.map((menu, index) => (
               <Link to={menu.link} key={index}>
                 <li className="relative">
-                  <div className={`w-[32px] p-1 rounded-full bg-[#ED1E79] text-white text-center left-48 -top-6 absolute`}>
+                  <div
+                    className={`w-[32px] p-1 rounded-full bg-[#ED1E79] text-white text-center left-48 -top-6 absolute`}
+                  >
                     {menu.count}
                   </div>
                   <div
@@ -44,8 +48,30 @@ const Sidebar = ({ children }) => {
                     <div className="overflow-x-scroll capitalize">
                       {menu.name}
                     </div>
+                    {/*title hover design below */}
+                    <span className={`${open && "hidden"}`}>{menu.name}</span>
+                    {menu.subMenu && open && (
+                      <div onClick={() => setSubMenuOpen(!subMenuOpen)}>
+                        <BsChevronDown
+                          className={`${subMenuOpen && "rotate-180"} font-bold`}
+                        />
+                      </div>
+                    )}
                   </div>
                 </li>
+
+                {/* Sub menu contain */}
+                {menu.subMenu && subMenuOpen && open && (
+                  <ul className="flex flex-col items-center justify-center m-4 mx-8 border rounded-3xl">
+                    {menu.subMenu.map((subMenu, index) => (
+                      <Link to={subMenu.link} key={index}>
+                        <li className="flex w-full p-2 px-8 m-1 cursor-pointer hover:bg-active hover:rounded-md">
+                          {subMenu.name}
+                        </li>
+                      </Link>
+                    ))}
+                  </ul>
+                )}
               </Link>
             ))}
           </ul>

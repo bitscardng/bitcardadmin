@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
 import Search from "../components/Search";
 import { giftCard } from "../constant";
+import { Link } from "react-router-dom";
 
 const Users = () => {
   const [datas, setDatas] = useState(giftCard);
@@ -47,9 +48,11 @@ const Users = () => {
             Yes
           </td>
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
-            <p className="bg-[green] p-1 rounded-lg cursor-pointer hover:font-normal duration-500">
-              Details
-            </p>
+            <Link to="/usersdetails">
+              <p className="bg-[green] p-1 rounded-lg cursor-pointer hover:font-normal duration-500">
+                Details
+              </p>
+            </Link>
           </td>
         </tr>
       );

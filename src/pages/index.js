@@ -24,10 +24,12 @@ import UsdTransfer from "./UsdTransfer";
 import UsdWithdraw from "./UsdWithdraw";
 import Users from "./Users";
 import VirtualCard from "./VirtualCard";
+import UserDetails from "./UserDetails";
 
 export {
   VirtualCard,
   Users,
+  UserDetails,
   UsdWithdraw,
   UsdTransfer,
   UsdDeposit,

@@ -1,11 +1,50 @@
 import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
-import { giftCard } from "../../constant";
-import Search from "../Search";
 
-const Buy = () => {
-  const [datas, setDatas] = useState(giftCard);
-  const [search, setSearch] = useState("");
+const withdrawer = [
+  {
+    details: "1234567890 GTB valentine Aninyem",
+    amount: "749.5",
+    date: "15-3-2023",
+  },
+  {
+    details: "1234567890 GTB Valentine Aninyem",
+    amount: "749.5",
+    date: "15-3-2023",
+  },
+  {
+    details: "1234567890 GTB Valentine Aninyem",
+    amount: "749.5",
+    date: "15-3-2023",
+  },
+  {
+    details: "1234567890 GTB Valentine Aninyem",
+    amount: "749.5",
+    date: "15-3-2023",
+  },
+  {
+    details: "1234567890 GTB Valentine Aninyem",
+    amount: "749.5",
+    date: "15-3-2023",
+  },
+  {
+    details: "1234567890 GTB Valentine Aninyem",
+    amount: "749.5",
+    date: "15-3-2023",
+  },
+  {
+    details: "1234567890 GTB Valentine Aninyem",
+    amount: "749.5",
+    date: "15-3-2023",
+  },
+  {
+    details: "1234567890 GTB Valentine Aninyem",
+    amount: "749.5",
+    date: "15-3-2023",
+  },
+];
+const Withdrawer = () => {
+  const [datas, setDatas] = useState(withdrawer);
 
   // paginations start
   const [pageNumber, setPageNumber] = useState(0);
@@ -16,27 +55,21 @@ const Buy = () => {
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
+
   const displayDatas = datas
     .slice(pageVisited, pageVisited + datasPerPage)
     .map((data, index) => {
       return (
         <tr className="text-center" key={index}>
           <th className="p-1 px-2 text-xl duration-500 border">{index + 1}</th>
-          <td className="p-1 px-2 text-xl font-thin duration-500 border">
-            {data.email}
-          </td>
-          <td className="p-1 px-2 text-xl font-thin duration-500 border">
-            {data.giftCard}
-          </td>
-          <td className="p-1 px-2 text-xl font-thin duration-500 border">
-            {"$ "}
-            {data.amount}
+          <td className="p-1 px-2 text-xl font-thin capitalize duration-500 border">
+            {data.details}
           </td>
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
             {data.amount}
           </td>
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
-            {data.cardType}
+            {data.date}
           </td>
         </tr>
       );
@@ -45,36 +78,23 @@ const Buy = () => {
 
   return (
     <div>
-      <div className="p-2">
-        <div className="w-full">
-          <div className="">
-            <div className="flex items-center justify-between pb-2 text-center">
-              <Search
-                value={search}
-                onChange={(e) => {
-                  setSearch(e.target.value);
-                }}
-              />
-              <p className="text-2xl font-bold text-end">Buy</p>
-            </div>
-            <table className="w-full ">
-              {/* head */}
-              <thead className="">
-                <tr className="rounded-full">
-                  <th className="p-2 text-xl font-semibold border"></th>
-                  <th className="p-2 text-xl font-semibold border">Email</th>
-                  <th className="p-2 text-xl font-semibold border">Type</th>
-                  <th className="p-2 text-xl font-semibold border">Amount</th>
-                  <th className="p-2 text-xl font-semibold border">NGN</th>
-                  <th className="p-2 text-xl font-semibold border">Crypto</th>
-                </tr>
-              </thead>
-              <tbody>{displayDatas}</tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
+      <h1 className="pb-2 text-xl font-semibold text-center uppercase text-active">
+        ngn/usd Withdrawal
+      </h1>
+      <table className="w-full ">
+        {/* head */}
+        <thead className="">
+          <tr className="rounded-full">
+            <th className="p-2 text-xl font-semibold border"></th>
+            <th className="p-2 text-xl font-semibold border">
+              Withdrawal Details
+            </th>
+            <th className="p-2 text-xl font-semibold border">Amount</th>
+            <th className="p-2 text-xl font-semibold border">Date</th>
+          </tr>
+        </thead>
+        <tbody>{displayDatas}</tbody>
+      </table>
       {/* pagenating */}
       <ReactPaginate
         containerClassName="flex gap-2 text-center rounded-lg items-center outline-none justify-center items-center mt-4"
@@ -98,4 +118,4 @@ const Buy = () => {
   );
 };
 
-export default Buy;
+export default Withdrawer;

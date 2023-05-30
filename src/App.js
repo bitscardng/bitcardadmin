@@ -16,7 +16,6 @@ import {
   FxRate,
   GhsWithdraw,
   GiftCard,
-  GiftCardRate,
   Kyc1,
   Kyc3,
   Kyc4,
@@ -31,6 +30,7 @@ import {
   UsdTransfer,
   UsdWithdraw,
   Users,
+  UserDetails,
   VirtualCard,
 } from "./pages";
 
@@ -50,6 +50,7 @@ function App() {
                 <Route path="/virtual-card" element={<VirtualCard />} />
                 <Route path="/crypto-tranx" element={<CryptoTranx />} />
                 <Route path="/users" element={<Users />} />
+                <Route path="/usersdetails" element={<UserDetails />} />
                 <Route path="/news" element={<News />} />
                 <Route path="/faq" element={<Faq />} />
                 <Route path="/usd-withdraw" element={<UsdWithdraw />} />

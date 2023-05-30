@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BsRobot, BsArrowLeftCircle, BsChevronDown } from "react-icons/bs";
+import { BsRobot, BsChevronDown } from "react-icons/bs";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 

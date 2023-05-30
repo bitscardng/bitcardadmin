@@ -7,7 +7,7 @@ import Crypto from "../components/usersdetails/Crypto";
 
 const UserDetails = () => {
   return (
-    <div className="flex flex-row justify-between">
+    <div className="flex flex-row justify-between gap-8">
       <div className="">
         <Details />
       </div>

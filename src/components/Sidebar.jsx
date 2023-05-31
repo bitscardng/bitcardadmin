@@ -45,9 +45,7 @@ const Sidebar = ({ children }) => {
                     <div className="p-2 text-center rounded-full bg-[#3b3a62]">
                       <BsRobot className="text-[#767DFF]" />
                     </div>
-                    <div className="overflow-x-scroll capitalize">
-                      {menu.name}
-                    </div>
+                    <div className="capitalize ">{menu.name}</div>
                     {/*title hover design below */}
                     <span className={`${open && "hidden"}`}>{menu.name}</span>
                     {menu.subMenu && open && (

@@ -7,11 +7,11 @@ import Crypto from "../components/usersdetails/Crypto";
 
 const UserDetails = () => {
   return (
-    <div className="flex flex-row justify-between gap-8">
+    <div className="flex flex-row justify-between h-screen gap-8">
       <div className="">
         <Details />
       </div>
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col max-h-screen gap-8 overflow-y-scroll">
         <Withdrawer />
         <VirtualCard />
         <Desposit />

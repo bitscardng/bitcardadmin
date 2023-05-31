@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { styles } from "../styles";
+import { MdCloudUpload } from "react-icons/md";
 import { FiUser } from "react-icons/fi";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -13,7 +14,7 @@ const News = ({ news, handleInputChange, content, setContent }) => {
     setImagePreview(URL.createObjectURL(e.target.files[0]));
   };
   return (
-    <form>
+    <form className="flex flex-col items-center">
       <div className={styles.formField}>
         <div className="flex flex-row items-center gap-2 text-center">
           <div className="p-2 text-center rounded-full bg-[#3b3a62]">
@@ -31,27 +32,29 @@ const News = ({ news, handleInputChange, content, setContent }) => {
           className="w-full p-2 mx-1 bg-transparent outline-none"
         />
       </div>
-      <div className={`${styles.formField} flex-row-reverse p-0 pr-0 relative`}>
+      <div
+        onClick={() => document.querySelector(".image-field").click()}
+        className="flex flex-col items-center justify-center w-64 h-64 border-2 border-white border-dashed rounded-full hero hover:text-active hover:border-active"
+      >
         <input
           id="image"
           type="file"
           accept=".jpeg, .png, .jpg"
-          required
           onChange={(e) => handleImageChange(e)}
-          className="w-full h-full p-2 opacity-0 cursor-pointer "
+          required
+          className="hidden image-field"
         />
         {imagePreview != null ? (
-          <div className="w-full h-full p-2">
-            <img src={imagePreview} alt="faq" className="rounded-full" />
-          </div>
+          <img
+            src={imagePreview}
+            className="object-cover w-full h-full p-1 rounded-full"
+          />
         ) : (
-          <p>Image</p>
-        )}
-        <div>
-          <div className="p-2 text-center rounded-full bg-[#3b3a62]">
-            <FiUser className="text-[#f7931a]" />
+          <div className="flex flex-col items-center w-40 text-center">
+            <MdCloudUpload className="w-20 h-20" />
+            <p className="">Upload giftcard image ( jpeg, svg, png)</p>
           </div>
-        </div>
+        )}
       </div>
       <div className={styles.formField}>
         <div className="flex flex-row items-center gap-2 text-center">

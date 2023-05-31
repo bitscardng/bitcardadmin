@@ -7,8 +7,8 @@ import Crypto from "../components/usersdetails/Crypto";
 
 const UserDetails = () => {
   return (
-    <div className="flex flex-row justify-between h-screen gap-8">
-      <div className="">
+    <div className="flex flex-row justify-between max-h-screen gap-8 pb-6">
+      <div className="max-h-screen overflow-y-scroll">
         <Details />
       </div>
       <div className="flex flex-col max-h-screen gap-8 overflow-y-scroll">

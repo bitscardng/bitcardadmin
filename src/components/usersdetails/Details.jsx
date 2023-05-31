@@ -41,10 +41,10 @@ const Details = () => {
           <h5 className="px-2 text-xl uppercase">naira balance</h5>
           <div className="flex flex-row items-center justify-between">
             <p className="px-2 font-light capitalize">{"N"} 23,000</p>
-            <btn className="duration-500 p-1 bg-[#5FC88F] m-2 rounded-lg font-light hover:font-semibold cursor-pointer">
+            <btn className="duration-500 p-1 bg-[#5FC88F] m-2 rounded-lg font-light hover:font-semibold cursor-pointer hover:px-2">
               Add
             </btn>
-            <btn className="duration-500 p-1 bg-[#F04086] m-2 rounded-lg font-light hover:font-semibold cursor-pointer">
+            <btn className="duration-500 p-1 bg-[#F04086] m-2 rounded-lg font-light hover:font-semibold cursor-pointer hover:px-2">
               Deduct
             </btn>
           </div>

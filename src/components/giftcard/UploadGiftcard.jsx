@@ -49,12 +49,12 @@ const UploadGiftcard = ({ upload }) => {
   return (
     <div>
       <div className="flex items-center gap-20 pb-2 text-center">
-        <Search
+        {/* <Search
           value={search}
           onChange={(e) => {
             setSearch(e.target.value);
           }}
-        />
+        /> */}
         <p className="text-2xl font-bold text-end">Upload New Gift Card</p>
       </div>
       <div className="p-4 my-6 border-2 border-sec rounded-2xl">

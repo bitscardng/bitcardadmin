@@ -41,7 +41,7 @@ const GhsWithdraw = () => {
               <tbody>
                 {rate.map((data, index) => {
                   return (
-                    <tr className="text-center" key={index}>
+                    <tr className="text-center hover:bg-sec" key={index}>
                       <th className="p-1 px-2 text-xl duration-500 border">
                         {index + 1}
                       </th>

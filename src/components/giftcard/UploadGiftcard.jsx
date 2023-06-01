@@ -1,7 +1,28 @@
 import React, { useState } from "react";
 import { MdCloudUpload } from "react-icons/md";
+import style from "../../styles.module.css";
 import Search from "../Search";
-import { styles } from "../../styles";
+// import { styles } from "../../styles";
+
+const giftCard = [
+  { id: "rad1", value: "E-code" },
+  { id: "rad2", value: "Physical" },
+  { id: "rad3", value: "Cash Receipt" },
+  { id: "rad4", value: "Credit Receipt" },
+  { id: "rad5", value: "Debit Receipt" },
+  { id: "rad6", value: "No Receipt" },
+];
+
+const denomination = [
+  { id: "rad01", value: "10-49" },
+  { id: "rad02", value: "50-99" },
+  { id: "rad03", value: "100" },
+  { id: "rad04", value: "101-199" },
+  { id: "rad05", value: "200-299" },
+  { id: "rad06", value: "300-499" },
+  { id: "rad07", value: "500" },
+  { id: "rad08", value: "501-5000" },
+];
 
 const UploadGiftcard = ({ upload }) => {
   const [search, setSearch] = useState("");
@@ -62,12 +83,57 @@ const UploadGiftcard = ({ upload }) => {
             />
           </div>
         </div>
-        <div className="p-2">
-          <p className="font-bold">Gift Card Type ( Multi-Select )</p>
-          <div className="flex">
-            <div>
-              
-            </div>
+        <div className="p-4 pt-8">
+          <p className="pb-2 font-bold text-start text-active">
+            Gift Card Type ( Multi-Select )
+          </p>
+          <div className={`${style.columnBox}`}>
+            {giftCard.map((item, i) => {
+              return (
+                <div className="flex items-center justify-center gap-2 ">
+                  <input
+                    type="radio"
+                    name=""
+                    id={item.id}
+                    value={item.value}
+                    className="radio text-sec"
+                  />
+                  <label
+                    for={item.id}
+                    className="p-2 px-4 my-2 rounded-full bg-sec"
+                  >
+                    {item.value}
+                  </label>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="p-4 pt-8">
+          <p className="pb-2 font-bold text-start text-active">
+            Gift Card Type ( Multi-Select )
+          </p>
+          <div className={`${style.columnBox}`}>
+            {denomination.map((item, i) => {
+              return (
+                <div className="flex items-center justify-center gap-2 ">
+                  <input
+                    type="radio"
+                    name=""
+                    id={item.id}
+                    value={item.value}
+                    className="radio text-sec"
+                  />
+                  <label
+                    for={item.id}
+                    className="p-2 px-4 my-2 rounded-full bg-sec"
+                  >
+                    {item.value}
+                  </label>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

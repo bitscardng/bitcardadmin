@@ -67,7 +67,7 @@ const SignInOtp = () => {
                 >
                   <p>Sign Up</p>
                 </Link>
-                <div className={`${styles.btn} ml-0`}>Sign in</div>
+                <div className={`${styles.btn} ml-0`}>Submit</div>
               </div>
             </form>
           </div>

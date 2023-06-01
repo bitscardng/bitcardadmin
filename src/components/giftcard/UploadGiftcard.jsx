@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { MdCloudUpload } from "react-icons/md";
 import style from "../../styles.module.css";
 import Search from "../Search";
+import { aus, usa, uk, spain, switz, can, ger } from "../../assets";
 // import { styles } from "../../styles";
 
 const giftCard = [
@@ -11,6 +12,17 @@ const giftCard = [
   { id: "rad4", value: "Credit Receipt" },
   { id: "rad5", value: "Debit Receipt" },
   { id: "rad6", value: "No Receipt" },
+];
+
+const country = [
+  { id: "radio01", value: "USA", photo:usa },
+  { id: "radio02", value: "UK", photo:uk },
+  { id: "radio03", value: "Australia", photo:aus },
+  { id: "radio04", value: "Canada", photo:can },
+  { id: "radio05", value: "New Zealand", photo:aus },
+  { id: "radio06", value: "Germany", photo:ger },
+  { id: "radio07", value: "Spain", photo:spain },
+  { id: "radio08", value: "Switzerland", photo:switz },
 ];
 
 const denomination = [
@@ -46,7 +58,7 @@ const UploadGiftcard = ({ upload }) => {
         <p className="text-2xl font-bold text-end">Upload New Gift Card</p>
       </div>
       <div className="p-4 my-6 border-2 border-sec rounded-2xl">
-        <div className="flex flex-row items-center justify-evenly ">
+        <div className="flex flex-row items-end justify-evenly ">
           <div
             onClick={() => document.querySelector(".image-field").click()}
             className="flex flex-col items-center justify-center w-64 h-64 border-2 border-white border-dashed rounded-full hero hover:text-active hover:border-active"
@@ -79,18 +91,19 @@ const UploadGiftcard = ({ upload }) => {
               value={upload?.name}
               required
               placeholder="itunes"
-              className="p-2 capitalize rounded-full outline-none bg-sec"
+              className="p-2 px-4 capitalize rounded-full outline-none bg-sec"
             />
           </div>
         </div>
+
         <div className="p-4 pt-8">
           <p className="pb-2 font-bold text-start text-active">
-            Gift Card Type ( Multi-Select )
+            Country / Flag( Multi-Select)
           </p>
           <div className={`${style.columnBox}`}>
-            {giftCard.map((item, i) => {
+            {country.map((item, i) => {
               return (
-                <div className="flex items-center justify-center gap-2 ">
+                <div className="flex items-center justify-start gap-2">
                   <input
                     type="radio"
                     name=""
@@ -100,9 +113,12 @@ const UploadGiftcard = ({ upload }) => {
                   />
                   <label
                     for={item.id}
-                    className="p-2 px-4 my-2 rounded-full bg-sec"
+                    className="p-2 px-4 my-2 rounded-full cursor-pointer bg-sec hover:bg-active"
                   >
-                    {item.value}
+                    <div className="flex items-center justify-between gap-4">
+                      {item.value}
+                      <img src={item.photo} alt="pic"  className="w-8 h-8 rounded-full"/>
+                    </div>
                   </label>
                 </div>
               );
@@ -115,9 +131,9 @@ const UploadGiftcard = ({ upload }) => {
             Gift Card Type ( Multi-Select )
           </p>
           <div className={`${style.columnBox}`}>
-            {denomination.map((item, i) => {
+            {giftCard.map((item, i) => {
               return (
-                <div className="flex items-center justify-center gap-2 ">
+                <div className="flex items-center justify-start gap-2 ">
                   <input
                     type="radio"
                     name=""
@@ -127,7 +143,34 @@ const UploadGiftcard = ({ upload }) => {
                   />
                   <label
                     for={item.id}
-                    className="p-2 px-4 my-2 rounded-full bg-sec"
+                    className="p-2 px-4 my-2 rounded-full cursor-pointer bg-sec hover:bg-active"
+                  >
+                    {item.value}
+                  </label>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="p-4 pt-8">
+          <p className="pb-2 font-bold text-start text-active">
+            Giftcard Denomination( Multi-Select)
+          </p>
+          <div className={`${style.columnBox}`}>
+            {denomination.map((item, i) => {
+              return (
+                <div className="flex items-center justify-start gap-2 ">
+                  <input
+                    type="radio"
+                    name=""
+                    id={item.id}
+                    value={item.value}
+                    className="radio text-sec"
+                  />
+                  <label
+                    for={item.id}
+                    className="p-2 px-4 my-2 rounded-full cursor-pointer bg-sec hover:bg-active"
                   >
                     {item.value}
                   </label>

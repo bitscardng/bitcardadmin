@@ -5,5 +5,8 @@ import uk from "./uk.png";
 import switz from "./switz.png";
 import spain from "./spain.png";
 import usa from "./usa.png";
+import gplay from "./googleplay.png";
+import itunes from "./itunes.png";
+import human from "./human.png";
 
-export { aus, usa, uk, spain, switz, can, ger };
+export { human, itunes, gplay, aus, usa, uk, spain, switz, can, ger };

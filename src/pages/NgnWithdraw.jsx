@@ -4,7 +4,7 @@ import { giftCard } from "../constant";
 import ReactPaginate from "react-paginate";
 import { HiOutlineMail } from "react-icons/hi";
 
-const UsdWithdraw = () => {
+const NgnWithdraw = () => {
   const [datas, setDatas] = useState(giftCard);
   const [search, setSearch] = useState("");
 
@@ -148,4 +148,4 @@ const UsdWithdraw = () => {
   );
 };
 
-export default UsdWithdraw;
+export default NgnWithdraw;

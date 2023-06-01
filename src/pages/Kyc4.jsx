@@ -26,6 +26,7 @@ const Kyc4 = () => {
           key={index}
         >
           <th className="p-1 px-2 duration-500 border">{index + 1}</th>
+          <td className="p-1 px-2 duration-500 border">{data.email}</td>
           <td className="p-1 px-2 duration-500 border">{"web developer"}</td>
           <td className="p-1 px-2 duration-500 border">{"document.pdf"}</td>
           <td className="p-1 px-2 duration-500 border">{"document.pdf"}</td>
@@ -65,6 +66,9 @@ const Kyc4 = () => {
             <thead className="">
               <tr className="rounded-full">
                 <th className="p-2 text-xl font-semibold border"></th>
+                <th className="p-2 text-xl font-semibold uppercase border">
+                  email
+                </th>
                 <th className="p-2 text-xl font-semibold uppercase border">
                   occupation
                 </th>

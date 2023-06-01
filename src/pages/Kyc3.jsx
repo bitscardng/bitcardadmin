@@ -32,7 +32,7 @@ const Kyc3 = () => {
             <img
               src={human}
               alt=""
-              className="p-1 border rounded-full border-active"
+              className="p-1 border rounded-full border-active max-w-[8rem]"
             />
           </td>
           <td className="p-1 px-2 font-thin border">{"Nigeria"}</td>
@@ -40,7 +40,7 @@ const Kyc3 = () => {
             <img
               src={human}
               alt=""
-              className="p-1 border rounded-full border-active"
+              className="p-1 border rounded-full border-active max-w-[8rem]"
             />
           </td>
           <td className="p-1 px-2 duration-500 border">{data.country}</td>

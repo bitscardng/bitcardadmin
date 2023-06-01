@@ -8,5 +8,8 @@ import usa from "./usa.png";
 import gplay from "./googleplay.png";
 import itunes from "./itunes.png";
 import human from "./human.png";
+import robot from "./robot.png";
+import logo from "./logo.png";
 
-export { human, itunes, gplay, aus, usa, uk, spain, switz, can, ger };
+
+export { logo,robot, human, itunes, gplay, aus, usa, uk, spain, switz, can, ger };

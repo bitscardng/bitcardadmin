@@ -4,6 +4,11 @@ import { FiUser } from "react-icons/fi";
 import { HiOutlineMail } from "react-icons/hi";
 import {BiLockOpen} from "react-icons/bi";
 
+
+const denomination = [
+  { id: "rad01", value: "Admin" },
+  { id: "rad02", value: "Customer Rep" },
+];
 const AdminControl = () => {
   return (
     <div>
@@ -60,19 +65,29 @@ const AdminControl = () => {
         </div>
       </div>
       <div className="flex">
-        <div className={styles.formField}>
-          <div className="p-4 rounded-full bg-[#0f1122]"></div>
-          <p>Admin</p>
-        </div>
-        <div className={styles.formField}>
-          <div className="p-4 bg-white rounded-full"></div>
-          <p>Customer Rep</p>
-        </div>
-        <div className={styles.formField}>
-          <div className="p-4 rounded-full bg-[#3b3a62]"></div>
-          <p>Create User</p>
-        </div>
+        {denomination.map((item, i) => {
+          return (
+            <div
+              className={`flex items-center gap-3 p-2 px-4 m-4 rounded-full w-full bg-primary`}
+            >
+              <input
+                type="radio"
+                name=""
+                id={item.id}
+                value={item.id}
+                className="radio text-sec"
+              />
+              <label
+                for={item.id}
+                className="w-full p-3 px-4 duration-500 rounded-full cursor-pointer hover:bg-active bg-sec"
+              >
+                {item.value}
+              </label>
+            </div>
+          );
+        })}
       </div>
+      <div className={`${styles.btn}`}> Create users</div>
     </div>
   );
 };

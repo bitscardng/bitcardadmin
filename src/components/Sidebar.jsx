@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import menu from "../constant/sideBar";
 
 const Sidebar = ({ children }) => {
+  const [numData, setnumData] = useState("");
   const [active, setActive] = useState("");
   const [open, setOpen] = useState(true);
   const [subMenuOpen, setSubMenuOpen] = useState(false);

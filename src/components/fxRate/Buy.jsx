@@ -1,29 +1,22 @@
 import React, { useState } from "react";
-import Search from "../components/Search";
 
 const rate = [
-  { coin: "BTC", buying: "749.5", selling: "770", market: "29,012.23" },
-  { coin: "BTC", buying: "747.5", selling: "774", market: "28,000.23" },
+  { currency: "NGN", rate: "749.5" },
+  { currency: "KES", rate: "63" },
+  { currency: "GHS", rate: "9" },
+  { currency: "XAF", rate: "660" },
+  { currency: "1", rate: "660" },
 ];
 
-const GhsWithdraw = () => {
-  const [search, setSearch] = useState("");
-
-  //pagination end
+const Buy = () => {
 
   return (
     <div>
       <div className="p-2 pt-8">
         <div className="flex justify-between w-full gap-8 overflow-x-auto">
           <div className="w-full overflow-x-auto">
-            <div className="flex items-center gap-20 pb-2 text-center">
-              <Search
-                value={search}
-                onChange={(e) => {
-                  setSearch(e.target.value);
-                }}
-              />
-              <p className="text-2xl font-bold text-end">Crypto Rate</p>
+            <div className="flex items-center pb-2 justify-evenly">
+              <p className="text-2xl font-bold">FX Rate Buy</p>
               <div className="flex flex-row justify-between gap-4">
                 <p className="flex items-center justify-center pl-3 m-1 text-xl font-semibold rounded-full bg-sec">
                   Profit
@@ -32,8 +25,12 @@ const GhsWithdraw = () => {
                   </span>
                 </p>
                 <div className="flex flex-row justify-between">
-                  <p className="p-2 m-1 duration-500 rounded-full bg-active hover:px-4">Edit</p>
-                  <p className="p-2 bg-[green] m-1 rounded-full hover:px-4 duration-500">Update</p>
+                  <p className="p-2 m-1 duration-500 rounded-full bg-active hover:px-4">
+                    Edit
+                  </p>
+                  <p className="p-2 bg-[green] m-1 rounded-full hover:px-4 duration-500">
+                    Update
+                  </p>
                 </div>
               </div>
             </div>
@@ -41,12 +38,10 @@ const GhsWithdraw = () => {
               {/* head */}
               <thead className="">
                 <tr className="rounded-full">
-                  <th className="p-2 text-xl font-semibold border"></th>
-                  <th className="p-2 text-xl font-semibold border">Coin</th>
-                  <th className="p-2 text-xl font-semibold border">Buying</th>
-                  <th className="p-2 text-xl font-semibold border">Selling</th>
+                  <th className="p-2 text-xl font-semibold border">Currency</th>
+                  <th className="p-2 text-xl font-semibold border">Rate</th>
                   <th className="p-2 text-xl font-semibold border">
-                    Market Rate $
+                    Base Currency
                   </th>
                 </tr>
               </thead>
@@ -54,20 +49,14 @@ const GhsWithdraw = () => {
                 {rate.map((data, index) => {
                   return (
                     <tr className="text-center hover:bg-sec" key={index}>
-                      <th className="p-1 px-2 text-xl duration-500 border">
-                        {index + 1}
-                      </th>
                       <td className="p-1 px-2 text-xl font-thin duration-500 border">
-                        {data.coin}
+                        {data.currency}
                       </td>
                       <td className="p-1 px-2 text-xl font-thin duration-500 border">
-                        {data.buying}
+                        {data.rate} / $
                       </td>
                       <td className="p-1 px-2 text-xl font-thin duration-500 border">
-                        {data.selling} / $
-                      </td>
-                      <td className="p-1 px-2 text-xl font-thin duration-500 border">
-                        {"29.012.23"}
+                        1$
                       </td>
                     </tr>
                   );
@@ -81,4 +70,4 @@ const GhsWithdraw = () => {
   );
 };
 
-export default GhsWithdraw;
+export default Buy;

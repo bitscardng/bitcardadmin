@@ -15,14 +15,14 @@ const giftCard = [
 ];
 
 const country = [
-  { id: "radio01", value: "USA", photo:usa },
-  { id: "radio02", value: "UK", photo:uk },
-  { id: "radio03", value: "Australia", photo:aus },
-  { id: "radio04", value: "Canada", photo:can },
-  { id: "radio05", value: "New Zealand", photo:aus },
-  { id: "radio06", value: "Germany", photo:ger },
-  { id: "radio07", value: "Spain", photo:spain },
-  { id: "radio08", value: "Switzerland", photo:switz },
+  { id: "radio01", value: "USA", photo: usa },
+  { id: "radio02", value: "UK", photo: uk },
+  { id: "radio03", value: "Australia", photo: aus },
+  { id: "radio04", value: "Canada", photo: can },
+  { id: "radio05", value: "New Zealand", photo: aus },
+  { id: "radio06", value: "Germany", photo: ger },
+  { id: "radio07", value: "Spain", photo: spain },
+  { id: "radio08", value: "Switzerland", photo: switz },
 ];
 
 const denomination = [
@@ -109,15 +109,19 @@ const UploadGiftcard = ({ upload }) => {
                     name=""
                     id={item.id}
                     value={item.value}
-                    className="radio text-sec"
+                    className="radio text-sec peer"
                   />
                   <label
                     for={item.id}
-                    className="p-2 px-4 my-2 rounded-full cursor-pointer bg-sec hover:bg-active"
+                    className="p-2 px-4 my-2 rounded-full cursor-pointer bg-sec hover:bg-active peer-checked:bg-active"
                   >
                     <div className="flex items-center justify-between gap-4">
                       {item.value}
-                      <img src={item.photo} alt="pic"  className="w-8 h-8 rounded-full"/>
+                      <img
+                        src={item.photo}
+                        alt="pic"
+                        className="w-8 h-8 rounded-full"
+                      />
                     </div>
                   </label>
                 </div>
@@ -139,11 +143,11 @@ const UploadGiftcard = ({ upload }) => {
                     name=""
                     id={item.id}
                     value={item.value}
-                    className="radio text-sec"
+                    className="radio text-sec peer"
                   />
                   <label
                     for={item.id}
-                    className="p-2 px-4 my-2 rounded-full cursor-pointer bg-sec hover:bg-active"
+                    className="p-2 px-4 my-2 rounded-full cursor-pointer bg-sec hover:bg-active peer-checked:bg-active"
                   >
                     {item.value}
                   </label>
@@ -166,11 +170,11 @@ const UploadGiftcard = ({ upload }) => {
                     name=""
                     id={item.id}
                     value={item.value}
-                    className="radio text-sec"
+                    className="radio text-sec peer"
                   />
                   <label
                     for={item.id}
-                    className="p-2 px-4 my-2 rounded-full cursor-pointer bg-sec hover:bg-active"
+                    className="p-2 px-4 my-2 rounded-full cursor-pointer bg-sec hover:bg-active peer-checked:bg-active"
                   >
                     {item.value}
                   </label>

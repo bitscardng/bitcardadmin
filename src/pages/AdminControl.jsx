@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { styles } from "../styles";
 import { FiUser } from "react-icons/fi";
 import { HiOutlineMail } from "react-icons/hi";
-import {BiLockOpen} from "react-icons/bi";
-
+import { BiLockOpen } from "react-icons/bi";
 
 const denomination = [
-  { id: "rad01", value: "Admin" },
-  { id: "rad02", value: "Customer Rep" },
+  { id: "rad01", name: "Admin" },
+  { id: "rad02", name: "Customer Rep" },
 ];
 const AdminControl = () => {
+  const [users, setUsers] = useState("");
+
   return (
     <div>
       <div>
@@ -72,16 +73,17 @@ const AdminControl = () => {
             >
               <input
                 type="radio"
-                name=""
+                name="users"
                 id={item.id}
-                value={item.id}
-                className="radio text-sec"
+                value={item.name}
+                className="radio text-sec peer"
+                onChange={(e) => setUsers(e.target.value)}
               />
               <label
                 for={item.id}
-                className="w-full p-3 px-4 duration-500 rounded-full cursor-pointer hover:bg-active bg-sec"
+                className="w-full p-3 px-4 duration-500 rounded-full cursor-pointer hover:bg-active bg-sec peer-checked:bg-active"
               >
-                {item.value}
+                {item.name}
               </label>
             </div>
           );

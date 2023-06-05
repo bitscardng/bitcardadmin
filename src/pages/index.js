@@ -14,13 +14,11 @@ import Kyc3 from "./Kyc3";
 import Kyc4 from "./Kyc4";
 import News from "./News";
 import NgnDeposit from "./NgnDeposit";
-import NgnTransfer from "./NgnTransfer";
 import NgnWithdraw from "./NgnWithdraw";
 import P2P from "./P2P";
 import PushNotify from "./PushNotify";
 import SendEmail from "./SendEmail";
 import UsdDeposit from "./UsdDeposit";
-import UsdTransfer from "./UsdTransfer";
 import UsdWithdraw from "./UsdWithdraw";
 import Users from "./Users";
 import VirtualCard from "./VirtualCard";
@@ -31,13 +29,11 @@ export {
   Users,
   UserDetails,
   UsdWithdraw,
-  UsdTransfer,
   UsdDeposit,
   SendEmail,
   PushNotify,
   P2P,
   NgnWithdraw,
-  NgnTransfer,
   NgnDeposit,
   News,
   Kyc1,

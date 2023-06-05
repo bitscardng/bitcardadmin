@@ -21,13 +21,11 @@ import {
   Kyc4,
   News,
   NgnDeposit,
-  NgnTransfer,
   NgnWithdraw,
   P2P,
   PushNotify,
   SendEmail,
   UsdDeposit,
-  UsdTransfer,
   UsdWithdraw,
   Users,
   UserDetails,
@@ -280,9 +278,7 @@ function App() {
             path="/ngn-transfer"
             element={
               <Sidebar>
-                <Layout>
-                  <NgnTransfer />
-                </Layout>
+                <Layout></Layout>
               </Sidebar>
             }
           />
@@ -290,9 +286,7 @@ function App() {
             path="/usd-transfer"
             element={
               <Sidebar>
-                <Layout>
-                  <UsdTransfer />
-                </Layout>
+                <Layout></Layout>
               </Sidebar>
             }
           />

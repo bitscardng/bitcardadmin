@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { styles } from "../styles";
-import { MdCloudUpload } from "react-icons/md";
 import { FiUser } from "react-icons/fi";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-const PushNotify = ({ news, handleInputChange, content, setContent }) => {
-
+const PushNotify = ({ notify, handleInputChange, content, setContent }) => {
   return (
     <form className="flex flex-col items-center">
       <div className={styles.formField}>
@@ -19,7 +17,7 @@ const PushNotify = ({ news, handleInputChange, content, setContent }) => {
         <input
           type="text"
           name="name"
-          value={news?.name}
+          value={notify?.name}
           onChange={handleInputChange}
           required
           placeholder="John Doe"

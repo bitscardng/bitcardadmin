@@ -1,12 +1,14 @@
 import React from "react";
-import styles from "../styles.module.css";
+import { styles } from "../styles";
+import style from "../styles.module.css";
 import { total, trade, withdraw } from "../constant/index";
 import Bitcoin from "../assets/Bitcoin.png";
 
 const Dashboard = () => {
   return (
     <div className="relative">
-      <div className={`${styles.columnBox}`}>
+      <p className={`${styles.topic} mb-4`}>dashboard</p>
+      <div className={`${style.columnBox}`}>
         {trade.map((data, index) => (
           <div className="flex flex-col items-start justify-between gap-4 p-2 px-4 m-4 rounded-lg bg-sec">
             <h5 className="uppercase">{data.tradeName}</h5>
@@ -14,7 +16,7 @@ const Dashboard = () => {
           </div>
         ))}
       </div>
-      <div className={`${styles.columnBox}`}>
+      <div className={`${style.columnBox}`}>
         {withdraw.map((data, index) => (
           <div className="flex flex-col items-start justify-between p-2 m-4 rounded-lg bg-sec">
             <div className="relative flex flex-row items-center justify-between w-full gap-4">
@@ -29,7 +31,7 @@ const Dashboard = () => {
           </div>
         ))}
       </div>
-      <div className={`${styles.columnBox} gap-6`}>
+      <div className={`${style.columnBox} gap-6`}>
         {total.map((data, index) => (
           <div className="flex flex-col items-start justify-between gap-8 p-2 m-4 rounded-lg bg-sec">
             <h5 className="uppercase">{data.totalName}</h5>

@@ -1,8 +1,10 @@
 import React from "react";
+import { styles } from "../../styles";
 
 const AddGiftcard = () => {
   return (
     <div>
+      <p className={`${styles.topic} mb-0`}>add new gift card</p>
       <div className="flex items-center justify-between p-2">
         <p className="text-2xl font-bold text-end">Add Rate</p>
         <div className="flex items-center justify-between gap-8">

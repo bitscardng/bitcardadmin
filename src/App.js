@@ -15,7 +15,8 @@ import {
   Faq,
   FxRate,
   GhsWithdraw,
-  GiftCard,
+  SellGiftCard,
+  BuyGiftCard,
   Kyc1,
   Kyc3,
   Kyc4,
@@ -105,11 +106,21 @@ function App() {
             }
           />
           <Route
-            path="/gift-card-tranx"
+            path="/buy-gift-card"
             element={
               <Sidebar>
                 <Layout>
-                  <GiftCard />
+                  <BuyGiftCard />
+                </Layout>
+              </Sidebar>
+            }
+          />
+          <Route
+            path="/sell-gift-card"
+            element={
+              <Sidebar>
+                <Layout>
+                  <SellGiftCard />
                 </Layout>
               </Sidebar>
             }
@@ -271,22 +282,6 @@ function App() {
                 <Layout>
                   <UsdDeposit />
                 </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/ngn-transfer"
-            element={
-              <Sidebar>
-                <Layout></Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/usd-transfer"
-            element={
-              <Sidebar>
-                <Layout></Layout>
               </Sidebar>
             }
           />

@@ -1,7 +1,8 @@
 const menu = [
   { name: "Dashboard", link: "/dashboard", count: "" },
   { name: "admin control", link: "/admin-control", count: "5" },
-  { name: "gift card tranx", link: "/gift-card-tranx", count: "4" },
+  { name: "buy gift card", link: "/buy-gift-card", count: "4" },
+  { name: "sell gift card", link: "/sell-gift-card", count: "" },
   { name: "P2P tranx", link: "/p2p-tranx", count: "3" },
   { name: "virtual card", link: "/virtual-card", count: "7" },
   { name: "crypto tranx", link: "/crypto-tranx", count: "3" },
@@ -28,8 +29,6 @@ const menu = [
   },
   { name: "NGN Deposit", link: "/ngn-deposit", count: "" },
   { name: "USD Deposit", link: "/usd-deposit", count: "" },
-  { name: "NGN transfer", link: "/ngn-transfer", count: "" },
-  { name: "USD transfer", link: "/usd-transfer", count: "" },
   { name: "push notification", link: "/push-notice", count: "" },
   { name: "export data", link: "/export-data", count: "" },
   { name: "ads campaign", link: "/ads-campaign", count: "" },

@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import Search from "../components/Search";
 import { giftCard } from "../constant";
 import ReactPaginate from "react-paginate";
+import { styles } from "../styles";
 
-const GiftCard = () => {
+const SellGiftCard = () => {
   const [datas, setDatas] = useState(giftCard);
   const [search, setSearch] = useState("");
 
@@ -59,6 +60,7 @@ const GiftCard = () => {
 
   return (
     <div>
+      <p className={`${styles.topic} mb-4`}>Sell gift card</p>
       <Search
         value={search}
         onChange={(e) => {
@@ -113,4 +115,4 @@ const GiftCard = () => {
   );
 };
 
-export default GiftCard;
+export default SellGiftCard;

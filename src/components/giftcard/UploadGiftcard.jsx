@@ -49,6 +49,7 @@ const UploadGiftcard = ({ upload }) => {
 
   return (
     <div>
+      <p className={`${styles.topic} mb-0`}>upload new gift card</p>
       <div className="flex items-center gap-20 pb-2 text-center">
         {/* <Search
           value={search}
@@ -56,7 +57,6 @@ const UploadGiftcard = ({ upload }) => {
             setSearch(e.target.value);
           }}
         /> */}
-        <p className="text-2xl font-bold text-end">Upload New Gift Card</p>
       </div>
       <div className="p-4 my-6 border-2 border-sec rounded-2xl">
         <div className="flex flex-row items-end justify-evenly ">
@@ -184,7 +184,7 @@ const UploadGiftcard = ({ upload }) => {
             })}
           </div>
         </div>
-        <button className={`${styles.btn}`} >Submit</button>
+        <button className={`${styles.btn}`}>Submit</button>
       </div>
     </div>
   );

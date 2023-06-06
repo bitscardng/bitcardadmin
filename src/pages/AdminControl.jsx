@@ -13,6 +13,7 @@ const AdminControl = () => {
 
   return (
     <div>
+      <p className={`${styles.topic}`}>admin control</p>
       <div>
         <div className={styles.formField}>
           <div className="flex flex-row items-center gap-2 text-center">

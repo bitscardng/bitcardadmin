@@ -3,6 +3,7 @@ import Search from "../components/Search";
 import { giftCard } from "../constant";
 import ReactPaginate from "react-paginate";
 import { HiOutlineMail } from "react-icons/hi";
+import { styles } from "../styles";
 
 const UsdDeposit = () => {
   const [datas, setDatas] = useState(giftCard);
@@ -50,6 +51,7 @@ const UsdDeposit = () => {
 
   return (
     <div>
+      <p className={`${styles.topic} mb-0`}>usd deposit</p>
       <div className="p-2 pt-8">
         <div className="flex justify-between w-full gap-8 overflow-x-auto">
           <div className="w-full overflow-x-auto">

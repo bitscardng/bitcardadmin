@@ -3,6 +3,7 @@ import Search from "../components/Search";
 import { giftCard } from "../constant";
 import ReactPaginate from "react-paginate";
 import { human } from "../assets";
+import { styles } from "../styles";
 
 const Kyc3 = () => {
   const [datas, setDatas] = useState(giftCard);
@@ -59,6 +60,7 @@ const Kyc3 = () => {
 
   return (
     <div>
+      <p className={`${styles.topic} mb-0`}>kyc 3</p>
       <Search
         value={search}
         onChange={(e) => {

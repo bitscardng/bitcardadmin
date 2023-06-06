@@ -3,6 +3,7 @@ import Search from "../components/Search";
 import { giftCard } from "../constant";
 import ReactPaginate from "react-paginate";
 import { HiOutlineMail } from "react-icons/hi";
+import { styles } from "../styles";
 
 const NgnWithdraw = () => {
   const [datas, setDatas] = useState(giftCard);
@@ -53,7 +54,8 @@ const NgnWithdraw = () => {
 
   return (
     <div>
-      <div className="p-2 pt-8">
+      <p className={`${styles.topic}`}>naira withdrawal</p>
+      <div className="px-2">
         <div className="flex justify-between w-full gap-8 overflow-x-auto">
           <div className="w-full overflow-x-auto">
             <div className="flex items-center gap-20 pb-2 text-center">

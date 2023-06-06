@@ -15,6 +15,7 @@ const Faq = ({ faq, handleInputChange, content, setContent }) => {
   };
   return (
     <form className="flex flex-col items-center">
+      <p className={`${styles.topic} mb-0`}>faq</p>
       <div className={styles.formField}>
         <div className="flex flex-row items-center gap-2 text-center">
           <div className="p-2 text-center rounded-full bg-[#3b3a62]">

@@ -3,6 +3,7 @@ import ReactPaginate from "react-paginate";
 import Search from "../components/Search";
 import { giftCard } from "../constant";
 import { Link } from "react-router-dom";
+import { styles } from "../styles";
 
 const Users = () => {
   const [datas, setDatas] = useState(giftCard);
@@ -61,6 +62,7 @@ const Users = () => {
 
   return (
     <div>
+      <p className={`${styles.topic} mb-2`}>users</p>
       <div className="p-2">
         <Search
           value={search}

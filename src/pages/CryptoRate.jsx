@@ -1,29 +1,30 @@
 import React, { useState } from "react";
 import Search from "../components/Search";
+import { styles } from "../styles";
 
 const rate = [
   { coin: "BTC", buying: "749.5", selling: "770", market: "29,012.23" },
   { coin: "BTC", buying: "747.5", selling: "774", market: "28,000.23" },
 ];
 
-const GhsWithdraw = () => {
+const CryptoRate = () => {
   const [search, setSearch] = useState("");
 
   //pagination end
 
   return (
     <div>
-      <div className="p-2 pt-8">
+      <p className={`${styles.topic} mb-4`}>usd withdrawal</p>
+      <div className="px-2">
         <div className="flex justify-between w-full gap-8 overflow-x-auto">
           <div className="w-full overflow-x-auto">
-            <div className="flex items-center gap-20 pb-2 text-center">
+            <div className="flex items-center justify-between p-2 text-center">
               <Search
                 value={search}
                 onChange={(e) => {
                   setSearch(e.target.value);
                 }}
               />
-              <p className="text-2xl font-bold text-end">Crypto Rate</p>
               <div className="flex flex-row justify-between gap-4">
                 <p className="flex items-center justify-center pl-3 m-1 text-xl font-semibold rounded-full bg-sec">
                   Profit
@@ -32,8 +33,12 @@ const GhsWithdraw = () => {
                   </span>
                 </p>
                 <div className="flex flex-row justify-between">
-                  <p className="p-2 m-1 duration-500 rounded-full bg-active hover:px-4">Edit</p>
-                  <p className="p-2 bg-[green] m-1 rounded-full hover:px-4 duration-500">Update</p>
+                  <p className="p-2 m-1 duration-500 rounded-full bg-active hover:px-4">
+                    Edit
+                  </p>
+                  <p className="p-2 bg-[green] m-1 rounded-full hover:px-4 duration-500">
+                    Update
+                  </p>
                 </div>
               </div>
             </div>
@@ -81,4 +86,4 @@ const GhsWithdraw = () => {
   );
 };
 
-export default GhsWithdraw;
+export default CryptoRate;

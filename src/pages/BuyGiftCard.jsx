@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import Search from "../components/Search";
 import { giftCard } from "../constant";
 import ReactPaginate from "react-paginate";
-import { human } from "../assets";
 import { styles } from "../styles";
 
-const Kyc4 = () => {
+const BuyGiftCard = () => {
   const [datas, setDatas] = useState(giftCard);
   const [search, setSearch] = useState("");
 
@@ -22,24 +21,31 @@ const Kyc4 = () => {
     .slice(pageVisited, pageVisited + datasPerPage)
     .map((data, index) => {
       return (
-        <tr
-          className="text-xl font-thin text-center capitalize hover:bg-sec"
-          key={index}
-        >
-          <th className="p-1 px-2 duration-500 border">{index + 1}</th>
-          <td className="p-1 px-2 duration-500 border">{data.email}</td>
-          <td className="p-1 px-2 duration-500 border">{"web developer"}</td>
-          <td className="p-1 px-2 duration-500 border">{"document.pdf"}</td>
-          <td className="p-1 px-2 duration-500 border">{"document.pdf"}</td>
-          <td className="p-1 px-2 font-thin border">
-            {"International passport"}
+        <tr className="text-center hover:bg-sec" key={index}>
+          <th className="p-1 px-2 text-xl duration-500 border">{index + 1}</th>
+          <td className="p-1 px-2 text-xl font-thin duration-500 border">
+            {data.email}
           </td>
-          <td className="p-1 px-2 duration-500 border">{"1234567890"}</td>
-          <td className="p-1 px-2 duration-500 border ">
-            <p>{data.transDate}</p>
-            <p>{data.transDate}</p>
+          <td className="p-1 px-2 text-xl font-thin duration-500 border">
+            {data.giftCard}
           </td>
-          <td className="flex flex-col gap-2 p-2 border">
+          <td className="p-1 px-2 text-xl font-thin duration-500 border">
+            {data.country}
+          </td>
+          <td className="p-1 px-2 font-thin border">{data.cardType}</td>
+          <td className="p-1 px-2 text-xl font-thin duration-500 border">
+            {data.amount}
+          </td>
+          <td className="p-1 px-2 text-xl font-thin duration-500 border">
+            {data.payout}
+          </td>
+          <td className="p-1 px-2 text-xl font-thin duration-500 border">
+            {<p className="p-2 rounded-lg bg-active">Pending</p>}
+          </td>
+          <td className="p-1 px-2 text-xl font-thin duration-500 border">
+            {data.transDate} <span>{data.transTime}</span>
+          </td>
+          <td className="flex flex-col gap-2 p-2 text-xl font-thin border">
             <btn className="bg-[green] p-1 rounded-lg cursor-pointer hover:font-normal duration-500">
               Approved
             </btn>
@@ -54,7 +60,7 @@ const Kyc4 = () => {
 
   return (
     <div>
-      <p className={`${styles.topic} mb-0`}>kyc 4</p>
+      <p className={`${styles.topic} mb-4`}>Buy gift card</p>
       <Search
         value={search}
         onChange={(e) => {
@@ -68,30 +74,17 @@ const Kyc4 = () => {
             <thead className="">
               <tr className="rounded-full">
                 <th className="p-2 text-xl font-semibold border"></th>
-                <th className="p-2 text-xl font-semibold uppercase border">
-                  email
+                <th className="p-2 text-xl font-semibold border">Email</th>
+                <th className="p-2 text-xl font-semibold border">GiftCard</th>
+                <th className="p-2 text-xl font-semibold border">Country</th>
+                <th className="p-2 text-xl font-semibold border">Card Type</th>
+                <th className="p-2 text-xl font-semibold border">Amount</th>
+                <th className="p-2 text-xl font-semibold border">Payout</th>
+                <th className="p-2 text-xl font-semibold border">Status</th>
+                <th className="p-2 text-xl font-semibold border">
+                  Transaction date
                 </th>
-                <th className="p-2 text-xl font-semibold uppercase border">
-                  occupation
-                </th>
-                <th className="p-2 text-xl font-semibold uppercase border">
-                  utility bill
-                </th>
-                <th className="p-2 text-xl font-semibold uppercase border">
-                  account statement
-                </th>
-                <th className="p-2 text-xl font-semibold uppercase border">
-                  id type
-                </th>
-                <th className="p-2 text-xl font-semibold uppercase border">
-                  document number
-                </th>
-                <th className="p-2 text-xl font-semibold uppercase border">
-                  issued / expire date
-                </th>
-                <th className="p-2 text-xl font-semibold uppercase border">
-                  status
-                </th>
+                <th className="p-2 text-xl font-semibold border">Approval</th>
               </tr>
             </thead>
             <tbody>{displayDatas}</tbody>
@@ -122,4 +115,4 @@ const Kyc4 = () => {
   );
 };
 
-export default Kyc4;
+export default BuyGiftCard;

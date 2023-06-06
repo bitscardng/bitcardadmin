@@ -7,7 +7,8 @@ import ExportData from "./ExportData";
 import Faq from "./Faq";
 import FxRate from "./FxRate";
 import GhsWithdraw from "./GhsWithdraw";
-import GiftCard from "./GiftCard";
+import SellGiftCard from "./SellGiftCard";
+import BuyGiftCard from "./BuyGiftCard";
 import GiftCardRate from "./GiftCardRate";
 import Kyc1 from "./Kyc1";
 import Kyc3 from "./Kyc3";
@@ -40,7 +41,8 @@ export {
   Kyc3,
   Kyc4,
   GhsWithdraw,
-  GiftCard,
+  BuyGiftCard,
+  SellGiftCard,
   GiftCardRate,
   Faq,
   FxRate,

@@ -3,6 +3,7 @@ import Search from "../components/Search";
 import { giftCard } from "../constant";
 import ReactPaginate from "react-paginate";
 import { human } from "../assets";
+import { styles } from "../styles";
 
 const Kyc1 = () => {
   const [datas, setDatas] = useState(giftCard);
@@ -58,6 +59,7 @@ const Kyc1 = () => {
 
   return (
     <div>
+      <p className={`${styles.topic} mb-0`}>kyc 1</p>
       <Search
         value={search}
         onChange={(e) => {
@@ -95,12 +97,18 @@ const Kyc1 = () => {
                 <th className="p-2 text-xl font-semibold uppercase border">
                   state
                 </th>
-                <th className="p-2 text-xl font-semibold uppercase border">bvn</th>
-                <th className="p-2 text-xl font-semibold uppercase border">image</th>
+                <th className="p-2 text-xl font-semibold uppercase border">
+                  bvn
+                </th>
+                <th className="p-2 text-xl font-semibold uppercase border">
+                  image
+                </th>
                 <th className="p-2 text-xl font-semibold uppercase border">
                   postal code
                 </th>
-                <th className="p-2 text-xl font-semibold uppercase border">status</th>
+                <th className="p-2 text-xl font-semibold uppercase border">
+                  status
+                </th>
               </tr>
             </thead>
             <tbody>{displayDatas}</tbody>

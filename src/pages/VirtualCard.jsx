@@ -3,6 +3,7 @@ import Search from "../components/Search";
 import ReactPaginate from "react-paginate";
 import { giftCard } from "../constant";
 import { HiOutlineMail } from "react-icons/hi";
+import { styles } from "../styles";
 
 
 const VirtualCard = () => {
@@ -49,13 +50,14 @@ const VirtualCard = () => {
 
   return (
     <div>
+      <p className={`${styles.topic}`}>virtual card transaction</p>
       <Search
         value={search}
         onChange={(e) => {
           setSearch(e.target.value);
         }}
       />
-      <div className="p-2 pt-8">
+      <div className="p-2 pt-4">
         <div className="flex justify-between w-full gap-8 overflow-x-auto">
           <div className="">
             <p className="pb-2 text-2xl font-bold text-center">

@@ -76,7 +76,7 @@ const Sidebar = ({ children }) => {
           </ul>
         </div>
       </div>
-      <div className="flex-1 w-full h-screen overflow-y-scroll">{children}</div>
+      <div className="flex-1 w-full min-h-screen overflow-y-scroll">{children}</div>
     </div>
   );
 };

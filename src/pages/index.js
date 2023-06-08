@@ -24,8 +24,10 @@ import UsdWithdraw from "./UsdWithdraw";
 import Users from "./Users";
 import VirtualCard from "./VirtualCard";
 import UserDetails from "./UserDetails";
+import TeleSales from "./TeleSales";
 
 export {
+  TeleSales,
   VirtualCard,
   Users,
   UserDetails,

@@ -3,10 +3,8 @@ import { robot } from "../assets";
 import { Link } from "react-router-dom";
 import { styles } from "../styles";
 
-
 const Forgot = () => {
   const [email, setEmail] = useState("");
-
 
   return (
     <div class="hero min-h-screen">
@@ -31,10 +29,10 @@ const Forgot = () => {
               </div>
               <div className="px-2">
                 <div className="flex flex-row items-center justify-between py-2">
-                  <Link to="/sign-up" className="text-white label-text-alt link link-hover">
-                    <p>Sign Up</p>
-                  </Link>
-                  <Link to="/sign-in" className="text-white label-text-alt link link-hover">
+                  <Link
+                    to="/sign-in"
+                    className="text-white label-text-alt link link-hover"
+                  >
                     <p>Sign in</p>
                   </Link>
                 </div>

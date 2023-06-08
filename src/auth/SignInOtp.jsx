@@ -58,15 +58,6 @@ const SignInOtp = () => {
                     />
                   </div>
                 </div>
-                <p className="py-2 font-thin text-left font-italic">
-                  &nbsp; Don't have an account? &nbsp;
-                </p>
-                <Link
-                  to="/sign-up"
-                  className="text-white link-hover label-text-alt link"
-                >
-                  <p>Sign Up</p>
-                </Link>
                 <div className={`${styles.btn} ml-0`}>Submit</div>
               </div>
             </form>

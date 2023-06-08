@@ -31,6 +31,7 @@ import {
   Users,
   UserDetails,
   VirtualCard,
+  TeleSales,
 } from "./pages";
 import Signup from "./auth/Signup";
 import SignIn from "./auth/SignIn";
@@ -48,7 +49,7 @@ function App() {
             path="/"
             element={
               <Layout2>
-                <Home />
+                <SignIn />
               </Layout2>
             }
           />
@@ -321,6 +322,17 @@ function App() {
               <Sidebar>
                 <Layout>
                   <SendEmail />
+                </Layout>
+              </Sidebar>
+            }
+          />
+
+          <Route
+            path="/telesales"
+            element={
+              <Sidebar>
+                <Layout>
+                  <TeleSales />
                 </Layout>
               </Sidebar>
             }

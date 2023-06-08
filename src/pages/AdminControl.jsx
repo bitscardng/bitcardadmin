@@ -12,7 +12,7 @@ const AdminControl = () => {
   const [users, setUsers] = useState("");
 
   return (
-    <div>
+    <div className="">
       <p className={`${styles.topic}`}>admin control</p>
       <div>
         <div className={styles.formField}>
@@ -90,7 +90,7 @@ const AdminControl = () => {
           );
         })}
       </div>
-      <div className={`${styles.btn}`}> Create users</div>
+      <div className={`${styles.btn}`}>Create users</div>
     </div>
   );
 };

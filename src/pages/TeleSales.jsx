@@ -97,7 +97,7 @@ const TeleSales = () => {
                   <th className="p-2 text-xl font-semibold border">
                     Users Name
                   </th>
-                  <th className="p-2 text-xl font-semibold border">KYC1 & 2</th>
+                  <th className="p-2 text-xl font-semibold border">KYC 1&2</th>
                   <th className="p-2 text-xl font-semibold border">KYC 3</th>
                   <th className="p-2 text-xl font-semibold border">KYC 4</th>
                   <th className="p-2 text-xl font-semibold border">

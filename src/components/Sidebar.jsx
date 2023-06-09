@@ -33,14 +33,16 @@ const Sidebar = ({ children }) => {
               <Link to={menu.link} key={index}>
                 <li className="relative">
                   <div
-                    className={`w-[32px] p-1 rounded-full bg-[#ED1E79] text-white text-center left-48 -top-6 absolute`}
+                    className={`w-[32px] p-1 rounded-full bg-[#ED1E79] 
+                    text-white text-center left-48 -top-6 absolute`}
                   >
                     {menu.count}
                   </div>
                   <div
                     className={`${
                       active === menu.name ? "bg-active" : "bg-sec"
-                    } flex p-3 hover:bg-active m-4 rounded-full justify-between items-center text-center duration-500`}
+                    } flex p-3 hover:bg-active m-4 rounded-full 
+                    justify-between items-center text-center duration-500`}
                     onClick={() => setActive(menu.name)}
                   >
                     <div className="p-2 text-center rounded-full bg-[#3b3a62]">

@@ -8,8 +8,6 @@ const rate = [
 ];
 
 const CryptoRate = () => {
-  const [search, setSearch] = useState("");
-
   //pagination end
 
   return (
@@ -18,16 +16,26 @@ const CryptoRate = () => {
       <div className="px-2">
         <div className="flex justify-between w-full gap-8 overflow-x-auto">
           <div className="w-full overflow-x-auto">
-            <div className="flex items-center justify-between p-2 text-center">
-              <Search
-                value={search}
-                onChange={(e) => {
-                  setSearch(e.target.value);
-                }}
-              />
+            <div className="flex items-center justify-between py-2 text-center">
               <div className="flex flex-row justify-between gap-4">
                 <p className="flex items-center justify-center pl-3 m-1 text-xl font-semibold rounded-full bg-sec">
-                  Profit
+                  Selling Profit
+                  <span className="p-2 ml-4 text-black bg-white rounded-r-full">
+                    {"100"}
+                  </span>
+                </p>
+                <div className="flex flex-row justify-between">
+                  <p className="p-2 m-1 duration-500 rounded-full bg-active hover:px-4">
+                    Edit
+                  </p>
+                  <p className="p-2 bg-[green] m-1 rounded-full hover:px-4 duration-500">
+                    Update
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-row justify-between gap-4">
+                <p className="flex items-center justify-center pl-3 m-1 text-xl font-semibold rounded-full bg-sec">
+                  Buying Profit
                   <span className="p-2 ml-4 text-black bg-white rounded-r-full">
                     {"100"}
                   </span>

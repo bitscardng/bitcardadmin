@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 import { styles } from "../styles";
-import { FiUser } from "react-icons/fi";
+import { FiUser, FiArrowDownCircle } from "react-icons/fi";
 import { HiOutlineMail } from "react-icons/hi";
 import { BiLockOpen } from "react-icons/bi";
 
+const datas = [
+  { name: "User 1" },
+  { name: "User 2" },
+  { name: "User 3" },
+  { name: "User 4" },
+];
 const denomination = [
   { id: "rad01", name: "Admin" },
   { id: "rad02", name: "Customer Rep" },
 ];
-const AdminControl = () => {
+const AdminControl = (handleInputChange) => {
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState("");
   const [users, setUsers] = useState("");
 
   return (
@@ -57,13 +65,50 @@ const AdminControl = () => {
             className="w-full p-2 mx-1 bg-transparent outline-none"
           />
         </div>
-        <div className={`${styles.formField}`}>
-          <div className="flex flex-row items-center gap-2 text-center">
-            <div className="p-2 text-center rounded-full bg-[#3b3a62]">
-              <FiUser className="text-[#f7931a]" />
-            </div>
-            <p className="">Choose Rate :</p>
+        <div
+          className={`${styles.formField} cursor-pointer flex-row flex justify-between py-3`}
+          onClick={() => setOpen(!open)}
+          onChange={handleInputChange}
+        >
+          <div className="p-2 text-center rounded-full bg-[#3b3a62]">
+            <FiUser className="text-[#f7931a]" />
           </div>
+          <p
+            className={`text-white text-start ${!selected && "text-[#9CA3AF]"}`}
+          >
+            {selected ? selected : "Select Category"}
+          </p>
+          <div className="p-2 text-center rounded-full bg-[#3b3a62]">
+            <FiArrowDownCircle
+              className={` text-[#f7931a] duration-1000 text-[20px] ${
+                open && "rotate-180 text-white"
+              }`}
+            />
+          </div>
+        </div>
+        {/* category lists */}
+        <div className="hero">
+          <ul
+            className={`p-2 overflow-y-auto rounded-xl w-72 bg-sec ${
+              open ? "h-40" : "hidden"
+            }`}
+          >
+            {datas.map((data, index) => {
+              return (
+                <li
+                  className={`w-full p-2 m-1 hover:bg-active text-[#9CA3AF] hover:text-white duration-500 cursor-pointer rounded-xl`}
+                  onClick={() => {
+                    if (data?.name) {
+                      setSelected(data?.name);
+                      setOpen(false);
+                    }
+                  }}
+                >
+                  {data?.name}
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
       <div className="flex">

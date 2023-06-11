@@ -79,7 +79,9 @@ const News = ({ news, handleInputChange, content, setContent }) => {
         </p>
         <div className="p-2 text-center rounded-full bg-[#3b3a62]">
           <FiArrowDownCircle
-            className={` text-[#f7931a] duration-1000 ${open && "rotate-180"}`}
+            className={` text-[#f7931a] duration-1000 text-[20px] ${
+              open && "rotate-180 text-white"
+            }`}
           />
         </div>
       </div>

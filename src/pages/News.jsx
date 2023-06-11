@@ -35,7 +35,7 @@ const News = ({ news, handleInputChange, content, setContent }) => {
       </div>
       <div
         onClick={() => document.querySelector(".image-field").click()}
-        className="flex flex-col items-center justify-center w-64 h-64 border-2 border-white border-dashed rounded-full hero hover:text-active hover:border-active"
+        className="flex flex-col items-center justify-center w-64 h-64 border-2 border-white border-dashed rounded-full cursor-pointer hero hover:text-active hover:border-active"
       >
         <input
           id="image"

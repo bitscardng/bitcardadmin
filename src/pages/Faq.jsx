@@ -1,11 +1,20 @@
 import React, { useState } from "react";
 import { styles } from "../styles";
 import { MdCloudUpload } from "react-icons/md";
-import { FiUser } from "react-icons/fi";
+import { FiUser, FiArrowDownCircle } from "react-icons/fi";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
+const datas = [
+  { name: "btc" },
+  { name: "btc2" },
+  { name: "btc3" },
+  { name: "btc4" },
+];
+
 const Faq = ({ faq, handleInputChange, content, setContent }) => {
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState("");
   const [faqImage, setFaqImage] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
 
@@ -57,23 +66,44 @@ const Faq = ({ faq, handleInputChange, content, setContent }) => {
           </div>
         )}
       </div>
-      <div className={styles.formField}>
-        <div className="flex flex-row items-center gap-2 text-center">
-          <div className="p-2 text-center rounded-full bg-[#3b3a62]">
-            <FiUser className="text-[#f7931a]" />
-          </div>
-          <p className="flex">Category</p>
+      <div
+        className={`${styles.formField} cursor-pointer flex-row justify-between py-3`}
+        onClick={() => setOpen(!open)}
+      >
+        <div className="p-2 text-center rounded-full bg-[#3b3a62]">
+          <FiUser className="text-[#f7931a]" />
         </div>
-        <input
-          type="text"
-          name="category"
-          value={faq?.category}
-          onChange={handleInputChange}
-          required
-          placeholder="Category"
-          className="w-full p-2 mx-1 bg-transparent outline-none"
-        />
+        <p className={`text-white ${!selected && "text-[#9CA3AF]"}`}>
+          {selected ? selected : "Select Category"}
+        </p>
+        <div className="p-2 text-center rounded-full bg-[#3b3a62]">
+          <FiArrowDownCircle
+            className={` text-[#f7931a] duration-1000 ${open && "rotate-180"}`}
+          />
+        </div>
       </div>
+      {/* category lists */}
+      <ul
+        className={`p-1 overflow-y-auto rounded-xl w-72 bg-sec ${
+          open ? "h-40" : "hidden"
+        }`}
+      >
+        {datas.map((data, index) => {
+          return (
+            <li
+              className={`w-full p-1 m-1 hover:bg-active text-[#9CA3AF] hover:text-white duration-500 cursor-pointer rounded-xl }`}
+              onClick={() => {
+                if (data?.name) {
+                  setSelected(data?.name);
+                  setOpen(false);
+                }
+              }}
+            >
+              {data?.name}
+            </li>
+          );
+        })}
+      </ul>
       <div className={`p-2 px-4 m-4 bg-sec w-full rounded-2xl`}>
         <div className="flex flex-col h-full gap-2">
           <div className="flex items-center gap-2 pb-2 h-fit">

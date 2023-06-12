@@ -1,52 +1,56 @@
-import React, { useState } from "react";
-import ReactPaginate from "react-paginate";
-import { giftCard } from "../constant";
-import { Link } from "react-router-dom";
+import React from "react";
 import { styles } from "../styles";
+import { HiDownload } from "react-icons/hi";
+import { logo } from "../assets";
 
-
+const datas = [
+  { Country: "country NGN", pdf: <logo /> },
+  { Country: "country INT", pdf: <logo /> },
+  { Country: "country GHS", pdf: <logo /> },
+  { Country: "country KYN", pdf: <logo /> },
+];
 
 const ExportData = () => {
-  const [datas, setDatas] = useState(giftCard);
-
-  // paginations start
-  const [pageNumber, setPageNumber] = useState(0);
-  //data view page is datasperpage so you can change the number 5 to what you want...
-  const datasPerPage = 5;
-  const pageVisited = pageNumber * datasPerPage;
-  const pageCount = Math.ceil(datas.length / datasPerPage);
-  const changePage = ({ selected }) => {
-    setPageNumber(selected);
-  };
-  const displayDatas = datas
-    .slice(pageVisited, pageVisited + datasPerPage)
-    .map((data, index) => {
-      return (
-        <tr className="text-center hover:bg-sec" key={index}>
-          <th className="p-1 px-2 text-xl duration-500 border">{index + 1}</th>
-          <td></td>
-        </tr>
-      );
-    });
-  //pagination end
-
   return (
     <div>
       <p className={`${styles.topic} mb-0`}>export data</p>
-      <div className="">
-        <table className="w-full mt-8">
-          {/* head */}
-          <thead className="">
-            <tr className="rounded-full">
-              <th className="p-2 text-xl font-semibold bg-sec "></th>
-              <th className="p-2 text-xl font-semibold bg-sec ">Country NGN</th>
-              <th className="p-2 text-xl font-semibold bg-sec ">Country INT</th>
-              <th className="p-2 text-xl font-semibold bg-sec ">Country GHS</th>
-              <th className="p-2 text-xl font-semibold bg-sec ">Country KYA</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+      <div className="flex items-center justify-between w-full mt-8">
+        {datas.map((data, index) => {
+          return (
+            <div
+              className="flex flex-col items-center justify-center text-center"
+              key={index}
+            >
+              <div className="p-2 px-8 text-xl font-semibold capitalize rounded-full cursor-pointer bg-sec">
+                {data?.Country}
+              </div>
+              <div className="flex flex-col gap-12 mt-8 w-fit">
+                <a href={data.pdf} download="phone number.pdf">
+                  <div className="relative flex flex-col bg-[#6c6aeb] rounded-2xl w-40 h-24 cursor-pointer group ">
+                    <HiDownload
+                      size={36}
+                      className="absolute p-2 ml-4 -mt-4 rounded-full bg-[#5fc88f] group-hover:bg-active group-hover:text-primary duration-500 "
+                    />
+                    <p className="p-2 pt-8 font-light">
+                      Download CSV Phone Number
+                    </p>
+                  </div>
+                </a>
+                <a href={data.pdf} download="email.pdf">
+                  <div className="relative flex flex-col bg-[#6c6aeb] rounded-2xl w-40 h-24 cursor-pointer group">
+                    <HiDownload
+                      size={36}
+                      className="absolute p-2 ml-4 -mt-4 text-xl rounded-full bg-[#5fc88f] group-hover:bg-active group-hover:text-primary duration-500"
+                    />
+                    <p className="p-2 pt-8 font-light">
+                      Download Email Address
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

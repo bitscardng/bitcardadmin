@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import Search from "../components/Search";
+import React from "react";
 import { styles } from "../styles";
 
 const rate = [

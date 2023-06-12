@@ -43,7 +43,7 @@ const SendEmail = ({ sendEmail, handleInputChange, content, setContent }) => {
               className="mr-1 checkbox peer"
             />
             <p className="w-[20rem] mx-2 p-4 text-center rounded-full bg-sec peer-checked:bg-active duration-500">
-              Check the to send to all customer
+              Check, to send to all customer
             </p>
           </div>
         </div>

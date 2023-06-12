@@ -1,13 +1,13 @@
 import React from "react";
 import { styles } from "../styles";
 import { HiDownload } from "react-icons/hi";
-import { logo } from "../assets";
+
 
 const datas = [
-  { Country: "country NGN", pdf: <logo /> },
-  { Country: "country INT", pdf: <logo /> },
-  { Country: "country GHS", pdf: <logo /> },
-  { Country: "country KYN", pdf: <logo /> },
+  { Country: "country NGN", pdf:"" },
+  { Country: "country INT", pdf:"" },
+  { Country: "country GHS", pdf:"" },
+  { Country: "country KYN", pdf:"" },
 ];
 
 const ExportData = () => {

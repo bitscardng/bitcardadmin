@@ -5,6 +5,7 @@ import Layout from "./components/Layout";
 import UploadGiftcard from "./components/giftcard/UploadGiftcard";
 import AddGiftcard from "./components/giftcard/AddGiftcard";
 
+
 import {
   AdminControl,
   AdsCampaign,
@@ -39,6 +40,7 @@ import SignInOtp from "./auth/SignInOtp";
 import Forgot from "./auth/Forgot";
 import Home from "./components/Home";
 import Layout2 from "./components/Layout2";
+import Email1 from "./components/Email1";
 
 function App() {
   return (
@@ -92,6 +94,16 @@ function App() {
               <Sidebar>
                 <Layout>
                   <Dashboard />
+                </Layout>
+              </Sidebar>
+            }
+          />
+          <Route
+            path="/email"
+            element={
+              <Sidebar>
+                <Layout>
+                  <Email1 />
                 </Layout>
               </Sidebar>
             }

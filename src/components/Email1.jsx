@@ -439,8 +439,7 @@ const Email1 = ({ children }) => {
                                   lineHeight: 10,
                                   fontSize: 1,
                                 }}
-                              >
-                              </div>
+                              ></div>
                               <table
                                 border={0}
                                 cellPadding={0}
@@ -482,7 +481,17 @@ const Email1 = ({ children }) => {
                                           style={{ margin: 0 }}
                                         >
                                           {children}
-                                          type here
+                                          Lorem ipsum dolor sit amet consectetur
+                                          adipisicing elit. Non neque ipsa error
+                                          modi quidem, aperiam animi veniam
+                                          exercitationem quam quo magnam harum
+                                          itaque, nostrum amet, illum architecto
+                                          ratione voluptatibus. Sint obcaecati
+                                          ab accusamus, laboriosam nulla
+                                          quibusdam adipisci laudantium. Saepe
+                                          impedit minus, odit rem eveniet ea
+                                          consequuntur nostrum illum repellat.
+                                          In.
                                         </p>
                                       </div>
                                     </td>

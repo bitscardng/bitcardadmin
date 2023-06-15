@@ -2,16 +2,17 @@ import React from "react";
 import { BsRobot } from "react-icons/bs";
 import { FiUser } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import DateTime from "./DateTime";
 
 const Header = () => {
   return (
     <div className="sticky top-0 z-20 flex justify-between w-full py-4 pr-3 bg-primary">
       <div className="flex justify-between w-full p-4 mr-3 rounded-full bg-sec">
         <p>
-          Today on Bitscard {"May"} {"15"}, {"2023"} {"2:22"} {"PM"}
+          <DateTime />
         </p>
         <div className="flex items-center gap-1">
-          <FiUser className="text-2xl font-bold text-active"/>
+          <FiUser className="text-2xl font-bold text-active" />
           <p>{"Super admin"}</p>
         </div>
       </div>

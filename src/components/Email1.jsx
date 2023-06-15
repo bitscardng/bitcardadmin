@@ -4,16 +4,16 @@ import "../../src/index.css";
 const Email1 = ({ children }) => {
   return (
     <div className="">
-      <table
+      <div
         border={0}
         cellPadding={0}
         cellSpacing={0}
-        className="nl-container"
+        className="nl-container hero"
         role="presentation"
         style={{
           msoTableLspace: "0pt",
           msoTableRspace: "0pt",
-          backgroundColor: "#ffffff",
+          backgroundColor: "#fff",
         }}
         width="100%"
       >
@@ -25,7 +25,7 @@ const Email1 = ({ children }) => {
                 border={0}
                 cellPadding={0}
                 cellSpacing={0}
-                className="row row-1"
+                className="row row-1 "
                 role="presentation"
                 style={{ msoTableLspace: "0pt", msoTableRspace: "0pt" }}
                 width="100%"
@@ -74,9 +74,7 @@ const Email1 = ({ children }) => {
                                   lineHeight: 30,
                                   fontSize: 1,
                                 }}
-                              >
-                                 
-                              </div>
+                              ></div>
                             </td>
                           </tr>
                         </tbody>
@@ -103,7 +101,7 @@ const Email1 = ({ children }) => {
                         border={0}
                         cellPadding={0}
                         cellSpacing={0}
-                        className="row-content stack"
+                        className="my-2 row-content"
                         role="presentation"
                         style={{
                           msoTableLspace: "0pt",
@@ -349,7 +347,7 @@ const Email1 = ({ children }) => {
                         border={0}
                         cellPadding={0}
                         cellSpacing={0}
-                        className="row-content stack"
+                        className="row-content"
                         role="presentation"
                         style={{
                           msoTableLspace: "0pt",
@@ -442,7 +440,6 @@ const Email1 = ({ children }) => {
                                   fontSize: 1,
                                 }}
                               >
-                                 
                               </div>
                               <table
                                 border={0}
@@ -532,7 +529,7 @@ const Email1 = ({ children }) => {
                         border={0}
                         cellPadding={0}
                         cellSpacing={0}
-                        className="row-content stack"
+                        className="row-content"
                         role="presentation"
                         style={{
                           msoTableLspace: "0pt",
@@ -634,7 +631,7 @@ const Email1 = ({ children }) => {
                         border={0}
                         cellPadding={0}
                         cellSpacing={0}
-                        className="row-content stack"
+                        className="row-content"
                         role="presentation"
                         style={{
                           msoTableLspace: "0pt",
@@ -881,7 +878,7 @@ const Email1 = ({ children }) => {
                         border={0}
                         cellPadding={0}
                         cellSpacing={0}
-                        className="row-content stack"
+                        className="row-content"
                         role="presentation"
                         style={{
                           msoTableLspace: "0pt",
@@ -1457,7 +1454,7 @@ const Email1 = ({ children }) => {
             </td>
           </tr>
         </tbody>
-      </table>
+      </div>
       {/* End */}
     </div>
   );

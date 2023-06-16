@@ -3,14 +3,16 @@ import { styles } from "../styles";
 import { FiUser } from "react-icons/fi";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { Link } from "react-router-dom";
 
 const templateData = [
   { id: "rad01", name: "A Customer" },
   { id: "rad02", name: "All Customer" },
 ];
 
-const SendEmail = ({ sendEmail, handleInputChange, content, setContent }) => {
+const SendEmail = ({ sendEmail, handleInputChange }) => {
   const [template, setTemplate] = useState("");
+  const [content, setContent] = useState("");
 
   return (
     <div className="flex flex-col">
@@ -83,7 +85,9 @@ const SendEmail = ({ sendEmail, handleInputChange, content, setContent }) => {
           </div>
         </div>
         <div className="flex gap-20">
-          <btn className={styles.btn}>Preview</btn>
+          <Link to="/email1preview" className={styles.btn}>
+            Preview
+          </Link>
           <btn className={styles.btn}>Send</btn>
         </div>
       </form>
@@ -109,9 +113,7 @@ const SendEmail = ({ sendEmail, handleInputChange, content, setContent }) => {
               >
                 <p className="pl-2 text-2xl font-semibold">{item.name}</p>
                 <p className="p-2 overflow-y-scroll bg-primary h-[32vh] rounded-2xl mt-2 font-light">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Doloremque eligendi itaque mollitia. Optio voluptate laborum
-                  aliquid suscipit tempora, impedit beatae!
+                  <p>{content}</p>
                 </p>
               </label>
             </div>

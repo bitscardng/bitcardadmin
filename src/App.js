@@ -38,7 +38,6 @@ import Signup from "./auth/Signup";
 import SignIn from "./auth/SignIn";
 import SignInOtp from "./auth/SignInOtp";
 import Forgot from "./auth/Forgot";
-import Home from "./components/Home";
 import Layout2 from "./components/Layout2";
 import Email1 from "./components/Email1";
 
@@ -99,7 +98,7 @@ function App() {
             }
           />
           <Route
-            path="/email"
+            path="/email1preview"
             element={
               <Sidebar>
                 <Layout>

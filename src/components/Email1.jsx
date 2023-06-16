@@ -1,7 +1,8 @@
 import React from "react";
 import "../../src/index.css";
 
-const Email1 = ({ children }) => {
+
+const Email1 = () => {
   return (
     <div className="">
       <div
@@ -480,18 +481,7 @@ const Email1 = ({ children }) => {
                                           data-pm-slice="1 1 []"
                                           style={{ margin: 0 }}
                                         >
-                                          {children}
-                                          Lorem ipsum dolor sit amet consectetur
-                                          adipisicing elit. Non neque ipsa error
-                                          modi quidem, aperiam animi veniam
-                                          exercitationem quam quo magnam harum
-                                          itaque, nostrum amet, illum architecto
-                                          ratione voluptatibus. Sint obcaecati
-                                          ab accusamus, laboriosam nulla
-                                          quibusdam adipisci laudantium. Saepe
-                                          impedit minus, odit rem eveniet ea
-                                          consequuntur nostrum illum repellat.
-                                          In.
+                                          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi, consequatur.
                                         </p>
                                       </div>
                                     </td>

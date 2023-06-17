@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { styles } from "../styles";
 import { FiUser } from "react-icons/fi";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Link } from "react-router-dom";
 
@@ -73,15 +72,14 @@ const SendEmail = ({ sendEmail, handleInputChange }) => {
               <FiUser className="text-[#f7931a] bg-[#3b3a62] rounded-full p-2 text-4xl" />
               <p>Content</p>
             </div>
-            <ReactQuill
-              theme="snow"
-              placeholder="write your content here"
+            <textarea
+              required
+              placeholder="Type here"
+              rows={10}
+              className="p-4 outline-none bg-primary rounded-2xl"
               value={content}
-              onChange={setContent}
-              modules={SendEmail.modules}
-              formats={SendEmail.formats}
-              className="w-full p-2 mx-1 bg-transparent outline-none"
-            />
+              onChange={(e) => setContent(e.target.value)}
+            ></textarea>
           </div>
         </div>
         <div className="flex gap-20">
@@ -112,9 +110,9 @@ const SendEmail = ({ sendEmail, handleInputChange }) => {
                 className="w-full p-2 duration-500 rounded-2xl cursor-pointer hover:bg-active bg-sec peer-checked:bg-active h-[40vh]"
               >
                 <p className="pl-2 text-2xl font-semibold">{item.name}</p>
-                <p className="p-2 overflow-y-scroll bg-primary h-[32vh] rounded-2xl mt-2 font-light">
-                  <p>{content}</p>
-                </p>
+                <div className="p-2 overflow-y-scroll bg-primary h-[32vh] rounded-2xl mt-2 font-light">
+                  <div>{content}</div>
+                </div>
               </label>
             </div>
           );
@@ -123,42 +121,5 @@ const SendEmail = ({ sendEmail, handleInputChange }) => {
     </div>
   );
 };
-
-SendEmail.modules = {
-  toolbar: [
-    [{ header: "1" }, { header: "2" }, { font: [] }],
-    [{ size: [] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [{ align: [] }],
-    [{ color: [] }, { background: [] }],
-    [
-      { list: "ordered" },
-      { list: "bullet" },
-      { indent: "-1" },
-      { indent: "+1" },
-    ],
-    ["clean"],
-  ],
-};
-SendEmail.formats = [
-  "header",
-  "font",
-  "size",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "blockquote",
-  "color",
-  "background",
-  "list",
-  "bullet",
-  "indent",
-  "link",
-  "video",
-  "image",
-  "code-block",
-  "align",
-];
 
 export default SendEmail;

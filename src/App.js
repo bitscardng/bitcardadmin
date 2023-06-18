@@ -5,7 +5,6 @@ import Layout from "./components/Layout";
 import UploadGiftcard from "./components/giftcard/UploadGiftcard";
 import AddGiftcard from "./components/giftcard/AddGiftcard";
 
-
 import {
   AdminControl,
   AdsCampaign,
@@ -33,6 +32,8 @@ import {
   UserDetails,
   VirtualCard,
   TeleSales,
+  Ticketing,
+  TicketingDetails,
 } from "./pages";
 import Signup from "./auth/Signup";
 import SignIn from "./auth/SignIn";
@@ -344,6 +345,26 @@ function App() {
               <Sidebar>
                 <Layout>
                   <TeleSales />
+                </Layout>
+              </Sidebar>
+            }
+          />
+          <Route
+            path="/ticketing"
+            element={
+              <Sidebar>
+                <Layout>
+                  <Ticketing />
+                </Layout>
+              </Sidebar>
+            }
+          />
+          <Route
+            path="/ticketing-details"
+            element={
+              <Sidebar>
+                <Layout>
+                  <TicketingDetails />
                 </Layout>
               </Sidebar>
             }

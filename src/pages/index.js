@@ -25,8 +25,12 @@ import Users from "./Users";
 import VirtualCard from "./VirtualCard";
 import UserDetails from "./UserDetails";
 import TeleSales from "./TeleSales";
+import Ticketing from "./Ticketing";
+import TicketingDetails from "./TicketingDetails";
 
 export {
+  TicketingDetails,
+  Ticketing,
   TeleSales,
   VirtualCard,
   Users,

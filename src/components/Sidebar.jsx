@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import menu from "../constant/sideBar";
 
 const Sidebar = ({ children }) => {
+  const [fillNum, setFillNum] = useState(false);
   const [active, setActive] = useState("");
   const [open, setOpen] = useState(true);
   const [subMenuOpen, setSubMenuOpen] = useState(false);
@@ -77,7 +78,9 @@ const Sidebar = ({ children }) => {
           </ul>
         </div>
       </div>
-      <div className="flex-1 w-full min-h-screen overflow-y-scroll">{children}</div>
+      <div className="flex-1 w-full min-h-screen overflow-y-scroll">
+        {children}
+      </div>
     </div>
   );
 };

@@ -34,6 +34,7 @@ const menu = [
   { name: "ads campaign", link: "/ads-campaign", count: "" },
   { name: "send email BC", link: "/send-email", count: "" },
   { name: "Tele Sales", link: "/telesales", count: "" },
+  { name: "Ticketing", link: "/ticketing", count: "" },
   { name: "KYC 1 & 2", link: "/kyc-1&2", count: "" },
   { name: "KYC 3", link: "/kyc-3", count: "" },
   { name: "KYC 4", link: "/kyc-4", count: "" },

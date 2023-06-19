@@ -23,11 +23,10 @@ ChartJS.register(
 
 const Chart = () => {
   return (
-    <div className="p-4 text-white" style={{ color: "white" }}>
+    <div className="p-4 text-white bg-sec rounded-2xl">
       <Line
         data={{
           labels: ["June 1", "June 2", "June 3", "June 4", "June 5", "June 6"],
-
           datasets: [
             {
               label: "CRYPTO",
@@ -74,9 +73,16 @@ const Chart = () => {
           scales: {
             x: {
               grid: { display: false },
+              ticks: { color: "white" },
             },
             y: {
               grid: { display: false },
+              ticks: {
+                color: "white",
+                callback: (value) => "$  " + value,
+                stepSize: "",
+              },
+              beginAtZero: true,
             },
           },
         }}

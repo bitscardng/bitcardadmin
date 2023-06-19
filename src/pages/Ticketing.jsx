@@ -16,9 +16,9 @@ const menu = [
 const Ticketing = ({ children }) => {
   const [active, setActive] = useState("");
   return (
-    <div>
+    <div >
       <p className={`${styles.topic} mb-0`}>ticketing</p>
-      <div className="flex items-center justify-evenly">
+      <div className="flex items-center mt-6 justify-evenly">
         {menu.map((data, i) => {
           return (
             <div className="h-full text-xl text-center bg-[#6C6AEB] w-full m-[1px] flex flex-col p-2 gap-2 justify-center items-center">
@@ -34,11 +34,11 @@ const Ticketing = ({ children }) => {
         >
           views & categories
         </p>
-        <div className="flex gap-4">
+        <div className="flex gap-4 mt-6">
           <ul className="relative flex flex-col w-40 pt-2 rounded-2xl bg-sec min-h-[70vh] overflow-y-scroll">
             {menu.map((menu, index) => (
-              <Link to={`/tickteting/${menu.title}`} key={index}>
-                <li className="relative my-3 ml-2 font-light">
+              <li className="relative my-3 ml-2 font-light">
+                <Link to={`/tickteting/${menu.title}`} key={index}>
                   <div
                     className={`w-[32px] p-1 rounded-full bg-[#ED1E79] 
                     text-white text-center left-28 -top-4 absolute font-thin`}
@@ -54,8 +54,8 @@ const Ticketing = ({ children }) => {
                   >
                     <div className="capitalize ">{menu.title}</div>
                   </div>
-                </li>
-              </Link>
+                </Link>
+              </li>
             ))}
           </ul>
           <div className="flex-1 w-full overflow-y-scroll min-h-[70vh] bg-sec rounded-2xl p-2 font-thin">

@@ -3,11 +3,13 @@ import { styles } from "../styles";
 import style from "../styles.module.css";
 import { total, trade, withdraw } from "../constant/index";
 import Bitcoin from "../assets/Bitcoin.png";
+import { Chart } from "../components";
 
 const Dashboard = () => {
   return (
     <div className="relative">
-      <p className={`${styles.topic} mb-4`}>dashboard</p>
+      <p className={`${styles.topic} mb-0 `}>dashboard</p>
+      <Chart />
       <div className={`${style.columnBox}`}>
         {trade.map((data, index) => (
           <div className="flex flex-col items-start justify-between gap-4 p-2 px-4 m-4 rounded-lg bg-sec">

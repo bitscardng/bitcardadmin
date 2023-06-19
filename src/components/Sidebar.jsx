@@ -30,50 +30,56 @@ const Sidebar = ({ children }) => {
         <div>
           <ul className="relative flex flex-col overflow-y-scroll h-[83vh]">
             {menu.map((menu, index) => (
-              <Link to={menu.link} key={index}>
-                <li className="relative">
-                  <div
-                    className={`w-[32px] p-1 rounded-full bg-[#ED1E79] 
+              <div className="h-fit">
+                <Link to={menu.link} key={index}>
+                  <li className="relative">
+                    <div
+                      className={`w-[32px] p-1 rounded-full bg-[#ED1E79] 
                     text-white text-center left-48 -top-6 absolute`}
-                  >
-                    {menu.count}
-                  </div>
-                  <div
-                    className={`${
-                      active === menu.name ? "bg-active" : "bg-sec"
-                    } flex p-3 hover:bg-active m-4 rounded-full 
-                    justify-between items-center text-center duration-500`}
-                    onClick={() => setActive(menu.name)}
-                  >
-                    <div className="p-2 text-center rounded-full bg-[#3b3a62]">
-                      <BsRobot className="text-[#767DFF]" />
+                    >
+                      {menu.count}
                     </div>
-                    <div className="capitalize ">{menu.name}</div>
-                    {/*title hover design below */}
-                    <span className={`${open && "hidden"}`}>{menu.name}</span>
-                    {menu.subMenu && open && (
-                      <div onClick={() => setSubMenuOpen(!subMenuOpen)}>
-                        <BsChevronDown
-                          className={`${subMenuOpen && "rotate-180"} font-bold`}
-                        />
+                    <div
+                      className={`${
+                        active === menu.name ? "bg-active" : "bg-sec"
+                      } flex p-3 hover:bg-active m-4 rounded-full 
+                    justify-between items-center text-center duration-500`}
+                      onClick={() => setActive(menu.name)}
+                    >
+                      <div className="p-2 text-center rounded-full bg-[#3b3a62]">
+                        <BsRobot className="text-[#767DFF]" />
                       </div>
+                      <div className="capitalize ">{menu.name}</div>
+                      {/*title hover design below */}
+                      <span className={`${open && "hidden"}`}>{menu.name}</span>
+                      {menu.subMenu && open && (
+                        <div onClick={() => setSubMenuOpen(!subMenuOpen)}>
+                          <BsChevronDown
+                            className={`${
+                              subMenuOpen && "rotate-180"
+                            } font-bold`}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </li>
+
+                  {/* Sub menu contain */}
+                  <div>
+                    {menu.subMenu && subMenuOpen && open && (
+                      <ul className="flex flex-col items-center justify-center m-4 mx-8 border rounded-3xl">
+                        {menu.subMenu.map((subMenu, index) => (
+                          <Link to={subMenu.link} key={index}>
+                            <li className="flex w-full p-2 px-8 m-1 cursor-pointer hover:bg-active hover:rounded-md">
+                              {subMenu.name}
+                            </li>
+                          </Link>
+                        ))}
+                      </ul>
                     )}
                   </div>
-                </li>
-
-                {/* Sub menu contain */}
-                {menu.subMenu && subMenuOpen && open && (
-                  <ul className="flex flex-col items-center justify-center m-4 mx-8 border rounded-3xl">
-                    {menu.subMenu.map((subMenu, index) => (
-                      <Link to={subMenu.link} key={index}>
-                        <li className="flex w-full p-2 px-8 m-1 cursor-pointer hover:bg-active hover:rounded-md">
-                          {subMenu.name}
-                        </li>
-                      </Link>
-                    ))}
-                  </ul>
-                )}
-              </Link>
+                </Link>
+              </div>
             ))}
           </ul>
         </div>

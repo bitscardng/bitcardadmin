@@ -41,6 +41,16 @@ import SignInOtp from "./auth/SignInOtp";
 import Forgot from "./auth/Forgot";
 import Layout2 from "./components/Layout2";
 import Email1 from "./components/Email1";
+import {
+  Activies,
+  Awaiting,
+  DueTicket,
+  Resolved,
+  Spam,
+  TodayMail,
+  Unassigned,
+  Unresolved,
+} from "./components/ticketing";
 
 function App() {
   return (
@@ -349,26 +359,7 @@ function App() {
               </Sidebar>
             }
           />
-          <Route
-            path="/ticketing"
-            element={
-              <Sidebar>
-                <Layout>
-                  <Ticketing />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/ticketing-details"
-            element={
-              <Sidebar>
-                <Layout>
-                  <TicketingDetails />
-                </Layout>
-              </Sidebar>
-            }
-          />
+
           <Route
             path="/kyc-1&2"
             element={
@@ -399,6 +390,127 @@ function App() {
               </Sidebar>
             }
           />
+
+          {/* ticketing section */}
+          <Route
+            path="/ticketing"
+            element={
+              <Sidebar>
+                <Layout>
+                  <Ticketing />
+                </Layout>
+              </Sidebar>
+            }
+          />
+          <Route
+            path="/all activies"
+            element={
+              <Sidebar>
+                <Layout>
+                  <Ticketing>
+                    <Activies />
+                  </Ticketing>
+                </Layout>
+              </Sidebar>
+            }
+          />
+          <Route
+            path="/unassigned"
+            element={
+              <Sidebar>
+                <Layout>
+                  <Ticketing>
+                    <Unassigned />
+                  </Ticketing>
+                </Layout>
+              </Sidebar>
+            }
+          />
+          <Route
+            path="/today's mail"
+            element={
+              <Sidebar>
+                <Layout>
+                  <Ticketing>
+                    <TodayMail />
+                  </Ticketing>
+                </Layout>
+              </Sidebar>
+            }
+          />
+
+          <Route
+            path="/due ticket"
+            element={
+              <Sidebar>
+                <Layout>
+                  <Ticketing>
+                    <DueTicket />
+                  </Ticketing>
+                </Layout>
+              </Sidebar>
+            }
+          />
+          <Route
+            path="/unresolved"
+            element={
+              <Sidebar>
+                <Layout>
+                  <Ticketing>
+                    <Unresolved />
+                  </Ticketing>
+                </Layout>
+              </Sidebar>
+            }
+          />
+          <Route
+            path="/awaiting"
+            element={
+              <Sidebar>
+                <Layout>
+                  <Ticketing>
+                    <Awaiting />
+                  </Ticketing>
+                </Layout>
+              </Sidebar>
+            }
+          />
+          <Route
+            path="/resolved"
+            element={
+              <Sidebar>
+                <Layout>
+                  <Ticketing>
+                    <Resolved />
+                  </Ticketing>
+                </Layout>
+              </Sidebar>
+            }
+          />
+          <Route
+            path="/spam"
+            element={
+              <Sidebar>
+                <Layout>
+                  <Ticketing>
+                    <Spam />
+                  </Ticketing>
+                </Layout>
+              </Sidebar>
+            }
+          />
+
+          <Route
+            path="/ticketing-details"
+            element={
+              <Sidebar>
+                <Layout>
+                  <TicketingDetails />
+                </Layout>
+              </Sidebar>
+            }
+          />
+          {/* ticketing section */}
         </Routes>
       </div>
     </BrowserRouter>

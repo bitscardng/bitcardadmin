@@ -1,5 +1,7 @@
 import React from "react";
 import "../../src/index.css";
+import { SendEmail } from "../pages";
+
 
 
 const Email1 = () => {

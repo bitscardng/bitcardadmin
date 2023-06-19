@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { styles } from "../styles";
 import { FiUser } from "react-icons/fi";
 import ReactQuill from "react-quill";

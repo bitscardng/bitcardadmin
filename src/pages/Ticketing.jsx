@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { BsRobot } from "react-icons/bs";
 import { styles } from "../styles";
 import { Link } from "react-router-dom";
 
@@ -11,7 +10,7 @@ const menu = [
   { title: "unresolved", num: "90" },
   { title: "awaiting", num: "91" },
   { title: "resolved", num: "37" },
-  { title: "spam", num: "90" },
+  { title: "spam", num: "" },
 ];
 
 const Ticketing = ({ children }) => {
@@ -36,9 +35,9 @@ const Ticketing = ({ children }) => {
           views & categories
         </p>
         <div className="flex gap-4">
-          <ul className="relative flex flex-col w-40 pt-2 rounded-2xl bg-sec h-[70vh] overflow-y-scroll">
+          <ul className="relative flex flex-col w-40 pt-2 rounded-2xl bg-sec min-h-[70vh] overflow-y-scroll">
             {menu.map((menu, index) => (
-              <Link to={`/${menu.title}`} key={index}>
+              <Link to={`/tickteting/${menu.title}`} key={index}>
                 <li className="relative my-3 ml-2 font-light">
                   <div
                     className={`w-[32px] p-1 rounded-full bg-[#ED1E79] 
@@ -59,7 +58,7 @@ const Ticketing = ({ children }) => {
               </Link>
             ))}
           </ul>
-          <div className="flex-1 w-full overflow-y-scroll h-[70vh] bg-sec rounded-2xl p-2 font-thin">
+          <div className="flex-1 w-full overflow-y-scroll min-h-[70vh] bg-sec rounded-2xl p-2 font-thin">
             {children}
           </div>
         </div>

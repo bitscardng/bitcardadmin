@@ -35,7 +35,6 @@ import {
   Ticketing,
   TicketingDetails,
 } from "./pages";
-import Signup from "./auth/Signup";
 import SignIn from "./auth/SignIn";
 import SignInOtp from "./auth/SignInOtp";
 import Forgot from "./auth/Forgot";
@@ -73,14 +72,7 @@ function App() {
               </Layout2>
             }
           />
-          <Route
-            path="/sign-up"
-            element={
-              <Layout2>
-                <Signup />
-              </Layout2>
-            }
-          />
+          
           <Route
             path="/forgot-password"
             element={
@@ -403,7 +395,7 @@ function App() {
             }
           />
           <Route
-            path="/all activies"
+            path="/tickteting/all activies"
             element={
               <Sidebar>
                 <Layout>
@@ -415,7 +407,7 @@ function App() {
             }
           />
           <Route
-            path="/unassigned"
+            path="/tickteting/unassigned"
             element={
               <Sidebar>
                 <Layout>
@@ -427,7 +419,7 @@ function App() {
             }
           />
           <Route
-            path="/today's mail"
+            path="/tickteting/today's mail"
             element={
               <Sidebar>
                 <Layout>
@@ -440,7 +432,7 @@ function App() {
           />
 
           <Route
-            path="/due ticket"
+            path="/tickteting/due ticket"
             element={
               <Sidebar>
                 <Layout>
@@ -452,7 +444,7 @@ function App() {
             }
           />
           <Route
-            path="/unresolved"
+            path="/tickteting/unresolved"
             element={
               <Sidebar>
                 <Layout>
@@ -464,7 +456,7 @@ function App() {
             }
           />
           <Route
-            path="/awaiting"
+            path="/tickteting/awaiting"
             element={
               <Sidebar>
                 <Layout>
@@ -476,7 +468,7 @@ function App() {
             }
           />
           <Route
-            path="/resolved"
+            path="/tickteting/resolved"
             element={
               <Sidebar>
                 <Layout>
@@ -488,7 +480,7 @@ function App() {
             }
           />
           <Route
-            path="/spam"
+            path="/tickteting/spam"
             element={
               <Sidebar>
                 <Layout>

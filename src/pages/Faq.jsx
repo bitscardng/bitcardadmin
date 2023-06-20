@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { styles } from "../styles";
 import { MdCloudUpload } from "react-icons/md";
-import { FiUser, FiArrowDownCircle } from "react-icons/fi";
+import {
+  FiUser,
+  FiArrowDownCircle,
+  FiTrash2,
+  FiPlusCircle,
+} from "react-icons/fi";
+
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
@@ -85,27 +91,41 @@ const Faq = ({ faq, handleInputChange, content, setContent }) => {
         </div>
       </div>
       {/* category lists */}
-      <ul
-        className={`p-1 overflow-y-auto rounded-xl w-72 bg-sec ${
-          open ? "h-40" : "hidden"
-        }`}
-      >
-        {datas.map((data, index) => {
-          return (
-            <li
-              className={`w-full p-1 m-1 hover:bg-active text-[#9CA3AF] hover:text-white duration-500 cursor-pointer rounded-xl }`}
-              onClick={() => {
-                if (data?.name) {
-                  setSelected(data?.name);
-                  setOpen(false);
-                }
-              }}
-            >
-              {data?.name}
-            </li>
-          );
-        })}
-      </ul>
+
+      <div className={` duration-500 ${open ? "h-60" : "hidden"}`}>
+        <ul
+          className={`p-2 overflow-y-auto rounded-xl w-72 bg-sec h-40
+          `}
+        >
+          {datas.map((data, index) => {
+            return (
+              <li
+                className={`w-full p-2 m-1 hover:bg-active text-[#9CA3AF] hover:text-white duration-500 cursor-pointer rounded-xl`}
+                onClick={() => {
+                  if (data?.name) {
+                    setSelected(data?.name);
+                    setOpen(false);
+                  }
+                }}
+              >
+                <div className="flex items-center justify-between">
+                  {data?.name}
+                  <FiTrash2 className="text-xl duration-500 rounded-2xl hover:text-3xl hover:text-[red] hover:p-1 hover:bg-white cursor-pointer" />
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+        <div className="flex flex-row items-center w-full gap-1 pt-4">
+          <input
+            type="text"
+            placeholder="Type New Category Here"
+            className="w-full p-2 py-3 text-white outline-none bg-sec rounded-2xl"
+          />
+          <FiPlusCircle className="text-[#6C6AEB] text-4xl hover:text-active cursor-pointer duration-500" />
+        </div>
+      </div>
+
       <div className={`p-2 px-4 m-4 bg-sec w-full rounded-2xl`}>
         <div className="flex flex-col h-full gap-2">
           <div className="flex items-center gap-2 pb-2 h-fit">

@@ -72,11 +72,11 @@ const Chart = () => {
           },
           scales: {
             x: {
-              grid: { display: false },
+              grid: { display: true },
               ticks: { color: "white" },
             },
             y: {
-              grid: { display: false },
+              grid: { display: true },
               ticks: {
                 color: "white",
                 callback: (value) => "$  " + value,

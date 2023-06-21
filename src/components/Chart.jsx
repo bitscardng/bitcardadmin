@@ -23,7 +23,7 @@ ChartJS.register(
 
 const Chart = () => {
   return (
-    <div className="p-4 text-white bg-sec rounded-2xl">
+    <div className="p-4 text-white bg-sec rounded-2xl h-560vh]">
       <Line
         data={{
           labels: ["June 1", "June 2", "June 3", "June 4", "June 5", "June 6"],

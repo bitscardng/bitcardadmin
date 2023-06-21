@@ -4,6 +4,8 @@ import Search from "../components/Search";
 import { giftCard } from "../constant";
 import { Link } from "react-router-dom";
 import { styles } from "../styles";
+import { FiPhoneCall } from "react-icons/fi";
+import { TbMailForward } from "react-icons/tb";
 
 const TeleSales = () => {
   const [datas, setDatas] = useState(giftCard);
@@ -27,13 +29,27 @@ const TeleSales = () => {
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
             <div className="flex flex-col">
               <p>{data.email}</p>
-              <btn className={`${styles.btn}`}>Send email</btn>
+              <btn
+                className={`${styles.btn} flex items-center justify-between `}
+              >
+                <span>
+                  <TbMailForward />
+                </span>
+                Send email
+              </btn>
             </div>
           </td>
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
             <div className="flex flex-col">
               <p className="px-1">09012345678</p>
-              <btn className={`${styles.btn}`}>Send email</btn>
+              <btn
+                className={`${styles.btn} flex items-center justify-between`}
+              >
+                <span className="pr-2">
+                  <FiPhoneCall />
+                </span>
+                Customer
+              </btn>
             </div>
           </td>
           <td className="p-1 px-2 text-xl font-thin duration-500 border">

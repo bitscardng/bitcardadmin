@@ -82,11 +82,11 @@ const Details = () => {
           <p className="px-2 font-light capitalize">$ 400</p>
         </div>
         <div className={`${styles.detail}`}>
-          <h5 className="px-2 text-xl uppercase">NGN Account Balance</h5>
+          <h5 className="px-2 text-xl uppercase">NGN Account Number</h5>
           <p className="px-2 font-light capitalize">1234567890 GTB valentine</p>
         </div>
         <div className={`${styles.detail}`}>
-          <h5 className="px-2 text-xl uppercase">usd Account Balance</h5>
+          <h5 className="px-2 text-xl uppercase">usd Account Number</h5>
           <p className="px-2 font-light capitalize">1234567890 GTB valentine</p>
         </div>
       </form>

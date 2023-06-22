@@ -47,7 +47,7 @@ const BuyGiftCard = () => {
           </td>
           <td className="flex flex-col gap-2 p-2 text-xl font-thin border">
             <btn className="bg-[green] p-1 rounded-lg cursor-pointer hover:font-normal duration-500">
-              Approved
+              Purchase
             </btn>
             <btn className="bg-[red] p-1 rounded-lg cursor-pointer hover:font-normal duration-500">
               Decline
@@ -79,7 +79,7 @@ const BuyGiftCard = () => {
                 <th className="p-2 text-xl font-semibold border">Country</th>
                 <th className="p-2 text-xl font-semibold border">Card Type</th>
                 <th className="p-2 text-xl font-semibold border">Amount</th>
-                <th className="p-2 text-xl font-semibold border">Payout</th>
+                <th className="p-2 text-xl font-semibold border">Payment</th>
                 <th className="p-2 text-xl font-semibold border">Status</th>
                 <th className="p-2 text-xl font-semibold border">
                   Transaction date

@@ -11,7 +11,7 @@ const CryptoRate = () => {
 
   return (
     <div>
-      <p className={`${styles.topic} mb-4`}>usd withdrawal</p>
+      <p className={`${styles.topic} mb-4`}>crypto rate</p>
       <div className="px-2">
         <div className="flex justify-between w-full gap-8 overflow-x-auto">
           <div className="w-full overflow-x-auto">

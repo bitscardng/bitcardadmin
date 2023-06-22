@@ -72,7 +72,7 @@ function App() {
               </Layout2>
             }
           />
-          
+
           <Route
             path="/forgot-password"
             element={
@@ -384,18 +384,9 @@ function App() {
           />
 
           {/* ticketing section */}
+          
           <Route
-            path="/ticketing"
-            element={
-              <Sidebar>
-                <Layout>
-                  <Ticketing />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/tickteting/all activies"
+            path="/ticketing/all activies"
             element={
               <Sidebar>
                 <Layout>
@@ -407,7 +398,7 @@ function App() {
             }
           />
           <Route
-            path="/tickteting/unassigned"
+            path="/ticketing/unassigned"
             element={
               <Sidebar>
                 <Layout>
@@ -419,7 +410,7 @@ function App() {
             }
           />
           <Route
-            path="/tickteting/today's mail"
+            path="/ticketing/today's mail"
             element={
               <Sidebar>
                 <Layout>
@@ -432,7 +423,7 @@ function App() {
           />
 
           <Route
-            path="/tickteting/due ticket"
+            path="/ticketing/due ticket"
             element={
               <Sidebar>
                 <Layout>
@@ -444,7 +435,7 @@ function App() {
             }
           />
           <Route
-            path="/tickteting/unresolved"
+            path="/ticketing/unresolved"
             element={
               <Sidebar>
                 <Layout>
@@ -456,7 +447,7 @@ function App() {
             }
           />
           <Route
-            path="/tickteting/awaiting"
+            path="/ticketing/awaiting"
             element={
               <Sidebar>
                 <Layout>
@@ -468,7 +459,7 @@ function App() {
             }
           />
           <Route
-            path="/tickteting/resolved"
+            path="/ticketing/resolved"
             element={
               <Sidebar>
                 <Layout>
@@ -480,7 +471,7 @@ function App() {
             }
           />
           <Route
-            path="/tickteting/spam"
+            path="/ticketing/spam"
             element={
               <Sidebar>
                 <Layout>

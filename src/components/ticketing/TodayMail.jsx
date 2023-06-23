@@ -1,5 +1,6 @@
 import React from "react";
 import { styles } from "../../styles";
+import { Link } from "react-router-dom";
 
 const shortenText = (text, n) => {
   if (text.length > n) {
@@ -94,7 +95,9 @@ const TodayMail = ({ user, email }) => {
                   {shortenText(email, 70)}
                 </td>
                 <td className="p-1 text-xl font-thin duration-500 border">
-                  <p className={`${styles.btn} my-0`}>Open</p>
+                  <Link to="/ticketing-details" className="m-0">
+                    <p className={`${styles.btn} my-0`}>Open</p>
+                  </Link>
                 </td>
               </tr>
             );

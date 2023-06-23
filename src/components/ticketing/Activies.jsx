@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { styles } from "../../styles";
 
 const shortenText = (text, n) => {
@@ -63,19 +62,23 @@ const datas = [
   },
 ];
 
-const Activies = ({user, email}) => {
+const Activies = ({ user, email }) => {
   return (
     <div>
       <table className="w-full mt-2">
         {/* head */}
         <thead className="">
           <tr className="rounded-full">
-            <th className="p-2 text-xl font-semibold border"></th>
-            <th className="p-2 text-xl font-semibold border">Users</th>
-            <th className="p-2 text-xl font-semibold border">
-              Message details
+            <th className="p-2 text-xl font-semibold capitalize border"></th>
+            <th className="p-2 text-xl font-semibold capitalize border">
+              Users
             </th>
-            <th className="p-2 text-xl font-semibold border">Open</th>
+            <th className="p-2 text-xl font-semibold capitalize border">
+              All activies
+            </th>
+            <th className="p-2 text-xl font-semibold capitalize border">
+              Open
+            </th>
           </tr>
         </thead>
         <tbody className="">
@@ -83,17 +86,17 @@ const Activies = ({user, email}) => {
             const { user, email } = data;
             return (
               <tr className="text-center hover:bg-primary">
-                <th className="p-1 px-2 text-xl duration-500 border">{index + 1}</th>
+                <th className="p-1 px-2 text-xl duration-500 border">
+                  {index + 1}
+                </th>
                 <td className="p-1 px-2 text-xl font-thin duration-500 border">
                   {user}
                 </td>
                 <td className="p-1 px-2 text-xl font-thin duration-500 border">
-                  {shortenText (email, 70)}
+                  {shortenText(email, 70)}
                 </td>
                 <td className="p-1 text-xl font-thin duration-500 border">
-                  <Link to="/send-email">
-                    <p className={`${styles.btn} my-0`}>Open</p>
-                  </Link>
+                  <p className={`${styles.btn} my-0`}>Open</p>
                 </td>
               </tr>
             );

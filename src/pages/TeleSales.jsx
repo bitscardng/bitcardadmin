@@ -29,14 +29,15 @@ const TeleSales = () => {
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
             <div className="flex flex-col">
               <p>{data.email}</p>
-              <btn
+              <Link
+                to="/send-email"
                 className={`${styles.btn} flex items-center justify-between `}
               >
                 <span>
                   <TbMailForward />
                 </span>
                 Send email
-              </btn>
+              </Link>
             </div>
           </td>
           <td className="p-1 px-2 text-xl font-thin duration-500 border">

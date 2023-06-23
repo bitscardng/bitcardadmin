@@ -68,17 +68,15 @@ const TodayMail = ({ user, email }) => {
       <table className="w-full mt-2">
         {/* head */}
         <thead className="">
-          <tr className="rounded-full">
+          <tr className="rounded-full bg-primary">
             <th className="p-2 text-xl font-semibold capitalize border"></th>
             <th className="p-2 text-xl font-semibold capitalize border">
               Users
             </th>
             <th className="p-2 text-xl font-semibold capitalize border">
-              Today's Mail
+              Today's mail
             </th>
-            <th className="p-2 text-xl font-semibold capitalize border">
-              Open
-            </th>
+            <th className="p-2 text-xl font-semibold capitalize border"></th>
           </tr>
         </thead>
         <tbody className="">

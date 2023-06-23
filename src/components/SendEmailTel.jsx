@@ -11,10 +11,15 @@ const SendEmailTel = ({ sendEmail, handleInputChange }) => {
 
   return (
     <div className="flex flex-col">
-      <Link to="/telesales" className="absolute mt-2 ml-4 ">
-        <TiArrowBackOutline className="relative flex text-xl cursor-pointer text-active hover:text-2xl" />
-      </Link>
-      <p className={`${styles.topic} mb-0 `}>send email</p>
+      <div className="relative mb-4">
+        <Link
+          to="/telesales"
+          className="absolute p-2 ml-2 rounded-full cursor-pointer bg-sec text-active hover:bg-active hover:text-sec"
+        >
+          <TiArrowBackOutline />
+        </Link>
+        <p className={`${styles.topic} mb-0 `}>send email</p>
+      </div>
       <form className="flex flex-col items-center ">
         <div className={`${styles.formField}`}>
           <div className="flex flex-row items-center gap-2 text-center">

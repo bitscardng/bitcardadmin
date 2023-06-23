@@ -10,6 +10,25 @@ import { TbMailForward } from "react-icons/tb";
 const TeleSales = () => {
   const [datas, setDatas] = useState(giftCard);
   const [search, setSearch] = useState("");
+  const [progress, setProgress] = useState(0);
+
+  const increaseProgressBtn = () => {
+    if (progress < 100) {
+      setProgress(progress + 20);
+    } else {
+      return setProgress(progress - 100);
+    }
+  };
+
+  const getColor = () => {
+    if (progress < 50) {
+      return "#ff0000";
+    } else if (progress < 70) {
+      return "#ffa500";
+    } else {
+      return "#2ecc71";
+    }
+  };
 
   // paginations start
   const [pageNumber, setPageNumber] = useState(0);
@@ -43,14 +62,15 @@ const TeleSales = () => {
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
             <div className="flex flex-col">
               <p className="px-1">09012345678</p>
-              <btn
+              <button
+                onClick={increaseProgressBtn}
                 className={`${styles.btn} flex items-center justify-between`}
               >
                 <span className="pr-2">
                   <FiPhoneCall />
                 </span>
                 Customer
-              </btn>
+              </button>
             </div>
           </td>
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
@@ -71,8 +91,13 @@ const TeleSales = () => {
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
             Yes
           </td>
-          <td className="p-1 px-2 text-xl font-thin duration-500 border">
-            
+          <td className="w-full p-1 text-xl font-thin duration-500 border">
+            <p className="pt-2 mb-3 font-normal text-active">{progress}%</p>
+            <div
+              style={{ width: `${progress}%`, backgroundColor: getColor() }}
+              className="py-4 text-white duration-500 ease-out rounded-2xl"
+              value={progress}
+            ></div>
           </td>
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
             <Link to="/usersdetails">
@@ -87,7 +112,7 @@ const TeleSales = () => {
   //pagination end
 
   return (
-    <div>
+    <div className="">
       <p className={`${styles.topic} mb-2`}>tele sales</p>
       <div className="p-2">
         <Search
@@ -119,7 +144,9 @@ const TeleSales = () => {
                   <th className="p-2 text-xl font-semibold border">
                     Transaction
                   </th>
-                  <th className="p-2 text-xl font-semibold border">Status</th>
+                  <th className="p-2 px-10 text-xl font-semibold border">
+                    Status
+                  </th>
                   <th className="p-2 text-xl font-semibold border">Preview</th>
                 </tr>
               </thead>
@@ -130,24 +157,26 @@ const TeleSales = () => {
       </div>
 
       {/* pagenating */}
-      <ReactPaginate
-        containerClassName="flex gap-2 text-center rounded-lg items-center outline-none justify-center items-center mt-4"
-        previousLabel={
-          <span className="p-3 border rounded-lg outline-none hover:bg-active border-sec bg-sec">
-            Prev
-          </span>
-        }
-        nextLabel={
-          <span className="p-3 border rounded-lg outline-none hover:bg-active border-sec bg-sec">
-            Next
-          </span>
-        }
-        pageCount={pageCount}
-        onPageChange={changePage}
-        pageClassName="hover:bg-active p-3 rounded-lg outline-none"
-        disabledClassName={"bg-transparent outline-none"}
-        activeLinkClassName={"p-3 bg-active rounded-lg outline-none"}
-      />
+      <div className="relative">
+        <ReactPaginate
+          containerClassName="flex gap-2 text-center rounded-lg items-center outline-none justify-center items-center mt-4"
+          previousLabel={
+            <span className="p-3 border rounded-lg outline-none hover:bg-active border-sec bg-sec">
+              Prev
+            </span>
+          }
+          nextLabel={
+            <span className="p-3 border rounded-lg outline-none hover:bg-active border-sec bg-sec">
+              Next
+            </span>
+          }
+          pageCount={pageCount}
+          onPageChange={changePage}
+          pageClassName="hover:bg-active p-3 rounded-lg outline-none"
+          disabledClassName={"bg-transparent outline-none"}
+          activeLinkClassName={"p-3 bg-active rounded-lg outline-none"}
+        />
+      </div>
     </div>
   );
 };

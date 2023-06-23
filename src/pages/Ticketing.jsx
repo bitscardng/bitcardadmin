@@ -45,7 +45,7 @@ const Ticketing = ({ children }) => {
           views & categories
         </p>
         <div className="flex gap-4 mt-6">
-          <ul className="relative flex flex-col w-40 pt-2 rounded-2xl bg-sec h-[70vh] ">
+          <ul className="relative flex flex-col w-40 pt-2 rounded-2xl bg-sec ">
             {menu.map((menu, index) => (
               <li className="relative my-3 ml-2 font-light">
                 <Link to={`/ticketing/${menu.title}`} key={index}>

@@ -68,7 +68,7 @@ const Activies = ({ user, email }) => {
       <table className="w-full mt-2">
         {/* head */}
         <thead className="">
-          <tr className="rounded-full">
+          <tr className="rounded-full bg-primary">
             <th className="p-2 text-xl font-semibold capitalize border"></th>
             <th className="p-2 text-xl font-semibold capitalize border">
               Users
@@ -77,7 +77,7 @@ const Activies = ({ user, email }) => {
               All activies
             </th>
             <th className="p-2 text-xl font-semibold capitalize border">
-              Open
+              
             </th>
           </tr>
         </thead>

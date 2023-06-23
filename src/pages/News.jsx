@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { styles } from "../styles";
 import { MdCloudUpload } from "react-icons/md";
-import { FiUser, FiArrowDownCircle, FiTrash2, FiPlusCircle } from "react-icons/fi";
+import {
+  FiUser,
+  FiArrowDownCircle,
+  FiTrash2,
+  FiPlusCircle,
+} from "react-icons/fi";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
@@ -111,7 +116,11 @@ const News = ({ news, handleInputChange, content, setContent }) => {
           })}
         </ul>
         <div className="flex flex-row items-center w-full gap-1 pt-4">
-          <input type="text" placeholder="Type New Category Here" className="w-full p-2 py-3 text-white outline-none bg-sec rounded-2xl" />
+          <input
+            type="text"
+            placeholder="Type New Category Here"
+            className="w-full p-2 py-3 text-white outline-none bg-sec rounded-2xl"
+          />
           <FiPlusCircle className="text-[#6C6AEB] text-4xl hover:text-active cursor-pointer duration-500" />
         </div>
       </div>

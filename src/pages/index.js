@@ -27,6 +27,8 @@ import UserDetails from "./UserDetails";
 import TeleSales from "./TeleSales";
 import Ticketing from "./Ticketing";
 import TicketingDetails from "./TicketingDetails";
+import NotFound from "./NotFound";
+
 
 export {
   TicketingDetails,
@@ -58,4 +60,5 @@ export {
   AdsCampaign,
   CryptoRate,
   CryptoTranx,
+  NotFound,
 };

@@ -34,6 +34,7 @@ import {
   TeleSales,
   Ticketing,
   TicketingDetails,
+  NotFound,
 } from "./pages";
 import SignIn from "./auth/SignIn";
 import SignInOtp from "./auth/SignInOtp";
@@ -506,6 +507,8 @@ function App() {
               </Sidebar>
             }
           />
+
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       </div>
     </BrowserRouter>

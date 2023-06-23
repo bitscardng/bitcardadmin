@@ -6,6 +6,16 @@ import DateTime from "./DateTime";
 import Home from "./Home";
 import Modal from "./Modal";
 import Chart from "./Chart";
+import SendEmailTel from "./SendEmailTel";
 
-
-export { Footer, Header, Layout, Sidebar, DateTime, Home, Modal, Chart };
+export {
+  Footer,
+  Header,
+  Layout,
+  Sidebar,
+  DateTime,
+  Home,
+  Modal,
+  Chart,
+  SendEmailTel,
+};

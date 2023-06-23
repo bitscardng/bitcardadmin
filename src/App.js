@@ -50,6 +50,7 @@ import {
   Unassigned,
   Unresolved,
 } from "./components/ticketing";
+import { SendEmailTel } from "./components";
 
 function App() {
   return (
@@ -384,7 +385,7 @@ function App() {
           />
 
           {/* ticketing section */}
-          
+
           <Route
             path="/ticketing/all activies"
             element={
@@ -494,6 +495,17 @@ function App() {
             }
           />
           {/* ticketing section */}
+
+          <Route
+            path="/telesales/sendemail"
+            element={
+              <Sidebar>
+                <Layout>
+                  <SendEmailTel />
+                </Layout>
+              </Sidebar>
+            }
+          />
         </Routes>
       </div>
     </BrowserRouter>

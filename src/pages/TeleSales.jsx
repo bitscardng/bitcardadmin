@@ -30,7 +30,7 @@ const TeleSales = () => {
             <div className="flex flex-col">
               <p>{data.email}</p>
               <Link
-                to="/send-email"
+                to="/telesales/sendemail"
                 className={`${styles.btn} flex items-center justify-between `}
               >
                 <span>
@@ -72,11 +72,7 @@ const TeleSales = () => {
             Yes
           </td>
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
-            <div className="flex gap-4">
-              <input type="radio" name="1" id="" value="" className="radio" />
-              <input type="radio" name="2" id="" value="" className="radio" />
-              <input type="radio" name="3" id="" value="" className="radio" />
-            </div>
+            
           </td>
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
             <Link to="/usersdetails">

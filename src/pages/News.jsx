@@ -115,6 +115,7 @@ const News = ({ news, handleInputChange, content, setContent }) => {
             );
           })}
         </ul>
+        {/* create new data */}
         <div className="flex flex-row items-center w-full gap-1 pt-4">
           <input
             type="text"

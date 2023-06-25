@@ -4,10 +4,10 @@ import { FiUser } from "react-icons/fi";
 import "react-quill/dist/quill.snow.css";
 import { Link } from "react-router-dom";
 
-const templateData = [
-  { id: "rad01", name: "A Customer" },
-  { id: "rad02", name: "All Customer" },
-];
+// const templateData = [
+//   { id: "rad01", name: "A Customer" },
+//   { id: "rad02", name: "All Customer" },
+// ];
 
 const SendEmail = ({ sendEmail, handleInputChange }) => {
   const [template, setTemplate] = useState("");
@@ -83,15 +83,15 @@ const SendEmail = ({ sendEmail, handleInputChange }) => {
           </div>
         </div>
         <div className="flex gap-20">
-          <Link to="/email1preview" className={styles.btn}>
+          {/* <Link to="/email1preview" className={styles.btn}>
             Preview
-          </Link>
+          </Link> */}
           <btn className={styles.btn}>Send</btn>
         </div>
       </form>
 
       {/* Template*/}
-      <div className="flex flex-row items-start justify-between w-full h-full">
+      {/* <div className="flex flex-row items-start justify-between w-full h-full">
         {templateData.map((item, i) => {
           return (
             <div
@@ -117,7 +117,7 @@ const SendEmail = ({ sendEmail, handleInputChange }) => {
             </div>
           );
         })}
-      </div>
+      </div> */}
     </div>
   );
 };

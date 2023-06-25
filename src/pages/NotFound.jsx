@@ -7,10 +7,12 @@ const NotFound = () => {
   return (
     <div className="h-screen ">
       <div className="sticky top-0 flex items-center justify-between w-full p-4 mb-4 text-2xl text-center bg-sec">
-        <div className="flex items-center gap-2 p-1 text-center rounded-full bg-sec">
-          <img src={logo} alt="bitcard" />
-          <p> BITCARD</p>
-        </div>
+        <Link to="/dashboard">
+          <div className="flex items-center gap-2 p-1 text-center rounded-full bg-sec">
+            <img src={logo} alt="bitcard" />
+            <p> BITCARD</p>
+          </div>
+        </Link>
         <DateTime />
       </div>
       <div className="items-center justify-center hero">

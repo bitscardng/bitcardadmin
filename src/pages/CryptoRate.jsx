@@ -9,6 +9,11 @@ const rate = [
 
 const CryptoRate = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [amount, setAmount] = useState([{ buy: "300", sell: "200" }]);
+
+  const handleSubmit = (newAmount) => {
+    setAmount(...amount, newAmount);
+  };
 
   return (
     <div>
@@ -16,26 +21,30 @@ const CryptoRate = () => {
       <div className="px-2">
         <div className="flex justify-between w-full gap-8 overflow-x-auto">
           <div className="w-full overflow-x-auto">
-            <div className="flex items-center justify-between py-2 text-center">
-              <p className="flex items-center justify-center pl-3 m-1 text-xl font-semibold rounded-full bg-sec">
-                Selling Profit
-                <span className="p-2 ml-4 text-black bg-white rounded-r-full">
-                  {"100"}
-                </span>
-              </p>
-              <div
-                className={`${styles.btn} max-w-fit px-10 `}
-                onClick={() => setModalOpen(true)}
-              >
-                Edit
-              </div>
-              <p className="flex items-center justify-center pl-3 m-1 text-xl font-semibold rounded-full bg-sec">
-                Buying Profit
-                <span className="p-2 ml-4 text-black bg-white rounded-r-full">
-                  {"100"}
-                </span>
-              </p>
-            </div>
+            {amount.map((amt, index) => {
+              return (
+                <div className="flex items-center justify-between py-2 text-center">
+                  <p className="flex items-center justify-center pl-3 m-1 text-xl font-semibold rounded-full bg-sec">
+                    Selling Profit
+                    <span className="p-2 ml-4 text-black bg-white rounded-r-full">
+                      {amt.sell}
+                    </span>
+                  </p>
+                  <div
+                    className={`${styles.btn} max-w-fit px-10 `}
+                    onClick={() => setModalOpen(true)}
+                  >
+                    Edit
+                  </div>
+                  <p className="flex items-center justify-center pl-3 m-1 text-xl font-semibold rounded-full bg-sec">
+                    Buying Profit
+                    <span className="p-2 ml-4 text-black bg-white rounded-r-full">
+                      {amt.buy}
+                    </span>
+                  </p>
+                </div>
+              );
+            })}
             <table className="w-full ">
               {/* head */}
               <thead className="">
@@ -81,6 +90,7 @@ const CryptoRate = () => {
           closeModal={() => {
             setModalOpen(false);
           }}
+          onSubmit={handleSubmit}
         />
       )}
     </div>

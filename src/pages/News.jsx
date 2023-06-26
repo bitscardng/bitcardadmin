@@ -10,13 +10,6 @@ import {
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-const datas = [
-  { name: "btc" },
-  { name: "btc2" },
-  { name: "btc3" },
-  { name: "btc4" },
-];
-
 const News = ({ news, handleInputChange, content, setContent }) => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState("");
@@ -27,6 +20,31 @@ const News = ({ news, handleInputChange, content, setContent }) => {
     setNewsImage(e.target.files[0]);
     setImagePreview(URL.createObjectURL(e.target.files[0]));
   };
+
+  const [datas, setDatas] = useState([
+    { name: "btc" },
+    { name: "btc2" },
+    { name: "btc3" },
+    { name: "btc4" },
+  ]);
+
+  const handleDeleleData = (targetIndex) => {
+    setDatas(datas.filter((_, index) => index !== targetIndex));
+  };
+
+  const [formState, setFormState] = useState("");
+
+  const handleChange = (e) => {
+    setFormState({
+      formState: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    formState()
+  };
+
   return (
     <form className="flex flex-col items-center">
       <p className={`${styles.topic} mb-0`}>news</p>
@@ -98,18 +116,23 @@ const News = ({ news, handleInputChange, content, setContent }) => {
         >
           {datas.map((data, index) => {
             return (
-              <li
-                className={`w-full p-2 m-1 hover:bg-active text-[#9CA3AF] hover:text-white duration-500 cursor-pointer rounded-xl`}
-                onClick={() => {
-                  if (data?.name) {
-                    setSelected(data?.name);
-                    setOpen(false);
-                  }
-                }}
-              >
+              <li key={index}>
                 <div className="flex items-center justify-between">
-                  {data?.name}
-                  <FiTrash2 className="text-xl duration-500 rounded-2xl hover:text-3xl hover:text-[red] hover:p-1 hover:bg-white cursor-pointer" />
+                  <p
+                    className={`w-full p-2 m-1 hover:bg-active text-[#9CA3AF] hover:text-white duration-500 cursor-pointer rounded-xl group:text-white`}
+                    onClick={() => {
+                      if (data?.name) {
+                        setSelected(data?.name);
+                        setOpen(false);
+                      }
+                    }}
+                  >
+                    {data?.name}
+                  </p>
+                  <FiTrash2
+                    className="text-xl duration-500 rounded-2xl hover:text-3xl hover:text-[red] hover:p-1 hover:bg-white cursor-pointer group"
+                    onClick={() => handleDeleleData(index)}
+                  />
                 </div>
               </li>
             );
@@ -119,10 +142,15 @@ const News = ({ news, handleInputChange, content, setContent }) => {
         <div className="flex flex-row items-center w-full gap-1 pt-4">
           <input
             type="text"
+            name="formState"
+            value={formState}
+            onChange={handleChange}
             placeholder="Type New Category Here"
             className="w-full p-2 py-3 text-white outline-none bg-sec rounded-2xl"
           />
-          <FiPlusCircle className="text-[#6C6AEB] text-4xl hover:text-active cursor-pointer duration-500" />
+          <button type="submit" onClick={handleSubmit}>
+            <FiPlusCircle className="text-[#6C6AEB] text-4xl hover:text-active cursor-pointer duration-500" />
+          </button>
         </div>
       </div>
 

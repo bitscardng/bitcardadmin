@@ -6,7 +6,6 @@ const Modal = ({ closeModal, onSubmit }) => {
     buy: "",
     sell: "",
   });
-
   const handleChange = (e) => {
     setFormState({
       ...formState,
@@ -17,6 +16,7 @@ const Modal = ({ closeModal, onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(formState);
+
     closeModal();
   };
 
@@ -30,21 +30,18 @@ const Modal = ({ closeModal, onSubmit }) => {
     >
       <div className="p-[2rem] w-[25em] rounded-2xl bg-white text-black">
         <h2 className={styles.topic}>Edit page</h2>
-        <form
-          action=""
-          className="flex flex-col items-center justify-center gap-6"
-        >
+        <form className="flex flex-col items-center justify-center gap-6">
           <div className="form-control">
             <label htmlFor="buy" className="label">
               <span className="">Buying Profit</span>
             </label>
             <input
-              type="number"
+              type="text"
               placeholder="Buying"
               name="buy"
               value={formState.buy}
               onChange={handleChange}
-              className="bg-white border border-black outline-none input"
+              className="p-3 bg-white border border-black outline-none rounded-2xl"
             />
           </div>
           <div className="form-control">
@@ -52,12 +49,12 @@ const Modal = ({ closeModal, onSubmit }) => {
               <span className="">Selling Profit</span>
             </label>
             <input
-              type="number"
+              type="text"
               placeholder="Selling"
               name="sell"
               value={formState.sell}
               onChange={handleChange}
-              className="bg-white border border-black outline-none input"
+              className="p-3 bg-white border border-black outline-none rounded-2xl"
             />
           </div>
 

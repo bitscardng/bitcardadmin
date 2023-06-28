@@ -27,22 +27,23 @@ const News = ({ news, handleInputChange, content, setContent }) => {
     { name: "btc3" },
     { name: "btc4" },
   ]);
+  // const [addFormData, setAddFormData] = useState({
+  //   cateName: "",
+  // });
 
-  const handleDeleleData = (targetIndex) => {
-    setDatas(datas.filter((_, index) => index !== targetIndex));
-  };
+  // const handleAddFormChange = (e) => {
+  //   e.preventDefault();
 
-  const [formState, setFormState] = useState("");
+  //   const fieldName = e.target.getAttribute("name");
+  //   const fieldValue = e.target.value;
 
-  const handleChange = (e) => {
-    setFormState({
-      formState: e.target.value,
-    });
-  };
+  //   const newFormData = { ...addFormData };
+  //   newFormData[fieldName] = fieldValue;
+  //   setAddFormData(newFormData);
+  // };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    formState()
+  const handleDeleleData = (e) => {
+    setDatas(datas.filter((_, index) => index !== e));
   };
 
   return (
@@ -139,19 +140,20 @@ const News = ({ news, handleInputChange, content, setContent }) => {
           })}
         </ul>
         {/* create new data */}
-        <div className="flex flex-row items-center w-full gap-1 pt-4">
+        <form className="flex flex-row items-center w-full gap-1 pt-4">
           <input
+            required
             type="text"
-            name="formState"
-            value={formState}
-            onChange={handleChange}
-            placeholder="Type New Category Here"
+            name="cateName"
+            // value={cateInput}
+            // onChange={onInputChange}
+            placeholder="Type New Category Here..."
             className="w-full p-2 py-3 text-white outline-none bg-sec rounded-2xl"
           />
-          <button type="submit" onClick={handleSubmit}>
+          <button type="submit">
             <FiPlusCircle className="text-[#6C6AEB] text-4xl hover:text-active cursor-pointer duration-500" />
           </button>
-        </div>
+        </form>
       </div>
 
       <div className={`p-2 px-4 m-4 bg-sec w-full rounded-2xl`}>

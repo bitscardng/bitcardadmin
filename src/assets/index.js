@@ -10,7 +10,7 @@ import itunes from "./itunes.png";
 import human from "./human.png";
 import robot from "./robot.png";
 import logo from "./logo.png";
-import loaderImg from "loaderImg.gif";
+import loaderImg from "./loaderImg.gif";
 
 export {
   loaderImg,

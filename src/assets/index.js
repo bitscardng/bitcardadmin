@@ -10,6 +10,20 @@ import itunes from "./itunes.png";
 import human from "./human.png";
 import robot from "./robot.png";
 import logo from "./logo.png";
+import loaderImg from "loaderImg.gif";
 
-
-export { logo,robot, human, itunes, gplay, aus, usa, uk, spain, switz, can, ger };
+export {
+  loaderImg,
+  logo,
+  robot,
+  human,
+  itunes,
+  gplay,
+  aus,
+  usa,
+  uk,
+  spain,
+  switz,
+  can,
+  ger,
+};

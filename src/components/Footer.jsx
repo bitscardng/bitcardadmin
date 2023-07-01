@@ -3,7 +3,7 @@ import logo from "../assets/logo.png";
 
 const Footer = () => {
   return (
-    <footer className="w-full p-2 footer footer-center bg-sec">
+    <footer className="sticky bottom-0 z-20 w-full p-2 bg-black footer footer-center">
       <div>
         <p className="flex items-center justify-center">
           Copyright © 2023 - All right reserved by

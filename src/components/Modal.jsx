@@ -32,19 +32,6 @@ const Modal = ({ closeModal, onSubmit }) => {
         <h2 className={styles.topic}>Edit page</h2>
         <form className="flex flex-col items-center justify-center gap-6">
           <div className="form-control">
-            <label htmlFor="buy" className="label">
-              <span className="">Buying Profit</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Buying"
-              name="buy"
-              value={formState.buy}
-              onChange={handleChange}
-              className="p-3 bg-white border border-black outline-none rounded-2xl"
-            />
-          </div>
-          <div className="form-control">
             <label htmlFor="sell" className="label">
               <span className="">Selling Profit</span>
             </label>
@@ -53,6 +40,19 @@ const Modal = ({ closeModal, onSubmit }) => {
               placeholder="Selling"
               name="sell"
               value={formState.sell}
+              onChange={handleChange}
+              className="p-3 bg-white border border-black outline-none rounded-2xl"
+            />
+          </div>
+          <div className="form-control">
+            <label htmlFor="buy" className="label">
+              <span className="">Buying Profit</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Buying"
+              name="buy"
+              value={formState.buy}
               onChange={handleChange}
               className="p-3 bg-white border border-black outline-none rounded-2xl"
             />

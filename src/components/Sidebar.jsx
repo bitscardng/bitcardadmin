@@ -15,7 +15,7 @@ const Sidebar = ({ children }) => {
     <div className="flex w-full h-screen">
       <div className="h-screen w-[240px] mr-2 relative">
         <Link
-          to="/"
+          to="/dashboard"
           onClick={() => {
             setActive("");
             window.scrollTo(0, 0);

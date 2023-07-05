@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import { robot } from "../assets";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { styles } from "../styles";
 import PasswordInput from "../components/PasswordInput";
+import { useDispatch } from "react-redux";
+import {
+  loginAdmin,
+  validateEmail,
+} from "../redux/features/services/authService";
+import { SET_LOGIN } from "../redux/features/auth/authSlice";
+import { toast } from "react-toastify";
+import Loader from "../components/Loader";
 
 const initialState = {
   email: "",
@@ -10,6 +18,9 @@ const initialState = {
 };
 
 const SignIn = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setformData] = useState(initialState);
   const { email, password } = formData;
 
@@ -18,15 +29,37 @@ const SignIn = () => {
     setformData({ ...formData, [name]: value });
   };
 
+  const login = async (e) => {
+    e.preventDefault();
+    if (!email || !password) {
+      return toast.error("Please enter a valid email and password");
+    }
+    if (!validateEmail(email)) {
+      return toast.error("Please enter a valid email");
+    }
+    const userData = { email, password };
+    setIsLoading(true);
+    try {
+      const data = await loginAdmin(userData);
+      console.log(data);
+      await dispatch(SET_LOGIN(true));
+      navigate("/dashboard");
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div class="hero min-h-screen">
+      {isLoading && <Loader />}
       <div class="hero-content flex-col lg:flex-row-reverse gap-20">
         <img src={robot} class="max-w-md " />
         <div>
           <h1 class="text-5xl font-bold">BITSCARD</h1>
           <div className="pt-2">
             <p>Please fill your detail to access your account.</p>
-            <form onSubmit={SignIn} className="pt-8">
+            <form onSubmit={login} className="pt-8">
               <div className="p-2">
                 <p>Email</p>
                 <input
@@ -66,7 +99,9 @@ const SignIn = () => {
                     <p>Forgot Password?</p>
                   </Link>
                 </div>
-                <div className={`${styles.btn} ml-0`}>Sign in</div>
+                <button type="submit" className={`${styles.btn} ml-0`}>
+                  Sign in
+                </button>
               </div>
             </form>
           </div>

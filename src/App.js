@@ -1,9 +1,14 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 import "./index.css";
 import Sidebar from "./components/Sidebar";
 import Layout from "./components/Layout";
 import UploadGiftcard from "./components/giftcard/UploadGiftcard";
 import AddGiftcard from "./components/giftcard/AddGiftcard";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import {
   AdminControl,
@@ -39,7 +44,7 @@ import {
 import SignIn from "./auth/SignIn";
 import SignInOtp from "./auth/SignInOtp";
 import Forgot from "./auth/Forgot";
-import Layout2 from "./components/Layout2";
+
 import Email1 from "./components/Email1";
 import {
   Activies,
@@ -52,45 +57,30 @@ import {
   Unresolved,
 } from "./components/ticketing";
 import { SendEmailTel } from "./components";
+import { SET_LOGIN } from "./redux/features/auth/authSlice";
+import { adminRefresh } from "./redux/features/services/authService";
+
+axios.defaults.withCredentials = true;
 
 function App() {
+  const dispatch = useDispatch;
+  useEffect(() => {
+    async function loginStatus() {
+      // const status = await adminRefresh();
+      // dispatch(SET_LOGIN(status));
+    }
+    loginStatus();
+  }, [dispatch]);
   return (
     <BrowserRouter>
       <div className="text-white bg-primary">
+        <ToastContainer/>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <Layout2>
-                <SignIn />
-              </Layout2>
-            }
-          />
-          <Route
-            path="/sign-in"
-            element={
-              <Layout2>
-                <SignIn />
-              </Layout2>
-            }
-          />
+          <Route path="/" element={<SignIn />} />
+          <Route path="/sign-in" element={<SignIn />} />
 
-          <Route
-            path="/forgot-password"
-            element={
-              <Layout2>
-                <Forgot />
-              </Layout2>
-            }
-          />
-          <Route
-            path="/sign-in-otp/:resetToken"
-            element={
-              <Layout2>
-                <SignInOtp />
-              </Layout2>
-            }
-          />
+          <Route path="/forgot-password" element={<Forgot />} />
+          <Route path="/sign-in-otp/:resetToken" element={<SignInOtp />} />
 
           <Route
             path="/dashboard"

@@ -5,7 +5,7 @@ const DateTime = () => {
   const date = showDate.toDateString();
   const time = showDate.toLocaleTimeString();
   return (
-    <div className="flex">
+    <div className="flex flex-row">
       <p>Today on Bitscard</p>
       <p className="mx-2">{date} ,</p>
       <p>{time}</p>

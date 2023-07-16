@@ -15,7 +15,7 @@ const PasswordInput = ({
   };
 
   return (
-    <div className="flex items-center pr-1 my-2 border rounded-full">
+    <div className="flex items-center pr-1 my-2 border rounded-full cursor-pointer">
       <input
         type={showPassword ? "text" : "password"}
         placeholder={placeholder}

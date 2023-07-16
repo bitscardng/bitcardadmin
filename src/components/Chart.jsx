@@ -26,32 +26,37 @@ const Chart = () => {
     <div className="p-4 text-white bg-sec rounded-2xl h-560vh]">
       <Line
         data={{
-          labels: ["June 1", "June 2", "June 3", "June 4", "June 5", "June 6"],
+          // labels: ["June 1", "June 2", "June 3", "June 4", "June 5", "June 6"],
+          labels: [],
           datasets: [
             {
               label: "CRYPTO",
-              data: [21000, 16000, 13500, 15000, 18000, 17000],
+              // data: [21000, 16000, 13500, 15000, 18000, 17000],
+              data: [],
               backgroundColor: "#885DF5",
               borderColor: "#885DF5",
               tension: 0.3,
             },
             {
               label: "GIFTCARD",
-              data: [19000, 12000, 17500, 15000, 20000, 13000],
+              // data: [19000, 12000, 17500, 15000, 20000, 13000],
+              data: [],
               backgroundColor: "#00C566",
               borderColor: "#00C566",
               tension: 0.3,
             },
             {
               label: "USD DEPOSIT",
-              data: [17000, 13000, 11500, 13000, 16000, 14000],
+              // data: [17000, 13000, 11500, 13000, 16000, 14000],
+              data: [],
               backgroundColor: "#219DFC",
               borderColor: "#219DFC",
               tension: 0.3,
             },
             {
               label: "NGN DEPOSIT",
-              data: [17000, 9000, 13500, 16000, 21000, 15000],
+              // data: [17000, 9000, 13500, 16000, 21000, 15000],
+              data: [],
               backgroundColor: "#FCB721",
               borderColor: "#FCB721",
               tension: 0.3,

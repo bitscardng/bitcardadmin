@@ -13,7 +13,7 @@ export const validateEmail = (email) => {
 export const loginAdmin = async (userData) => {
   try {
     const response = await axios.post(
-      `${BACKEND_URL}/api/v1/auth/admin-login`,
+      `${BACKEND_URL}/v1/auth/admin-login`,
       userData
     );
 
@@ -34,7 +34,7 @@ export const loginAdmin = async (userData) => {
 //logout user
 export const logoutAdmin = async () => {
   try {
-    await axios.get(`${BACKEND_URL}/api/v1/auth/admin-logout`);
+    await axios.get(`${BACKEND_URL}/v1/auth/admin-logout`);
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||
@@ -47,7 +47,7 @@ export const logoutAdmin = async () => {
 //get login status
 export const adminRefresh = async () => {
   try {
-    const response = await axios.get(`${BACKEND_URL}/api/v1/auth/refresh`);
+    const response = await axios.get(`${BACKEND_URL}/v1/auth/refresh`);
     return response.data;
   } catch (error) {
     const message =

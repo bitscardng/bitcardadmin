@@ -67,7 +67,7 @@ function App() {
   useEffect(() => {
     async function loginStatus() {
       const status = await adminRefresh();
-      // dispatch(SET_LOGIN(status));
+      dispatch(SET_LOGIN(status));
     }
     loginStatus();
   }, [dispatch]);

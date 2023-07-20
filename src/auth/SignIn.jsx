@@ -8,7 +8,7 @@ import {
   loginAdmin,
   validateEmail,
 } from "../redux/features/services/authService";
-import { SET_LOGIN } from "../redux/features/auth/authSlice";
+import { SET_LOGIN, SET_NAME } from "../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
 import Loader from "../components/Loader";
 
@@ -31,18 +31,22 @@ const SignIn = () => {
 
   const login = async (e) => {
     e.preventDefault();
+
     if (!email || !password) {
       return toast.error("Please enter a valid email and password");
     }
     if (!validateEmail(email)) {
       return toast.error("Please enter a valid email");
     }
+
     const userData = { email, password };
+
     setIsLoading(true);
     try {
       const data = await loginAdmin(userData);
-      console.log(data);
+      // console.log(data);
       await dispatch(SET_LOGIN(true));
+      await dispatch(SET_NAME(data.name));
       navigate("/dashboard");
       setIsLoading(false);
     } catch (error) {

@@ -27,7 +27,7 @@ const Header = () => {
         </p>
         <div className="flex items-center gap-1">
           <FiUser className="text-2xl font-bold text-active" />
-          Welcome, <p className="text-white">{name}</p>
+          Welcome, <p className="text-white capitalize">{name}</p>
         </div>
       </div>
       <button

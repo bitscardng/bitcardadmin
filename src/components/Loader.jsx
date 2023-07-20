@@ -4,9 +4,9 @@ import { loaderImg } from "../assets";
 
 const Loader = () => {
   return ReactDOM.createPortal(
-    <div className="fixed h-[100vh] w-[100vw] z-9 bg-[rgba(0,0,0,0.7)]">
-      <div className="fixed l-[50%] t-[50%] z-[999] translate[-50%, -50%]">
-        <img src={loaderImg} alt="Loading..." />
+    <div className="fixed h-[100vh] w-[100vw] z-9 bg-[rgba(0,0,0,0.7)] hero">
+      <div className="fixed  z-[999] translate[-50%, -50%] hero">
+        <img src={loaderImg} alt="Loading..."  className="rounded-full "/>
       </div>
     </div>,
     document.getElementById("loader")
@@ -15,8 +15,8 @@ const Loader = () => {
 
 export const SpinnerImg = () => {
   return (
-    <div className="--center-all">
-      <img src={loaderImg} alt="Loading..." />
+    <div className=" hero">
+      <img src={loaderImg} alt="Loading..." className="rounded-full " />
     </div>
   );
 };

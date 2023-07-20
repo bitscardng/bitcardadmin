@@ -18,10 +18,11 @@ export const loginAdmin = async (userData) => {
     );
 
     if (response.statusText === "OK") {
-      toast.success("Login Successfully");
+      toast.success("Login Successfully...");
     }
     return response.data;
   } catch (error) {
+    //getting error message from backend
     const message =
       (error.response && error.response.data && error.response.data.message) ||
       error.message ||

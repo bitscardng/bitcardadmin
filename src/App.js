@@ -66,7 +66,7 @@ function App() {
   const dispatch = useDispatch;
   useEffect(() => {
     async function loginStatus() {
-      // const status = await adminRefresh();
+      const status = await adminRefresh();
       // dispatch(SET_LOGIN(status));
     }
     loginStatus();
@@ -74,7 +74,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="text-white bg-primary">
-        <ToastContainer/>
+        <ToastContainer />
         <Routes>
           <Route path="/" element={<SignIn />} />
           <Route path="/sign-in" element={<SignIn />} />

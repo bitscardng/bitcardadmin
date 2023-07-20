@@ -4,8 +4,11 @@ import Sell from "../components/cryptoTranx/Sell";
 import Send from "../components/cryptoTranx/Send";
 import Receive from "../components/cryptoTranx/Receive";
 import { styles } from "../styles";
+import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 
 const CryptoTranx = () => {
+  useRedirectLoggedOutUser("/sign-in");
+
   return (
     <div className="flex flex-col">
       <p className={`${styles.topic} mb-2`}>crypto transaction</p>

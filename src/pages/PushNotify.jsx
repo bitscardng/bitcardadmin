@@ -3,8 +3,11 @@ import { styles } from "../styles";
 import { FiUser } from "react-icons/fi";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 
 const PushNotify = ({ notify, handleInputChange, content, setContent }) => {
+  useRedirectLoggedOutUser("/sign-in");
+
   return (
     <form className="flex flex-col items-center">
       <p className={`${styles.topic} mb-0`}>push notification</p>

@@ -3,6 +3,7 @@ import { styles } from "../styles";
 import { FiUser } from "react-icons/fi";
 import "react-quill/dist/quill.snow.css";
 import { Link } from "react-router-dom";
+import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 
 // const templateData = [
 //   { id: "rad01", name: "A Customer" },
@@ -12,6 +13,7 @@ import { Link } from "react-router-dom";
 const SendEmail = ({ sendEmail, handleInputChange }) => {
   const [template, setTemplate] = useState("");
   const [content, setContent] = useState("");
+  useRedirectLoggedOutUser("/sign-in");
 
   return (
     <div className="flex flex-col">

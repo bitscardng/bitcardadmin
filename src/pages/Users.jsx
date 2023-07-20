@@ -4,6 +4,7 @@ import Search from "../components/Search";
 import { giftCard } from "../constant";
 import { Link } from "react-router-dom";
 import { styles } from "../styles";
+import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 
 const Users = () => {
   const [datas, setDatas] = useState(giftCard);
@@ -59,6 +60,7 @@ const Users = () => {
       );
     });
   //pagination end
+  useRedirectLoggedOutUser("/sign-in");
 
   return (
     <div>

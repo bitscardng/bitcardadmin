@@ -5,8 +5,11 @@ import Desposit from "../components/usersdetails/Desposit";
 import VirtualCard from "../components/usersdetails/VirtualCard";
 import Crypto from "../components/usersdetails/Crypto";
 import { styles } from "../styles";
+import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 
 const UserDetails = () => {
+  useRedirectLoggedOutUser("/sign-in");
+
   return (
     <div>
       <p className={`${styles.topic} mb-8`}>user's details</p>

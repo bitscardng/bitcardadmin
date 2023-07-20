@@ -2,8 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { DateTime } from "../components";
 import { logo } from "../assets";
+import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 
 const NotFound = () => {
+  useRedirectLoggedOutUser("/sign-in");
+
   return (
     <div className="h-screen ">
       <div className="sticky top-0 flex items-center justify-between w-full p-4 mb-4 text-2xl text-center bg-sec">

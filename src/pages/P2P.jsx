@@ -3,10 +3,13 @@ import Search from "../components/Search";
 import Merchant from "../components/p2p/Merchant";
 import Market from "../components/p2p/Market";
 import { styles } from "../styles";
+import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 
 const P2P = () => {
   const [search, setSearch] = useState("");
+  useRedirectLoggedOutUser("/sign-in");
 
+  
   return (
     <div>
       <p className={`${styles.topic}`}>P2P Transaction</p>

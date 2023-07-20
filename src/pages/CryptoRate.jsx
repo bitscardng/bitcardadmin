@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { styles } from "../styles";
 import { Modal } from "../components";
+import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 
 const rate = [
   { coin: "BTC", buying: "749.5", selling: "770", market: "29,012.23" },
@@ -14,6 +15,8 @@ const CryptoRate = () => {
   const handleSubmit = (newFormState) => {
     setAmount(...amount, newFormState);
   };
+
+  useRedirectLoggedOutUser("/sign-in");
 
   return (
     <div>

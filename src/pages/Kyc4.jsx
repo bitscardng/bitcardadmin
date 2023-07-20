@@ -4,6 +4,7 @@ import { giftCard } from "../constant";
 import ReactPaginate from "react-paginate";
 import { human } from "../assets";
 import { styles } from "../styles";
+import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 
 const Kyc4 = () => {
   const [datas, setDatas] = useState(giftCard);
@@ -51,6 +52,7 @@ const Kyc4 = () => {
       );
     });
   //pagination end
+  useRedirectLoggedOutUser("/sign-in");
 
   return (
     <div>

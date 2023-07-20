@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { styles } from "../styles";
 import { Link } from "react-router-dom";
+import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 
 const menu = [
   { title: "all activies", num: "67" },
@@ -25,6 +26,8 @@ const ticketBar = [
 
 const Ticketing = ({ children }) => {
   const [active, setActive] = useState("");
+  useRedirectLoggedOutUser("/sign-in");
+
   return (
     <div>
       <p className={`${styles.topic} mb-0`}>ticketing</p>

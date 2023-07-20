@@ -3,6 +3,7 @@ import { styles } from "../styles";
 import { FiUser } from "react-icons/fi";
 import { HiOutlineMail } from "react-icons/hi";
 import { BiLockOpen } from "react-icons/bi";
+import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 
 const denomination = [
   { id: "rad01", name: "Admin" },
@@ -10,6 +11,7 @@ const denomination = [
 ];
 const AdminControl = () => {
   const [users, setUsers] = useState("");
+  useRedirectLoggedOutUser("/sign-in");
 
   return (
     <div className="">

@@ -1,6 +1,7 @@
 import React from "react";
 import { styles } from "../styles";
 import { HiDownload } from "react-icons/hi";
+import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 
 
 const datas = [
@@ -11,6 +12,8 @@ const datas = [
 ];
 
 const ExportData = () => {
+  useRedirectLoggedOutUser("/sign-in");
+
   return (
     <div>
       <p className={`${styles.topic} mb-0`}>export data</p>

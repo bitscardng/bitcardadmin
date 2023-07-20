@@ -4,6 +4,7 @@ import { giftCard } from "../constant";
 import ReactPaginate from "react-paginate";
 import { HiOutlineMail } from "react-icons/hi";
 import { styles } from "../styles";
+import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 
 const UsdWithdraw = () => {
   const [datas, setDatas] = useState(giftCard);
@@ -51,6 +52,7 @@ const UsdWithdraw = () => {
       );
     });
   //pagination end
+  useRedirectLoggedOutUser("/sign-in");
 
   return (
     <div>

@@ -10,6 +10,7 @@ import { giftCard } from "../constant";
 import ReactPaginate from "react-paginate";
 import { styles } from "../styles";
 import { Link } from "react-router-dom";
+import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 
 const BuyGiftCard = ({ handleInputChange }) => {
   const [datas, setDatas] = useState(giftCard);
@@ -67,6 +68,7 @@ const BuyGiftCard = ({ handleInputChange }) => {
     });
   //pagination end
 
+  useRedirectLoggedOutUser("/sign-in");
   return (
     <div>
       <p className={`${styles.topic} mb-4`}>Buy gift card</p>

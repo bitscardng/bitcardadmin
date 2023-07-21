@@ -3,12 +3,14 @@ import { robot } from "../assets";
 import { Link, useNavigate } from "react-router-dom";
 import { styles } from "../styles";
 import PasswordInput from "../components/PasswordInput";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   loginAdmin,
   validateEmail,
 } from "../redux/features/services/authService";
 import { SET_LOGIN, SET_NAME } from "../redux/features/auth/authSlice";
+import { login } from "../redux/actions/auth.actions";
+import { loginActions } from "../redux/actionTypes/auth.actionTypes";
 import { toast } from "react-toastify";
 import Loader from "../components/Loader";
 
@@ -19,8 +21,8 @@ const initialState = {
 
 const SignIn = () => {
   const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
   const [formData, setformData] = useState(initialState);
   const { email, password } = formData;
 
@@ -29,7 +31,7 @@ const SignIn = () => {
     setformData({ ...formData, [name]: value });
   };
 
-  const login = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!email || !password) {
@@ -38,32 +40,28 @@ const SignIn = () => {
     if (!validateEmail(email)) {
       return toast.error("Please enter a valid email");
     }
-
     const userData = { email, password };
-
-    setIsLoading(true);
-    try {
-      const data = await loginAdmin(userData);
-      // console.log(data);
-      await dispatch(SET_LOGIN(true));
-      await dispatch(SET_NAME(data.name));
-      navigate("/dashboard");
-      setIsLoading(false);
-    } catch (error) {
-      setIsLoading(false);
-    }
+    await dispatch(login(userData))
+      .unwrap()
+      .then((action) => {
+        toast.success("Login successfull!");
+        navigate("/dashboard");
+      })
+      .catch((err) => {
+        return toast.error(err.message);
+      });
   };
 
   return (
     <div class="hero min-h-screen">
-      {isLoading && <Loader />}
+      {auth.isLoading === loginActions.isLoading && <Loader />}
       <div class="hero-content flex-col lg:flex-row-reverse gap-20">
         <img src={robot} class="max-w-md " />
         <div>
           <h1 class="text-5xl font-bold">BITSCARD</h1>
           <div className="pt-2">
             <p>Please fill your detail to access your account.</p>
-            <form onSubmit={login} className="pt-8">
+            <form onSubmit={handleSubmit} className="pt-8">
               <div className="p-2">
                 <p>Email</p>
                 <input

@@ -44,6 +44,7 @@ const SignIn = () => {
     await dispatch(login(userData))
       .unwrap()
       .then((action) => {
+        sessionStorage.setItem("token", action.data.token);
         toast.success("Login successfull!");
         navigate("/dashboard");
       })

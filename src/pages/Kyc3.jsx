@@ -4,7 +4,6 @@ import { giftCard } from "../constant";
 import ReactPaginate from "react-paginate";
 import { human } from "../assets";
 import { styles } from "../styles";
-import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 
 const Kyc3 = () => {
   const [datas, setDatas] = useState(giftCard);
@@ -58,9 +57,6 @@ const Kyc3 = () => {
       );
     });
   //pagination end
-
-  useRedirectLoggedOutUser("/sign-in");
-
   return (
     <div>
       <p className={`${styles.topic} mb-0`}>kyc 3</p>

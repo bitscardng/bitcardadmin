@@ -4,10 +4,8 @@ import style from "../styles.module.css";
 import { total, trade, withdraw } from "../constant/index";
 import Bitcoin from "../assets/Bitcoin.png";
 import { Chart } from "../components";
-import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 
 const Dashboard = () => {
-  useRedirectLoggedOutUser('/sign-in')
   return (
     <div className="relative">
       <p className={`${styles.topic} mb-0 `}>dashboard</p>

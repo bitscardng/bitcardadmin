@@ -1,7 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
 import "./index.css";
 import Sidebar from "./components/Sidebar";
 import Layout from "./components/Layout";
@@ -9,7 +7,7 @@ import UploadGiftcard from "./components/giftcard/UploadGiftcard";
 import AddGiftcard from "./components/giftcard/AddGiftcard";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import Authlayout from "./layout/authlayout";
 import {
   AdminControl,
   AdsCampaign,
@@ -57,450 +55,131 @@ import {
   Unresolved,
 } from "./components/ticketing";
 import { SendEmailTel } from "./components";
-import { SET_LOGIN } from "./redux/features/auth/authSlice";
-import { adminRefresh } from "./redux/features/services/authService";
-
-axios.defaults.withCredentials = true;
 
 function App() {
-  const dispatch = useDispatch;
-  useEffect(() => {
-    async function loginStatus() {
-      const status = await adminRefresh();
-      dispatch(SET_LOGIN(status));
-    }
-    loginStatus();
-  }, [dispatch]);
   return (
     <BrowserRouter>
-      <div className="text-white bg-primary">
-        <ToastContainer />
-        <Routes>
-          <Route path="/" element={<SignIn />} />
-          <Route path="/sign-in" element={<SignIn />} />
+      <Routes>
+        <Route path="/" element={<SignIn />} />
+        <Route path="/sign-in" element={<SignIn />} />
 
-          <Route path="/forgot-password" element={<Forgot />} />
-          <Route path="/sign-in-otp/:resetToken" element={<SignInOtp />} />
+        <Route path="/forgot-password" element={<Forgot />} />
+        <Route path="/sign-in-otp/:resetToken" element={<SignInOtp />} />
+        <Route
+          path="/dashboard2"
+          element={
+            <Sidebar>
+              <Layout>
+                <Dashboard />
+              </Layout>
+            </Sidebar>
+          }
+        />
+        <Route path="" element={<Authlayout />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/email1preview" element={<Email1 />} />
+          <Route path="/Admin-control" element={<AdminControl />} />
+          <Route path="/buy-gift-card" element={<BuyGiftCard />} />
+          <Route path="/sell-gift-card" element={<SellGiftCard />} />
+          <Route path="/p2p-tranx" element={<P2P />} />
+          <Route path="/virtual-card" element={<VirtualCard />} />
+          <Route path="/crypto-tranx" element={<CryptoTranx />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/usersdetails" element={<UserDetails />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/faq" element={<Faq />} />
+          <Route path="/usd-withdraw" element={<UsdWithdraw />} />
+          <Route path="/ngn-withdraw" element={<NgnWithdraw />} />
+          <Route path="/ghs-withdraw" element={<GhsWithdraw />} />
+          <Route path="/fx-rate" element={<FxRate />} />
+          <Route path="/crypto-rate" element={<CryptoRate />} />
+          <Route path="/giftcard/upload" element={<UploadGiftcard />} />
+          <Route path="/giftcard/add" element={<AddGiftcard />} />
+          <Route path="/ngn-deposit" element={<NgnDeposit />} />
+          <Route path="/usd-deposit" element={<UsdDeposit />} />
+          <Route path="/push-notice" element={<PushNotify />} />
+          <Route path="/export-data" element={<ExportData />} />
+          <Route path="/ads-campaign" element={<AdsCampaign />} />
+          <Route path="/send-email" element={<SendEmail />} />
 
-          <Route
-            path="/dashboard"
-            element={
-              <Sidebar>
-                <Layout>
-                  <Dashboard />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/email1preview"
-            element={
-              <Sidebar>
-                <Layout>
-                  <Email1 />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/Admin-control"
-            element={
-              <Sidebar>
-                <Layout>
-                  <AdminControl />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/buy-gift-card"
-            element={
-              <Sidebar>
-                <Layout>
-                  <BuyGiftCard />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/sell-gift-card"
-            element={
-              <Sidebar>
-                <Layout>
-                  <SellGiftCard />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/p2p-tranx"
-            element={
-              <Sidebar>
-                <Layout>
-                  <P2P />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/virtual-card"
-            element={
-              <Sidebar>
-                <Layout>
-                  <VirtualCard />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/crypto-tranx"
-            element={
-              <Sidebar>
-                <Layout>
-                  <CryptoTranx />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/users"
-            element={
-              <Sidebar>
-                <Layout>
-                  <Users />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/usersdetails"
-            element={
-              <Sidebar>
-                <Layout>
-                  <UserDetails />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/news"
-            element={
-              <Sidebar>
-                <Layout>
-                  <News />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/faq"
-            element={
-              <Sidebar>
-                <Layout>
-                  <Faq />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/usd-withdraw"
-            element={
-              <Sidebar>
-                <Layout>
-                  <UsdWithdraw />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/ngn-withdraw"
-            element={
-              <Sidebar>
-                <Layout>
-                  <NgnWithdraw />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/ghs-withdraw"
-            element={
-              <Sidebar>
-                <Layout>
-                  <GhsWithdraw />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/fx-rate"
-            element={
-              <Sidebar>
-                <Layout>
-                  <FxRate />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/crypto-rate"
-            element={
-              <Sidebar>
-                <Layout>
-                  <CryptoRate />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/giftcard/upload"
-            element={
-              <Sidebar>
-                <Layout>
-                  <UploadGiftcard />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/giftcard/add"
-            element={
-              <Sidebar>
-                <Layout>
-                  <AddGiftcard />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/ngn-deposit"
-            element={
-              <Sidebar>
-                <Layout>
-                  <NgnDeposit />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/usd-deposit"
-            element={
-              <Sidebar>
-                <Layout>
-                  <UsdDeposit />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/push-notice"
-            element={
-              <Sidebar>
-                <Layout>
-                  <PushNotify />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/export-data"
-            element={
-              <Sidebar>
-                <Layout>
-                  <ExportData />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/ads-campaign"
-            element={
-              <Sidebar>
-                <Layout>
-                  <AdsCampaign />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/send-email"
-            element={
-              <Sidebar>
-                <Layout>
-                  <SendEmail />
-                </Layout>
-              </Sidebar>
-            }
-          />
+          <Route path="/telesales" element={<TeleSales />} />
 
-          <Route
-            path="/telesales"
-            element={
-              <Sidebar>
-                <Layout>
-                  <TeleSales />
-                </Layout>
-              </Sidebar>
-            }
-          />
-
-          <Route
-            path="/kyc-1&2"
-            element={
-              <Sidebar>
-                <Layout>
-                  <Kyc1 />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/kyc-3"
-            element={
-              <Sidebar>
-                <Layout>
-                  <Kyc3 />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          <Route
-            path="/kyc-4"
-            element={
-              <Sidebar>
-                <Layout>
-                  <Kyc4 />
-                </Layout>
-              </Sidebar>
-            }
-          />
+          <Route path="/kyc-1&2" element={<Kyc1 />} />
+          <Route path="/kyc-3" element={<Kyc3 />} />
+          <Route path="/kyc-4" element={<Kyc4 />} />
 
           {/* ticketing section */}
 
           <Route
             path="/ticketing/all activies"
             element={
-              <Sidebar>
-                <Layout>
-                  <Ticketing>
-                    <Activies />
-                  </Ticketing>
-                </Layout>
-              </Sidebar>
+              <Ticketing>
+                <Activies />
+              </Ticketing>
             }
           />
           <Route
             path="/ticketing/unassigned"
             element={
-              <Sidebar>
-                <Layout>
-                  <Ticketing>
-                    <Unassigned />
-                  </Ticketing>
-                </Layout>
-              </Sidebar>
+              <Ticketing>
+                <Unassigned />
+              </Ticketing>
             }
           />
           <Route
             path="/ticketing/today's mail"
             element={
-              <Sidebar>
-                <Layout>
-                  <Ticketing>
-                    <TodayMail />
-                  </Ticketing>
-                </Layout>
-              </Sidebar>
+              <Ticketing>
+                <TodayMail />
+              </Ticketing>
             }
           />
 
           <Route
             path="/ticketing/due ticket"
             element={
-              <Sidebar>
-                <Layout>
-                  <Ticketing>
-                    <DueTicket />
-                  </Ticketing>
-                </Layout>
-              </Sidebar>
+              <Ticketing>
+                <DueTicket />
+              </Ticketing>
             }
           />
           <Route
             path="/ticketing/unresolved"
             element={
-              <Sidebar>
-                <Layout>
-                  <Ticketing>
-                    <Unresolved />
-                  </Ticketing>
-                </Layout>
-              </Sidebar>
+              <Ticketing>
+                <Unresolved />
+              </Ticketing>
             }
           />
           <Route
             path="/ticketing/awaiting"
             element={
-              <Sidebar>
-                <Layout>
-                  <Ticketing>
-                    <Awaiting />
-                  </Ticketing>
-                </Layout>
-              </Sidebar>
+              <Ticketing>
+                <Awaiting />
+              </Ticketing>
             }
           />
           <Route
             path="/ticketing/resolved"
             element={
-              <Sidebar>
-                <Layout>
-                  <Ticketing>
-                    <Resolved />
-                  </Ticketing>
-                </Layout>
-              </Sidebar>
+              <Ticketing>
+                <Resolved />
+              </Ticketing>
             }
           />
           <Route
             path="/ticketing/spam"
             element={
-              <Sidebar>
-                <Layout>
-                  <Ticketing>
-                    <Spam />
-                  </Ticketing>
-                </Layout>
-              </Sidebar>
+              <Ticketing>
+                <Spam />
+              </Ticketing>
             }
           />
-
-          <Route
-            path="/ticketing-details"
-            element={
-              <Sidebar>
-                <Layout>
-                  <TicketingDetails />
-                </Layout>
-              </Sidebar>
-            }
-          />
-          {/* ticketing section */}
-
-          <Route
-            path="/telesales/sendemail"
-            element={
-              <Sidebar>
-                <Layout>
-                  <SendEmailTel />
-                </Layout>
-              </Sidebar>
-            }
-          />
-
-          <Route path="/*" element={<NotFound />} />
-        </Routes>
-      </div>
+          <Route path="/ticketing-details" element={<TicketingDetails />} />
+          <Route path="/telesales/sendemail" element={<SendEmailTel />} />
+        </Route>
+        <Route path="/*" element={<NotFound />} />
+      </Routes>
     </BrowserRouter>
   );
 }

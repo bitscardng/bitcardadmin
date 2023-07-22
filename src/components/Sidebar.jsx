@@ -33,12 +33,14 @@ const Sidebar = ({ children }) => {
               <div className="h-fit">
                 <Link to={menu.link} key={index}>
                   <li className="relative">
-                    <div
-                      className={`w-[32px] p-1 rounded-full bg-[#ED1E79] 
+                    {menu.count && (
+                      <div
+                        className={`w-[32px] p-1 rounded-full bg-[#ED1E79] 
                     text-white text-center left-48 -top-6 absolute`}
-                    >
-                      {menu.count}
-                    </div>
+                      >
+                        {menu.count}
+                      </div>
+                    )}
                     <div
                       className={`${
                         active === menu.name ? "bg-active" : "bg-sec"

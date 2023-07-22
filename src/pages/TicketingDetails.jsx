@@ -2,11 +2,8 @@ import React from "react";
 import { styles } from "../styles";
 import { Link } from "react-router-dom";
 import { TiArrowBackOutline } from "react-icons/ti";
-import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 
 const TicketingDetails = () => {
-  useRedirectLoggedOutUser("/sign-in");
-
   return (
     <div>
       <div className="relative mb-4">

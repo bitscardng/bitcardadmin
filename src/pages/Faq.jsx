@@ -10,7 +10,6 @@ import {
 
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 
 const datas = [
   { name: "btc" },
@@ -29,9 +28,6 @@ const Faq = ({ faq, handleInputChange, content, setContent }) => {
     setFaqImage(e.target.files[0]);
     setImagePreview(URL.createObjectURL(e.target.files[0]));
   };
-
-  useRedirectLoggedOutUser('/sign-in')
-
   return (
     <form className="flex flex-col items-center">
       <p className={`${styles.topic} mb-0`}>faq</p>

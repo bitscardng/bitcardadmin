@@ -11,8 +11,6 @@ const denomination = [
 ];
 const AdminControl = () => {
   const [users, setUsers] = useState("");
-  useRedirectLoggedOutUser("/sign-in");
-
   return (
     <div className="">
       <p className={`${styles.topic}`}>admin control</p>

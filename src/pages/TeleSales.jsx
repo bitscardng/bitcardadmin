@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { styles } from "../styles";
 import { FiPhoneCall } from "react-icons/fi";
 import { TbMailForward } from "react-icons/tb";
-import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 
 const TeleSales = () => {
   const [datas, setDatas] = useState(giftCard);
@@ -111,8 +110,6 @@ const TeleSales = () => {
       );
     });
   //pagination end
-  useRedirectLoggedOutUser("/sign-in");
-
   return (
     <div className="">
       <p className={`${styles.topic} mb-2`}>tele sales</p>

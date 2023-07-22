@@ -9,7 +9,6 @@ import {
 } from "react-icons/fi";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 
 const News = ({ news, handleInputChange, content, setContent }) => {
   const [open, setOpen] = useState(false);
@@ -46,9 +45,6 @@ const News = ({ news, handleInputChange, content, setContent }) => {
   const handleDeleleData = (e) => {
     setDatas(datas.filter((_, index) => index !== e));
   };
-  useRedirectLoggedOutUser("/sign-in");
-
-
   return (
     <form className="flex flex-col items-center">
       <p className={`${styles.topic} mb-0`}>news</p>

@@ -4,7 +4,6 @@ import ReactPaginate from "react-paginate";
 import { giftCard } from "../constant";
 import { HiOutlineMail } from "react-icons/hi";
 import { styles } from "../styles";
-import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 
 const VirtualCard = () => {
   const [search, setSearch] = useState("");
@@ -47,8 +46,6 @@ const VirtualCard = () => {
       );
     });
   //pagination end
-  useRedirectLoggedOutUser("/sign-in");
-
   return (
     <div>
       <p className={`${styles.topic}`}>virtual card transaction</p>

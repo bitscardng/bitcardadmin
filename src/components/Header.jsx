@@ -3,20 +3,26 @@ import { BsRobot } from "react-icons/bs";
 import { FiUser } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import DateTime from "./DateTime";
-import { logoutAdmin } from "../redux/features/services/authService";
-import { SET_LOGIN, selectName } from "../redux/features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { logout } from "../redux/actions/auth.actions";
+import { selectUser } from "../redux/reducers/auth.reducer";
+import { toast } from "react-toastify";
 
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const name = useSelector(selectName);
-
-  const logout = async () => {
-    await logoutAdmin();
-    await dispatch(SET_LOGIN(false));
-    navigate("/sign-in");
+  const name = useSelector(selectUser).name;
+  const handleLogout = () => {
+    dispatch(logout())
+      .unwrap()
+      .then(() => {
+        localStorage.removeItem("token");
+        navigate("/");
+      })
+      .catch((err) => {
+        toast.error(err.message || err.msg);
+      });
   };
 
   return (
@@ -32,7 +38,7 @@ const Header = () => {
       </div>
       <button
         type="submit"
-        onClick={logout}
+        onClick={handleLogout}
         className="flex items-center justify-between gap-2 p-3 duration-500 rounded-full hover:bg-active bg-sec min-w-fit"
       >
         <div className="p-2 text-center rounded-full bg-[#3b3a62] ">

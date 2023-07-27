@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
     <div className="bg-primary">
       <Header />
       <div className="min-h-screen p-2 mr-4 overflow-x-scroll">{children}</div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

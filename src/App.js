@@ -64,17 +64,7 @@ function App() {
         <Route path="/sign-in" element={<SignIn />} />
 
         <Route path="/forgot-password" element={<Forgot />} />
-        <Route path="/sign-in-otp/:resetToken" element={<SignInOtp />} />
-        <Route
-          path="/dashboard2"
-          element={
-            <Sidebar>
-              <Layout>
-                <Dashboard />
-              </Layout>
-            </Sidebar>
-          }
-        />
+        <Route path="/sign-in-otp" element={<SignInOtp />} />
         <Route path="" element={<Authlayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/email1preview" element={<Email1 />} />

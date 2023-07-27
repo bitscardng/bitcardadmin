@@ -5,7 +5,7 @@ import { styles } from "../styles";
 import PasswordInput from "../components/PasswordInput";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/actions/auth.actions";
-import { loginActions } from "../redux/actionTypes/auth.actionTypes";
+import { AsyncActions } from "../redux/actionTypes/auth.actionTypes";
 import { toast } from "react-toastify";
 import Loader from "../components/Loader";
 import { validateEmail } from "../constant/validators";
@@ -48,7 +48,6 @@ const SignIn = () => {
       return toast.error("Please enter a valid email");
     }
     const userData = { email, password };
-    console.log(formData.rememberMe);
     if (check) {
       localStorage.setItem("email", formData.email);
     } else if (!check) {
@@ -57,9 +56,10 @@ const SignIn = () => {
     await dispatch(login(userData))
       .unwrap()
       .then((action) => {
-        sessionStorage.setItem("token", action.data.token);
+        sessionStorage.setItem("token", action.data.tokens.accessToken);
+        localStorage.setItem("refreshToken", action.data.tokens.refreshToken);
         toast.success("Login successfull!");
-        navigate("/dashboard");
+        navigate("/sign-in-otp");
       })
       .catch((err) => {
         return toast.error(err.message);
@@ -68,7 +68,7 @@ const SignIn = () => {
 
   return (
     <div className="hero min-h-screen">
-      {auth.isLoading === loginActions.isLoading && <Loader />}
+      {auth.isLoading === AsyncActions.isLoading && <Loader />}
       <div className="hero-content flex-col lg:flex-row-reverse gap-20">
         <img src={robot} className="max-w-md " />
         <div>

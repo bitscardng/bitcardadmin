@@ -3,18 +3,40 @@ import { styles } from "../styles";
 import { FiUser } from "react-icons/fi";
 import { HiOutlineMail } from "react-icons/hi";
 import { BiLockOpen } from "react-icons/bi";
-import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
+import { BsTelephone } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { createAdmin } from "../redux/actions/auth.actions";
+import { toast } from "react-toastify";
 
 const denomination = [
-  { id: "rad01", name: "Admin" },
-  { id: "rad02", name: "Customer Rep" },
+  { id: "rad01", name: "Admin", value: "admin" },
+  { id: "rad02", name: "Customer Rep", value: "customer-rep" },
 ];
+
 const AdminControl = () => {
-  const [users, setUsers] = useState("");
+  const [formData, setFormData] = useState({});
+  const dispatch = useDispatch();
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => {
+      return { ...prev, [name]: value };
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(createAdmin(formData))
+      .unwrap()
+      .then(() => {
+        toast.success("user created successfully");
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  };
   return (
-    <div className="">
+    <div className="w-[60%]">
       <p className={`${styles.topic}`}>admin control</p>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className={styles.formField}>
           <div className="flex flex-row items-center gap-2 text-center">
             <div className="p-2 text-center rounded-full bg-[#3b3a62]">
@@ -23,8 +45,9 @@ const AdminControl = () => {
             <p className="flex">Username</p>
           </div>
           <input
-            type="name"
+            name="username"
             required
+            onChange={handleInputChange}
             placeholder="John Doe"
             className="w-full p-2 mx-1 bg-transparent outline-none"
           />
@@ -37,9 +60,27 @@ const AdminControl = () => {
             <p className="flex">Email</p>
           </div>
           <input
+            name="email"
             type="email"
             required
+            onChange={handleInputChange}
             placeholder="example@.abc"
+            className="w-full p-2 mx-1 bg-transparent outline-none"
+          />
+        </div>
+        <div className={styles.formField}>
+          <div className="flex flex-row items-center gap-2 text-center">
+            <div className="p-2 text-center rounded-full bg-[#3b3a62]">
+              <BsTelephone className="text-[#f7931a]" />
+            </div>
+            <p className="flex">Phone</p>
+          </div>
+          <input
+            name="phone"
+            type="text"
+            required
+            placeholder="+00 000 000"
+            onChange={handleInputChange}
             className="w-full p-2 mx-1 bg-transparent outline-none"
           />
         </div>
@@ -51,10 +92,12 @@ const AdminControl = () => {
             <p className="">Password</p>
           </div>
           <input
-            type="name"
+            type="password"
+            name="password"
             required
             placeholder="********"
             className="w-full p-2 mx-1 bg-transparent outline-none"
+            onChange={handleInputChange}
           />
         </div>
         <div className="flex flex-col justify-center mt-6 text-center">
@@ -64,15 +107,15 @@ const AdminControl = () => {
               return (
                 <div
                   className={`flex items-center gap-3 p-2 px-4 m-4 rounded-full w-full bg-primary`}
+                  key={i}
                 >
                   <input
                     type="radio"
-                    name="users"
-                    required
+                    name="role"
                     id={item.id}
-                    value={item.name}
+                    value={item.value}
                     className="radio text-sec peer"
-                    onChange={(e) => setUsers(e.target.value)}
+                    onChange={handleInputChange}
                   />
                   <label
                     for={item.id}
@@ -85,7 +128,9 @@ const AdminControl = () => {
             })}
           </div>
         </div>
-        <div className={`${styles.btn}`}>Create users</div>
+        <button type="submit" className={`${styles.btn}`}>
+          Create users
+        </button>
       </form>
     </div>
   );

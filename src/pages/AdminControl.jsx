@@ -34,8 +34,7 @@ const AdminControl = () => {
       });
   };
   return (
-    <div className="w-[60%]">
-      <p className={`${styles.topic}`}>admin control</p>
+    <div className="w-[80%] mx-auto">
       <form onSubmit={handleSubmit}>
         <div className={styles.formField}>
           <div className="flex flex-row items-center gap-2 text-center">
@@ -129,7 +128,7 @@ const AdminControl = () => {
           </div>
         </div>
         <button type="submit" className={`${styles.btn}`}>
-          Create users
+          Create user
         </button>
       </form>
     </div>

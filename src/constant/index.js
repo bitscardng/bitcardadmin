@@ -27,9 +27,14 @@ const total = [
   { totalName: "total user", totalAmount: "167" },
   { totalName: "andriod download", totalAmount: "77" },
   { totalName: "ios download", totalAmount: "97" },
+  // { totalName: "vitual card created", totalAmount: "77" },
+  // { totalName: "daily virtual card transaction", totalAmount: "77" },
+];
+
+const cards = [
   { totalName: "vitual card created", totalAmount: "77" },
   { totalName: "daily virtual card transaction", totalAmount: "77" },
-];
+]
 
 //gift card data
 const giftCard = [
@@ -244,4 +249,4 @@ const giftCard = [
   },
 ];
 
-export { trade, withdraw, total, giftCard };
+export { trade, withdraw, total, giftCard, cards };

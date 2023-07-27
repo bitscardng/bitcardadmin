@@ -1,13 +1,11 @@
 import React from "react";
 import { BsRobot } from "react-icons/bs";
 import { FiUser } from "react-icons/fi";
-import { Link } from "react-router-dom";
 import DateTime from "./DateTime";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../redux/actions/auth.actions";
 import { selectUser } from "../redux/reducers/auth.reducer";
-import { toast } from "react-toastify";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -17,11 +15,12 @@ const Header = () => {
     dispatch(logout())
       .unwrap()
       .then(() => {
-        localStorage.removeItem("token");
+        localStorage.removeItem("refreshToken");
+        sessionStorage.removeItem("token");
         navigate("/");
       })
       .catch((err) => {
-        toast.error(err.message || err.msg);
+        navigate("/");
       });
   };
 

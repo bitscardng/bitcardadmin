@@ -12,6 +12,14 @@
   scroll-behavior: smooth;
 }
 
+.noscroll::-webkit-scrollbar {
+  display: none;
+}
+.noscroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 :root {
   --color-sec: #282c4a;
   --color-primary: #191c32;

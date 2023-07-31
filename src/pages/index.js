@@ -28,9 +28,12 @@ import TeleSales from "./TeleSales";
 import Ticketing from "./Ticketing";
 import TicketingDetails from "./TicketingDetails";
 import NotFound from "./NotFound";
+import CreateAds from "./CreateAds";
+
 
 
 export {
+  CreateAds,
   TicketingDetails,
   Ticketing,
   TeleSales,

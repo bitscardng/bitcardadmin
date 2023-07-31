@@ -38,6 +38,7 @@ import {
   Ticketing,
   TicketingDetails,
   NotFound,
+  CreateAds,
 } from "./pages";
 import SignIn from "./auth/SignIn";
 import SignInOtp from "./auth/SignInOtp";
@@ -62,6 +63,7 @@ function App() {
       <Routes>
         <Route path="/" element={<SignIn />} />
         <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/forgot-password" element={<Forgot />} />
 
         <Route path="/forgot-password" element={<Forgot />} />
         <Route path="/sign-in-otp" element={<SignInOtp />} />
@@ -90,6 +92,7 @@ function App() {
           <Route path="/push-notice" element={<PushNotify />} />
           <Route path="/export-data" element={<ExportData />} />
           <Route path="/ads-campaign" element={<AdsCampaign />} />
+          <Route path="/create-ads" element={<CreateAds />} />
           <Route path="/send-email" element={<SendEmail />} />
 
           <Route path="/telesales" element={<TeleSales />} />

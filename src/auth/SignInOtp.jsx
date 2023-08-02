@@ -18,15 +18,15 @@ const SignInOtp = () => {
   const otp = useSelector((state) => state.auth.otp);
   const navigate = useNavigate();
   const verifyInput = (data) => {
-    console.log(otp, Object.values(data).join(""));
     if (otp === Object.values(data).join("")) {
-      toast.success("verification successful");
-      navigate("/dashboard");
+      toast.success("verification successful", {
+        onClose: () => navigate("/dashboard", { replace: true }),
+        delay: 3,
+      });
     } else {
       toast.error("verification failed");
     }
   };
-  // w-10 h-10 text-center text-black bg-white rounded-lg outline-none
   return (
     <div class="hero min-h-screen">
       <div class="hero-content flex-col lg:flex-row-reverse gap-20">

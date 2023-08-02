@@ -21,12 +21,12 @@ const Chart2 = ({ stroke1, stroke2 }) => {
         margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
       >
         {/* <CartesianGrid strokeDasharray="3 3" /> */}
-        <XAxis dataKey="name" />
+        <XAxis dataKey="date" />
         <YAxis orientation="right" />
         <Tooltip />
         <Legend layout="top" />
-        <Line type="monotone" dataKey="pv" stroke={stroke1} />
-        <Line type="monotone" dataKey="uv" stroke={stroke2} />
+        <Line type="monotone" dataKey="giftCard" stroke={stroke1} />
+        <Line type="monotone" dataKey="crypto" stroke={stroke2} />
       </LineChart>
     </ResponsiveContainer>
   );

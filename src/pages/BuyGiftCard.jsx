@@ -68,7 +68,6 @@ const BuyGiftCard = ({ handleInputChange }) => {
   //pagination end
   return (
     <div>
-      <p className={`${styles.topic} mb-4`}>Buy gift card</p>
       <div className="flex flex-row items-center justify-between">
         <Search
           value={search}

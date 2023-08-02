@@ -28,10 +28,31 @@ const postApi = (url, body) => {
   });
 };
 
-const getApi = (url, body) => {
+const getApi = (url) => {
   return api.get(url, {
     headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` },
   });
 };
 
-export { postApi, getApi };
+const patchApi = (url, body) => {
+  return api.patch(url, body, {
+    headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` },
+  });
+};
+
+const deleteApi = (url) => {
+  return api.delete(url, {
+    headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` },
+  });
+};
+
+const uploadFile = (formData) => {
+  return api.post("upload/file", formData, {
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+
+export { postApi, getApi, deleteApi, patchApi, uploadFile };

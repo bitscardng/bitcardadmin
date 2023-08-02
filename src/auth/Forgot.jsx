@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { robot } from "../assets";
 import { Link } from "react-router-dom";
 import { styles } from "../styles";
+import { TiArrowBack } from "react-icons/ti";
 
 const Forgot = () => {
   const [email, setEmail] = useState("");
@@ -31,9 +32,12 @@ const Forgot = () => {
                 <div className="flex flex-row items-center justify-between py-2">
                   <Link
                     to="/sign-in"
-                    className="text-white label-text-alt link link-hover"
+                    className="flex items-center gap-2 capitalize duration-300 hover:text-xl"
                   >
-                    <p>Sign in</p>
+                    <span>
+                      <TiArrowBack />
+                    </span>
+                    <p className=" btn-link">Sign in</p>
                   </Link>
                 </div>
                 <div className={`${styles.btn} ml-0`}>Submit</div>

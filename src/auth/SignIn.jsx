@@ -9,6 +9,7 @@ import { AsyncActions } from "../redux/actionTypes/auth.actionTypes";
 import { toast } from "react-toastify";
 import Loader from "../components/Loader";
 import { validateEmail } from "../constant/validators";
+import { TiArrowForward } from "react-icons/ti";
 
 const initialState = {
   email: localStorage.getItem("email") ? localStorage.getItem("email") : "",
@@ -67,9 +68,9 @@ const SignIn = () => {
   };
 
   return (
-    <div className="hero min-h-screen">
+    <div className="min-h-screen hero">
       {auth.isLoading === AsyncActions.isLoading && <Loader />}
-      <div className="hero-content flex-col lg:flex-row-reverse gap-20">
+      <div className="flex-col gap-20 hero-content lg:flex-row-reverse">
         <img src={robot} className="max-w-md " />
         <div>
           <h1 className="text-5xl font-bold">BITSCARD</h1>
@@ -121,6 +122,15 @@ const SignIn = () => {
                 <button type="submit" className={`${styles.btn} ml-0`}>
                   Sign in
                 </button>
+                <Link
+                  to="/forgot-password"
+                  className="flex items-center gap-2 capitalize duration-300 hover:text-xl"
+                >
+                  <span>
+                    <TiArrowForward />
+                  </span>
+                  <p className="btn-link">Forgot password</p>
+                </Link>
               </div>
             </form>
           </div>

@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import Search from "../components/Search";
-import {
-  FiUser,
-  FiArrowDownCircle,
-  FiTrash2,
-  FiPlusCircle,
-} from "react-icons/fi";
+import { FiUser, FiArrowDownCircle } from "react-icons/fi";
 import { giftCard } from "../constant";
 import ReactPaginate from "react-paginate";
 import { styles } from "../styles";

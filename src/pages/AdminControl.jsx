@@ -32,6 +32,7 @@ const AdminControl = () => {
       .catch((err) => {
         toast.error(err.message);
       });
+    e.target.reset();
   };
   return (
     <div className="w-[80%] mx-auto">
@@ -111,6 +112,7 @@ const AdminControl = () => {
                   <input
                     type="radio"
                     name="role"
+                    required
                     id={item.id}
                     value={item.value}
                     className="radio text-sec peer"

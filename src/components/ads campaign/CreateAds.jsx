@@ -93,7 +93,7 @@ const CreateAds = () => {
           </div>
         </div>
         <div className="flex gap-2 p-3 mt-4 place-items-baseline">
-          <img src={qr} alt="barcode" className="max-w-xs rounded-lg " />
+          <img src={qr} alt="barcode" className="w-40 rounded-lg" />
           <div className="flex flex-col items-center duration-300 hover:text-lg w-fit">
             <a href={qr} download="bitscard download barcode">
               <div className="p-1 text-green-700 bg-green-200 rounded-lg w-fit">

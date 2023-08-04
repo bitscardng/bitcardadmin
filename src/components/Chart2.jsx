@@ -13,7 +13,7 @@ import { data } from "../constant/chartData";
 
 const Chart2 = ({ stroke1, stroke2 }) => {
   return (
-    <ResponsiveContainer width={700} height="100%">
+    <ResponsiveContainer width='100%' height="100%">
       <LineChart
         width={730}
         height={250}

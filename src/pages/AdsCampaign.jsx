@@ -83,13 +83,13 @@ const AdsCampaign = () => {
                       type="submit"
                       className="bg-[green] p-1 rounded-lg cursor-pointer hover:font-normal duration-500"
                     >
-                      Purchase
+                      Details
                     </button>
                     <button
                       type="cancel"
                       className="bg-[red] p-1 rounded-lg cursor-pointer hover:font-normal duration-500"
                     >
-                      Decline
+                      Delete
                     </button>
                   </td>
                 </tr>

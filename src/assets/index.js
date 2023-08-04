@@ -10,9 +10,11 @@ import itunes from "./itunes.png";
 import human from "./human.png";
 import robot from "./robot.png";
 import logo from "./logo.png";
+import qrcode from "./qrcode.png";
 import loaderImg from "./loaderImg.gif";
 
 export {
+  qrcode,
   loaderImg,
   logo,
   robot,

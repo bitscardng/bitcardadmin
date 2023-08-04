@@ -112,12 +112,6 @@ const SignIn = () => {
                     />
                     <p>Remember me</p>
                   </div>
-                  <Link
-                    to="/forgot-password"
-                    className="text-white label-text-alt link link-hover"
-                  >
-                    <p>Forgot Password?</p>
-                  </Link>
                 </div>
                 <button type="submit" className={`${styles.btn} ml-0`}>
                   Sign in

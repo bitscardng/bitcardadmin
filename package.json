@@ -7,7 +7,11 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+<<<<<<< HEAD
     "antd": "^5.8.2",
+=======
+    "antd": "^5.8.1",
+>>>>>>> cb962b3ec6bc019f2214d797391c02099ebecd5c
     "axios": "^1.4.0",
     "chart.js": "^4.3.0",
     "dompurify": "^3.0.4",

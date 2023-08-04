@@ -4,10 +4,17 @@ import { giftCard } from "../constant";
 import ReactPaginate from "react-paginate";
 import { human } from "../assets";
 import { styles } from "../styles";
+import {
+  useGetKyc1_2Query,
+  useVerifyKyc1_2Mutation,
+  useDeclineKyc1_2Mutation,
+} from "../api/kycQueries";
+import Kyc1Table from "../components/antd/Kyc1Table";
 
 const Kyc1 = () => {
   const [datas, setDatas] = useState(giftCard);
   const [search, setSearch] = useState("");
+  const { data = [], isLoading } = useGetKyc1_2Query();
 
   // paginations start
   const [pageNumber, setPageNumber] = useState(0);
@@ -59,17 +66,16 @@ const Kyc1 = () => {
 
   return (
     <div>
-      <p className={`${styles.topic} mb-0`}>kyc 1</p>
       <Search
         value={search}
         onChange={(e) => {
           setSearch(e.target.value);
         }}
       />
-      <div className="p-2 pt-8">
+      <Kyc1Table />
+      {/* <div className="p-2 pt-8">
         <div className="w-full overflow-x-auto">
           <table className="w-full ">
-            {/* head */}
             <thead className="">
               <tr className="rounded-full">
                 <th className="p-2 text-xl font-semibold border"></th>
@@ -114,27 +120,7 @@ const Kyc1 = () => {
             <tbody>{displayDatas}</tbody>
           </table>
         </div>
-      </div>
-
-      {/* pagenating */}
-      <ReactPaginate
-        containerClassName="flex gap-2 text-center rounded-lg items-center outline-none justify-center items-center mt-4"
-        previousLabel={
-          <span className="p-3 border rounded-lg outline-none hover:bg-active border-sec bg-sec">
-            Prev
-          </span>
-        }
-        nextLabel={
-          <span className="p-3 border rounded-lg outline-none hover:bg-active border-sec bg-sec">
-            Next
-          </span>
-        }
-        pageCount={pageCount}
-        onPageChange={changePage}
-        pageClassName="hover:bg-active p-3 rounded-lg outline-none"
-        disabledClassName={"bg-transparent outline-none"}
-        activeLinkClassName={"p-3 bg-active rounded-lg outline-none"}
-      />
+      </div> */}
     </div>
   );
 };

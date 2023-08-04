@@ -1,56 +1,58 @@
-import React from "react";
+import { useEffect } from "react";
 import { total, trade, withdraw, cards } from "../constant/index";
 import Bitcoin from "../assets/Bitcoin.svg";
 import Chart2 from "../components/Chart2";
 import style from "../styles.module.css";
+import { useGetDashboardStatsQuery } from "../api/dashboardStats";
 
 const Dashboard = () => {
+  const { data, isLoading } = useGetDashboardStatsQuery();
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   return (
     <div className="flex flex-col gap-[1rem] uppercase">
-      {/* <Chart /> */}
       <div className={`${style.columnBox} gap-2`}>
-        {trade.map((data, index) => (
+        {data?.data?.trade.map((data, index) => (
           <div
             key={index}
             className="flex flex-col items-center justify-between gap-1 p-2 rounded-2xl bg-sec"
           >
-            <h5>{data.tradeName}</h5>
-            <p className="text-2xl font-semibold text-active">
-              <span className="pr-2 text-xl font-normal text-white">$</span>
-              {data.tradeAmount.toLocaleString()}
+            <h5>{data?.tradeName}</h5>
+            <p className="text-2xl font-semibold text-active uppercase">
+              {data?.tradeAmount}
             </p>
           </div>
         ))}
       </div>
 
       <div className={`${style.columnBox} gap-2`}>
-        {withdraw.map((data, index) => (
+        {data?.data.withdraw.map((data, index) => (
           <div
             key={index}
             className="flex flex-col items-center justify-between gap-1 p-2 rounded-2xl bg-sec"
           >
             <div className="flex flex-row items-center justify-between gap-2 place-items-end">
-              <h5>{data.withdrawName}</h5>
+              <h5 className="uppercase">{data?.withdrawName}</h5>
               <img src={Bitcoin} alt="bit" />
             </div>
             <p className="text-2xl font-semibold text-active">
-              <span className="pr-2 text-xl font-normal text-white">$</span>
-              {data.withdrawAmount.toLocaleString()}
+              {data?.withdrawAmount}
             </p>
           </div>
         ))}
       </div>
-      
+
       <div className={`${style.columnBox} gap-2`}>
-        {total.map((data, index) => (
+        {data?.data.total.map((data, index) => (
           <div
             key={index}
             className="flex flex-col items-center justify-between gap-1 p-2 rounded-2xl bg-sec"
           >
-            <h5>{data.totalName}</h5>
+            <h5 className="uppercase">{data?.totalName}</h5>
             <p className="text-2xl font-semibold text-active">
-              <span className="pr-2 text-xl font-normal text-white">$</span>
-              {data.totalAmount.toLocaleString()}
+              {data?.totalAmount}
             </p>
           </div>
         ))}
@@ -58,28 +60,27 @@ const Dashboard = () => {
 
       <div>
         <div className={`${style.columnBox} gap-2`}>
-          {cards.map((data, index) => (
+          {data?.data.cards.map((data, index) => (
             <div
               key={index}
               className="flex flex-col items-center justify-between gap-1 p-2 rounded-2xl bg-sec"
             >
-              <h5>{data.totalName}</h5>
+              <h5 className="uppercase">{data?.totalName}</h5>
               <p className="text-2xl font-semibold text-active">
-                {data.totalAmount}
+                {data?.totalAmount}
               </p>
             </div>
           ))}
         </div>
       </div>
-      
-      <div className={`flex flex-col w-full gap-2 mx-2`}>
-          <div className="h-[200px] bg-sec py-[0.5rem] rounded-xl w-full">
-            <Chart2 stroke1={"#00C566"} stroke2={"#885DF5"} />
-          </div>
-          <div className="h-[200px] bg-sec py-[0.5rem] rounded-xl w-full">
-            <Chart2 stroke1={"#219DFC"} stroke2={"#FCB721"} />
-          </div>
 
+      <div className={`flex flex-col w-full gap-2 mx-2`}>
+        <div className="h-[200px] bg-sec py-[0.5rem] rounded-xl w-full">
+          <Chart2 stroke1={"#00C566"} stroke2={"#885DF5"} />
+        </div>
+        <div className="h-[200px] bg-sec py-[0.5rem] rounded-xl w-full">
+          <Chart2 stroke1={"#219DFC"} stroke2={"#FCB721"} />
+        </div>
       </div>
     </div>
   );

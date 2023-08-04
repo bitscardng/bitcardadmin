@@ -3,8 +3,8 @@ import { apiSlice } from "./apiSlice";
 export const kycSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getKyc1_2: builder.query({
-      query: () => ({
-        url: "kyc/get-kyc1&2",
+      query: (params) => ({
+        url: `kyc/get-kyc1&2${params}`,
       }),
       providesTags: ["kyc1&2"],
     }),

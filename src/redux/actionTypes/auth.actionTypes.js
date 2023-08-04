@@ -13,6 +13,15 @@ const AsyncActions = {
   createNewsCategory: "createNews Category loading",
   createFaqCategory: "createFaq Category loading",
   upload: "upload loading",
+  getKyc1_2: "getKyc1_2 loading",
+  getKyc3: "getKyc3 loading",
+  getKyc4: "getKyc4 loading",
+  verifyKyc1_2: "verifyKyc1_2 loading",
+  verifyKyc3: "verifyKyc3 loading",
+  verifyKyc4: "verifyKyc4 loading",
+  declineKyc1_2: "declineKyc1_2 loading",
+  declineKyc3: "declineKyc3 loading",
+  declineKyc4: "declineKyc4 loading",
 };
 
 export { AsyncActions };

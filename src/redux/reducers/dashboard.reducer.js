@@ -10,6 +10,15 @@ import {
   getFaqCategory,
   getNewsCategory,
   upload,
+  getKyc1_2,
+  getKyc3,
+  getKyc4,
+  verifyKyc1_2,
+  verifyKyc3,
+  verifyKyc4,
+  declineKyc1_2,
+  declineKyc3,
+  declineKyc4,
 } from "../actions/dashboard.actions";
 
 const initialState = {
@@ -103,6 +112,18 @@ const dashboardSlice = createSlice({
       })
       .addCase(upload.rejected, (state) => {
         state.isLoading = null;
+      })
+      .addCase(getKyc1_2.pending, (state) => {
+        state.isLoading = AsyncActions.getKyc1_2;
+      })
+      .addCase(getKyc3.pending, (state) => {
+        state.isLoading = AsyncActions.getKyc3;
+      })
+      .addCase(getKyc4.pending, (state) => {
+        state.isLoading = AsyncActions.getKyc4;
+      })
+      .addCase(verifyKyc1_2.pending, (state) => {
+        state.isLoading = AsyncActions.verifyKyc1_2;
       });
   },
 });

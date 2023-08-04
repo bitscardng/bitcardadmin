@@ -124,6 +124,56 @@ const upload = createAsyncThunk("dashboard/uploadFile", async (formData) => {
   return res.data;
 });
 
+////////////////KYC
+
+const getKyc1_2 = createAsyncThunk("dashboard/getKyc1&2", async () => {
+  const res = await getApi("kyc/get-kyc1&2");
+  return res.data;
+});
+
+const getKyc3 = createAsyncThunk("dashboard/getKyc3", async () => {
+  const res = await getApi("kyc/get-kyc3");
+  return res.data;
+});
+
+const getKyc4 = createAsyncThunk("dashboard/getKyc4", async () => {
+  const res = await getApi("kyc/get-kyc4");
+  return res.data;
+});
+
+const verifyKyc1_2 = createAsyncThunk("dashboard/verifyKyc1_2", async (id) => {
+  const res = await patchApi(`kyc/verify1&2/${id}`);
+  return res.data;
+});
+
+const verifyKyc3 = createAsyncThunk("dashboard/verifyKyc3", async (id) => {
+  const res = await patchApi(`kyc/verify3/${id}`);
+  return res.data;
+});
+
+const verifyKyc4 = createAsyncThunk("dashboard/verifyKyc4", async (id) => {
+  const res = await patchApi(`kyc/verify4/${id}`);
+  return res.data;
+});
+
+const declineKyc1_2 = createAsyncThunk(
+  "dashboard/declineKyc1_2",
+  async (id) => {
+    const res = await patchApi(`kyc/decline1&2/${id}`);
+    return res.data;
+  }
+);
+
+const declineKyc3 = createAsyncThunk("dashboard/declineKyc3", async (id) => {
+  const res = await patchApi(`kyc/decline3/${id}`);
+  return res.data;
+});
+
+const declineKyc4 = createAsyncThunk("dashboard/declineKyc4", async (id) => {
+  const res = await patchApi(`kyc/decline4/${id}`);
+  return res.data;
+});
+
 export {
   createNews,
   createFaq,
@@ -134,4 +184,13 @@ export {
   createFaqCategory,
   createNewsCategory,
   upload,
+  getKyc1_2,
+  getKyc3,
+  getKyc4,
+  verifyKyc1_2,
+  verifyKyc3,
+  verifyKyc4,
+  declineKyc1_2,
+  declineKyc3,
+  declineKyc4
 };

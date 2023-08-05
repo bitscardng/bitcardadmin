@@ -36,6 +36,8 @@ import {
   TicketingDetails,
   NotFound,
   CreateAds,
+  BulkSms,
+  Paybills,
 } from "./pages";
 import SignIn from "./auth/SignIn";
 import SignInOtp from "./auth/SignInOtp";
@@ -56,6 +58,10 @@ import { SendEmailTel } from "./components";
 import Facebook from "./components/ads campaign/Facebook";
 import Twitter from "./components/ads campaign/Twitter";
 import Instagram from "./components/ads campaign/Instagram";
+import Bulk from "./components/sms/Bulk";
+import Personalized from "./components/sms/Personalized";
+import Single from "./components/sms/Single";
+import Delivery from "./components/sms/Delivery";
 
 function App() {
   return (
@@ -173,6 +179,42 @@ function App() {
           />
           <Route path="/ticketing-details" element={<TicketingDetails />} />
           <Route path="/telesales/sendemail" element={<SendEmailTel />} />
+
+          {/* bulk sms */}
+          <Route 
+            path="/bulk-sms" 
+            element={
+            <BulkSms>
+              <Bulk/>
+            </BulkSms>
+            } 
+          />
+          <Route 
+            path="/personalized" 
+            element={
+            <BulkSms>
+              <Personalized/>
+            </BulkSms>
+            } 
+          />
+          <Route 
+            path="/single" 
+            element={
+            <BulkSms>
+<Single/>
+            </BulkSms>
+            } 
+          />
+          <Route 
+            path="/delivery-status" 
+            element={
+            <BulkSms>
+<Delivery/>
+            </BulkSms>
+            } 
+          />
+          <Route path="/paybills" element={<Paybills />} />
+
         </Route>
         <Route path="/*" element={<NotFound />} />
       </Routes>

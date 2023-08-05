@@ -3,6 +3,7 @@ import qs from "qs";
 import { Table } from "antd";
 import { useGetKyc1_2Query } from "../../api/kycQueries";
 import { ConfigProvider } from "antd";
+
 const columns = [
   {
     // title: "Passport Image",

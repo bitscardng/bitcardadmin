@@ -1,8 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
 import "./index.css";
-import Sidebar from "./components/Sidebar";
-import Layout from "./components/Layout";
 import UploadGiftcard from "./components/giftcard/UploadGiftcard";
 import AddGiftcard from "./components/giftcard/AddGiftcard";
 import { ToastContainer } from "react-toastify";
@@ -56,6 +53,9 @@ import {
   Unresolved,
 } from "./components/ticketing";
 import { SendEmailTel } from "./components";
+import Facebook from "./components/ads campaign/Facebook";
+import Twitter from "./components/ads campaign/Twitter";
+import Instagram from "./components/ads campaign/Instagram";
 
 function App() {
   return (
@@ -92,6 +92,9 @@ function App() {
           <Route path="/push-notice" element={<PushNotify />} />
           <Route path="/export-data" element={<ExportData />} />
           <Route path="/ads-campaign" element={<AdsCampaign />} />
+          <Route path="/ads-campaign-facebook" element={<Facebook />} />
+          <Route path="/ads-campaign-twitter" element={<Twitter />} />
+          <Route path="/ads-campaign-instagram" element={<Instagram />} />
           <Route path="/create-ads" element={<CreateAds />} />
           <Route path="/send-email" element={<SendEmail />} />
 

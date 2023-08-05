@@ -54,11 +54,9 @@ const CreateAds = () => {
         <div className="w-full p-6 mt-8 text-center rounded-lg bg-sec">
           <p>Track Link</p>
           <div className="flex items-center justify-center gap-6">
-            <input
-              type="text"
-              placeholder="http://btly.com/fghfj"
-              className="w-full px-2 py-2 my-2 rounded-full outline-none bg-primary"
-            />
+            <p className="w-full h-full p-2 text-center rounded-full text-link bg-primary">
+              {"http://btly.com/fghfj"}
+            </p>
             <div className="flex items-center justify-center gap-2 duration-300 cursor-pointer hover:text-lg">
               <div className="p-2 text-green-300 rounded-full glass">
                 <BiCopy size={20} />

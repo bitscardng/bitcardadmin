@@ -201,7 +201,7 @@ function App() {
             path="/single" 
             element={
             <BulkSms>
-<Single/>
+              <Single/>
             </BulkSms>
             } 
           />
@@ -209,7 +209,7 @@ function App() {
             path="/delivery-status" 
             element={
             <BulkSms>
-<Delivery/>
+              <Delivery/>
             </BulkSms>
             } 
           />

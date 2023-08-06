@@ -6,19 +6,19 @@ const datas = [
     number: 2349101234567,
     msg: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, iste. Eos porro eius voluptas sed nam enim quo dolor nobis.",
     date: "21/06/2023",
-    sender: "Bitcard 1",
+    sender: "Bitcard",
   },
   {
     number: 2348101234567,
     msg: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, iste. Eos porro eius voluptas sed nam enim quo dolor nobis.",
     date: "21/06/2023",
-    sender: "Bitcard 2",
+    sender: "Bitcard",
   },
   {
     number: 2347101234567,
     msg: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, iste. Eos porro eius voluptas sed nam enim quo dolor nobis.",
     date: "21/06/2023",
-    sender: "Bitcard 3",
+    sender: "Bitcard",
   },
 ];
 

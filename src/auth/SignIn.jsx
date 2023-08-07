@@ -118,7 +118,7 @@ const SignIn = () => {
                 </button>
                 <Link
                   to="/forgot-password"
-                  className="flex items-center gap-2 capitalize duration-300 hover:text-xl"
+                  className="flex items-center gap-2 capitalize duration-300"
                 >
                   <span>
                     <TiArrowForward />

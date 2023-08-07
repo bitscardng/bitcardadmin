@@ -49,7 +49,7 @@ const Delivery = () => {
                   <td className="p-1 px-2 text-xl font-thin duration-500 border">
                     +{data.number}
                   </td>
-                  <td className="p-1 px-2 text-xl font-thin duration-500 border hover:link">
+                  <td className="p-1 px-2 text-xl font-thin duration-500 border">
                     <div>{data.msg}</div>
                   </td>
                   <td className="p-1 px-2 text-xl font-thin duration-500 border">
@@ -65,7 +65,7 @@ const Delivery = () => {
                   <td className="p-1 px-2 text-xl font-thin duration-500 border">
                     <div
                       type="cancel"
-                      className="bg-[green] p-1 rounded-lg cursor-pointer hover:font-normal duration-500 text-black font-normal"
+                      className="bg-[green] p-1 rounded-lg cursor-pointer hover:font-normal duration-500 text-white"
                     >
                       Delivered
                     </div>

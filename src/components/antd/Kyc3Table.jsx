@@ -3,9 +3,9 @@ import qs from "qs";
 import { Table } from "antd";
 import ConfirmModal from "./ConfirmModal";
 import {
-  useGetKyc1_2Query,
-  useVerifyKyc1_2Mutation,
-  useDeclineKyc1_2Mutation,
+  useGetKyc3Query,
+  useVerifyKyc3Mutation,
+  useDeclineKyc3Mutation,
 } from "../../api/kycQueries";
 import { ConfigProvider } from "antd";
 import { toast } from "react-toastify";
@@ -14,7 +14,7 @@ const getRandomuserParams = (params) => ({
   page: params.pagination?.current,
   ...params,
 });
-const Kyc1Table = () => {
+const Kyc3Table = () => {
   const [tableParams, setTableParams] = useState({
     pagination: {
       current: 1,
@@ -24,8 +24,8 @@ const Kyc1Table = () => {
   const [openApprove, setOpenApprove] = useState(false);
   const [openDecline, setOpenDecline] = useState(false);
   const [id, setId] = useState("");
-  const [verify, { isLoading: isVerifying }] = useVerifyKyc1_2Mutation();
-  const [decline, { isLoading: isDeclining }] = useDeclineKyc1_2Mutation();
+  const [verify, { isLoading: isVerifying }] = useVerifyKyc3Mutation();
+  const [decline, { isLoading: isDeclining }] = useDeclineKyc3Mutation();
   const handleVerifyDetails = (id) => {
     console.log(id);
     verify(id)
@@ -58,64 +58,39 @@ const Kyc1Table = () => {
   const columns = useMemo(
     () => [
       {
-        dataIndex: "passport_image",
-        render: (last_name) => `${last_name}`,
-        width: "20%",
-      },
-      {
-        title: "country",
-        dataIndex: "address",
-        render: (address) => `${address.country}`,
-        width: "20%",
-      },
-      {
-        title: "First Name",
-        dataIndex: "first_name",
-        render: (first_name) => `${first_name}`,
-        width: "20%",
-      },
-      {
-        title: "Last Name",
-        dataIndex: "last_name",
-        render: (last_name) => `${last_name}`,
-        width: "20%",
-      },
-      {
-        title: "Email Address",
+        title: "Email",
         dataIndex: "email",
         render: (email) => `${email}`,
         width: "30%",
       },
+      //   {
+      //     title: "ID upload",
+      //     dataIndex: "id_upload",
+      //     render: (first_name) => `${first_name}`,
+      //     width: "20%",
+      //   },
       {
-        title: "Date of Birth",
-        dataIndex: "dob",
-        render: (dob) => `${dob}`,
-        width: "40%",
+        title: "ID Number",
+        dataIndex: "identity",
+        render: ({ number }) => `${number}`,
+        width: "20%",
       },
       {
-        title: "Phone Number",
-        dataIndex: "phone",
-        render: ({ phone_number, phone_country_code }) =>
-          `${phone_country_code + phone_number}`,
-        width: "30%",
+        title: "ID Type",
+        dataIndex: "identity",
+        render: ({ type }) => `${type}`,
+        width: "20%",
       },
       {
-        title: "Address",
-        dataIndex: "address",
-        render: ({ street, city, state }) =>
-          `${street + "," + city + "," + state}`,
-        width: "30%",
+        title: "Selfie Image",
+        dataIndex: "identity",
+        render: ({ image }) => <img src={image} />,
+        width: "20%",
       },
       {
-        title: "BVN",
-        dataIndex: "bvn",
-        render: (bvn) => `${bvn}`,
-        width: "30%",
-      },
-      {
-        title: "Postal Code",
-        dataIndex: "address",
-        render: ({ postal_code }) => `${postal_code}`,
+        title: "country",
+        dataIndex: "identity",
+        render: ({ country }) => `${country}`,
         width: "20%",
       },
       {
@@ -150,7 +125,7 @@ const Kyc1Table = () => {
     ],
     []
   );
-  const { data: result = [], isLoading, refetch } = useGetKyc1_2Query();
+  const { data: result = [], isLoading, refetch } = useGetKyc3Query();
   const fetchData = () => {
     const params = qs.stringify(getRandomuserParams(tableParams));
     refetch()
@@ -226,4 +201,4 @@ const Kyc1Table = () => {
     </>
   );
 };
-export default Kyc1Table;
+export default Kyc3Table;

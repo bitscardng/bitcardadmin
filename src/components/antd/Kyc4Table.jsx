@@ -3,9 +3,9 @@ import qs from "qs";
 import { Table } from "antd";
 import ConfirmModal from "./ConfirmModal";
 import {
-  useGetKyc1_2Query,
-  useVerifyKyc1_2Mutation,
-  useDeclineKyc1_2Mutation,
+  useGetKyc4Query,
+  useVerifyKyc4Mutation,
+  useDeclineKyc4Mutation,
 } from "../../api/kycQueries";
 import { ConfigProvider } from "antd";
 import { toast } from "react-toastify";
@@ -14,7 +14,7 @@ const getRandomuserParams = (params) => ({
   page: params.pagination?.current,
   ...params,
 });
-const Kyc1Table = () => {
+const Kyc4Table = () => {
   const [tableParams, setTableParams] = useState({
     pagination: {
       current: 1,
@@ -24,10 +24,9 @@ const Kyc1Table = () => {
   const [openApprove, setOpenApprove] = useState(false);
   const [openDecline, setOpenDecline] = useState(false);
   const [id, setId] = useState("");
-  const [verify, { isLoading: isVerifying }] = useVerifyKyc1_2Mutation();
-  const [decline, { isLoading: isDeclining }] = useDeclineKyc1_2Mutation();
+  const [verify, { isLoading: isVerifying }] = useVerifyKyc4Mutation();
+  const [decline, { isLoading: isDeclining }] = useDeclineKyc4Mutation();
   const handleVerifyDetails = (id) => {
-    console.log(id);
     verify(id)
       .unwrap()
       .then(() => {
@@ -45,7 +44,6 @@ const Kyc1Table = () => {
       });
   };
   const handleDeclineDetails = (id) => {
-    console.log(id);
     decline(id)
       .unwrap()
       .then(() => {
@@ -58,65 +56,49 @@ const Kyc1Table = () => {
   const columns = useMemo(
     () => [
       {
-        dataIndex: "passport_image",
-        render: (last_name) => `${last_name}`,
+        title: "occupation",
+        dataIndex: "meta",
+        render: ({ occupation }) => `${occupation}`,
         width: "20%",
       },
       {
-        title: "country",
-        dataIndex: "address",
-        render: (address) => `${address.country}`,
+        title: "Utility Bill",
+        dataIndex: "meta",
+        render: ({ utility_bill }) => (
+          <a href={utility_bill} download>
+            {utility_bill}
+          </a>
+        ),
         width: "20%",
       },
       {
-        title: "First Name",
-        dataIndex: "first_name",
-        render: (first_name) => `${first_name}`,
+        title: "Account Statement",
+        dataIndex: "meta",
+        render: ({ bank_statement }) => (
+          <a href={bank_statement} download>
+            {bank_statement}
+          </a>
+        ),
         width: "20%",
       },
       {
-        title: "Last Name",
-        dataIndex: "last_name",
-        render: (last_name) => `${last_name}`,
-        width: "20%",
-      },
-      {
-        title: "Email Address",
-        dataIndex: "email",
-        render: (email) => `${email}`,
+        title: "ID Type",
+        dataIndex: "meta",
+        render: ({ identity_type }) => `${identity_type}`,
         width: "30%",
       },
       {
-        title: "Date of Birth",
-        dataIndex: "dob",
-        render: (dob) => `${dob}`,
+        title: "ID Number",
+        dataIndex: "meta",
+        render: ({ identity_number }) => `${identity_number}`,
         width: "40%",
       },
       {
-        title: "Phone Number",
-        dataIndex: "phone",
-        render: ({ phone_number, phone_country_code }) =>
-          `${phone_country_code + phone_number}`,
+        title: "Issued Date/Expiry Date",
+        dataIndex: "meta",
+        render: ({ identity_issued_date, identity_expiration }) =>
+          `${identity_issued_date + "/" + identity_expiration}`,
         width: "30%",
-      },
-      {
-        title: "Address",
-        dataIndex: "address",
-        render: ({ street, city, state }) =>
-          `${street + "," + city + "," + state}`,
-        width: "30%",
-      },
-      {
-        title: "BVN",
-        dataIndex: "bvn",
-        render: (bvn) => `${bvn}`,
-        width: "30%",
-      },
-      {
-        title: "Postal Code",
-        dataIndex: "address",
-        render: ({ postal_code }) => `${postal_code}`,
-        width: "20%",
       },
       {
         title: "Status",
@@ -150,7 +132,7 @@ const Kyc1Table = () => {
     ],
     []
   );
-  const { data: result = [], isLoading, refetch } = useGetKyc1_2Query();
+  const { data: result = [], isLoading, refetch } = useGetKyc4Query();
   const fetchData = () => {
     const params = qs.stringify(getRandomuserParams(tableParams));
     refetch()
@@ -226,4 +208,4 @@ const Kyc1Table = () => {
     </>
   );
 };
-export default Kyc1Table;
+export default Kyc4Table;

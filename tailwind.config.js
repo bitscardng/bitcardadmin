@@ -8,6 +8,7 @@ module.exports = {
         primary: "var(--color-primary)",
         sec: "var(--color-sec)",
         active: "var(--color-active)",
+        purple: "var(--color-purple)",
       },
     },
   },

@@ -3,6 +3,7 @@ import { styles } from "../styles";
 import { Link } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
 import { MdBarChart } from "react-icons/md";
+import CampaignTable from "../components/ads campaign/CampaignTable";
 
 const datas = [
   {
@@ -10,18 +11,21 @@ const datas = [
     url: "bity.com/GTHFD",
     date: "21/06/2023",
     engage: 2042,
+    detail: "/ads-campaign-twitter",
   },
   {
     name: "Instagram dowload",
     url: "bity.com/GTHFD",
     date: "21/06/2023",
     engage: 2042,
+    detail: "/ads-campaign-instagram",
   },
   {
     name: "Facebook App dowload",
     url: "bity.com/GTHFD",
     date: "21/06/2023",
     engage: 2042,
+    detail: "/ads-campaign-facebook",
   },
 ];
 
@@ -36,6 +40,10 @@ const AdsCampaign = () => {
         Create Ads
         <FaPlus className="text-sec" />
       </Link>
+
+      <div className="h-[200px] bg-sec py-[0.5rem] rounded-xl w-full">
+        <CampaignTable stroke1={"#219DFC"} stroke2={"#FCB721"} />
+      </div>
 
       <div className="p-2 pt-8">
         <div className="w-full overflow-x-auto">
@@ -79,17 +87,18 @@ const AdsCampaign = () => {
                   </td>
 
                   <td className="flex flex-col gap-2 p-2 text-xl font-thin border">
-                    <button
+                    <Link
+                      to={data.detail}
                       type="submit"
                       className="bg-[green] p-1 rounded-lg cursor-pointer hover:font-normal duration-500"
                     >
-                      Purchase
-                    </button>
+                      Details
+                    </Link>
                     <button
                       type="cancel"
                       className="bg-[red] p-1 rounded-lg cursor-pointer hover:font-normal duration-500"
                     >
-                      Decline
+                      Delete
                     </button>
                   </td>
                 </tr>

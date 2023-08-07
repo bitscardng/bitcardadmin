@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { total, trade, withdraw, cards } from "../constant/index";
 import Bitcoin from "../assets/Bitcoin.svg";
 import Chart2 from "../components/Chart2";
 import style from "../styles.module.css";
@@ -20,7 +19,7 @@ const Dashboard = () => {
             className="flex flex-col items-center justify-between gap-1 p-2 rounded-2xl bg-sec"
           >
             <h5>{data?.tradeName}</h5>
-            <p className="text-2xl font-semibold text-active uppercase">
+            <p className="text-2xl font-semibold uppercase text-active">
               {data?.tradeAmount}
             </p>
           </div>

@@ -9,11 +9,11 @@ import {
   Line,
   ResponsiveContainer,
 } from "recharts";
-import { data } from "../constant/chartData";
+import { data } from "../../constant/chartData";
 
-const Chart2 = ({ stroke1, stroke2 }) => {
+const CampaignTable = ({ stroke1, stroke2 }) => {
   return (
-    <ResponsiveContainer width='100%' height="100%">
+    <ResponsiveContainer width="100%" height="100%">
       <LineChart
         width={730}
         height={250}
@@ -25,11 +25,11 @@ const Chart2 = ({ stroke1, stroke2 }) => {
         <YAxis orientation="right" />
         <Tooltip />
         <Legend layout="top" />
-        <Line type="monotone" dataKey="giftCard" stroke={stroke1} />
-        <Line type="monotone" dataKey="crypto" stroke={stroke2} />
+        <Line type="monotone" dataKey="Twitter" stroke={stroke1} />
+        <Line type="monotone" dataKey="Instagram" stroke={stroke2} />
       </LineChart>
     </ResponsiveContainer>
   );
 };
 
-export default Chart2;
+export default CampaignTable;

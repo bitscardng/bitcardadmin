@@ -25,6 +25,7 @@
   --color-primary: #191c32;
   --color-white: #ffffff;
   --color-active: #f09654;
+  --color-purple:#7B61FF;
 }
 
 input[type="number"]::-webkit-inner-spin-button,

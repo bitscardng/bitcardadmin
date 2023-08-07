@@ -28,7 +28,7 @@ const Sidebar = ({ children }) => {
           </div>
         </Link>
         <div>
-          <ul className="relative flex flex-col overflow-y-scroll noscroll h-[83vh]">
+          <ul className="relative flex flex-col overflow-y-scroll h-[83vh]">
             {menu.map((menu, index) => (
               <div className="h-fit">
                 <Link to={menu.link} key={index}>

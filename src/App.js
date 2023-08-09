@@ -62,6 +62,11 @@ import Bulk from "./components/sms/Bulk";
 import Personalized from "./components/sms/Personalized";
 import Single from "./components/sms/Single";
 import Delivery from "./components/sms/Delivery";
+import Data from "./components/paybills/Data";
+import Airtime from "./components/paybills/Airtime";
+import Bet from "./components/paybills/Bet";
+import Electricity from "./components/paybills/Electricity";
+import Cable from "./components/paybills/Cable";
 
 function App() {
   return (
@@ -213,7 +218,19 @@ function App() {
             </BulkSms>
             } 
           />
-          <Route path="/paybills" element={<Paybills />} />
+          {/* bulk sms */}
+
+{/* paybills */}
+          <Route path="/paybills" element={<Paybills><Data/></Paybills>} />
+          <Route path="/data" element={<Paybills><Data/></Paybills>} />
+          <Route path="/airtime" element={<Paybills><Airtime/></Paybills>} />
+          <Route path="/bet" element={<Paybills><Bet/></Paybills>} />
+          <Route path="/electricity" element={<Paybills><Electricity/></Paybills>} />
+          <Route path="/cable" element={<Paybills><Cable/></Paybills>} />
+
+
+
+
 
         </Route>
         <Route path="/*" element={<NotFound />} />

@@ -12,7 +12,7 @@ const Sidebar = ({ children }) => {
   const [subMenuOpen, setSubMenuOpen] = useState(false);
 
   return (
-    <div className="flex w-full h-screen">
+    <div className="flex w-full h-screen noscroll">
       <div className="h-screen w-[240px] mr-2 relative">
         <Link
           to="/dashboard"
@@ -28,7 +28,7 @@ const Sidebar = ({ children }) => {
           </div>
         </Link>
         <div>
-          <ul className="relative flex flex-col overflow-y-scroll h-[83vh]">
+          <ul className="relative flex flex-col overflow-y-scroll h-[83vh] noscroll">
             {menu.map((menu, index) => (
               <div className="h-fit">
                 <Link to={menu.link} key={index}>

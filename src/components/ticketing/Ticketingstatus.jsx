@@ -134,7 +134,7 @@ const Ticketingstatus = () => {
         <div className="p-2 m-4 border-l-2 border-white">
           {msg.map((data, index) => (
             <div className="flex items-center justify-center py-4">
-              <div className="p-2 mx-4 -ml-6 text-green-600 bg-green-200 rounded-full -mt-14 w-fit">
+              <div className="p-2 mx-4 -mt-8 -ml-6 text-green-600 bg-green-200 rounded-full w-fit">
                 <FiMail />
               </div>
               <div>

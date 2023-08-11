@@ -3,7 +3,6 @@ import { MdCloudUpload } from "react-icons/md";
 import style from "../../styles.module.css";
 import { aus, usa, uk, spain, switz, can, ger } from "../../assets";
 import { styles } from "../../styles";
-// import { styles } from "../../styles";
 
 const giftCard = [
   { id: "rad1", value: "E-code" },

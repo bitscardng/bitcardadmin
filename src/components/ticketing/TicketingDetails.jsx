@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { styles } from "../styles";
+import { styles } from "../../styles";
 import { Link } from "react-router-dom";
 import { TiArrowBackOutline } from "react-icons/ti";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { FiMail } from "react-icons/fi";
 
 const navLinks = [
   {
@@ -67,25 +68,30 @@ const TicketingDetails = () => {
           ))}
         </div>
 
-        <div>
+        <div className="flex items-center justify-center gap-3">
           <div className="p-2 mt-6 text-black bg-white round-full rounded-2xl">
             <div className="p-2">
-              <div className="px-2 py-4">
-                <h1 className="py-2">User : {"John Doe"}</h1>
-                <h2 className="py-2">
-                  {
-                    "From its medieval origins to the digital era, learn everything there."
-                  }
-                </h2>
-                <h5 className="py-2">Date : {"June 5 2023, 21:11"}</h5>
-                <p className="py-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
-                  maiores iste assumenda magnam, ipsa cum id deserunt quos quia
-                  mollitia velit cupiditate beatae vel itaque, ut distinctio
-                  facilis sunt excepturi veniam animi eaque incidunt nostrum
-                  vitae! Dolorem, qui nemo illum eligendi illo sed minima,
-                  nesciunt earum unde odio, quis nostrum
-                </p>
+              <div className="p-2">
+                <div className="p-3 bg-green-100 rounded-full w-fit">
+                  <FiMail className="text-[green]" />
+                </div>
+                <div>
+                  <h1 className="py-2">User : {"John Doe"}</h1>
+                  <h2 className="py-2">
+                    {
+                      "From its medieval origins to the digital era, learn everything there."
+                    }
+                  </h2>
+                  <h5 className="py-2">Date : {"June 5 2023, 21:11"}</h5>
+                  <p className="py-2">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Vero maiores iste assumenda magnam, ipsa cum id deserunt
+                    quos quia mollitia velit cupiditate beatae vel itaque, ut
+                    distinctio facilis sunt excepturi veniam animi eaque
+                    incidunt nostrum vitae! Dolorem, qui nemo illum eligendi
+                    illo sed minima, nesciunt earum unde odio, quis nostrum
+                  </p>
+                </div>
               </div>
 
               <div className="flex py-2 pb-4 text-center text-white">
@@ -117,8 +123,7 @@ const TicketingDetails = () => {
             </div>
           </div>
 
-          <div>
-          </div>
+          <div></div>
         </div>
       </div>
     </div>

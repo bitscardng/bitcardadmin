@@ -26,7 +26,7 @@ import VirtualCard from "./VirtualCard";
 import UserDetails from "./UserDetails";
 import TeleSales from "./TeleSales";
 import Ticketing from "./Ticketing";
-import TicketingDetails from "./TicketingDetails";
+import TicketingDetails from "../components/ticketing/TicketingDetails";
 import NotFound from "./NotFound";
 import CreateAds from "../components/ads campaign/CreateAds";
 import Paybills from "./Paybills";

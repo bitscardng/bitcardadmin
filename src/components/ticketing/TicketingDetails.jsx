@@ -69,8 +69,8 @@ const TicketingDetails = () => {
           ))}
         </div>
 
-        <div className="flex items-center justify-center gap-3">
-          <div className="p-2 mt-6 text-black bg-white round-full rounded-2xl">
+        <div className="items-center justify-center gap-3">
+          <div className="p-2 text-black bg-white round-full rounded-2xl">
             <div className="p-2">
               <div className="p-2">
                 <div className="p-3 bg-green-100 rounded-full w-fit">

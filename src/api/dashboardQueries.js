@@ -1,6 +1,6 @@
 import { apiSlice } from "./apiSlice";
 
-export const dashboardStatsSlice = apiSlice.injectEndpoints({
+export const dashboardStatSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getDashboardStats: builder.query({
       query: () => ({
@@ -11,4 +11,4 @@ export const dashboardStatsSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetDashboardStatsQuery } = dashboardStatsSlice;
+export const { useGetDashboardStatsQuery } = dashboardStatSlice;

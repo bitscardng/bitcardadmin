@@ -14,13 +14,14 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
   if (result?.error?.status === 401) {
     const refreshResult = await baseQuery(
       {
-        url: "auth/refresh",
+        url: "auth/admin-refresh",
       },
       api,
       extraOptions
     );
     if (refreshResult?.data) {
-      sessionStorage.setItem("token", refreshResult.data.token);
+      sessionStorage.setItem("token", refreshResult?.data?.accessToken);
+      localStorage.setItem("refreshToken", refreshResult?.data?.refreshToken)
       result = await baseQuery(args, api, extraOptions);
     } else {
       //dispatch logout

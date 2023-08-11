@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Bitcoin from "../assets/Bitcoin.svg";
 import Chart2 from "../components/Chart2";
 import style from "../styles.module.css";
-import { useGetDashboardStatsQuery } from "../api/dashboardStats";
+import { useGetDashboardStatsQuery } from "../api/dashboardQueries";
 
 const Dashboard = () => {
   const { data, isLoading } = useGetDashboardStatsQuery();

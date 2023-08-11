@@ -50,7 +50,7 @@ const TicketingDetails = () => {
         <p className={`${styles.topic} mb-0 `}>ticket details</p>
       </div>
 
-      <div>
+      <div className="">
         <div className="flex text-center bg-[#282C4A] p-2 rounded-full  my-2">
           {navLinks.map((nav, index) => (
             <div
@@ -69,7 +69,7 @@ const TicketingDetails = () => {
           ))}
         </div>
 
-        <div className="items-center justify-center gap-3">
+        <div className="justify-center gap-3  lg:flex">
           <div className="p-2 text-black bg-white round-full rounded-2xl">
             <div className="p-2">
               <div className="p-2">

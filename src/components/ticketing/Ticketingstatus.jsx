@@ -47,7 +47,7 @@ const Ticketingstatus = () => {
   return (
     <div className="p-4 capitalize ">
       <div className="my-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-4">
           <div className="flex flex-col items-center justify-center w-64 text-center">
             <h1 className="w-full p-2 mx-4 text-xl text-black bg-green-400 rounded-full">
               priority

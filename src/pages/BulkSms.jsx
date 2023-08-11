@@ -41,7 +41,7 @@ const BulkSms = ({ children }) => {
         ))}
       </div>
 
-      <div className="flex-1 w-full min-h-[80vh] p-4 my-4 overflow-y-scroll bg-sec rounded-2xl">
+      <div className="flex-1 w-full p-4 my-4 overflow-y-scroll bg-sec rounded-2xl">
         {children}
       </div>
     </div>

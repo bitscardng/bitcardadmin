@@ -43,7 +43,7 @@ const CreateAds = () => {
             </div>
           </div>
           <div className="flex items-center p-4 ">
-            <button className="flex items-center justify-between  p-2 m-2 duration-300 rounded-full bg-[#7B61FF] hover:text-xl w-36">
+            <button className="flex items-center justify-between  p-2 m-2 duration-300 rounded-full bg-[#7B61FF] hover:text-lg w-40">
               Create Ads <FaPlus className="text-xl text-sec" />
             </button>
             <button className="flex items-center justify-between p-2 m-2 duration-300 bg-red-500 rounded-full hover:text-xl w-36">
@@ -85,7 +85,7 @@ const CreateAds = () => {
                 className="w-full px-2 py-2 my-2 rounded-full outline-none bg-primary"
               />
             </div>
-            <button className="flex items-center justify-between  p-2 m-2 duration-300 rounded-full bg-[#7B61FF] hover:text-xl w-36">
+            <button className="flex items-center justify-between  p-2 m-2 duration-300 rounded-full bg-[#7B61FF] hover:text-lg w-40">
               Create Ads <FaPlus className="text-xl text-sec" />
             </button>
           </div>

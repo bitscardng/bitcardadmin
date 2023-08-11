@@ -9,8 +9,8 @@ import {
   FiPlusCircle,
 } from "react-icons/fi";
 import ReactQuill from "react-quill";
-import { AsyncActions } from "../redux/actionTypes/auth.actionTypes";
 import "react-quill/dist/quill.snow.css";
+import { AsyncActions } from "../redux/actionTypes/auth.actionTypes";
 import {
   getNewsCategory,
   updateNewsCategory,

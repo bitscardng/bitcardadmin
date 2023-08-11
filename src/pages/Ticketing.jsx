@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { styles } from "../styles";
 import { Link } from "react-router-dom";
+import style from "../styles.module.css";
+
 
 const menu = [
   { title: "all activies", num: "67" },
@@ -28,12 +30,12 @@ const Ticketing = ({ children }) => {
   return (
     <div>
       <p className={`${styles.topic} mb-0`}>ticketing</p>
-      <div className="flex items-center mt-6 justify-evenly">
-        {ticketBar.map((data, i) => {
+      <div className={`${style.columnBox} gap-2 mt-2`}>
+        {ticketBar.map((data, index) => {
           return (
-            <div className="h-full text-xl text-center bg-[#6C6AEB] w-full m-[1px] flex flex-col p-2 gap-2 justify-center items-center">
+            <div className="h-full text-xl text-center bg-[#6C6AEB] w-full flex flex-col  gap-1 justify-center items-center" key={index}>
               <p className="capitalize font-extralight">{data.title}</p>
-              <p className="text-5xl ">{data.num}</p>
+              <p className="text-3xl ">{data.num}</p>
             </div>
           );
         })}
@@ -68,7 +70,7 @@ const Ticketing = ({ children }) => {
               </li>
             ))}
           </ul>
-          <div className="flex-1 w-full overflow-y-scroll h-[68vh] bg-sec rounded-2xl px-2 font-thin my-4">
+          <div className="flex-1 w-full overflow-y-scroll h-[68vh] bg-sec rounded-2xl p-2 px-4 font-thin my-4">
             {children}
           </div>
         </div>

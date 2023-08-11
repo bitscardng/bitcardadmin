@@ -14,7 +14,7 @@ const ExportData = () => {
   return (
     <div>
       <p className={`${styles.topic} mb-0`}>export data</p>
-      <div className="flex items-center justify-between w-full mt-8">
+      <div className="flex items-center justify-between w-full gap-2 mt-8">
         {datas.map((data, index) => {
           return (
             <div

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { styles } from "../styles";
 import { Link } from "react-router-dom";
 import { TiArrowBackOutline } from "react-icons/ti";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const navLinks = [
   {
@@ -18,8 +20,21 @@ const navLinks = [
   },
 ];
 
+const msgLinks = [
+  {
+    title: "forward",
+  },
+  {
+    title: "Close",
+  },
+  {
+    title: "reply",
+  },
+];
+
 const TicketingDetails = () => {
   const [active, setActive] = useState("");
+  const [content, setContent] = useState("");
 
   return (
     <div>
@@ -32,8 +47,9 @@ const TicketingDetails = () => {
         </Link>
         <p className={`${styles.topic} mb-0 `}>ticket details</p>
       </div>
+
       <div>
-        <div className="flex text-center bg-[#282C4A] p-2 rounded-full">
+        <div className="flex text-center bg-[#282C4A] p-2 rounded-full  my-2">
           {navLinks.map((nav, index) => (
             <div
               className="flex items-center w-full mx-2 capitalize "
@@ -50,15 +66,100 @@ const TicketingDetails = () => {
             </div>
           ))}
         </div>
-        <div className="bg-white round-full">
+
+        <div>
+          <div className="p-2 mt-6 text-black bg-white round-full rounded-2xl">
+            <div className="p-2">
+              <div className="px-2 py-4">
+                <h1 className="py-2">User : {"John Doe"}</h1>
+                <h2 className="py-2">
+                  {
+                    "From its medieval origins to the digital era, learn everything there."
+                  }
+                </h2>
+                <h5 className="py-2">Date : {"June 5 2023, 21:11"}</h5>
+                <p className="py-2">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
+                  maiores iste assumenda magnam, ipsa cum id deserunt quos quia
+                  mollitia velit cupiditate beatae vel itaque, ut distinctio
+                  facilis sunt excepturi veniam animi eaque incidunt nostrum
+                  vitae! Dolorem, qui nemo illum eligendi illo sed minima,
+                  nesciunt earum unde odio, quis nostrum
+                </p>
+              </div>
+
+              <div className="flex py-2 pb-4 text-center text-white">
+                {msgLinks.map((msg, index) => (
+                  <div
+                    className="flex items-center w-full mx-2 capitalize "
+                    key={index}
+                  >
+                    <Link
+                      className={`bg-purple w-full p-2 rounded-full hover:bg-active duration-300`}
+                    >
+                      {msg.title}
+                    </Link>
+                  </div>
+                ))}
+              </div>
+
+              <div className="p-4">
+                <ReactQuill
+                  theme="snow"
+                  placeholder="write your content here"
+                  value={content}
+                  onChange={setContent}
+                  modules={TicketingDetails.modules}
+                  formats={TicketingDetails.formats}
+                  className="w-full outline-none bg-[#d9d9d9]"
+                />
+              </div>
+            </div>
+          </div>
+
           <div>
-            <h1></h1>
-            <h2></h2>
           </div>
         </div>
       </div>
     </div>
   );
 };
+
+TicketingDetails.modules = {
+  toolbar: [
+    [{ header: "1" }, { header: "2" }, { font: [] }],
+    [{ size: [] }],
+    ["bold", "italic", "underline", "strike", "blockquote"],
+    [{ align: [] }],
+    [{ color: [] }, { background: [] }],
+    [
+      { list: "ordered" },
+      { list: "bullet" },
+      { indent: "-1" },
+      { indent: "+1" },
+    ],
+    ["clean"],
+  ],
+};
+TicketingDetails.formats = [
+  "header",
+  "font",
+  "size",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "blockquote",
+  "color",
+  "background",
+  "list",
+  "bullet",
+  "indent",
+  "link",
+  "video",
+  "image",
+  "code-block",
+  "align",
+];
 
 export default TicketingDetails;

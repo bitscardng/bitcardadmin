@@ -5,6 +5,7 @@ import { TiArrowBackOutline } from "react-icons/ti";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { FiMail } from "react-icons/fi";
+import Ticketingstatus from "./Ticketingstatus";
 
 const navLinks = [
   {
@@ -123,7 +124,9 @@ const TicketingDetails = () => {
             </div>
           </div>
 
-          <div></div>
+          <div>
+            <Ticketingstatus/>
+          </div>
         </div>
       </div>
     </div>

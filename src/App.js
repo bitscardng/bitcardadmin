@@ -2,8 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import UploadGiftcard from "./components/giftcard/UploadGiftcard";
 import AddGiftcard from "./components/giftcard/AddGiftcard";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import Authlayout from "./layout/authlayout";
 import {
   AdminControl,
@@ -33,7 +31,6 @@ import {
   VirtualCard,
   TeleSales,
   Ticketing,
-  TicketingDetails,
   NotFound,
   CreateAds,
   BulkSms,
@@ -67,6 +64,7 @@ import Airtime from "./components/paybills/Airtime";
 import Bet from "./components/paybills/Bet";
 import Electricity from "./components/paybills/Electricity";
 import Cable from "./components/paybills/Cable";
+import TicketingDetails from "./components/ticketing/TicketingDetails";
 
 function App() {
   return (

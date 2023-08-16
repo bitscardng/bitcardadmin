@@ -10,9 +10,9 @@ const priority = [
   { id: "rad3", value: "low", name: "low" },
 ];
 const status = [
-  { id: "rad1", value: "open", name: "open" },
-  { id: "rad2", value: "resolved", name: "resolved" },
-  { id: "rad3", value: "awaiting-customer", name: "awaiting customer" },
+  { id: "rad11", value: "open", name: "open" },
+  { id: "rad12", value: "resolved", name: "resolved" },
+  { id: "rad13", value: "awaiting-customer", name: "awaiting customer" },
 ];
 
 const msg = [
@@ -47,7 +47,7 @@ const Ticketingstatus = () => {
   return (
     <div className="p-4 capitalize ">
       <div className="my-4">
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-4 ">
           <div className="flex flex-col items-center justify-center w-64 text-center">
             <h1 className="w-full p-2 mx-4 text-xl text-black bg-green-400 rounded-full">
               priority
@@ -62,7 +62,7 @@ const Ticketingstatus = () => {
                   >
                     <input
                       type="radio"
-                      name="role"
+                      name="priorityRole"
                       required
                       id={item.id}
                       value={item.value}
@@ -95,7 +95,7 @@ const Ticketingstatus = () => {
                   >
                     <input
                       type="radio"
-                      name="role"
+                      name="statusRole"
                       required
                       id={item.id}
                       value={item.value}
@@ -132,8 +132,8 @@ const Ticketingstatus = () => {
         </div>
 
         <div className="p-2 m-4 border-l-2 border-white">
-          {msg.map((data, index) => (
-            <div className="flex items-center justify-center py-4">
+          {msg.map((data, i) => (
+            <div className="flex items-center justify-center py-4" key={i}>
               <div className="p-2 mx-4 -mt-8 -ml-6 text-green-600 bg-green-200 rounded-full w-fit">
                 <FiMail />
               </div>
@@ -156,6 +156,7 @@ const Ticketingstatus = () => {
             className="w-full outline-none bg-[#d9d9d9]"
           />
         </div>
+        <button className={styles.btn}>Save</button>
       </div>
     </div>
   );

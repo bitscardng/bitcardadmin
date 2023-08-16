@@ -12,7 +12,7 @@ const Sidebar = ({ children }) => {
   const [subMenuOpen, setSubMenuOpen] = useState(false);
 
   return (
-    <div className="flex w-full h-screen noscroll">
+    <div className="flex w-full h-screen">
       <div className="h-screen w-[240px] mr-2 relative">
         <Link
           to="/dashboard"

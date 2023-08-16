@@ -218,7 +218,7 @@ function App() {
           />
           {/* bulk sms */}
 
-{/* paybills */}
+          {/* paybills */}
           <Route path="/paybills" element={<Paybills><Data/></Paybills>} />
           <Route path="/data" element={<Paybills><Data/></Paybills>} />
           <Route path="/airtime" element={<Paybills><Airtime/></Paybills>} />

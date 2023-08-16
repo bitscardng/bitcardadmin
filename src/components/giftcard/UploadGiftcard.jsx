@@ -97,12 +97,12 @@ const UploadGiftcard = ({ upload }) => {
 
         <div className="p-4 pt-8">
           <p className="pb-2 font-bold text-start text-active">
-            Country / Flag( Multi-Select)
+            Country / Flag ( Multi-Select )
           </p>
           <div className={`${style.columnBox}`}>
             {country.map((item, i) => {
               return (
-                <div className="flex items-center justify-start gap-2">
+                <div className="flex items-center justify-start gap-2" key={i}>
                   <input
                     type="radio"
                     name=""
@@ -136,7 +136,7 @@ const UploadGiftcard = ({ upload }) => {
           <div className={`${style.columnBox}`}>
             {giftCard.map((item, i) => {
               return (
-                <div className="flex items-center justify-start gap-2 ">
+                <div className="flex items-center justify-start gap-2 " key={i}>
                   <input
                     type="radio"
                     name=""

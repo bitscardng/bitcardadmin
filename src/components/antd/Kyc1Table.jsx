@@ -188,6 +188,7 @@ const Kyc1Table = () => {
             colorBgContainer: "#191c32",
             colorSplit: "#282c4a",
             colorPrimary: "#FFF",
+            colorText: "#FFF",
           },
           components: {
             Table: {

@@ -57,8 +57,8 @@ const SignIn = () => {
     await dispatch(login(userData))
       .unwrap()
       .then((action) => {
-        sessionStorage.setItem("token", action.data.tokens.accessToken);
-        localStorage.setItem("refreshToken", action.data.tokens.refreshToken);
+        sessionStorage.setItem("token", action?.data?.tokens.accessToken);
+        localStorage.setItem("refreshToken", action?.data?.tokens.refreshToken);
         toast.success("Enter verification Otp!");
         navigate("/sign-in-otp");
       })

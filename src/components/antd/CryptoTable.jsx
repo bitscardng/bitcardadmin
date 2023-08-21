@@ -7,7 +7,11 @@ import {
   useVerifyKyc1_2Mutation,
   useDeclineKyc1_2Mutation,
 } from "../../api/kycQueries";
-import { useGetTransferListQuery, useApproveTransferMutation, useDeclineTransferMutation } from "../../api/cryptoQueries";
+import {
+  useGetTransferListQuery,
+  useApproveTransferMutation,
+  useDeclineTransferMutation,
+} from "../../api/cryptoQueries";
 import { ConfigProvider } from "antd";
 import { toast } from "react-toastify";
 const getRandomuserParams = (params) => ({
@@ -59,68 +63,24 @@ const CryptoTable = () => {
   const columns = useMemo(
     () => [
       {
-        dataIndex: "passport_image",
-        render: (last_name) => `${last_name}`,
-        width: "20%",
-      },
-      {
-        title: "country",
-        dataIndex: "address",
-        render: (address) => `${address.country}`,
-        width: "20%",
-      },
-      {
-        title: "First Name",
-        dataIndex: "first_name",
-        render: (first_name) => `${first_name}`,
-        width: "20%",
-      },
-      {
-        title: "Last Name",
-        dataIndex: "last_name",
-        render: (last_name) => `${last_name}`,
-        width: "20%",
-      },
-      {
-        title: "Email Address",
+        title: "email",
         dataIndex: "email",
         render: (email) => `${email}`,
-        width: "30%",
-      },
-      {
-        title: "Date of Birth",
-        dataIndex: "dob",
-        render: (dob) => `${dob}`,
-        width: "40%",
-      },
-      {
-        title: "Phone Number",
-        dataIndex: "phone",
-        render: ({ phone_number, phone_country_code }) =>
-          `${phone_country_code + phone_number}`,
-        width: "30%",
-      },
-      {
-        title: "Address",
-        dataIndex: "address",
-        render: ({ street, city, state }) =>
-          `${street + "," + city + "," + state}`,
-        width: "30%",
-      },
-      {
-        title: "BVN",
-        dataIndex: "bvn",
-        render: (bvn) => `${bvn}`,
-        width: "30%",
-      },
-      {
-        title: "Postal Code",
-        dataIndex: "address",
-        render: ({ postal_code }) => `${postal_code}`,
         width: "20%",
       },
       {
-        title: "Status",
+        title: "Type",
+        dataIndex: "type",
+        render: (type) => `${type}`,
+        width: "20%",
+      },
+      {
+        title: "Amount",
+        dataIndex: "amount",
+        render: (amount) => `${amount}`,
+        width: "20%",
+      },
+      {
         dataIndex: "_id",
         fixed: "right",
         render: (id) => (
@@ -151,7 +111,7 @@ const CryptoTable = () => {
     ],
     []
   );
-  const { data: result = [], isLoading, refetch } = useGetTransferListQuery(); 
+  const { data: result = [], isLoading, refetch } = useGetTransferListQuery();
   const fetchData = () => {
     const params = qs.stringify(getRandomuserParams(tableParams));
     refetch()
@@ -189,6 +149,7 @@ const CryptoTable = () => {
             colorBgContainer: "#191c32",
             colorSplit: "#282c4a",
             colorPrimary: "#FFF",
+            colorText: "#FFF",
           },
           components: {
             Table: {
@@ -205,25 +166,27 @@ const CryptoTable = () => {
           pagination={tableParams.pagination}
           loading={isLoading}
           onChange={handleTableChange}
-          scroll={{ x: 2000, y: 1200 }}
+          scroll={{ x: 1000, y: 1200 }}
         />
       </ConfigProvider>
       <ConfirmModal
         open={openApprove}
         setOpen={setOpenApprove}
         loading={isVerifying}
-        text={"Approve kyc details"}
         action={handleVerifyDetails}
         data={id}
-      />
+      >
+        <p>Approve kyc details</p>
+      </ConfirmModal>
       <ConfirmModal
         open={openDecline}
         setOpen={setOpenDecline}
         loading={isDeclining}
-        text={"Decline kyc details"}
         action={handleDeclineDetails}
         data={id}
-      />
+      >
+        <p>Decline kyc details</p>
+      </ConfirmModal>
     </>
   );
 };

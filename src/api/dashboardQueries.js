@@ -1,14 +1,16 @@
 import { apiSlice } from "./apiSlice";
 
-export const dashboardStatSlice = apiSlice.injectEndpoints({
-  endpoints: (builder) => ({
-    getDashboardStats: builder.query({
-      query: () => ({
-        url: "statistics",
+export const dashboardStatSlice = apiSlice
+  .enhanceEndpoints({ addTagTypes: ["dashboardStats"] })
+  .injectEndpoints({
+    endpoints: (builder) => ({
+      getDashboardStats: builder.query({
+        query: () => ({
+          url: "statistics",
+        }),
+        providesTags: ["dashboardStats"],
       }),
-      providesTags: ["dashboardStats"],
     }),
-  }),
-});
+  });
 
 export const { useGetDashboardStatsQuery } = dashboardStatSlice;

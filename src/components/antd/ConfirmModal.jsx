@@ -1,5 +1,13 @@
 import { Modal, ConfigProvider } from "antd";
-const ConfirmModal = ({ open, setOpen, loading, text, action, data }) => {
+const ConfirmModal = ({
+  open,
+  setOpen,
+  loading,
+  children,
+  action,
+  data,
+  ...props
+}) => {
   const handleOk = () => {
     action(data);
     !loading && setOpen(false);
@@ -15,10 +23,12 @@ const ConfirmModal = ({ open, setOpen, loading, text, action, data }) => {
         onOk={handleOk}
         confirmLoading={loading}
         onCancel={handleCancel}
+        maskClosable={false}
         centered={true}
         okButtonProps={{ style: { backgroundColor: "#191c32" } }}
+        {...props}
       >
-        <p>{text}</p>
+        {children}
       </Modal>
     </ConfigProvider>
   );

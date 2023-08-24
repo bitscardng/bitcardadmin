@@ -139,7 +139,7 @@ const Ticketingstatus = () => {
               </div>
               <div>
                 <p>{data.history}</p>
-                <h5>{data.date}</h5>
+                <h5 className="text-green-400 ">{data.date}</h5>
               </div>
             </div>
           ))}

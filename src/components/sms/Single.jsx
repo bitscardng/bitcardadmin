@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import { styles } from "../../styles";
 import { FiUpload, FiUser } from "react-icons/fi";
+import { useSingle_smsMutation } from "../../api/smsApiSlice";
 
 const Single = () => {
   const [content, setContent] = useState("");
+  const [sendsms, {}] = useSingle_smsMutation();
+  useEffect(() => {
+    sendsms({ message: "test", phone: "2347013879246" })
+      .unwrap()
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+    console.log("testing");
+  }, []);
   return (
     <div>
       <div className="mt-3">

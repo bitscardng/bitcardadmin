@@ -18,7 +18,7 @@ const withdrawalQueries = apiSlice
         invalidatesTags: ["withdrawal"],
       }),
       declinengnWithdrawals: builder.mutation({
-        query: () => ({
+        query: (id) => ({
           url: `withdrawal/decline-naira-withdrawal/${id}`,
           method: "PATCH",
         }),

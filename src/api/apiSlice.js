@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { toast } from "react-toastify";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: process.env.REACT_APP_BITSCARD_BACKEND_URL,
@@ -21,10 +22,12 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
     );
     if (refreshResult?.data) {
       sessionStorage.setItem("token", refreshResult?.data?.accessToken);
-      localStorage.setItem("refreshToken", refreshResult?.data?.refreshToken)
+      localStorage.setItem("refreshToken", refreshResult?.data?.refreshToken);
       result = await baseQuery(args, api, extraOptions);
     } else {
       //dispatch logout
+      window.location.replace("/");
+      toast.error("session timed out");
     }
   }
 

@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import { styles } from "../../styles";
 import { FiUpload, FiUser } from "react-icons/fi";
+import { useSingle_smsMutation } from "../../api/smsApiSlice";
 
 const Personalized = () => {
   const [content, setContent] = useState("");
+  const [sendSms, {}] = useSingle_smsMutation();
   return (
     <div>
       <div className="mt-3">

@@ -86,7 +86,7 @@ function App() {
           <Route path="/virtual-card" element={<VirtualCard />} />
           <Route path="/crypto-tranx" element={<CryptoTranx />} />
           <Route path="/users" element={<Users />} />
-          <Route path="/usersdetails" element={<UserDetails />} />
+          <Route path="/user-details/:id" element={<UserDetails />} />
           <Route path="/news" element={<News />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/usd-withdraw" element={<UsdWithdraw />} />
@@ -184,52 +184,89 @@ function App() {
           <Route path="/telesales/sendemail" element={<SendEmailTel />} />
 
           {/* bulk sms */}
-          <Route 
-            path="/bulk-sms" 
+          <Route
+            path="/bulk-sms"
             element={
-            <BulkSms>
-              <Bulk/>
-            </BulkSms>
-            } 
+              <BulkSms>
+                <Bulk />
+              </BulkSms>
+            }
           />
-          <Route 
-            path="/personalized" 
+          <Route
+            path="/personalized"
             element={
-            <BulkSms>
-              <Personalized/>
-            </BulkSms>
-            } 
+              <BulkSms>
+                <Personalized />
+              </BulkSms>
+            }
           />
-          <Route 
-            path="/single" 
+          <Route
+            path="/single"
             element={
-            <BulkSms>
-              <Single/>
-            </BulkSms>
-            } 
+              <BulkSms>
+                <Single />
+              </BulkSms>
+            }
           />
-          <Route 
-            path="/delivery-status" 
+          <Route
+            path="/delivery-status"
             element={
-            <BulkSms>
-              <Delivery/>
-            </BulkSms>
-            } 
+              <BulkSms>
+                <Delivery />
+              </BulkSms>
+            }
           />
           {/* bulk sms */}
 
-{/* paybills */}
-          <Route path="/paybills" element={<Paybills><Data/></Paybills>} />
-          <Route path="/data" element={<Paybills><Data/></Paybills>} />
-          <Route path="/airtime" element={<Paybills><Airtime/></Paybills>} />
-          <Route path="/bet" element={<Paybills><Bet/></Paybills>} />
-          <Route path="/electricity" element={<Paybills><Electricity/></Paybills>} />
-          <Route path="/cable" element={<Paybills><Cable/></Paybills>} />
-
-
-
-
-
+          {/* paybills */}
+          <Route
+            path="/paybills"
+            element={
+              <Paybills>
+                <Data />
+              </Paybills>
+            }
+          />
+          <Route
+            path="/data"
+            element={
+              <Paybills>
+                <Data />
+              </Paybills>
+            }
+          />
+          <Route
+            path="/airtime"
+            element={
+              <Paybills>
+                <Airtime />
+              </Paybills>
+            }
+          />
+          <Route
+            path="/bet"
+            element={
+              <Paybills>
+                <Bet />
+              </Paybills>
+            }
+          />
+          <Route
+            path="/electricity"
+            element={
+              <Paybills>
+                <Electricity />
+              </Paybills>
+            }
+          />
+          <Route
+            path="/cable"
+            element={
+              <Paybills>
+                <Cable />
+              </Paybills>
+            }
+          />
         </Route>
         <Route path="/*" element={<NotFound />} />
       </Routes>

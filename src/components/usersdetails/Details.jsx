@@ -5,17 +5,17 @@ const datas = [
   { title: "naira balance", result: "N500", add: "Add", deduct: "Deduct" },
 ];
 
-const Details = () => {
+const Details = ({ data }) => {
   return (
     <div>
       <form className="w-[32rem]">
         <div className={`${styles.detail}`}>
           <h5 className="px-2 text-xl uppercase">user name</h5>
-          <p className="px-2 font-light capitalize">vals</p>
+          <p className="px-2 font-light capitalize">{data?.username}</p>
         </div>
         <div className={`${styles.detail}`}>
           <h5 className="px-2 text-xl uppercase">email address</h5>
-          <p className="px-2 font-light capitalize">example@abc.com</p>
+          <p className="px-2 font-light capitalize">{data?.email}</p>
         </div>
         <div className={`${styles.detail}`}>
           <h5 className="px-2 text-xl uppercase">email verified</h5>
@@ -55,7 +55,9 @@ const Details = () => {
         </div>
         <div className={`${styles.detail}`}>
           <h5 className="px-2 text-xl uppercase">joined</h5>
-          <p className="px-2 font-light capitalize">15-04-2023</p>
+          <p className="px-2 font-light capitalize">
+            {new Date(data?.createdAt).toDateString()}
+          </p>
         </div>
         <div className={`${styles.detail}`}>
           <h5 className="px-2 text-xl uppercase">USDT - kfgdckjdhcguk</h5>
@@ -71,7 +73,7 @@ const Details = () => {
         </div>
         <div className={`${styles.detail}`}>
           <h5 className="px-2 text-xl uppercase">referral code</h5>
-          <p className="px-2 font-light capitalize">GVRS3</p>
+          <p className="px-2 font-light capitalize">{data?.referralCode}</p>
         </div>
         <div className={`${styles.detail}`}>
           <h5 className="px-2 text-xl uppercase">P2P ( Merchant )</h5>

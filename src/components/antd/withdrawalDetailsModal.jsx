@@ -1,7 +1,7 @@
 import ConfirmModal from "./ConfirmModal";
 import { HiOutlineMail } from "react-icons/hi";
 
-const WithdrawalDetailsModal = ({ open, setOpen }) => {
+const WithdrawalDetailsModal = ({ open, setOpen, id }) => {
   return (
     <ConfirmModal open={open} setOpen={setOpen} title="" footer={null}>
       <div className="flex flex-col w[28rem]">

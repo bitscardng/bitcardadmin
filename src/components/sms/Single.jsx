@@ -1,30 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import { styles } from "../../styles";
-import { FiUpload, FiUser } from "react-icons/fi";
+import { FiUser, FiPhone } from "react-icons/fi";
 import { useSingle_smsMutation } from "../../api/smsApiSlice";
+import { message } from "antd";
 
 const Single = () => {
   const [content, setContent] = useState("");
+  const [contact, setContact] = useState("");
   const [sendsms, {}] = useSingle_smsMutation();
-  useEffect(() => {
-    sendsms({ message: "test", phone: "2347013879246" })
-      .unwrap()
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-    console.log("testing");
-  }, []);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (contact) {
+      sendsms({ message: content, phone: contact })
+        .unwrap()
+        .then((res) => message.success("sms delivered"));
+    }
+  };
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       <div className="mt-3">
-        <p>Upload Contacts</p>
-        <div className="flex items-center max-w-md gap-4 p-2 px-4 mt-2 rounded-full bg-primary">
-          <FiUpload className="text-3xl" color="#F04086" />
-          <input
-            type="file"
-            className="w-full bg-transparent outline-none file-input-ghost"
-          />
-        </div>
+        <p>send sms</p>
       </div>
       <div className="mt-3">
         <p>Sender</p>
@@ -36,6 +32,24 @@ const Single = () => {
             type="text"
             placeholder="John Doe"
             className="w-full bg-transparent outline-none"
+            value={"BITSCARD"}
+            disabled
+          />
+        </div>
+      </div>
+      <div className="mt-3">
+        <p>phone</p>
+        <div className="flex items-center max-w-md gap-4 p-2 px-4 mt-2 rounded-full bg-primary">
+          <div className="rounded-full glass">
+            <FiPhone className="text-3xl p-1 text-[#f7931a]" />
+          </div>
+          <input
+            type="number"
+            placeholder="2340000000000"
+            required
+            className="w-full bg-transparent outline-none"
+            value={contact}
+            onChange={(e) => setContact(e.target.value)}
           />
         </div>
       </div>
@@ -53,7 +67,7 @@ const Single = () => {
       <button type="submit" className={styles.btn}>
         Send
       </button>
-    </div>
+    </form>
   );
 };
 

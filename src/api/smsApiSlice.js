@@ -10,7 +10,7 @@ export const smsApiSlice = createApi({
   endpoints: (builder) => ({
     single_sms: builder.mutation({
       query: (body) => ({
-        url: `?username=valentinox34@gmail.com&password=Amakaval1@&sender=BITSCARD&message=${body.message}&mobiles=${body.phone}`,
+        url: `${process.env.REACT_APP_SMS_CREDENTIALS}&message=${body.message}&mobiles=${body.phone}`,
         method: "POST",
       }),
     }),

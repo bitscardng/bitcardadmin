@@ -2,9 +2,36 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import { styles } from "../../styles";
 import { FiUpload, FiUser } from "react-icons/fi";
-
 const Bulk = () => {
   const [content, setContent] = useState("");
+  const [contacts, setContacts] = useState([]);
+  const parseVCF = (vcfContent) => {
+    const vCards = vcfContent.split("END:VCARD");
+
+    for (const vCard of vCards) {
+      if (vCard.trim().length > 0) {
+        const contact = {};
+        const lines = vCard.split("\n");
+        for (const line of lines) {
+          const [field, value] = line.split(":");
+          if (field && value) {
+            contact[field] = value;
+            console.log(field, "field", value);
+          }
+        }
+        setContacts((prev) => [...prev, contact]);
+      }
+    }
+  };
+
+  const handleFileUpload = async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const fileContent = await file.text();
+      const parsedContacts = parseVCF(fileContent);
+      console.log(parsedContacts, fileContent);
+    }
+  };
   return (
     <div>
       <div className="mt-3">
@@ -13,7 +40,9 @@ const Bulk = () => {
           <FiUpload className="text-3xl" color="#F04086" />
           <input
             type="file"
+            accept=".vcf"
             className="w-full bg-transparent outline-none file-input-ghost"
+            onChange={handleFileUpload}
           />
         </div>
       </div>

@@ -145,7 +145,7 @@ const News = () => {
         <div className="p-2 text-center rounded-full bg-[#3b3a62]">
           <FiUser className="text-[#f7931a]" />
         </div>
-        <p className={`text-white ${!selected && "text-[#9CA3AF]"}`}>
+        <p className={`text-white capitalize ${!selected && "text-[#9CA3AF]"}`}>
           {selected ? selected?.name : "Select Category"}
         </p>
         <div className="p-2 text-center rounded-full bg-[#3b3a62]">
@@ -167,7 +167,7 @@ const News = () => {
               <li key={index}>
                 <div className="flex items-center justify-between">
                   <p
-                    className={`w-full p-2 m-1 hover:bg-active text-[#9CA3AF] hover:text-white duration-500 cursor-pointer rounded-xl group:text-white`}
+                    className={`w-full  capitalize p-2 m-1 hover:bg-active text-[#9CA3AF] hover:text-white duration-500 cursor-pointer rounded-xl group:text-white`}
                     onClick={() => {
                       setSelected(data);
                       setOpen(false);
@@ -230,6 +230,7 @@ const News = () => {
           </button>
         </div>
       </div>
+      
       <div className={styles.formField}>
         <div className="flex flex-row items-center gap-2 text-center">
           <div className="p-2 text-center rounded-full bg-[#3b3a62]">

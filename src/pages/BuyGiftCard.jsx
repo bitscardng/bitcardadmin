@@ -61,6 +61,7 @@ const BuyGiftCard = ({ handleInputChange }) => {
       );
     });
   //pagination end
+  
   return (
     <div>
       <div className="flex flex-row items-center justify-between">

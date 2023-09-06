@@ -10,8 +10,15 @@ export const smsApiSlice = createApi({
   endpoints: (builder) => ({
     single_sms: builder.mutation({
       query: (body) => ({
-        url: `${process.env.REACT_APP_SMS_CREDENTIALS}&message=${body.message}&mobiles=${body.phone}`,
+        url: "sms",
         method: "POST",
+        body: {
+          recipients: body.phone,
+          message: body.message,
+          senderID: "BITSCARD",
+          token:
+            "QStzYR5eZ3kGaIgOLVx09wEAPscB27fmrHM1TnlNCoJuiDvdyK4bpjF68XqUhW",
+        },
       }),
     }),
   }),

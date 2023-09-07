@@ -65,6 +65,8 @@ import Bet from "./components/paybills/Bet";
 import Electricity from "./components/paybills/Electricity";
 import Cable from "./components/paybills/Cable";
 import TicketingDetails from "./components/ticketing/TicketingDetails";
+import Add from "./components/buyGiftcard/Add";
+import Upload from "./components/buyGiftcard/Upload";
 
 function App() {
   return (
@@ -81,6 +83,8 @@ function App() {
           <Route path="/email1preview" element={<Email1 />} />
           <Route path="/Admin-control" element={<AdminControl />} />
           <Route path="/buy-gift-card" element={<BuyGiftCard />} />
+          <Route path="/buy-gift-card/add" element={<Add />} />
+          <Route path="/buy-gift-card/upload" element={<Upload />} />
           <Route path="/sell-gift-card" element={<SellGiftCard />} />
           <Route path="/p2p-tranx" element={<P2P />} />
           <Route path="/virtual-card" element={<VirtualCard />} />
@@ -184,52 +188,89 @@ function App() {
           <Route path="/telesales/sendemail" element={<SendEmailTel />} />
 
           {/* bulk sms */}
-          <Route 
-            path="/bulk-sms" 
+          <Route
+            path="/bulk-sms"
             element={
-            <BulkSms>
-              <Bulk/>
-            </BulkSms>
-            } 
+              <BulkSms>
+                <Bulk />
+              </BulkSms>
+            }
           />
-          <Route 
-            path="/personalized" 
+          <Route
+            path="/personalized"
             element={
-            <BulkSms>
-              <Personalized/>
-            </BulkSms>
-            } 
+              <BulkSms>
+                <Personalized />
+              </BulkSms>
+            }
           />
-          <Route 
-            path="/single" 
+          <Route
+            path="/single"
             element={
-            <BulkSms>
-              <Single/>
-            </BulkSms>
-            } 
+              <BulkSms>
+                <Single />
+              </BulkSms>
+            }
           />
-          <Route 
-            path="/delivery-status" 
+          <Route
+            path="/delivery-status"
             element={
-            <BulkSms>
-              <Delivery/>
-            </BulkSms>
-            } 
+              <BulkSms>
+                <Delivery />
+              </BulkSms>
+            }
           />
           {/* bulk sms */}
 
           {/* paybills */}
-          <Route path="/paybills" element={<Paybills><Data/></Paybills>} />
-          <Route path="/data" element={<Paybills><Data/></Paybills>} />
-          <Route path="/airtime" element={<Paybills><Airtime/></Paybills>} />
-          <Route path="/bet" element={<Paybills><Bet/></Paybills>} />
-          <Route path="/electricity" element={<Paybills><Electricity/></Paybills>} />
-          <Route path="/cable" element={<Paybills><Cable/></Paybills>} />
-
-
-
-
-
+          <Route
+            path="/paybills"
+            element={
+              <Paybills>
+                <Data />
+              </Paybills>
+            }
+          />
+          <Route
+            path="/data"
+            element={
+              <Paybills>
+                <Data />
+              </Paybills>
+            }
+          />
+          <Route
+            path="/airtime"
+            element={
+              <Paybills>
+                <Airtime />
+              </Paybills>
+            }
+          />
+          <Route
+            path="/bet"
+            element={
+              <Paybills>
+                <Bet />
+              </Paybills>
+            }
+          />
+          <Route
+            path="/electricity"
+            element={
+              <Paybills>
+                <Electricity />
+              </Paybills>
+            }
+          />
+          <Route
+            path="/cable"
+            element={
+              <Paybills>
+                <Cable />
+              </Paybills>
+            }
+          />
         </Route>
         <Route path="/*" element={<NotFound />} />
       </Routes>

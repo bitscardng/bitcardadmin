@@ -35,6 +35,7 @@ import {
   CreateAds,
   BulkSms,
   Paybills,
+  NewsList,
 } from "./pages";
 import SignIn from "./auth/SignIn";
 import SignInOtp from "./auth/SignInOtp";
@@ -87,7 +88,8 @@ function App() {
           <Route path="/crypto-tranx" element={<CryptoTranx />} />
           <Route path="/users" element={<Users />} />
           <Route path="/user-details/:id" element={<UserDetails />} />
-          <Route path="/news" element={<News />} />
+          <Route path="/create-news" element={<News />} />
+          <Route path="/news" element={<NewsList />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/usd-withdraw" element={<UsdWithdraw />} />
           <Route path="/ngn-withdraw" element={<NgnWithdraw />} />

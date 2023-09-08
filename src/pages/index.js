@@ -30,9 +30,7 @@ import NotFound from "./NotFound";
 import CreateAds from "../components/ads campaign/CreateAds";
 import Paybills from "./Paybills";
 import BulkSms from "./BulkSms";
-
-
-
+import NewsList from "./NewsList";
 
 export {
   Paybills,
@@ -67,4 +65,5 @@ export {
   CryptoRate,
   CryptoTranx,
   NotFound,
+  NewsList,
 };

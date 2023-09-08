@@ -18,6 +18,7 @@ import {
   createNews,
   upload,
 } from "../redux/actions/dashboard.actions";
+import { useGetNewsQuery } from "../api/newsApiSlice";
 import { toast } from "react-toastify";
 
 const News = () => {
@@ -33,6 +34,8 @@ const News = () => {
   const loading = useSelector((state) => state.dashboard.isLoading);
   const [newsData, setNewsData] = useState({ title: "", author: "" });
   const [content, setContent] = useState("");
+  const { data, isLoading } = useGetNewsQuery();
+  console.log(data);
 
   useEffect(() => {
     dispatch(getNewsCategory())

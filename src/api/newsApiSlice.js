@@ -1,7 +1,7 @@
 import { apiSlice } from "./apiSlice";
 
 export const newsSlice = apiSlice
-  .enhanceEndpoints({ addTagTypes: ["news", "category"] })
+  .enhanceEndpoints({ addTagTypes: ["news", "news/category"] })
   .injectEndpoints({
     endpoints: (builder) => ({
       getNews: builder.query({
@@ -20,7 +20,7 @@ export const newsSlice = apiSlice
         query: () => ({
           url: "news/category",
         }),
-        providesTags: ["category"],
+        providesTags: ["news/category"],
       }),
       updateNewsCategory: builder.mutation({
         query: (body) => ({
@@ -28,7 +28,7 @@ export const newsSlice = apiSlice
           method: "PATCH",
           body: body.body,
         }),
-        providesTags: ["category"],
+        providesTags: ["news/category"],
       }),
       updateNews: builder.mutation({
         query: (body) => ({
@@ -73,4 +73,5 @@ export const {
   useUpdateNewsMutation,
   useGetNewsByIdQuery,
   useDeleteNewsMutation,
+  useLazyGetNewsByIdQuery,
 } = newsSlice;

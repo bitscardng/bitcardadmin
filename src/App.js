@@ -36,6 +36,7 @@ import {
   BulkSms,
   Paybills,
   NewsList,
+  FaqList,
 } from "./pages";
 import SignIn from "./auth/SignIn";
 import SignInOtp from "./auth/SignInOtp";
@@ -90,7 +91,8 @@ function App() {
           <Route path="/user-details/:id" element={<UserDetails />} />
           <Route path="/create-news" element={<News />} />
           <Route path="/news" element={<NewsList />} />
-          <Route path="/faq" element={<Faq />} />
+          <Route path="/faq" element={<FaqList />} />
+          <Route path="/create-faq" element={<Faq />} />
           <Route path="/usd-withdraw" element={<UsdWithdraw />} />
           <Route path="/ngn-withdraw" element={<NgnWithdraw />} />
           <Route path="/ghs-withdraw" element={<GhsWithdraw />} />

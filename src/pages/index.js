@@ -31,6 +31,7 @@ import CreateAds from "../components/ads campaign/CreateAds";
 import Paybills from "./Paybills";
 import BulkSms from "./BulkSms";
 import NewsList from "./NewsList";
+import FaqList from "./FaqList";
 
 export {
   Paybills,
@@ -66,4 +67,5 @@ export {
   CryptoTranx,
   NotFound,
   NewsList,
+  FaqList,
 };

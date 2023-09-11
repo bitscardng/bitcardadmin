@@ -1,9 +1,8 @@
-import { AiOutlineLike } from "react-icons/ai";
 import { Button, Modal } from "antd";
 import {
-  useDeleteNewsMutation,
-  useLazyGetNewsByIdQuery,
-} from "../../api/newsApiSlice";
+  useDeleteFaqMutation,
+  useLazyGetFaqByIdQuery,
+} from "../../api/faqSlice";
 import { toast } from "react-toastify";
 import DOMPurify from "dompurify";
 import { useEffect } from "react";
@@ -12,9 +11,9 @@ function sanitizeHtml(html) {
   const cleanHtml = DOMPurify.sanitize(html);
   return cleanHtml;
 }
-const NewsModal = ({ open, setOpen, id }) => {
-  const [getNews, { data, isLoading }] = useLazyGetNewsByIdQuery(id);
-  const [clear, { isLoading: isDeleting }] = useDeleteNewsMutation();
+const FaqModal = ({ open, setOpen, id }) => {
+  const [getFaq, { data, isLoading }] = useLazyGetFaqByIdQuery(id);
+  const [clear, { isLoading: isDeleting }] = useDeleteFaqMutation();
   const handleOk = () => {
     clear(id)
       .unwrap()
@@ -27,7 +26,7 @@ const NewsModal = ({ open, setOpen, id }) => {
       });
   };
   useEffect(() => {
-    if (id) getNews(id);
+    if (id) getFaq(id);
   }, [id]);
 
   const handleCancel = () => {
@@ -59,4 +58,4 @@ const NewsModal = ({ open, setOpen, id }) => {
   );
 };
 
-export default NewsModal;
+export default FaqModal;

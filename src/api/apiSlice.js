@@ -39,5 +39,15 @@ export const apiSlice = createApi({
   refetchOnReconnect: true,
   refetchOnMountOrArgChange: true,
   baseQuery: baseQueryWithReauth,
-  endpoints: (builder) => ({}),
+  endpoints: (builder) => ({
+    uploadFile: builder.mutation({
+      query: (file) => ({
+        url: "upload/file",
+        method: "POST",
+        body: file,
+      }),
+    }),
+  }),
 });
+
+export const { useUploadFileMutation } = apiSlice;

@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import { styles } from "../styles";
 import { MdCloudUpload } from "react-icons/md";
 import {
@@ -10,49 +9,40 @@ import {
 } from "react-icons/fi";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { AsyncActions } from "../redux/actionTypes/auth.actionTypes";
+import { useUploadFileMutation } from "../api/apiSlice";
 import {
-  getNewsCategory,
-  updateNewsCategory,
-  createNewsCategory,
-  createNews,
-  upload,
-} from "../redux/actions/dashboard.actions";
-import { useGetNewsQuery } from "../api/newsApiSlice";
+  useGetNewsCategoryQuery,
+  useUpdateNewsCategoryMutation,
+  useCreateNewsCategoryMutation,
+  useCreateNewsMutation,
+} from "../api/newsApiSlice";
 import { toast } from "react-toastify";
 
 const News = () => {
+  const [upload, { isLoading: isUploading }] = useUploadFileMutation();
+  const { data: category, isLoading: isLoadingCategory } =
+    useGetNewsCategoryQuery();
+  const [updateNewsCategory, { isLoading: isUpdatingCategory }] =
+    useUpdateNewsCategoryMutation();
+  const [createNewsCategory, { isLoading: isCreatingNewsCategory }] =
+    useCreateNewsCategoryMutation();
+  const [createNews, { isLoading: isCreatingNews }] = useCreateNewsMutation();
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState({});
-  const [fetchCategory, setFetchCategory] = useState(false);
   const [editCategory, setEditCategory] = useState(false);
   const [editCategoryData, setEditCategoryData] = useState({});
   const [imagePreview, setImagePreview] = useState(null);
-  const [category, setCategory] = useState([]);
   const [categoryInput, setCategoryInput] = useState("");
-  const dispatch = useDispatch();
-  const loading = useSelector((state) => state.dashboard.isLoading);
   const [newsData, setNewsData] = useState({ title: "", author: "" });
   const [content, setContent] = useState("");
-  const { data, isLoading } = useGetNewsQuery();
-  console.log(data);
-
-  useEffect(() => {
-    dispatch(getNewsCategory())
-      .unwrap()
-      .then((res) => {
-        setCategory(res);
-      })
-      .catch(() => {});
-  }, [fetchCategory]);
 
   const handleImageChange = (e) => {
     const formData = new FormData();
     formData.append("file", e.target.files[0]);
-    dispatch(upload(formData))
+    upload(formData)
       .unwrap()
       .then((res) => {
-        setImagePreview(res);
+        setImagePreview(res?.url);
       })
       .catch(() => {
         toast.error("error uploading image");
@@ -60,10 +50,9 @@ const News = () => {
   };
 
   const handleCreateCategory = (e) => {
-    dispatch(createNewsCategory({ name: e }))
+    createNewsCategory({ name: e })
       .unwrap()
       .then((res) => {
-        setFetchCategory((prev) => !prev);
         setCategoryInput("");
       })
       .catch(() => {});
@@ -71,27 +60,26 @@ const News = () => {
 
   const handleEditCategory = (e) => {
     const { _id } = e;
-    dispatch(updateNewsCategory({ id: _id, body: { name: categoryInput } }))
+    updateNewsCategory({ id: _id, body: { name: categoryInput } })
       .unwrap()
       .then(() => {
-        setFetchCategory((prev) => !prev);
         setEditCategory((prev) => !prev);
         setCategoryInput("");
       })
       .catch(() => {});
   };
   const handleSubmit = () => {
-    dispatch(
-      createNews({
-        image: imagePreview,
-        category: selected._id,
-        content,
-        ...newsData,
-      })
-    )
+    createNews({
+      image: imagePreview,
+      category: selected._id,
+      content,
+      ...newsData,
+    })
       .unwrap()
       .then((res) => {
-        console.log(res);
+        setNewsData({ title: "", author: "" });
+        setContent("");
+        setImagePreview(null);
         toast.success("news created successfully");
       })
       .catch((err) => {
@@ -128,7 +116,7 @@ const News = () => {
           <div className="flex flex-col items-center w-40 text-center">
             <MdCloudUpload className="w-20 h-20" />
             <div className="">
-              {loading === AsyncActions.upload ? (
+              {isUploading ? (
                 <div>
                   Uploading
                   <span className="loading loading-dots loading-md"></span>
@@ -165,7 +153,7 @@ const News = () => {
           className={`p-2 overflow-y-auto rounded-xl w-72 bg-sec h-40
           `}
         >
-          {category.map((data, index) => {
+          {category?.map((data, index) => {
             return (
               <li key={index}>
                 <div className="flex items-center justify-between">
@@ -207,7 +195,7 @@ const News = () => {
           <button>
             {editCategory ? (
               <div>
-                {loading === AsyncActions.updateNewsCategory ? (
+                {isUpdatingCategory ? (
                   <span className="loading loading-spinner loading-md"></span>
                 ) : (
                   <FiEdit2
@@ -218,7 +206,7 @@ const News = () => {
               </div>
             ) : (
               <div>
-                {loading === AsyncActions.createNewsCategory ? (
+                {isCreatingNewsCategory ? (
                   <span className="loading loading-spinner loading-md"></span>
                 ) : (
                   <FiPlusCircle

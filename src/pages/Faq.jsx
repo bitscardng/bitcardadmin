@@ -9,47 +9,41 @@ import {
   FiPlusCircle,
 } from "react-icons/fi";
 import ReactQuill from "react-quill";
-import { AsyncActions } from "../redux/actionTypes/auth.actionTypes";
 import "react-quill/dist/quill.snow.css";
+import { useUploadFileMutation } from "../api/apiSlice";
 import {
-  upload,
-  getFaqCategory,
-  updateFaqCategory,
-  createFaqCategory,
-  createFaq,
-} from "../redux/actions/dashboard.actions";
+  useGetFaqCategoryQuery,
+  useCreateFaqCategoryMutation,
+  useCreateFaqMutation,
+  useUpdateFaqCategoryMutation,
+} from "../api/faqSlice";
 import { toast } from "react-toastify";
 
 const Faq = () => {
+  const [upload, { isLoading: isUploading }] = useUploadFileMutation();
+  const { data: category, isLoading: isLoadingCategory } =
+    useGetFaqCategoryQuery();
+  const [updateFaqCategory, { isLoading: isUpdatingCategory }] =
+    useUpdateFaqCategoryMutation();
+  const [createFaqCategory, { isLoading: isCreatingFaqCategory }] =
+    useCreateFaqCategoryMutation();
+  const [createFaq, { isLoading: isCreatingFaq }] = useCreateFaqMutation();
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState({});
-  const [fetchCategory, setFetchCategory] = useState(false);
   const [editCategory, setEditCategory] = useState(false);
   const [editCategoryData, setEditCategoryData] = useState({});
   const [imagePreview, setImagePreview] = useState(null);
-  const [category, setCategory] = useState([]);
   const [categoryInput, setCategoryInput] = useState("");
-  const dispatch = useDispatch();
-  const loading = useSelector((state) => state.dashboard.isLoading);
   const [faqData, setFaqData] = useState({ title: "", author: "" });
   const [content, setContent] = useState("");
-
-  useEffect(() => {
-    dispatch(getFaqCategory())
-      .unwrap()
-      .then((res) => {
-        setCategory(res.data);
-      })
-      .catch(() => {});
-  }, [fetchCategory]);
 
   const handleImageChange = (e) => {
     const formData = new FormData();
     formData.append("file", e.target.files[0]);
-    dispatch(upload(formData))
+    upload(formData)
       .unwrap()
       .then((res) => {
-        setImagePreview(res);
+        setImagePreview(res?.url);
       })
       .catch(() => {
         toast.error("error uploading image");
@@ -57,10 +51,9 @@ const Faq = () => {
   };
 
   const handleCreateCategory = (e) => {
-    dispatch(createFaqCategory({ name: e }))
+    createFaqCategory({ name: e })
       .unwrap()
       .then((res) => {
-        setFetchCategory((prev) => !prev);
         setCategoryInput("");
       })
       .catch(() => {});
@@ -68,28 +61,27 @@ const Faq = () => {
 
   const handleEditCategory = (e) => {
     const { _id } = e;
-    dispatch(updateFaqCategory({ id: _id, body: { name: categoryInput } }))
+    updateFaqCategory({ id: _id, body: { name: categoryInput } })
       .unwrap()
       .then(() => {
-        setFetchCategory((prev) => !prev);
         setEditCategory((prev) => !prev);
         setCategoryInput("");
       })
       .catch(() => {});
   };
   const handleSubmit = () => {
-    dispatch(
-      createFaq({
-        image: imagePreview,
-        category: selected._id,
-        content,
-        ...faqData,
-      })
-    )
+    createFaq({
+      image: imagePreview,
+      category: selected._id,
+      content,
+      ...faqData,
+    })
       .unwrap()
       .then((res) => {
-        console.log(res);
         toast.success("faq created successfully");
+        setFaqData({ title: "", author: "" });
+        setContent("");
+        setImagePreview(null);
       })
       .catch((err) => {
         toast.error(err.message);
@@ -125,7 +117,7 @@ const Faq = () => {
           <div className="flex flex-col items-center w-40 text-center">
             <MdCloudUpload className="w-20 h-20" />
             <div className="">
-              {loading === AsyncActions.upload ? (
+              {isUploading ? (
                 <div>
                   Uploading
                   <span className="loading loading-dots loading-md"></span>
@@ -162,7 +154,7 @@ const Faq = () => {
           className={`p-2 overflow-y-auto rounded-xl w-72 bg-sec h-40
           `}
         >
-          {category.map((data, index) => {
+          {category?.data?.map((data, index) => {
             return (
               <li key={index}>
                 <div className="flex items-center justify-between">
@@ -204,7 +196,7 @@ const Faq = () => {
           <button>
             {editCategory ? (
               <div>
-                {loading === AsyncActions.updateFaqCategory ? (
+                {isUpdatingCategory ? (
                   <span className="loading loading-spinner loading-md"></span>
                 ) : (
                   <FiEdit2
@@ -215,7 +207,7 @@ const Faq = () => {
               </div>
             ) : (
               <div>
-                {loading === AsyncActions.createFaqCategory ? (
+                {isCreatingFaqCategory ? (
                   <span className="loading loading-spinner loading-md"></span>
                 ) : (
                   <FiPlusCircle

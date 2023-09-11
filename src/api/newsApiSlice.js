@@ -28,7 +28,7 @@ export const newsSlice = apiSlice
           method: "PATCH",
           body: body.body,
         }),
-        providesTags: ["news/category"],
+        invalidatesTags: ["news/category"],
       }),
       updateNews: builder.mutation({
         query: (body) => ({
@@ -46,13 +46,13 @@ export const newsSlice = apiSlice
         }),
         invalidatesTags: ["news"],
       }),
-      createCategory: builder.mutation({
+      createNewsCategory: builder.mutation({
         query: (body) => ({
           url: "news/category",
           method: "POST",
           body: body,
         }),
-        invalidatesTags: ["news"],
+        invalidatesTags: ["news/category"],
       }),
       deleteNews: builder.mutation({
         query: (id) => ({
@@ -67,7 +67,7 @@ export const newsSlice = apiSlice
 export const {
   useGetNewsQuery,
   useGetNewsCategoryQuery,
-  useCreateCategoryMutation,
+  useCreateNewsCategoryMutation,
   useCreateNewsMutation,
   useUpdateNewsCategoryMutation,
   useUpdateNewsMutation,

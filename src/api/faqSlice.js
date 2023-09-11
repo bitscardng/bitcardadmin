@@ -28,7 +28,7 @@ export const faqSlice = apiSlice
           method: "PATCH",
           body: body.body,
         }),
-        providesTags: ["faq/category"],
+        invalidatesTags: ["faq/category"],
       }),
       updateFaq: builder.mutation({
         query: (body) => ({

@@ -67,6 +67,8 @@ import Bet from "./components/paybills/Bet";
 import Electricity from "./components/paybills/Electricity";
 import Cable from "./components/paybills/Cable";
 import TicketingDetails from "./components/ticketing/TicketingDetails";
+import Add from "./components/buyGiftcard/Add";
+import Upload from "./components/buyGiftcard/Upload";
 
 function App() {
   return (
@@ -83,6 +85,8 @@ function App() {
           <Route path="/email1preview" element={<Email1 />} />
           <Route path="/Admin-control" element={<AdminControl />} />
           <Route path="/buy-gift-card" element={<BuyGiftCard />} />
+          <Route path="/buy-gift-card/adds" element={<Add />} />
+          <Route path="/buy-gift-card/uploads" element={<Upload />} />
           <Route path="/sell-gift-card" element={<SellGiftCard />} />
           <Route path="/p2p-tranx" element={<P2P />} />
           <Route path="/virtual-card" element={<VirtualCard />} />

@@ -40,7 +40,7 @@ const TicketingDetails = () => {
 
   return (
     <div>
-      <div className="relative mb-4">
+      <div>
         <Link
           to="/ticketing/all activies"
           className="absolute p-2 ml-2 rounded-full cursor-pointer bg-sec text-active hover:bg-active hover:text-sec"
@@ -69,7 +69,7 @@ const TicketingDetails = () => {
           ))}
         </div>
 
-        <div className="justify-center gap-3  lg:flex">
+        <div className="justify-center gap-3 lg:flex">
           <div className="p-2 text-black bg-white round-full rounded-2xl">
             <div className="p-2">
               <div className="p-2">
@@ -125,7 +125,7 @@ const TicketingDetails = () => {
           </div>
 
           <div>
-            <Ticketingstatus/>
+            <Ticketingstatus />
           </div>
         </div>
       </div>

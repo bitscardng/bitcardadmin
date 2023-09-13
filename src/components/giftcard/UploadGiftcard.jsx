@@ -48,14 +48,6 @@ const UploadGiftcard = ({ upload }) => {
   return (
     <div>
       <p className={`${styles.topic} mb-0`}>upload new gift card</p>
-      <div className="flex items-center gap-20 pb-2 text-center">
-        {/* <Search
-          value={search}
-          onChange={(e) => {
-            setSearch(e.target.value);
-          }}
-        /> */}
-      </div>
       <div className="p-4 my-6 border-2 border-sec rounded-2xl">
         <div className="flex flex-row items-end justify-evenly ">
           <div
@@ -97,12 +89,12 @@ const UploadGiftcard = ({ upload }) => {
 
         <div className="p-4 pt-8">
           <p className="pb-2 font-bold text-start text-active">
-            Country / Flag( Multi-Select)
+            Country / Flag ( Multi-Select )
           </p>
           <div className={`${style.columnBox}`}>
             {country.map((item, i) => {
               return (
-                <div className="flex items-center justify-start gap-2">
+                <div className="flex items-center justify-start gap-2" key={i}>
                   <input
                     type="radio"
                     name=""
@@ -136,7 +128,7 @@ const UploadGiftcard = ({ upload }) => {
           <div className={`${style.columnBox}`}>
             {giftCard.map((item, i) => {
               return (
-                <div className="flex items-center justify-start gap-2 ">
+                <div className="flex items-center justify-start gap-2 " key={i}>
                   <input
                     type="radio"
                     name=""

@@ -24,7 +24,7 @@ const CryptoRate = () => {
             <form className="flex items-center justify-between py-2 text-center">
               <p className="flex items-center justify-center pl-3 m-1 text-xl font-semibold rounded-full bg-sec">
                 Selling Profit
-                <span className="w-10 h-10 p-2 ml-4 text-black bg-white rounded-r-full">
+                <span className="h-10 p-2 ml-4 text-black bg-white rounded-r-full min-w-[3pc]">
                   {amount.sell}
                 </span>
               </p>
@@ -36,7 +36,7 @@ const CryptoRate = () => {
               </div>
               <p className="flex items-center justify-center pl-3 m-1 text-xl font-semibold rounded-full bg-sec">
                 Buying Profit
-                <span className="w-10 h-10 p-2 ml-4 text-black bg-white rounded-r-full">
+                <span className="h-10 p-2 ml-4 text-black bg-white rounded-r-full min-w-[3pc] ">
                   {amount.buy}
                 </span>
               </p>
@@ -81,6 +81,7 @@ const CryptoRate = () => {
           </div>
         </div>
       </div>
+
       {modalOpen && (
         <Modal
           closeModal={() => {

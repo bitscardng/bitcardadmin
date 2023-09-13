@@ -10,7 +10,7 @@ const menu = [
   { name: "news", link: "/news", count: "" },
   { name: "FAQ", link: "/faq", count: "" },
   { name: "USD withdrawal", link: "/usd-withdraw", count: "" },
-  { name: "NGN withdrawal", link: "/ngn-withdraw", count: "" },
+  { name: "NGN withdrawal", link: "/ngn-withdraw", count: "5" },
   { name: "GHS withdrawal", link: "/ghs-withdraw", count: "" },
   { name: "FX Rate", link: "/fx-Rate", count: "" },
   { name: "Crypto Rate", link: "/crypto-Rate", count: "" },

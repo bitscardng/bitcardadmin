@@ -48,14 +48,6 @@ const UploadGiftcard = ({ upload }) => {
   return (
     <div>
       <p className={`${styles.topic} mb-0`}>upload new gift card</p>
-      <div className="flex items-center gap-20 pb-2 text-center">
-        {/* <Search
-          value={search}
-          onChange={(e) => {
-            setSearch(e.target.value);
-          }}
-        /> */}
-      </div>
       <div className="p-4 my-6 border-2 border-sec rounded-2xl">
         <div className="flex flex-row items-end justify-evenly ">
           <div

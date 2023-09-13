@@ -15,7 +15,7 @@ const BuyGiftCard = ({ handleInputChange }) => {
   // paginations start
   const [pageNumber, setPageNumber] = useState(0);
   //data view page is datasperpage so you can change the number 5 to what you want...
-  const datasPerPage = 5;
+  const datasPerPage = 10;
   const pageVisited = pageNumber * datasPerPage;
   const pageCount = Math.ceil(datas.length / datasPerPage);
   const changePage = ({ selected }) => {
@@ -93,14 +93,14 @@ const BuyGiftCard = ({ handleInputChange }) => {
             className={` absolute duration-500 ${open ? "h-fit" : "hidden"}`}
           >
             <ul className={`p-2 rounded-2xl w-72 bg-sec text-center`}>
-              <Link to="/buy-gift-card/upload">
+              <Link to="/buy-gift-card/uploads">
                 <p
                   className={`w-full p-2 my-1 hover:bg-active text-[#9CA3AF]  hover:text-white duration-500 cursor-pointer rounded-xl`}
                 >
                   Upload
                 </p>
               </Link>
-              <Link to="/buy-gift-card/add">
+              <Link to="/buy-gift-card/adds">
                 <p
                   className={`w-full p-2 my-1 hover:bg-active text-[#9CA3AF]  hover:text-white duration-500 cursor-pointer rounded-xl`}
                 >

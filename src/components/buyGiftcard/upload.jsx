@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { MdCloudUpload } from "react-icons/md";
+import { TiArrowBackOutline } from "react-icons/ti";
 import style from "../../styles.module.css";
 import { aus, usa, uk, spain, switz, can, ger } from "../../assets";
 import { styles } from "../../styles";
+import { Link } from "react-router-dom";
 
 const giftCard = [
   { id: "rad1", value: "E-code" },
@@ -36,7 +38,6 @@ const denomination = [
 ];
 
 const Upload = ({ upload }) => {
-  const [search, setSearch] = useState("");
   const [uploadImage, setUploadImage] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
 
@@ -47,14 +48,15 @@ const Upload = ({ upload }) => {
 
   return (
     <div>
-      <p className={`${styles.topic} mb-0`}>upload new gift card</p>
-      <div className="flex items-center gap-20 pb-2 text-center">
-        {/* <Search
-          value={search}
-          onChange={(e) => {
-            setSearch(e.target.value);
-          }}
-        /> */}
+      <div>
+        <Link
+          to="../"
+          relative="path"
+          className="absolute p-2 ml-2 rounded-full cursor-pointer bg-sec text-active hover:bg-active hover:text-sec"
+        >
+          <TiArrowBackOutline />
+        </Link>
+        <p className={`${styles.topic} mb-0`}>upload new gift card</p>
       </div>
       <div className="p-4 my-6 border-2 border-sec rounded-2xl">
         <div className="flex flex-row items-end justify-evenly ">

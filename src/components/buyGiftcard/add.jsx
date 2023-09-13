@@ -4,6 +4,8 @@ import { giftCard } from "../../constant";
 import { FiArrowDownCircle } from "react-icons/fi";
 import ReactPaginate from "react-paginate";
 import { itunes } from "../../assets";
+import { Link } from "react-router-dom";
+import { TiArrowBackOutline } from "react-icons/ti";
 
 const cardType = [
   { cardTypeData: "E-code" },
@@ -92,7 +94,16 @@ const Add = () => {
 
   return (
     <div className="capitalize">
-      <p className={`${styles.topic} mb-0`}>add new gift card</p>
+      <div>
+        <Link
+          to="../"
+          relative="path"
+          className="absolute p-2 ml-2 rounded-full cursor-pointer bg-sec text-active hover:bg-active hover:text-sec"
+        >
+          <TiArrowBackOutline />
+        </Link>
+        <p className={`${styles.topic} mb-0`}>add new gift card</p>
+      </div>
       <div className="flex items-center justify-between p-2">
         <p className="text-2xl font-bold text-end">Add Rate</p>
         <div className="flex items-center justify-between gap-8">
@@ -116,7 +127,6 @@ const Add = () => {
           </p>
         </div>
       </div>
-
       <div className="flex w-full overflow-x-auto border">
         <div>
           <h1 className="p-2 text-xl font-semibold text-center">itunes</h1>

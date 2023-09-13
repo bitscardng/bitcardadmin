@@ -8,7 +8,7 @@ const Merchant = () => {
   // paginations start
   const [pageNumber, setPageNumber] = useState(0);
   //data view page is datasperpage so you can change the number 5 to what you want...
-  const datasPerPage = 5;
+  const datasPerPage = 10;
   const pageVisited = pageNumber * datasPerPage;
   const pageCount = Math.ceil(datas.length / datasPerPage);
   const changePage = ({ selected }) => {

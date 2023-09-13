@@ -37,7 +37,7 @@ const denomination = [
   { id: "rad08", value: "501-5000" },
 ];
 
-const Upload = ({ upload }) => {
+const UploadBuyGiftCard = ({ upload }) => {
   const [uploadImage, setUploadImage] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
 
@@ -190,4 +190,4 @@ const Upload = ({ upload }) => {
   );
 };
 
-export default Upload;
+export default UploadBuyGiftCard;

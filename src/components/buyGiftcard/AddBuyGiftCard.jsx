@@ -38,7 +38,7 @@ const denomination = [
   { data: "501 - 5000" },
 ];
 
-const Add = () => {
+const AddBuyGiftCard = () => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState({});
   const [selectedCardType, setCardTypeSelected] = useState({});
@@ -308,4 +308,4 @@ const Add = () => {
   );
 };
 
-export default Add;
+export default AddBuyGiftCard;

@@ -5,7 +5,6 @@ import {
   BsSearch,
   BsArrowLeftCircle,
 } from "react-icons/bs";
-import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import menus from "../constant/sideBar";
 import { FaTimes } from "react-icons/fa";
@@ -19,39 +18,12 @@ const Sidebar = ({ children }) => {
   const [subMenuOpen, setSubMenuOpen] = useState(false);
 
   return (
-    <div className="flex w-full h-screen">
-      <div className="h-screen w-[240px] mr-2 relative">
-        <div className="flex flex-col">
-          <Link
-            to="/dashboard"
-            onClick={() => {
-              setActive("");
-              window.scrollTo(0, 0);
-            }}
-            className="inline-flex"
-          >
-            <div className="flex items-center gap-2 p-1 px-10 m-4 text-center rounded-full bg-sec">
-              <img src={logo} alt="bitcard" />
-              <p> BITCARD</p>
-            </div>
-          </Link>
-          <div className="flex items-center justify-between p-2 px-5 py-3 text-lg duration-300 bg-sec">
-            <div
-              className="duration-300 cursor-pointer"
-              onClick={() => {
-                setActiveSearch(true);
-              }}
-            >
-              <BsSearch className="" />
-            </div>
-            <div>
-              <BsArrowLeftCircle className="" />
-            </div>
-          </div>
-        </div>
-
+    <section className="flex w-full h-[100vh]">
+      <div
+        className={` mr-2  ${open ? "w-60" : "w-20"} relative duration-700 `}
+      >
         {activeSearch && (
-          <div className="absolute flex items-center justify-between w-full -mt-[44px] bg-active">
+          <div className="absolute z-10 flex items-center justify-between w-full bg-active">
             <input
               type="text"
               placeholder="Search here..."
@@ -70,57 +42,103 @@ const Sidebar = ({ children }) => {
           </div>
         )}
 
-        <div className="mt-3 border-b border-r rounded-br-3xl border-sec">
-          <ul className="relative flex flex-col overflow-y-scroll h-[83vh]">
-            {menus
-              .filter((menu) => {
-                return search.toLowerCase() === ""
-                  ? menu
-                  : menu.name.toLowerCase().includes(search);
-              })
-              .map((menu, index) => (
-                <div className="h-fit">
+        <div
+          className={` border-b border-r rounded-br-3xl border-sec ${
+            open ? "w-60" : "w-20"
+          } relative duration-700 `}
+        >
+          <div className="sticky flex items-center justify-between gap-4 p-2 px-5 py-3 text-lg duration-300 bg-sec">
+            <div
+              className="duration-300 cursor-pointer"
+              onClick={() => {
+                setActiveSearch(true);
+                setOpen(true);
+              }}
+            >
+              <BsSearch className="" />
+            </div>
+            <div
+              className={`cursor-pointer duration-300 rounded-full bg-primary text-active text-2xl ${
+                !open && "rotate-180"
+              }
+              `}
+              onClick={() => setOpen(!open)}
+            >
+              <BsArrowLeftCircle className="" />
+            </div>
+          </div>
+
+          <div className={`mt-3 pr-2 relative  h-[90vh] overflow-scroll`}>
+            <ul className="capitalize ">
+              {menus
+                .filter((menu) => {
+                  return search.toLowerCase() === ""
+                    ? menu
+                    : menu.name.toLowerCase().includes(search);
+                })
+                .map((menu, index) => (
                   <Link to={menu.link} key={index}>
-                    <li className="relative">
-                      {menu.count && (
-                        <div
-                          className={`w-[32px] p-1 rounded-full bg-[#ED1E79] 
-                    text-white text-center left-48 -top-6 absolute`}
-                        >
-                          {menu.count}
-                        </div>
-                      )}
+                    <li className="relative flex items-center justify-center p-2 group">
                       <div
-                        className={`${
+                        className={`flex items-center justify-between p-3 my-1 w-full max-h-14 rounded-full hover:bg-active group ${
                           active === menu.name ? "bg-active" : "bg-sec"
-                        } flex p-3 hover:bg-active m-4 rounded-full 
-                    justify-between items-center text-center duration-500`}
+                        } `}
                         onClick={() => setActive(menu.name)}
                       >
                         <div className="p-2 text-center rounded-full bg-[#3b3a62]">
                           <BsRobot className="text-[#767DFF]" />
                         </div>
-                        <div className="capitalize ">{menu.name}</div>
-                        {/*title hover design below */}
-                        <span className={`${open && "hidden"}`}>
-                          {menu.name}
-                        </span>
-                        {menu.subMenu && open && (
-                          <div onClick={() => setSubMenuOpen(!subMenuOpen)}>
-                            <BsChevronDown
-                              className={`${
-                                subMenuOpen && "rotate-180"
-                              } font-bold`}
-                            />
+
+                        <div
+                          className={` duration-500 ${
+                            !open && "opacity-0 translate-x-28 overflow-hidden"
+                          }`}
+                          style={{
+                            transitionDelay: `${index + 3}00ms`,
+                          }}
+                        >
+                          <p className={`duration-500`}>{menu.name}</p>
+                        </div>
+
+                        {menu.count && (
+                          <div
+                            className={`w-[32px] p-1 rounded-full bg-[#ED1E79] 
+                    text-white text-center left-[200px] -top-1 absolute`}
+                          >
+                            {menu.count}
                           </div>
                         )}
+                        {menu.subMenu && open && (
+                          <BsChevronDown
+                            className={`${
+                              subMenuOpen && "rotate-180 duration-300"
+                            }`}
+                            onClick={() => setSubMenuOpen(!subMenuOpen)}
+                          />
+                        )}
                       </div>
+
+                      {/*title hover design below */}
+                      <span
+                        className={`
+                      ${open && "hidden"}   
+                          absolute left-48 bg-active font-semibold capitalize z-10
+                      whitespace-pre rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden
+                      group-hover:px-2 group-hover:py-1 group-hover:left-12 group-hover:duration-300 group-hover:w-fit `}
+                        style={{ zIndex: "100" }}
+                      >
+                        {menu.name}
+                      </span>
                     </li>
 
-                    {/* Sub menu contain */}
                     <div>
                       {menu.subMenu && subMenuOpen && open && (
-                        <ul className="flex flex-col items-center justify-center m-4 mx-8 border rounded-3xl">
+                        <ul
+                          className="flex flex-col items-center justify-center m-4 mx-8 duration-700 border rounded-3xl "
+                          style={{
+                            transitionDelay: `${index + 3}00ms`,
+                          }}
+                        >
                           {menu.subMenu.map((subMenu, index) => (
                             <Link to={subMenu.link} key={index}>
                               <li className="flex w-full p-2 px-8 m-1 cursor-pointer hover:bg-active hover:rounded-md">
@@ -132,15 +150,14 @@ const Sidebar = ({ children }) => {
                       )}
                     </div>
                   </Link>
-                </div>
-              ))}
-          </ul>
+                ))}
+            </ul>
+          </div>
         </div>
       </div>
-      <div className="flex-1 w-full min-h-screen overflow-y-scroll">
-        {children}
-      </div>
-    </div>
+
+      <div className="flex-1 h-screen overflow-scroll ">{children}</div>
+    </section>
   );
 };
 

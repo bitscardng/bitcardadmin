@@ -7,6 +7,7 @@ import InputGroup from "./InputGroup";
 import { toast } from "react-toastify";
 
 const SignInOtp = () => {
+  const [isLoading, setIsLoading] = useState(false); // loading state
   const [data, setData] = useState({
     0: "",
     1: "",
@@ -42,7 +43,16 @@ const SignInOtp = () => {
                   setData={setData}
                   verifyInput={verifyInput}
                 />
-                <div className={`${styles.btn} ml-0`}>Submit</div>
+                {!isLoading && (
+                  <button type="submit" className={`${styles.btn} ml-0`}>
+                    Submit
+                  </button>
+                )}
+                {isLoading && (
+                  <button disabled>
+                    <span className="loading loading-dots loading-lg"></span>
+                  </button>
+                )}
               </div>
             </form>
           </div>

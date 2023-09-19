@@ -19,6 +19,7 @@ const initialState = {
 const SignIn = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
+  const [isLoading, setIsLoading] = useState(false); // loading state
   const navigate = useNavigate();
   const [formData, setformData] = useState(initialState);
   const [check, setCheck] = useState(false);
@@ -113,9 +114,17 @@ const SignIn = () => {
                     <p>Remember me</p>
                   </div>
                 </div>
-                <button type="submit" className={`${styles.btn} ml-0`}>
-                  Sign in
-                </button>
+                {!isLoading && (
+                  <button type="submit" className={`${styles.btn} ml-0`}>
+                    Sign in
+                  </button>
+                )}
+                {isLoading && (
+                  <button disabled>
+                    <span className="loading loading-dots loading-lg"></span>
+                  </button>
+                )}
+
                 <Link
                   to="/forgot-password"
                   className="flex items-center gap-2 capitalize duration-300"

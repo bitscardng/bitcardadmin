@@ -13,11 +13,11 @@ const Authlayout = () => {
   //     });
   // }, []);
   return (
-    <Sidebar>
-      <Layout>
+    <Layout>
+      <Sidebar>
         <Outlet />
-      </Layout>
-    </Sidebar>
+      </Sidebar>
+    </Layout>
   );
 };
 

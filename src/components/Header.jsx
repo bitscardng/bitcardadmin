@@ -2,8 +2,9 @@ import React from "react";
 import { BsRobot } from "react-icons/bs";
 import { FiUser } from "react-icons/fi";
 import DateTime from "./DateTime";
+import logo from "../assets/logo.png";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../redux/actions/auth.actions";
 import { selectUser } from "../redux/reducers/auth.reducer";
 
@@ -26,6 +27,12 @@ const Header = () => {
 
   return (
     <div className="sticky top-0 z-20 flex justify-between w-full py-4 pr-3 bg-primary">
+      <Link to="/dashboard" className="inline-flex">
+        <div className="flex items-center justify-center gap-2 p-1 mx-2 text-center rounded-full w-60 bg-sec">
+          <img src={logo} alt="bitcard" />
+          <p> BITCARD</p>
+        </div>
+      </Link>
       <div className="flex flex-row items-center justify-between w-full p-4 mr-3 rounded-full bg-sec">
         <p>
           <DateTime />

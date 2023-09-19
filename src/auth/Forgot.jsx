@@ -6,6 +6,7 @@ import { TiArrowBack } from "react-icons/ti";
 
 const Forgot = () => {
   const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // loading state
 
   return (
     <div class="hero min-h-screen">
@@ -40,7 +41,16 @@ const Forgot = () => {
                     <p className=" btn-link">Sign in</p>
                   </Link>
                 </div>
-                <div className={`${styles.btn} ml-0`}>Submit</div>
+                {!isLoading && (
+                  <button type="submit" className={`${styles.btn} ml-0`}>
+                    Submit
+                  </button>
+                )}
+                {isLoading && (
+                  <button disabled>
+                    <span className="loading loading-dots loading-lg"></span>
+                  </button>
+                )}
               </div>
             </form>
           </div>

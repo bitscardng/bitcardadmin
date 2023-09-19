@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 import { styles } from "../styles";
 import { Modal } from "../components";
-
-const rate = [
-  { coin: "BTC", buying: "749.5", selling: "770", market: "29,012.23" },
-  { coin: "BTC", buying: "747.5", selling: "774", market: "28,000.23" },
-];
+import CryptoRateModal from "../components/cryptoTranx/CrytpoRateModal";
+import { useGetCryptoRatesQuery } from "../api/cryptoQueries";
+import { useGetMarketRateQuery } from "../api/marketApiSlice";
 
 const CryptoRate = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [amount, setAmount] = useState([]);
+  const { data, isLoading } = useGetCryptoRatesQuery();
+  const { data: marketRates } = useGetMarketRateQuery();
 
   const handleSubmit = (newFormState) => {
     setAmount(...amount, newFormState);
   };
-
   return (
     <div>
       <p className={`${styles.topic} mb-4`}>crypto rate</p>
@@ -42,7 +41,6 @@ const CryptoRate = () => {
               </p>
             </form>
             <table className="w-full ">
-              {/* head */}
               <thead className="">
                 <tr className="rounded-full">
                   <th className="p-2 text-xl font-semibold border"></th>
@@ -55,41 +53,57 @@ const CryptoRate = () => {
                 </tr>
               </thead>
               <tbody>
-                {rate.map((data, index) => {
-                  return (
-                    <tr className="text-center hover:bg-sec" key={index}>
-                      <th className="p-1 px-2 text-xl duration-500 border">
-                        {index + 1}
-                      </th>
-                      <td className="p-1 px-2 text-xl font-thin duration-500 border">
-                        {data.coin}
-                      </td>
-                      <td className="p-1 px-2 text-xl font-thin duration-500 border">
-                        {data.buying}
-                      </td>
-                      <td className="p-1 px-2 text-xl font-thin duration-500 border">
-                        {data.selling} / $
-                      </td>
-                      <td className="p-1 px-2 text-xl font-thin duration-500 border">
-                        {"29.012.23"}
-                      </td>
-                    </tr>
-                  );
-                })}
+                <tr className="text-center hover:bg-sec">
+                  <th className="p-1 px-2 text-xl duration-500 border">1</th>
+                  <td className="p-1 px-2 text-xl font-thin duration-500 border">
+                    BTC
+                  </td>
+                  <td className="p-1 px-2 text-xl font-thin duration-500 border">
+                    {data?.data?.btc?.buy} / $
+                  </td>
+                  <td className="p-1 px-2 text-xl font-thin duration-500 border">
+                    {data?.data?.btc?.sell} / $
+                  </td>
+                  <td className="p-1 px-2 text-xl font-thin duration-500 border">
+                    {marketRates?.bitcoin?.usd} / btc
+                  </td>
+                </tr>
+                <tr className="text-center hover:bg-sec">
+                  <th className="p-1 px-2 text-xl duration-500 border">2</th>
+                  <td className="p-1 px-2 text-xl font-thin duration-500 border">
+                    USDT
+                  </td>
+                  <td className="p-1 px-2 text-xl font-thin duration-500 border">
+                    {data?.data?.usdt?.buy} / $
+                  </td>
+                  <td className="p-1 px-2 text-xl font-thin duration-500 border">
+                    {data?.data?.usdt?.sell} / $
+                  </td>
+                  <td className="p-1 px-2 text-xl font-thin duration-500 border">
+                    {marketRates?.tether?.usd} / usdt
+                  </td>
+                </tr>
+                <tr className="text-center hover:bg-sec">
+                  <th className="p-1 px-2 text-xl duration-500 border">3</th>
+                  <td className="p-1 px-2 text-xl font-thin duration-500 border">
+                    USD
+                  </td>
+                  <td className="p-1 px-2 text-xl font-thin duration-500 border">
+                    {data?.data?.usd?.buy} / $
+                  </td>
+                  <td className="p-1 px-2 text-xl font-thin duration-500 border">
+                    {data?.data?.usd?.sell} / $
+                  </td>
+                  <td className="p-1 px-2 text-xl font-thin duration-500 border">
+                    {marketRates?.usd?.usd} / $
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
         </div>
       </div>
-
-      {modalOpen && (
-        <Modal
-          closeModal={() => {
-            setModalOpen(false);
-          }}
-          onSubmit={handleSubmit}
-        />
-      )}
+      <CryptoRateModal open={modalOpen} setOpen={setModalOpen} />
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { apiSlice } from "./apiSlice";
 
 export const cryptoQueries = apiSlice
   .enhanceEndpoints({
-    addTagTypes: ["transfer"],
+    addTagTypes: ["transfer", "crypto-rates"],
   })
   .injectEndpoints({
     endpoints: (builder) => ({
@@ -18,6 +18,7 @@ export const cryptoQueries = apiSlice
           method: "PATCH",
           body: { profit },
         }),
+        invalidatesTags: ["crypto-rates"],
       }),
       btcSellProfit: builder.mutation({
         query: (profit) => ({
@@ -25,6 +26,7 @@ export const cryptoQueries = apiSlice
           method: "PATCH",
           body: { profit },
         }),
+        invalidatesTags: ["crypto-rates"],
       }),
       usdtBuyProfit: builder.mutation({
         query: (profit) => ({
@@ -32,6 +34,7 @@ export const cryptoQueries = apiSlice
           method: "PATCH",
           body: { profit },
         }),
+        invalidatesTags: ["crypto-rates"],
       }),
       usdtSellProfit: builder.mutation({
         query: (profit) => ({
@@ -39,6 +42,23 @@ export const cryptoQueries = apiSlice
           method: "PATCH",
           body: { profit },
         }),
+        invalidatesTags: ["crypto-rates"],
+      }),
+      usdBuyProfit: builder.mutation({
+        query: (profit) => ({
+          url: "crypto-transactions/usd-buy-profit",
+          method: "PATCH",
+          body: { profit },
+        }),
+        invalidatesTags: ["crypto-rates"],
+      }),
+      usdSellProfit: builder.mutation({
+        query: (profit) => ({
+          url: "crypto-transactions/usd-sell-profit",
+          method: "PATCH",
+          body: { profit },
+        }),
+        invalidatesTags: ["crypto-rates"],
       }),
       approveTransfer: builder.mutation({
         query: (id) => ({
@@ -54,6 +74,12 @@ export const cryptoQueries = apiSlice
         }),
         invalidatesTags: ["transfer"],
       }),
+      getCryptoRates: builder.query({
+        query: () => ({
+          url: "crypto-transactions/bitscard-rates",
+        }),
+        providesTags: ["crypto-rates"],
+      }),
     }),
   });
 
@@ -65,4 +91,7 @@ export const {
   useUsdtBuyProfitMutation,
   useGetTransferListQuery,
   useUsdtSellProfitMutation,
+  useUsdBuyProfitMutation,
+  useUsdSellProfitMutation,
+  useGetCryptoRatesQuery,
 } = cryptoQueries;

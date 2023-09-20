@@ -64,14 +64,20 @@ const CryptoTable = () => {
     () => [
       {
         title: "email",
-        dataIndex: "email",
+        dataIndex: "user_email",
         render: (email) => `${email}`,
         width: "20%",
       },
       {
         title: "Type",
-        dataIndex: "type",
+        dataIndex: "transaction_type",
         render: (type) => `${type}`,
+        width: "20%",
+      },
+      {
+        title: "Wallet Address",
+        dataIndex: "wallet_address",
+        render: (address) => `${address}`,
         width: "20%",
       },
       {
@@ -176,7 +182,7 @@ const CryptoTable = () => {
         action={handleVerifyDetails}
         data={id}
       >
-        <p>Approve kyc details</p>
+        <p>Approve Crypto Transaction</p>
       </ConfirmModal>
       <ConfirmModal
         open={openDecline}
@@ -185,7 +191,7 @@ const CryptoTable = () => {
         action={handleDeclineDetails}
         data={id}
       >
-        <p>Decline kyc details</p>
+        <p>Decline Crypto Transaction</p>
       </ConfirmModal>
     </>
   );

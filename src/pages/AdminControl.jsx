@@ -27,11 +27,11 @@ const AdminControl = () => {
       .unwrap()
       .then(() => {
         toast.success("user created successfully");
+        e.target.reset();
       })
       .catch((err) => {
         toast.error(err.message || err.data.message || "error creating user");
       });
-    e.target.reset();
   };
   return (
     <div className="w-[80%] mx-auto">

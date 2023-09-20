@@ -3,17 +3,17 @@ import { BsRobot } from "react-icons/bs";
 import { FiUser } from "react-icons/fi";
 import DateTime from "./DateTime";
 import logo from "../assets/logo.png";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { logout } from "../redux/actions/auth.actions";
 import { selectUser } from "../redux/reducers/auth.reducer";
+import { useLazyLogoutQuery } from "../api/authQueries";
 
 const Header = () => {
-  const dispatch = useDispatch();
+  const [logout] = useLazyLogoutQuery();
   const navigate = useNavigate();
   const name = useSelector(selectUser).name;
   const handleLogout = () => {
-    dispatch(logout())
+    logout()
       .unwrap()
       .then(() => {
         localStorage.removeItem("refreshToken");

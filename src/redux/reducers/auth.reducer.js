@@ -18,7 +18,11 @@ const initialState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    setOtp: (state, action) => {
+      state.otp = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(login.pending, (state) => {
@@ -64,4 +68,5 @@ const authSlice = createSlice({
 
 export const selectisLoggedIn = (state) => state.auth.isLoggedIn;
 export const selectUser = (state) => state.auth.user;
+export const { setOtp } = authSlice.actions;
 export default authSlice.reducer;

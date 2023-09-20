@@ -68,7 +68,9 @@ const Sidebar = ({ children }) => {
             </div>
           </div>
 
-          <div className={`mt-3 pr-2 relative  h-[90vh] overflow-scroll`}>
+          <div
+            className={`mt-3 pr-2 relative  h-[90vh] overflow-scroll .noscroll`}
+          >
             <ul className="capitalize ">
               {menus
                 .filter((menu) => {

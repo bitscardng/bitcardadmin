@@ -4,9 +4,8 @@ import { FiUser } from "react-icons/fi";
 import { HiOutlineMail } from "react-icons/hi";
 import { BiLockOpen } from "react-icons/bi";
 import { BsTelephone } from "react-icons/bs";
-import { useDispatch } from "react-redux";
-import { createAdmin } from "../redux/actions/auth.actions";
 import { toast } from "react-toastify";
+import { useCreateAdminMutation } from "../api/authQueries";
 
 const denomination = [
   { id: "rad01", name: "Admin", value: "admin" },
@@ -14,8 +13,8 @@ const denomination = [
 ];
 
 const AdminControl = () => {
+  const [createAdmin, { isLoading }] = useCreateAdminMutation();
   const [formData, setFormData] = useState({});
-  const dispatch = useDispatch();
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => {
@@ -24,13 +23,13 @@ const AdminControl = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createAdmin(formData))
+    createAdmin(formData)
       .unwrap()
       .then(() => {
         toast.success("user created successfully");
       })
       .catch((err) => {
-        toast.error(err.message);
+        toast.error(err.message || err.data.message || "error creating user");
       });
     e.target.reset();
   };

@@ -4,12 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { styles } from "../styles";
 import PasswordInput from "../components/PasswordInput";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../redux/actions/auth.actions";
-import { AsyncActions } from "../redux/actionTypes/auth.actionTypes";
+import { setOtp } from "../redux/reducers/auth.reducer";
 import { toast } from "react-toastify";
 import Loader from "../components/Loader";
 import { validateEmail } from "../constant/validators";
 import { TiArrowForward } from "react-icons/ti";
+import { useLoginMutation } from "../api/authQueries";
 
 const initialState = {
   email: localStorage.getItem("email") ? localStorage.getItem("email") : "",
@@ -17,9 +17,8 @@ const initialState = {
 };
 
 const SignIn = () => {
+  const [login, { isLoading }] = useLoginMutation();
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
-  const [isLoading, setIsLoading] = useState(false); // loading state
   const navigate = useNavigate();
   const [formData, setformData] = useState(initialState);
   const [check, setCheck] = useState(false);
@@ -55,11 +54,12 @@ const SignIn = () => {
     } else if (!check) {
       localStorage.removeItem("email");
     }
-    await dispatch(login(userData))
+    await login(userData)
       .unwrap()
       .then((action) => {
         sessionStorage.setItem("token", action?.data?.tokens.accessToken);
         localStorage.setItem("refreshToken", action?.data?.tokens.refreshToken);
+        dispatch(setOtp(action?.data?.otp));
         toast.success("Enter verification Otp!");
         navigate("/sign-in-otp");
       })
@@ -70,7 +70,7 @@ const SignIn = () => {
 
   return (
     <div className="min-h-screen hero">
-      {auth.isLoading === AsyncActions.isLoading && <Loader />}
+      {isLoading && <Loader />}
       <div className="flex-col gap-20 hero-content lg:flex-row-reverse">
         <img src={robot} className="max-w-md " />
         <div>

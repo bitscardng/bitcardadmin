@@ -3,7 +3,7 @@ import { BsRobot } from "react-icons/bs";
 import { FiUser } from "react-icons/fi";
 import DateTime from "./DateTime";
 import logo from "../assets/logo.png";
-import { useSelector } from "react-redux";
+
 import { Link, useNavigate } from "react-router-dom";
 import { selectUser } from "../redux/reducers/auth.reducer";
 import { useLazyLogoutQuery } from "../api/authQueries";
@@ -11,7 +11,7 @@ import { useLazyLogoutQuery } from "../api/authQueries";
 const Header = () => {
   const [logout] = useLazyLogoutQuery();
   const navigate = useNavigate();
-  const name = useSelector(selectUser).name;
+
   const handleLogout = () => {
     logout()
       .unwrap()
@@ -39,7 +39,7 @@ const Header = () => {
         </p>
         <div className="flex items-center gap-1">
           <FiUser className="text-2xl font-bold text-active" />
-          Welcome, <p className="text-white capitalize">{name}</p>
+          Welcome, <p className="text-white capitalize"></p>
         </div>
       </div>
       <button

@@ -63,7 +63,7 @@ const CryptoTable = () => {
   const columns = useMemo(
     () => [
       {
-        title: "email",
+        title: "Email",
         dataIndex: "user_email",
         render: (email) => `${email}`,
         width: "20%",
@@ -148,7 +148,7 @@ const CryptoTable = () => {
     // }
   };
   return (
-    <>
+    <div className="capitalize ">
       <ConfigProvider
         theme={{
           token: {
@@ -193,7 +193,7 @@ const CryptoTable = () => {
       >
         <p>Decline Crypto Transaction</p>
       </ConfirmModal>
-    </>
+    </div>
   );
 };
 export default CryptoTable;

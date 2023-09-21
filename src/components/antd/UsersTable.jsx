@@ -4,11 +4,15 @@ import { Table } from "antd";
 import { useGetUsersQuery } from "../../api/usersQueries";
 import { ConfigProvider } from "antd";
 import { useNavigate } from "react-router-dom";
+
+
 const getRandomuserParams = (params) => ({
   results: params.pagination?.pageSize,
   page: params.pagination?.current,
   ...params,
 });
+
+
 const UsersTable = () => {
   const navigate = useNavigate();
   const [tableParams, setTableParams] = useState({
@@ -109,7 +113,7 @@ const UsersTable = () => {
     });
   };
   return (
-    <>
+    <div className="capitalize ">
       <ConfigProvider
         theme={{
           token: {
@@ -136,7 +140,7 @@ const UsersTable = () => {
           scroll={{ x: 2000, y: 1200 }}
         />
       </ConfigProvider>
-    </>
+    </div>
   );
 };
 

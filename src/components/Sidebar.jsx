@@ -43,11 +43,11 @@ const Sidebar = ({ children }) => {
         )}
 
         <div
-          className={` border-b border-r rounded-br-3xl border-sec ${
-            open ? "w-60" : "w-20"
-          } relative duration-700 `}
+          className={` border-b border-r rounded-br-3xl border-sec
+          ${open ? "w-60" : "w-20"} 
+          relative duration-700 `}
         >
-          <div className="sticky flex items-center justify-between gap-4 p-2 px-5 py-3 text-lg duration-300 bg-sec">
+          <div className="sticky flex items-center justify-between gap-4 p-3 text-lg duration-300 bg-sec">
             <div
               className="duration-300 cursor-pointer"
               onClick={() => {
@@ -68,9 +68,7 @@ const Sidebar = ({ children }) => {
             </div>
           </div>
 
-          <div
-            className={`mt-3 pr-2 relative  h-[90vh] overflow-scroll .noscroll`}
-          >
+          <div className={`mt-3 pr-2 relative  h-[94vh] overflow-y-scroll noscroll`}>
             <ul className="capitalize ">
               {menus
                 .filter((menu) => {
@@ -87,7 +85,7 @@ const Sidebar = ({ children }) => {
                         } `}
                         onClick={() => setActive(menu.name)}
                       >
-                        <div className="p-2 text-center rounded-full bg-[#3b3a62]">
+                        <div className="p-2 text-center rounded-full bg-[#3b3a62] ">
                           <BsRobot className="text-[#767DFF]" />
                         </div>
 
@@ -104,12 +102,26 @@ const Sidebar = ({ children }) => {
 
                         {menu.count && (
                           <div
-                            className={`w-[32px] p-1 rounded-full bg-[#ED1E79] 
+                            className={`  ${
+                              !open && "hidden"
+                            }  w-[32px] p-1 rounded-full bg-[#ED1E79] 
                     text-white text-center left-[200px] -top-1 absolute`}
                           >
                             {menu.count}
                           </div>
                         )}
+
+                        {menu.count && (
+                          <div
+                            className={`  ${
+                              open && "hidden"
+                            } w-6 -mt-14 ml-6 absolute rounded-full bg-[#ED1E79] 
+                    text-white text-center duration-1000`}
+                          >
+                            {menu.count}
+                          </div>
+                        )}
+
                         {menu.subMenu && open && (
                           <BsChevronDown
                             className={`${
@@ -126,8 +138,7 @@ const Sidebar = ({ children }) => {
                       ${open && "hidden"}   
                           absolute left-48 bg-active font-semibold capitalize z-10
                       whitespace-pre rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden
-                      group-hover:px-2 group-hover:py-1 group-hover:left-12 group-hover:duration-300 group-hover:w-fit `}
-                        style={{ zIndex: "100" }}
+                      group-hover:px-2 group-hover:py-1 group-hover:left-0 group-hover:duration-300 group-hover:w-fit`}
                       >
                         {menu.name}
                       </span>

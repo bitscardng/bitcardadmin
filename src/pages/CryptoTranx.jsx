@@ -3,7 +3,7 @@ import Search from "../components/Search";
 
 const CryptoTranx = () => {
   return (
-    <div>
+    <div className="capitalize ">
       <Search
         // value={}
         onChange={(e) => {

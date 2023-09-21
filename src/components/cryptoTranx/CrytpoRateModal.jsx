@@ -7,7 +7,6 @@ import {
   useUsdtSellProfitMutation,
   useUsdBuyProfitMutation,
   useUsdSellProfitMutation,
-  useGetCryptoRatesQuery,
 } from "../../api/cryptoQueries";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
@@ -35,7 +34,10 @@ const CryptoRateModal = ({ open, setOpen }) => {
       label: `BTC`,
       children: (
         <div className="grid grid-cols-1 w-full gap-[1rem]">
-          <form className="flex justify-between items-end w-full gap-[0.5rem]">
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            className="flex justify-between items-end w-full gap-[0.5rem]"
+          >
             <div className="flex flex-col w-full">
               <label>Buy Profit</label>
               <InputNumber
@@ -62,7 +64,10 @@ const CryptoRateModal = ({ open, setOpen }) => {
               Update
             </Btn>
           </form>
-          <form className="flex justify-between items-end w-full gap-[0.5rem]">
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            className="flex justify-between items-end w-full gap-[0.5rem]"
+          >
             <div className="flex flex-col w-full">
               <label>Sell Profit</label>
               <InputNumber
@@ -97,7 +102,10 @@ const CryptoRateModal = ({ open, setOpen }) => {
       label: `USDT`,
       children: (
         <div className="grid grid-cols-1 w-full gap-[1rem]">
-          <form className="flex justify-between items-end w-full gap-[0.5rem]">
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            className="flex justify-between items-end w-full gap-[0.5rem]"
+          >
             <div className="flex flex-col w-full">
               <label>Buy Profit</label>
               <InputNumber
@@ -125,7 +133,10 @@ const CryptoRateModal = ({ open, setOpen }) => {
               Update
             </Btn>
           </form>
-          <form className="flex justify-between items-end w-full gap-[0.5rem]">
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            className="flex justify-between items-end w-full gap-[0.5rem]"
+          >
             <div className="flex flex-col w-full">
               <label>Sell Profit</label>
               <InputNumber
@@ -160,7 +171,10 @@ const CryptoRateModal = ({ open, setOpen }) => {
       label: `USD`,
       children: (
         <div className="grid grid-cols-1 w-full gap-[1rem]">
-          <form className="flex justify-between items-end w-full gap-[0.5rem]">
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            className="flex justify-between items-end w-full gap-[0.5rem]"
+          >
             <div className="flex flex-col w-full">
               <label>Buy Profit</label>
               <InputNumber
@@ -187,7 +201,10 @@ const CryptoRateModal = ({ open, setOpen }) => {
               Update
             </Btn>
           </form>
-          <form className="flex justify-between items-end w-full gap-[0.5rem]">
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            className="flex justify-between items-end w-full gap-[0.5rem]"
+          >
             <div className="flex flex-col w-full">
               <label>Sell Profit</label>
               <InputNumber

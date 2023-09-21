@@ -139,7 +139,7 @@ const CryptoRateModal = ({ open, setOpen }) => {
             </div>
             <Btn
               onClick={() => {
-                usdtSellProfit(buyUsdt.toString())
+                usdtSellProfit(sellUsdt.toString())
                   .unwrap()
                   .then((res) => {
                     toast.success(res?.message);

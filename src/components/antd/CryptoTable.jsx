@@ -83,8 +83,8 @@ const CryptoTable = () => {
       {
         title: "Amount",
         dataIndex: "amount",
-        render: (amount) => `${amount}`,
-        width: "20%",
+        render: (amount) => `${amount}$`,
+        width: "10%",
       },
       {
         dataIndex: "_id",

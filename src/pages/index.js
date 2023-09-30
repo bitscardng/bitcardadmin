@@ -32,6 +32,7 @@ import Paybills from "./Paybills";
 import BulkSms from "./BulkSms";
 import NewsList from "./NewsList";
 import FaqList from "./FaqList";
+import Chat from "./chat";
 
 export {
   Paybills,
@@ -68,4 +69,5 @@ export {
   NotFound,
   NewsList,
   FaqList,
+  Chat,
 };

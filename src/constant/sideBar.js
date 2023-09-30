@@ -1,5 +1,6 @@
 const menu = [
   { name: "Dashboard", link: "/dashboard", count: "" },
+  { name: "Chat", link: "/chat", count: "" },
   { name: "admin control", link: "/admin-control", count: "" },
   { name: "buy gift card", link: "/buy-gift-card", count: "4" },
   { name: "sell gift card", link: "/sell-gift-card", count: "" },

@@ -37,6 +37,7 @@ import {
   Paybills,
   NewsList,
   FaqList,
+  Chat,
 } from "./pages";
 import SignIn from "./auth/SignIn";
 import SignInOtp from "./auth/SignInOtp";
@@ -70,8 +71,6 @@ import TicketingDetails from "./components/ticketing/TicketingDetails";
 import AddBuyGiftCard from "./components/buyGiftcard/AddBuyGiftCard";
 import UploadBuyGiftCard from "./components/buyGiftcard/UploadBuyGiftCard";
 
-
-
 function App() {
   return (
     <BrowserRouter>
@@ -88,7 +87,10 @@ function App() {
           <Route path="/Admin-control" element={<AdminControl />} />
           <Route path="/buy-gift-card" element={<BuyGiftCard />} />
           <Route path="/buy-gift-card/adds" element={<AddBuyGiftCard />} />
-          <Route path="/buy-gift-card/uploads" element={<UploadBuyGiftCard />} />
+          <Route
+            path="/buy-gift-card/uploads"
+            element={<UploadBuyGiftCard />}
+          />
           <Route path="/sell-gift-card" element={<SellGiftCard />} />
           <Route path="/p2p-tranx" element={<P2P />} />
           <Route path="/virtual-card" element={<VirtualCard />} />
@@ -122,7 +124,7 @@ function App() {
           <Route path="/kyc-1&2" element={<Kyc1 />} />
           <Route path="/kyc-3" element={<Kyc3 />} />
           <Route path="/kyc-4" element={<Kyc4 />} />
-
+          <Route path="/chat" element={<Chat />} />
           {/* ticketing section */}
 
           <Route

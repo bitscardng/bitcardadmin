@@ -9,6 +9,39 @@ const baseQuery = fetchBaseQuery({
   },
 });
 
+const testBaseQuery = fetchBaseQuery({
+  baseUrl: process.env.REACT_APP_BITSCARD_BACKEND_TEST_URL,
+  prepareHeaders: (headers) => {
+    headers.set("Authorization", `Bearer ${sessionStorage.getItem("token")}`);
+    return headers;
+  },
+});
+
+const testBaseQueryWithReauth = async (args, api, extraOptions) => {
+  let result = await baseQuery(args, api, extraOptions);
+  sessionStorage.setItem("token", localStorage.getItem("refreshToken"));
+  if (result?.error?.status === 401) {
+    const refreshResult = await testBaseQuery(
+      {
+        url: "auth/admin-refresh",
+      },
+      api,
+      extraOptions
+    );
+    if (refreshResult?.data) {
+      sessionStorage.setItem("token", refreshResult?.data?.accessToken);
+      localStorage.setItem("refreshToken", refreshResult?.data?.refreshToken);
+      result = await baseQuery(args, api, extraOptions);
+    } else {
+      //dispatch logout
+      window.location.replace("/");
+      toast.error("session timed out");
+    }
+  }
+
+  return result;
+};
+
 const baseQueryWithReauth = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
   sessionStorage.setItem("token", localStorage.getItem("refreshToken"));
@@ -48,6 +81,14 @@ export const apiSlice = createApi({
       }),
     }),
   }),
+});
+
+export const testApiSlice = createApi({
+  reducerPath: "testApi",
+  refetchOnReconnect: true,
+  refetchOnMountOrArgChange: true,
+  baseQuery: baseQueryWithReauth,
+  endpoints: () => ({}),
 });
 
 export const { useUploadFileMutation } = apiSlice;

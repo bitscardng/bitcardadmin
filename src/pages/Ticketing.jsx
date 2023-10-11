@@ -3,7 +3,6 @@ import { styles } from "../styles";
 import { Link } from "react-router-dom";
 import style from "../styles.module.css";
 
-
 const menu = [
   { title: "all activies", num: "67" },
   { title: "unassigned", num: "34" },
@@ -16,7 +15,6 @@ const menu = [
 ];
 
 const ticketBar = [
-  { title: "all activies", num: "67" },
   { title: "unassigned", num: "34" },
   { title: "today's mail", num: "45" },
   { title: "due ticket", num: "90" },
@@ -30,10 +28,15 @@ const Ticketing = ({ children }) => {
   return (
     <div>
       <p className={`${styles.topic} mb-0`}>ticketing</p>
-      <div className={`${style.columnBox} gap-2 mt-2`}>
+      <div
+        className={`grid grid-cols-6 justify-between items-center mx-auto mt-2`}
+      >
         {ticketBar.map((data, index) => {
           return (
-            <div className="h-full text-xl text-center bg-[#6C6AEB] w-full flex flex-col  gap-1 justify-center items-center" key={index}>
+            <div
+              className="h-full text-xl text-center bg-[#6C6AEB] w-full flex flex-col  gap-1 justify-center items-center p-[5%]"
+              key={index}
+            >
               <p className="capitalize font-extralight">{data.title}</p>
               <p className="text-3xl ">{data.num}</p>
             </div>

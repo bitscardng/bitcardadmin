@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { apiSlice } from "../api/apiSlice";
+import { apiSlice, testApiSlice } from "../api/apiSlice";
 import authReducer from "./reducers/auth.reducer";
 import dashboardReducer from "./reducers/dashboard.reducer";
 import { smsApiSlice } from "../api/smsApiSlice";
@@ -14,12 +14,14 @@ export const store = configureStore({
     [smsApiSlice.reducerPath]: smsApiSlice.reducer,
     [campaignApiSlice.reducerPath]: campaignApiSlice.reducer,
     [marketApiSlice.reducerPath]: marketApiSlice.reducer,
+    [testApiSlice.reducerPath]: testApiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
       apiSlice.middleware,
       smsApiSlice.middleware,
       campaignApiSlice.middleware,
-      marketApiSlice.middleware
+      marketApiSlice.middleware,
+      testApiSlice.middleware
     ),
 });

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { styles } from "../styles";
 import { Link } from "react-router-dom";
-import style from "../styles.module.css";
+import { useGetTicketStatsQuery } from "../api/ticketingQueries";
 
 const menu = [
   { title: "all activies", num: "67" },
@@ -24,6 +24,7 @@ const ticketBar = [
 ];
 
 const Ticketing = ({ children }) => {
+  const { data, isLoading } = useGetTicketStatsQuery();
   const [active, setActive] = useState("");
   return (
     <div>

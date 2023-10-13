@@ -18,7 +18,7 @@ const testBaseQuery = fetchBaseQuery({
 });
 
 const testBaseQueryWithReauth = async (args, api, extraOptions) => {
-  let result = await baseQuery(args, api, extraOptions);
+  let result = await testBaseQuery(args, api, extraOptions);
   sessionStorage.setItem("token", localStorage.getItem("refreshToken"));
   if (result?.error?.status === 401) {
     const refreshResult = await testBaseQuery(
@@ -33,7 +33,6 @@ const testBaseQueryWithReauth = async (args, api, extraOptions) => {
       localStorage.setItem("refreshToken", refreshResult?.data?.refreshToken);
       result = await baseQuery(args, api, extraOptions);
     } else {
-      //dispatch logout
       window.location.replace("/");
       toast.error("session timed out");
     }
@@ -87,7 +86,7 @@ export const testApiSlice = createApi({
   reducerPath: "testApi",
   refetchOnReconnect: true,
   refetchOnMountOrArgChange: true,
-  baseQuery: baseQueryWithReauth,
+  baseQuery: testBaseQueryWithReauth,
   endpoints: () => ({}),
 });
 

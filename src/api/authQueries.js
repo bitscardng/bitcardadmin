@@ -26,6 +26,13 @@ const usersQueries = apiSlice.injectEndpoints({
         url: `users/user`,
       }),
     }),
+    validateOtp: builder.mutation({
+      query: (body) => ({
+        url: "auth/validate-admin-otp",
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 });
 
@@ -34,4 +41,5 @@ export const {
   useCreateAdminMutation,
   useLazyLogoutQuery,
   useGetUserQuery,
+  useValidateOtpMutation,
 } = usersQueries;

@@ -19,6 +19,12 @@ export const tikcetingSlice = testApiSlice
           url: `ticket/get-ticket/${body.id}`,
         }),
       }),
+      replyTicket: builder.mutation({
+        query: (body) => ({
+          url: `ticket/admin-reply/${body?.id}`,
+          body: { reply: body.reply },
+        }),
+      }),
     }),
   });
 
@@ -26,4 +32,5 @@ export const {
   useGetTicketByIdQuery,
   useGetTicketStatsQuery,
   useGetTicketsQuery,
+  useReplyTicketMutation,
 } = tikcetingSlice;

@@ -21,7 +21,7 @@ const testBaseQueryWithReauth = async (args, api, extraOptions) => {
   let result = await testBaseQuery(args, api, extraOptions);
   sessionStorage.setItem("token", localStorage.getItem("refreshToken"));
   if (result?.error?.status === 401) {
-    const refreshResult = await testBaseQuery(
+    const refreshResult = await baseQuery(
       {
         url: "auth/admin-refresh",
       },
@@ -31,10 +31,10 @@ const testBaseQueryWithReauth = async (args, api, extraOptions) => {
     if (refreshResult?.data) {
       sessionStorage.setItem("token", refreshResult?.data?.accessToken);
       localStorage.setItem("refreshToken", refreshResult?.data?.refreshToken);
-      result = await baseQuery(args, api, extraOptions);
+      result = await testBaseQuery(args, api, extraOptions);
     } else {
-      window.location.replace("/");
-      toast.error("session timed out");
+      // window.location.replace("/");
+      // toast.error("session timed out");
     }
   }
 

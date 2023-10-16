@@ -21,16 +21,6 @@ const msg = [
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores soluta, porro provident sapiente nisi molestiae!",
     date: "May 5 2023",
   },
-  {
-    history:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores soluta, porro provident sapiente nisi molestiae!",
-    date: "May 5 2023",
-  },
-  {
-    history:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores soluta, porro provident sapiente nisi molestiae!",
-    date: "May 5 2023",
-  },
 ];
 
 const Ticketingstatus = () => {
@@ -45,10 +35,10 @@ const Ticketingstatus = () => {
   };
 
   return (
-    <div className="p-4 capitalize ">
-      <div className="my-4">
-        <div className="flex items-center justify-between gap-4 ">
-          <div className="flex flex-col items-center justify-center w-64 text-center">
+    <div className="p-4 capitalize grid grid-cols-1">
+      <div className="my-4 flex flex-col">
+        <div className="flex flexol items-center justify-between gap-4 ">
+          <div className="flex flex-col items-center justify-center w64 text-center">
             <h1 className="w-full p-2 mx-4 text-xl text-black bg-green-400 rounded-full">
               priority
             </h1>
@@ -81,7 +71,7 @@ const Ticketingstatus = () => {
             </div>
           </div>
 
-          <div className="flex flex-col items-center justify-center w-64 text-center">
+          <div className="flex flex-col items-center justify-center w64 text-center">
             <h1 className="w-full p-2 mx-4 text-xl text-black bg-green-400 rounded-full">
               status
             </h1>

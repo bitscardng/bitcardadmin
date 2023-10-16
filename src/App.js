@@ -192,7 +192,7 @@ function App() {
               </Ticketing>
             }
           />
-          <Route path="/ticketing-details" element={<TicketingDetails />} />
+          <Route path="/ticketing-details/:id" element={<TicketingDetails />} />
           <Route path="/telesales/sendemail" element={<SendEmailTel />} />
 
           {/* bulk sms */}

@@ -14,15 +14,6 @@ const menu = [
   { title: "spam", num: "" },
 ];
 
-const ticketBar = [
-  { title: "unassigned", num: "34" },
-  { title: "today's mail", num: "45" },
-  { title: "due ticket", num: "90" },
-  { title: "unresolved", num: "90" },
-  { title: "awaiting", num: "91" },
-  { title: "resolved", num: "37" },
-];
-
 const Ticketing = ({ children }) => {
   const { data, isLoading } = useGetTicketStatsQuery();
   const [active, setActive] = useState("");
@@ -30,19 +21,42 @@ const Ticketing = ({ children }) => {
     <div>
       <p className={`${styles.topic} mb-0`}>ticketing</p>
       <div
-        className={`grid grid-cols-6 justify-between items-center mx-auto mt-2`}
+        className={`grid grid-cols-6 justify-between items-center mx-auto mt-2 rounded-[25px] overflow-hidden gap-[0.2rem]`}
       >
-        {ticketBar.map((data, index) => {
-          return (
-            <div
-              className="h-full text-xl text-center bg-[#6C6AEB] w-full flex flex-col  gap-1 justify-center items-center p-[5%]"
-              key={index}
-            >
-              <p className="capitalize font-extralight">{data.title}</p>
-              <p className="text-3xl ">{data.num}</p>
-            </div>
-          );
-        })}
+        <div className="h-full text-xl text-center bg-[#6C6AEB] w-full flex flex-col  gap-1 justify-center items-center p-[5%]">
+          <p className="capitalize font-extralight">unassigned</p>
+          <p className="text-3xl ">
+            {isLoading ? "..." : data?.data?.unassignedTickets}
+          </p>
+        </div>
+        <div className="h-full text-xl text-center bg-[#6C6AEB] w-full flex flex-col  gap-1 justify-center items-center p-[5%]">
+          <p className="capitalize font-extralight">Today’s Ticket</p>
+          <p className="text-3xl ">
+            {isLoading ? "..." : data?.data?.todaysTickets}
+          </p>
+        </div>
+        <div className="h-full text-xl text-center bg-[#6C6AEB] w-full flex flex-col  gap-1 justify-center items-center p-[5%]">
+          <p className="capitalize font-extralight">Due Ticket</p>
+          <p className="text-3xl ">{isLoading ? "..." : data?.data?.dueDate}</p>
+        </div>
+        <div className="h-full text-xl text-center bg-[#6C6AEB] w-full flex flex-col  gap-1 justify-center items-center p-[5%]">
+          <p className="capitalize font-extralight">Unresolved</p>
+          <p className="text-3xl ">
+            {isLoading ? "..." : data?.data?.unresolved}
+          </p>
+        </div>
+        <div className="h-full text-xl text-center bg-[#6C6AEB] w-full flex flex-col  gap-1 justify-center items-center p-[5%]">
+          <p className="capitalize font-extralight">Awaiting</p>
+          <p className="text-3xl ">
+            {isLoading ? "..." : data?.data?.awaiting}
+          </p>
+        </div>
+        <div className="h-full text-xl text-center bg-[#6C6AEB] w-full flex flex-col  gap-1 justify-center items-center p-[5%]">
+          <p className="capitalize font-extralight">Resolved</p>
+          <p className="text-3xl ">
+            {isLoading ? "..." : data?.data?.resolved}
+          </p>
+        </div>
       </div>
       <div>
         <p

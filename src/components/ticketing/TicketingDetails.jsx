@@ -6,6 +6,13 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { FiMail } from "react-icons/fi";
 import Ticketingstatus from "./Ticketingstatus";
+import { useParams } from "react-router-dom";
+import {
+  useGetTicketByIdQuery,
+  useReplyTicketMutation,
+} from "../../api/ticketingQueries";
+import { Btn as Button } from "../antd/Btn";
+import { toast } from "react-toastify";
 
 const navLinks = [
   {
@@ -37,6 +44,17 @@ const msgLinks = [
 const TicketingDetails = () => {
   const [active, setActive] = useState("");
   const [content, setContent] = useState("");
+  const { id } = useParams();
+  const { data, isLoading } = useGetTicketByIdQuery({ id });
+  const [reply, { isLoading: isReplying }] = useReplyTicketMutation();
+  const handleReply = () => {
+    console.log(content);
+    if (content)
+      reply({ id, reply: content })
+        .unwrap()
+        .then(() => toast.success("reply sent successfullt"))
+        .catch((err) => toast.error(err?.data?.message));
+  };
 
   return (
     <div>
@@ -69,58 +87,60 @@ const TicketingDetails = () => {
           ))}
         </div>
 
-        <div className="justify-center gap-3 lg:flex">
-          <div className="p-2 text-black bg-white round-full rounded-2xl">
-            <div className="p-2">
+        <div className="grid grid-cols-[60%_40%]">
+          <div className="p-2 text-black">
+            <div className="p-2 bg-white rounded-[10px]">
               <div className="p-2">
                 <div className="p-3 bg-green-100 rounded-full w-fit">
                   <FiMail className="text-[green]" />
                 </div>
                 <div>
-                  <h1 className="py-2">User : {"John Doe"}</h1>
-                  <h2 className="py-2">
+                  <h1 className="py-2">
+                    User : {data?.data?.ticket?.name} #
+                    {data?.data?.ticket?.username}
+                  </h1>
+                  {/* <h2 className="py-2">
                     {
                       "From its medieval origins to the digital era, learn everything there."
                     }
-                  </h2>
-                  <h5 className="py-2">Date : {"June 5 2023, 21:11"}</h5>
-                  <p className="py-2">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Vero maiores iste assumenda magnam, ipsa cum id deserunt
-                    quos quia mollitia velit cupiditate beatae vel itaque, ut
-                    distinctio facilis sunt excepturi veniam animi eaque
-                    incidunt nostrum vitae! Dolorem, qui nemo illum eligendi
-                    illo sed minima, nesciunt earum unde odio, quis nostrum
-                  </p>
+                  </h2> */}
+                  <h5 className="py-2">
+                    Date :
+                    {new Date(
+                      data?.data?.ticket?.createdAt
+                    ).toLocaleDateString()}
+                  </h5>
+                  <p className="py-2">{data?.data?.ticket?.issues}</p>
                 </div>
               </div>
 
-              <div className="flex py-2 pb-4 text-center text-white">
-                {msgLinks.map((msg, index) => (
-                  <div
-                    className="flex items-center w-full mx-2 capitalize "
-                    key={index}
-                  >
-                    <Link
-                      className={`bg-purple w-full p-2 rounded-full hover:bg-active duration-300`}
-                    >
-                      {msg.title}
-                    </Link>
-                  </div>
-                ))}
+              <div className="flex gap-[1rem] py-2 pb-4 text-center text-white">
+                <Button className="!rounded-full text-white w-full !h-[2rem]">
+                  Forward
+                </Button>
+                <Button className="!rounded-full text-white w-full !h-[2rem]">
+                  Close
+                </Button>
+                <Button
+                  loading={isReplying}
+                  onClick={handleReply}
+                  className="!rounded-full text-white w-full !h-[2rem]"
+                >
+                  Reply
+                </Button>
               </div>
 
-              <div className="p-4">
-                <ReactQuill
-                  theme="snow"
-                  placeholder="write your content here"
-                  value={content}
-                  onChange={setContent}
-                  modules={TicketingDetails.modules}
-                  formats={TicketingDetails.formats}
-                  className="w-full outline-none bg-[#d9d9d9]"
-                />
-              </div>
+              {/* <div className="p-[0.5rem]"> */}
+              <ReactQuill
+                theme="snow"
+                placeholder="write your content here"
+                value={content}
+                onChange={(value) => setContent(value)}
+                modules={TicketingDetails.modules}
+                formats={TicketingDetails.formats}
+                className="w-full outline-none bg-[#d9d9d9]"
+              />
+              {/* </div> */}
             </div>
           </div>
 

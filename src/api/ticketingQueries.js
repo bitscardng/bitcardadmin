@@ -6,7 +6,7 @@ export const tikcetingSlice = testApiSlice
     endpoints: (builder) => ({
       getTickets: builder.query({
         query: (body) => ({
-          url: `ticket/get-tickets?limit=${body?.limit}&page=${body?.page}`,
+          url: `ticket/get-tickets?query=${body?.query}&limit=${body?.limit}&page=${body?.page}`,
         }),
         providesTags: ["tickets"],
       }),
@@ -30,6 +30,18 @@ export const tikcetingSlice = testApiSlice
         }),
         invalidatesTags: ["tickets"],
       }),
+      updateTicketStatus: builder.mutation({
+        query: (body) => ({
+          url: `ticket/${body?.ticketId}/status/${body?.status}`,
+          method: "PUT",
+        }),
+      }),
+      updateTicketPriority: builder.mutation({
+        query: (body) => ({
+          url: `ticket/${body?.ticketId}/priority/${body?.priority}`,
+          method: "PUT",
+        }),
+      }),
     }),
   });
 
@@ -39,4 +51,6 @@ export const {
   useGetTicketsQuery,
   useReplyTicketMutation,
   useLazyGetTicketsQuery,
+  useUpdateTicketPriorityMutation,
+  useUpdateTicketStatusMutation,
 } = tikcetingSlice;

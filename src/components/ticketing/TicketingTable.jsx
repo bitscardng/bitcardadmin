@@ -3,7 +3,7 @@ import { Table } from "antd";
 import { useGetTicketsQuery } from "../../api/ticketingQueries";
 import { ConfigProvider } from "antd";
 import { useNavigate } from "react-router-dom";
-const TicketingTable = () => {
+const TicketingTable = ({ query }) => {
   const navigate = useNavigate();
   const [tableParams, setTableParams] = useState({
     pagination: {
@@ -12,8 +12,9 @@ const TicketingTable = () => {
     },
   });
   const { data, isLoading, refetch } = useGetTicketsQuery({
-    page: tableParams.pagination.current,
+    page: tableParams.pagination.current || 1,
     limit: 5,
+    query,
   });
   const columns = useMemo(
     () => [
@@ -47,7 +48,7 @@ const TicketingTable = () => {
     []
   );
   const fetchData = () => {
-    refetch({ page: tableParams.pagination.current + 1, limit: 5 })
+    refetch({ page: tableParams.pagination.current + 1, limit: 5, query })
       .then((result) => {
         setTableParams({
           ...tableParams,

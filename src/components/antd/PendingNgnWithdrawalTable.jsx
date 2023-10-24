@@ -1,18 +1,64 @@
 import React, { useEffect, useState, useMemo } from "react";
+import qs from "qs";
 import { Table } from "antd";
+import ConfirmModal from "./ConfirmModal";
 import WithdrawalDetailsModal from "./withdrawalDetailsModal";
-import { useNgnWithdrawalsQuery } from "../../api/withdrawalQueries";
+import {
+  usePendingngnWithdrawalsQuery,
+  useApprovengnWithdrawalsMutation,
+  useDeclinengnWithdrawalsMutation,
+  useNgnWithdrawalsQuery,
+} from "../../api/withdrawalQueries";
 import { ConfigProvider } from "antd";
-
-const NgnWithdrawalTable = () => {
+import { toast } from "react-toastify";
+const getRandomuserParams = (params) => ({
+  results: params.pagination?.pageSize,
+  page: params.pagination?.current,
+  ...params,
+});
+const PendingNgnWithdrawalTable = () => {
   const [tableParams, setTableParams] = useState({
     pagination: {
       current: 1,
       pageSize: 10,
     },
   });
+  const [openApprove, setOpenApprove] = useState(false);
+  const [openDecline, setOpenDecline] = useState(false);
   const [preview, setPreview] = useState(false);
   const [id, setId] = useState("");
+  const [verify, { isLoading: isVerifying }] =
+    useApprovengnWithdrawalsMutation();
+  const [decline, { isLoading: isDeclining }] =
+    useDeclinengnWithdrawalsMutation();
+  const handleVerifyDetails = (id) => {
+    console.log(id);
+    verify(id)
+      .unwrap()
+      .then(() => {
+        toast.success("withdrawal approved");
+      })
+      .catch((err) => {
+        toast.error(
+          err.message ||
+            err.msg ||
+            err?.data?.message ||
+            err?.data?.msg ||
+            "an error occured"
+        );
+      });
+  };
+  const handleDeclineDetails = (id) => {
+    console.log(id);
+    decline(id)
+      .unwrap()
+      .then(() => {
+        toast.success("withdrawal declined");
+      })
+      .catch((err) => {
+        toast.error(err.message || err.msg || "an error occured");
+      });
+  };
   const columns = useMemo(
     () => [
       {
@@ -64,19 +110,28 @@ const NgnWithdrawalTable = () => {
       },
       {
         title: "Status",
-        dataIndex: "status",
-        fixed: "status",
-        render: (status) => (
+        dataIndex: "_id",
+        fixed: "right",
+        render: (id) => (
           <div className="flex flex-col gap-[0.2rem]">
-            {!status?.approve ? (
-              <span className="bg-[#FF6464] text-center rounded-[20px] font-[Poppins]">
-                Declined
-              </span>
-            ) : (
-              <span className="bg-[#5FC88F] text-center rounded-[20px] font-[Poppins]">
-                Approved
-              </span>
-            )}
+            <button
+              onClick={() => {
+                setOpenDecline(true);
+                setId(id);
+              }}
+              className="bg-[#FF6464] rounded-[20px] font-[Poppins]"
+            >
+              Decline
+            </button>
+            <button
+              onClick={() => {
+                setOpenApprove(true);
+                setId(id);
+              }}
+              className="bg-[#5FC88F] rounded-[20px] font-[Poppins]"
+            >
+              Approve
+            </button>
           </div>
         ),
         width: "20%",
@@ -85,8 +140,13 @@ const NgnWithdrawalTable = () => {
     ],
     []
   );
-  const { data: result = [], isLoading, refetch } = useNgnWithdrawalsQuery();
+  const {
+    data: result = [],
+    isLoading,
+    refetch,
+  } = usePendingngnWithdrawalsQuery();
   const fetchData = () => {
+    const params = qs.stringify(getRandomuserParams(tableParams));
     refetch()
       .then((result) => {
         setTableParams({
@@ -108,6 +168,11 @@ const NgnWithdrawalTable = () => {
     setTableParams({
       pagination,
     });
+
+    // // `dataSource` is useless since `pageSize` changed
+    // if (pagination.pageSize !== tableParams.pagination?.pageSize) {
+    //   setData([]);
+    // }
   };
   return (
     <>
@@ -137,9 +202,25 @@ const NgnWithdrawalTable = () => {
           scroll={{ x: 1000, y: 1200 }}
         />
       </ConfigProvider>
+      <ConfirmModal
+        open={openApprove}
+        setOpen={setOpenApprove}
+        loading={isVerifying}
+        text={"Approve Withdrawal"}
+        action={handleVerifyDetails}
+        data={id}
+      />
+      <ConfirmModal
+        open={openDecline}
+        setOpen={setOpenDecline}
+        loading={isDeclining}
+        text={"Decline Withdrawal"}
+        action={handleDeclineDetails}
+        data={id}
+      />
       <WithdrawalDetailsModal open={preview} setOpen={setPreview} id={id} />
     </>
   );
 };
 
-export default NgnWithdrawalTable;
+export default PendingNgnWithdrawalTable;

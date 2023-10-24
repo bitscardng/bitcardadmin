@@ -4,9 +4,15 @@ const withdrawalQueries = apiSlice
   .enhanceEndpoints({ addTagTypes: ["withdrawal"] })
   .injectEndpoints({
     endpoints: (builder) => ({
-      ngnWithdrawals: builder.query({
+      pendingngnWithdrawals: builder.query({
         query: () => ({
           url: "withdrawal/pending-withdrawals",
+        }),
+        providesTags: ["withdrawal"],
+      }),
+      ngnWithdrawals: builder.query({
+        query: () => ({
+          url: "withdrawal/ngn-withdrawals",
         }),
         providesTags: ["withdrawal"],
       }),
@@ -24,11 +30,19 @@ const withdrawalQueries = apiSlice
         }),
         invalidatesTags: ["withdrawal"],
       }),
+      getWithdrawal: builder.query({
+        query: ({ id }) => ({
+          url: `withdrawal/ngn-withdrawals/${id}`,
+        }),
+        providesTags: ["withdrawal"],
+      }),
     }),
   });
 
 export const {
-  useNgnWithdrawalsQuery,
+  usePendingngnWithdrawalsQuery,
   useApprovengnWithdrawalsMutation,
   useDeclinengnWithdrawalsMutation,
+  useNgnWithdrawalsQuery,
+  useGetWithdrawalQuery,
 } = withdrawalQueries;

@@ -1,7 +1,14 @@
 import ConfirmModal from "./ConfirmModal";
+import { useState, useEffect } from "react";
 import { HiOutlineMail } from "react-icons/hi";
+import { useGetWithdrawalQuery } from "../../api/withdrawalQueries";
 
 const WithdrawalDetailsModal = ({ open, setOpen, id }) => {
+  const [skip, setSkip] = useState(true);
+  const { data, isLoading } = useGetWithdrawalQuery({ id }, { skip: skip });
+  useEffect(() => {
+    if (id) setSkip(false);
+  }, [id]);
   return (
     <ConfirmModal open={open} setOpen={setOpen} title="" footer={null}>
       <div className="flex flex-col w[28rem]">

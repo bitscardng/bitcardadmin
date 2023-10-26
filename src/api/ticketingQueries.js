@@ -40,6 +40,7 @@ export const tikcetingSlice = testApiSlice
         query: (body) => ({
           url: `ticket/${body?.ticketId}/priority/${body?.priority}`,
           method: "PUT",
+          body: {},
         }),
       }),
     }),

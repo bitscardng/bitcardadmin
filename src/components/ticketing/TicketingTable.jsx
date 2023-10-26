@@ -36,7 +36,7 @@ const TicketingTable = ({ query }) => {
             onClick={() => {
               navigate(`/ticketing-details/${id}`);
             }}
-            className="bg-[#5FC88F] rounded-[20px] py-[0.2rem] px-[1rem] font-[Poppins]"
+            className="bg-[#5FC88F] font-[500] rounded-[20px] py-[0.2rem] px-[1rem] font-[Poppins]"
           >
             open
           </button>

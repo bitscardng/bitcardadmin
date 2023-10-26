@@ -1,4 +1,3 @@
-import { AiOutlineLike } from "react-icons/ai";
 import { Button, Modal } from "antd";
 import {
   useDeleteNewsMutation,

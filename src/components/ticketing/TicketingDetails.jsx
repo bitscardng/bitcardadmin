@@ -52,7 +52,10 @@ const TicketingDetails = () => {
     if (content)
       reply({ id, reply: content })
         .unwrap()
-        .then(() => toast.success("reply sent successfullt"))
+        .then(() => {
+          toast.success("reply sent successfully");
+          setContent("");
+        })
         .catch((err) => toast.error(err?.data?.message));
   };
 
@@ -129,8 +132,6 @@ const TicketingDetails = () => {
                   Reply
                 </Button>
               </div>
-
-              {/* <div className="p-[0.5rem]"> */}
               <ReactQuill
                 theme="snow"
                 placeholder="write your content here"
@@ -140,12 +141,10 @@ const TicketingDetails = () => {
                 formats={TicketingDetails.formats}
                 className="w-full outline-none bg-[#d9d9d9]"
               />
-              {/* </div> */}
             </div>
           </div>
-
-          <div>
-            <Ticketingstatus />
+          <div className="h-[80vh] my-auto overflow-y-scroll noscroll">
+            <Ticketingstatus data={data?.data} />
           </div>
         </div>
       </div>

@@ -72,25 +72,25 @@ const Kyc3Table = () => {
       {
         title: "ID Number",
         dataIndex: "identity",
-        render: ({ number }) => `${number}`,
+        render: (data) => `${data?.number}`,
         width: "20%",
       },
       {
         title: "ID Type",
         dataIndex: "identity",
-        render: ({ type }) => `${type}`,
+        render: (data) => `${data?.type}`,
         width: "20%",
       },
       {
         title: "Selfie Image",
         dataIndex: "identity",
-        render: ({ image }) => <img src={image} />,
+        render: (data) => <img src={data?.image} />,
         width: "20%",
       },
       {
         title: "country",
         dataIndex: "identity",
-        render: ({ country }) => `${country}`,
+        render: (data) => `${data?.country}`,
         width: "20%",
       },
       {
@@ -180,7 +180,7 @@ const Kyc3Table = () => {
           pagination={tableParams.pagination}
           loading={isLoading}
           onChange={handleTableChange}
-          scroll={{ x: 2000, y: 1200 }}
+          scroll={{ x: 1500, y: 1200 }}
         />
       </ConfigProvider>
       <ConfirmModal

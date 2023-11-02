@@ -70,11 +70,6 @@ const TicketingTable = ({ query }) => {
     setTableParams({
       pagination,
     });
-
-    // // `dataSource` is useless since `pageSize` changed
-    // if (pagination.pageSize !== tableParams.pagination?.pageSize) {
-    //   setData([]);
-    // }
   };
   return (
     <div className="capitalize ">

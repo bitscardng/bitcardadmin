@@ -58,15 +58,15 @@ const Kyc4Table = () => {
       {
         title: "occupation",
         dataIndex: "meta",
-        render: ({ occupation }) => `${occupation}`,
+        render: (data) => `${data?.occupation}`,
         width: "20%",
       },
       {
         title: "Utility Bill",
         dataIndex: "meta",
-        render: ({ utility_bill }) => (
-          <a href={utility_bill} download>
-            {utility_bill}
+        render: (data) => (
+          <a href={data?.utility_bill} download>
+            {data?.utility_bill}
           </a>
         ),
         width: "20%",
@@ -74,9 +74,9 @@ const Kyc4Table = () => {
       {
         title: "Account Statement",
         dataIndex: "meta",
-        render: ({ bank_statement }) => (
-          <a href={bank_statement} download>
-            {bank_statement}
+        render: (data) => (
+          <a href={data?.bank_statement} download>
+            {data?.bank_statement}
           </a>
         ),
         width: "20%",
@@ -84,20 +84,20 @@ const Kyc4Table = () => {
       {
         title: "ID Type",
         dataIndex: "meta",
-        render: ({ identity_type }) => `${identity_type}`,
+        render: (data) => `${data?.identity_type}`,
         width: "30%",
       },
       {
         title: "ID Number",
         dataIndex: "meta",
-        render: ({ identity_number }) => `${identity_number}`,
+        render: (data) => `${data?.identity_number}`,
         width: "40%",
       },
       {
         title: "Issued Date/Expiry Date",
         dataIndex: "meta",
-        render: ({ identity_issued_date, identity_expiration }) =>
-          `${identity_issued_date + "/" + identity_expiration}`,
+        render: (data) =>
+          `${data?.identity_issued_date + "/" + data?.identity_expiration}`,
         width: "30%",
       },
       {
@@ -187,7 +187,7 @@ const Kyc4Table = () => {
           pagination={tableParams.pagination}
           loading={isLoading}
           onChange={handleTableChange}
-          scroll={{ x: 2000, y: 1200 }}
+          scroll={{ x: 1800, y: 1200 }}
         />
       </ConfigProvider>
       <ConfirmModal

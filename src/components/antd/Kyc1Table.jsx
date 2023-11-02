@@ -58,9 +58,8 @@ const Kyc1Table = () => {
   const columns = useMemo(
     () => [
       {
-        dataIndex: "passport_image",
-        render: (last_name) => `${last_name}`,
-        width: "20%",
+        render: (_, record, index) => `${index + 1}`,
+        width: "5%",
       },
       {
         title: "country",
@@ -90,7 +89,7 @@ const Kyc1Table = () => {
         title: "Date of Birth",
         dataIndex: "dob",
         render: (dob) => `${dob}`,
-        width: "40%",
+        width: "20%",
       },
       {
         title: "Phone Number",

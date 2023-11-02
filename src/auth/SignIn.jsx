@@ -62,7 +62,7 @@ const SignIn = () => {
         navigate("/sign-in-otp");
       })
       .catch((err) => {
-        return toast.error(err.message);
+        return toast.error(err?.message || err?.data?.message);
       });
   };
 

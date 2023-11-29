@@ -68,7 +68,9 @@ const Sidebar = ({ children }) => {
             </div>
           </div>
 
-          <div className={`mt-3 pr-2 relative  h-[94vh] overflow-y-scroll noscroll`}>
+          <div
+            className={`mt-3 pr-2 relative  h-[94vh] overflow-y-scroll noscroll`}
+          >
             <ul className="capitalize ">
               {menus
                 .filter((menu) => {
@@ -143,7 +145,6 @@ const Sidebar = ({ children }) => {
                         {menu.name}
                       </span>
                     </li>
-
                     <div>
                       {menu.subMenu && subMenuOpen && open && (
                         <ul

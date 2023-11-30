@@ -7,8 +7,11 @@ import {
   useGetGiftCardInfoQuery,
   useCreateGiftCardMutation,
   useLazyGetGiftCardQuery,
+  useUpdateGiftCardMutation,
+  useDeleteGiftCardMutation,
 } from "../../api/giftCardService";
 import { Btn as Button } from "../antd/Btn";
+import { toast } from "react-toastify";
 
 const cardType = [
   { cardTypeData: "E-code" },
@@ -40,11 +43,11 @@ const denomination = [
   { data: "500" },
   { data: "501 - 5000" },
 ];
-const DisplayData = ({ data }) => {
+const DisplayData = ({ data, setCardId, deleteCard, index }) => {
   return (
     <>
-      {data?.map((e, index) => (
-        <tr className="text-center hover:bg-sec" key={index}>
+      {data?.map((e, i) => (
+        <tr className="text-center hover:bg-sec" key={i}>
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
             {e?.card_type}
           </td>
@@ -61,10 +64,18 @@ const DisplayData = ({ data }) => {
             {e?.ngn_rate}
           </td>
           <td className="flex justify-center gap-2 p-2 text-xl font-thin border">
-            <btn className="p-1 duration-500 rounded-lg cursor-pointer bg-active hover:font-normal">
+            <btn
+              onClick={() => setCardId(e?._id)}
+              className="p-1 duration-500 rounded-lg cursor-pointer bg-active hover:font-normal"
+            >
               Edit
             </btn>
-            <btn className="bg-[red] p-1 rounded-lg cursor-pointer hover:font-normal duration-500">
+            <btn
+              onClick={() => {
+                deleteCard(e?._id, index);
+              }}
+              className="bg-[red] p-1 rounded-lg cursor-pointer hover:font-normal duration-500"
+            >
               delete
             </btn>
           </td>
@@ -72,6 +83,14 @@ const DisplayData = ({ data }) => {
       ))}
     </>
   );
+};
+const initialState = {
+  card_name: "",
+  country: "",
+  card_type: "",
+  denomination: 0,
+  dollar_rate: 0,
+  ngn_rate: 0,
 };
 const AddGiftcard = () => {
   const [open, setOpen] = useState(false);
@@ -86,18 +105,48 @@ const AddGiftcard = () => {
   const [cards, setCards] = useState({});
   const [modalOpen, setModalOpen] = useState(false);
   const [amount, setAmount] = useState([]);
-
+  const [formState, setFormState] = useState([]);
+  const [updateCard, { isLoading: isUpdatingCard }] =
+    useUpdateGiftCardMutation();
+  const [deleteCard, { isLoading: isDeletingCard }] =
+    useDeleteGiftCardMutation();
+  const [cardId, setCardId] = useState("");
+  const handleDelete = (id, index) => {
+    deleteCard({ id })
+      .unwrap()
+      .then(() => {
+        toast.success("card deleted");
+        setCardId("");
+        setFormState((prev) => {
+          const newFormState = [...prev];
+          newFormState[index] = initialState;
+          return newFormState;
+        });
+      })
+      .catch((err) => {
+        toast.error(err?.message || err?.msg || "an error occured");
+        setCardId("");
+        setFormState((prev) => {
+          const newFormState = [...prev];
+          newFormState[index] = initialState;
+          return newFormState;
+        });
+      });
+  };
   const handleSubmit = (newFormState) => {
     setAmount(...amount, newFormState);
   };
   useEffect(() => {
     if (isSuccess)
-      data.data.map((e) => {
+      data?.map((e) => {
         fetchCard({ name: e.card_name })
           .unwrap()
           .then((res) => {
-            console.log(res);
             setCards((prev) => ({ ...prev, [e.card_name]: res.data }));
+            setFormState((prev) => [
+              ...prev,
+              { ...initialState, card_name: e.card_name },
+            ]);
           });
       });
   }, [isSuccess]);
@@ -139,8 +188,8 @@ const AddGiftcard = () => {
         </div>
       </div>
       <div className="flex flex-col gap-[1rem]">
-        {data?.data.map((e) => (
-          <div className="flex w-full overflow-x-auto border">
+        {data?.map((e, i) => (
+          <div key={i} className="flex w-full overflow-x-auto border">
             <div>
               <h1 className="p-2 text-xl font-semibold text-center">
                 {e?.card_name}
@@ -170,174 +219,167 @@ const AddGiftcard = () => {
                 </tr>
               </thead>
               <tbody>
-                <form
-                  onSubmit={(e) => {}}
-                  className="text-xl font-thin text-center border-y table-row"
-                >
-                  <td
-                    className="p-2 border cursor-pointer"
-                    onClick={() => setOpen(!open)}
+                {/* <form
+                onSubmit={(e) => {}}
+                className="text-xl font-thin text-center border-y"
+              > */}
+                <td className="p-2 border">
+                  <Select
+                    options={data[i]?.cardSelect}
+                    value={formState[i]?.card_type}
+                    className="!bg-purple !w-[10rem]"
+                    onSelect={(value) => {
+                      setFormState((prev) => {
+                        const newArr = [...prev];
+                        newArr[i] = {
+                          ...newArr[i],
+                          card_type: value,
+                        };
+                        return newArr;
+                      });
+                    }}
+                  />
+                </td>
+
+                <td className="p-2 border">
+                  <Select
+                    options={data[i]?.countriesSelect}
+                    value={formState[i]?.country}
+                    className="!bg-purple !w-[10rem]"
+                    onSelect={(value) => {
+                      setFormState((prev) => {
+                        const newArr = [...prev];
+                        newArr[i] = {
+                          ...newArr[i],
+                          country: value,
+                        };
+                        return newArr;
+                      });
+                    }}
+                  />
+                </td>
+
+                <td className="p-2 border">
+                  <Select
+                    options={data[i]?.denominationsSelect}
+                    value={formState[i]?.denomination}
+                    className="!bg-purple !w-[10rem]"
+                    onSelect={(value) => {
+                      setFormState((prev) => {
+                        const newArr = [...prev];
+                        newArr[i] = {
+                          ...newArr[i],
+                          denomination: value,
+                        };
+                        return newArr;
+                      });
+                    }}
+                  />
+                </td>
+
+                <td className="p-2 border ">
+                  <input
+                    value={formState[i]?.dollar_rate}
+                    className="w-20 p-1 font-normal text-black bg-white border rounded-lg outline-none"
+                    type="number"
+                    onChange={(e) => {
+                      setFormState((prev) => {
+                        const newArr = [...prev];
+                        newArr[i] = {
+                          ...newArr[i],
+                          dollar_rate: Number(e.target.value),
+                        };
+                        return newArr;
+                      });
+                    }}
+                  />
+                </td>
+                <td className="p-2 border">
+                  <input
+                    value={formState[i]?.ngn_rate}
+                    className="w-20 p-1 font-normal text-black bg-white border rounded-lg outline-none"
+                    type="number"
+                    onChange={(e) => {
+                      setFormState((prev) => {
+                        const newArr = [...prev];
+                        newArr[i] = {
+                          ...newArr[i],
+                          ngn_rate: Number(e.target.value),
+                        };
+                        return newArr;
+                      });
+                    }}
+                  />
+                </td>
+                <td className="p-2 border">
+                  <Button
+                    type="primary"
+                    onClick={() => {
+                      if (cardId) {
+                        updateCard({ dollar_rate: formState[i].dollar_rate })
+                          .unwrap()
+                          .then((res) => {
+                            toast.success("card updated");
+                            setFormState((prev) => {
+                              const newFormState = [...prev];
+                              newFormState[i] = initialState;
+                              return newFormState;
+                            });
+                            setCardId("");
+                          })
+                          .catch((err) => {
+                            toast.error(
+                              err.message ||
+                                err.msg ||
+                                err?.data?.message ||
+                                err?.data?.msg ||
+                                "an error occured"
+                            );
+                            setFormState((prev) => {
+                              const newFormState = [...prev];
+                              newFormState[i] = initialState;
+                              return newFormState;
+                            });
+                          });
+                      } else {
+                        createCard(formState[i])
+                          .unwrap()
+                          .then((res) => {
+                            toast.success("card created");
+                            setFormState((prev) => {
+                              const newFormState = [...prev];
+                              newFormState[i] = initialState;
+                              return newFormState;
+                            });
+                          })
+                          .catch((err) => {
+                            toast.error(
+                              err.message ||
+                                err.msg ||
+                                err?.data?.message ||
+                                err?.data?.msg ||
+                                "an error occured"
+                            );
+                            setFormState((prev) => {
+                              const newFormState = [...prev];
+                              newFormState[i] = initialState;
+                              return newFormState;
+                            });
+                          });
+                      }
+                    }}
+                    className="rounded-lg !bg-[green] p-1 !w-full"
                   >
-                    {/* <div className="flex items-center justify-between p-2 text-center rounded-lg bg-purple">
-                      <p
-                        className={` font-normal capitalize ${
-                          !selectedCardType && " font-thin"
-                        }`}
-                      >
-                        {selectedCardType
-                          ? selectedCardType?.cardTypeData
-                          : "Select Category"}
-                      </p>
-                      <FiArrowDownCircle
-                        className={` duration-1000 text-[20px] ${
-                          open && "rotate-180 "
-                        }`}
-                      />
-                    </div> */}
-                    <Select
-                      options={cards[e?.card_name]}
-                      className="!bg-purple"
-                    />
-
-                    {/* category lists */}
-                    <div
-                      className={`pt-2 duration-500 ${
-                        open ? "h-fit" : "hidden"
-                      }`}
-                    >
-                      <ul
-                        className={`p-2 overflow-y-auto rounded-lg w-full bg-sec max-h-32 `}
-                      >
-                        {e?.card_types.map((cardTypeDatas, index) => {
-                          return (
-                            <li
-                              key={index}
-                              onClick={() => {
-                                setCardTypeSelected(cardTypeDatas);
-                                setOpen(false);
-                              }}
-                              className="mt-2 border-b cursor-pointer hover:rounded-lg hover:bg-active"
-                            >
-                              {cardTypeDatas}
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </div>
-                  </td>
-
-                  <td
-                    className="p-2 border cursor-pointer"
-                    onClick={() => setOpen(!open)}
-                  >
-                    <div className="flex items-center justify-between p-2 text-center rounded-lg bg-purple">
-                      <p
-                        className={` font-normal capitalize ${
-                          !selectedCountry && " font-thin"
-                        }`}
-                      >
-                        {selectedCountry
-                          ? selectedCountry?.countryData
-                          : "Select Category"}
-                      </p>
-                      <FiArrowDownCircle
-                        className={` duration-1000 text-[20px] ${
-                          open && "rotate-180 "
-                        }`}
-                      />
-                    </div>
-
-                    {/* category lists */}
-                    <div
-                      className={`pt-2 duration-500 ${
-                        open ? "h-fit" : "hidden"
-                      }`}
-                    >
-                      <ul
-                        className={`p-2 overflow-y-auto rounded-lg w-full bg-sec max-h-32 `}
-                      >
-                        {e?.countries.map((countryDatas, index) => {
-                          return (
-                            <li
-                              key={index}
-                              onClick={() => {
-                                setCountrySelected(countryDatas);
-                                setOpen(false);
-                              }}
-                              className="mt-2 border-b cursor-pointer hover:rounded-lg hover:bg-active"
-                            >
-                              {countryDatas}
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </div>
-                  </td>
-
-                  <td
-                    className="p-2 border cursor-pointer"
-                    onClick={() => setOpen(!open)}
-                  >
-                    <div className="flex items-center justify-between p-2 text-center rounded-lg bg-purple">
-                      <p
-                        className={` font-normal capitalize ${
-                          !selected && " font-thin"
-                        }`}
-                      >
-                        {selected ? selected?.data : "Select Category"}
-                      </p>
-                      <FiArrowDownCircle
-                        className={` duration-1000 text-[20px] ${
-                          open && "rotate-180 "
-                        }`}
-                      />
-                    </div>
-
-                    {/* category lists */}
-                    <div
-                      className={`pt-2 duration-500 ${
-                        open ? "h-fit" : "hidden"
-                      }`}
-                    >
-                      <ul
-                        className={`p-2 overflow-y-auto rounded-lg w-full bg-sec max-h-32 `}
-                      >
-                        {e?.denominations.map((datas, index) => {
-                          return (
-                            <li
-                              key={index}
-                              onClick={() => {
-                                setSelected(datas);
-                                setOpen(false);
-                              }}
-                              className="mt-2 border-b cursor-pointer hover:rounded-lg hover:bg-active"
-                            >
-                              {datas}
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </div>
-                  </td>
-
-                  <td className="p-2 border ">
-                    <input
-                      className="w-20 p-1 font-normal text-black bg-white border rounded-lg outline-none"
-                      type="number"
-                    />
-                  </td>
-                  <td className="p-2 border">460</td>
-                  <td className="p-2 border">
-                    <Button
-                      loading={isCreatingCard}
-                      htmlType="submit"
-                      className="rounded-lg !bg-[green] p-1 !w-full"
-                    >
-                      Submit
-                    </Button>
-                  </td>
-                </form>
-                <DisplayData data={cards[e?.card_name] || []} />
+                    Submit
+                  </Button>
+                </td>
+                {/* </form> */}
+                <DisplayData
+                  setCardId={setCardId}
+                  data={cards[e?.card_name] || []}
+                  deleteCard={handleDelete}
+                  index={i}
+                />
               </tbody>
             </table>
           </div>

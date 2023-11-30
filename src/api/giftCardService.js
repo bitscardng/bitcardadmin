@@ -20,6 +20,18 @@ export const giftCardSlice = apiSlice
         query: () => ({
           url: `gift-card/get-giftcard-info`,
         }),
+        transformResponse: (response) => {
+          const result = response?.data?.map((e) => ({
+            ...e,
+            countriesSelect: e?.countries.map((c) => ({ label: c, value: c })),
+            cardSelect: e?.card_types.map((c) => ({ label: c, value: c })),
+            denominationsSelect: e?.denominations.map((c) => ({
+              label: c,
+              value: c,
+            })),
+          }));
+          return result;
+        },
       }),
       getGiftCard: builder.query({
         query: (body) => ({

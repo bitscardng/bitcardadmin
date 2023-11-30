@@ -44,7 +44,7 @@ export const giftCardSlice = apiSlice
           body,
           method: "POST",
         }),
-        providesTags: ["giftcard-info"],
+        invalidatesTags: ["giftcard-info", "giftcard"],
       }),
       createGiftCard: builder.mutation({
         query: (body) => ({
@@ -52,7 +52,7 @@ export const giftCardSlice = apiSlice
           body,
           method: "POST",
         }),
-        providesTags: ["giftcard-info"],
+        invalidatesTags: ["giftcard-info", "giftcard"],
       }),
       updateGiftCard: builder.mutation({
         query: (body) => ({
@@ -60,12 +60,14 @@ export const giftCardSlice = apiSlice
           body: body.payload,
           method: "PATCH",
         }),
+        invalidatesTags: ["giftcard-info", "giftcard"],
       }),
       deleteGiftCard: builder.mutation({
         query: (body) => ({
           url: `gift-card/delete-giftcard/${body.id}`,
           method: "DELETE",
         }),
+        invalidatesTags: ["giftcard-info", "giftcard"],
       }),
       acceptGiftCard: builder.mutation({
         query: (body) => ({

@@ -12,6 +12,7 @@ import {
 } from "../../api/giftCardService";
 import { Btn as Button } from "../antd/Btn";
 import { toast } from "react-toastify";
+import Loader from "../Loader";
 
 const cardType = [
   { cardTypeData: "E-code" },
@@ -43,7 +44,7 @@ const denomination = [
   { data: "500" },
   { data: "501 - 5000" },
 ];
-const DisplayData = ({ data, setCardId, deleteCard, index }) => {
+const DisplayData = ({ data, setCardId, deleteCard, index, setFormState }) => {
   return (
     <>
       {data?.map((e, i) => (
@@ -65,7 +66,21 @@ const DisplayData = ({ data, setCardId, deleteCard, index }) => {
           </td>
           <td className="flex justify-center gap-2 p-2 text-xl font-thin border">
             <btn
-              onClick={() => setCardId(e?._id)}
+              onClick={() => {
+                setCardId(e?._id);
+                setFormState((prev) => {
+                  const newArr = [...prev];
+                  newArr[index] = {
+                    card_name: e?.card_name,
+                    country: e?.country,
+                    card_type: e?.card_type,
+                    denomination: e?.denomination,
+                    dollar_rate: e?.dollar_rate,
+                    ngn_rate: e?.ngn_rate,
+                  };
+                  return newArr;
+                });
+              }}
               className="p-1 duration-500 rounded-lg cursor-pointer bg-active hover:font-normal"
             >
               Edit
@@ -98,7 +113,7 @@ const AddGiftcard = () => {
   const [selectedCardType, setCardTypeSelected] = useState();
   const [selectedCountry, setCountrySelected] = useState();
   const { data, isLoading, isSuccess } = useGetGiftCardInfoQuery();
-  const [fetchCard, {}] = useLazyGetGiftCardQuery();
+  const [fetchCard, { isLoading: isFetchingCard }] = useLazyGetGiftCardQuery();
   const [createCard, { isLoading: isCreatingCard }] =
     useCreateGiftCardMutation();
   const [datas, setDatas] = useState(giftCard);
@@ -163,6 +178,11 @@ const AddGiftcard = () => {
 
   return (
     <div className="capitalize">
+      {(isCreatingCard ||
+        isDeletingCard ||
+        isUpdatingCard ||
+        isLoading ||
+        isFetchingCard) && <Loader />}
       <p className={`${styles.topic} mb-0`}>add new gift card</p>
       <div className="flex items-center justify-between p-2">
         <p className="text-2xl font-bold text-end">Add Rate</p>
@@ -225,6 +245,7 @@ const AddGiftcard = () => {
               > */}
                 <td className="p-2 border">
                   <Select
+                    disabled={cardId}
                     options={data[i]?.cardSelect}
                     value={formState[i]?.card_type}
                     className="!bg-purple !w-[10rem]"
@@ -243,6 +264,7 @@ const AddGiftcard = () => {
 
                 <td className="p-2 border">
                   <Select
+                    disabled={cardId}
                     options={data[i]?.countriesSelect}
                     value={formState[i]?.country}
                     className="!bg-purple !w-[10rem]"
@@ -261,6 +283,7 @@ const AddGiftcard = () => {
 
                 <td className="p-2 border">
                   <Select
+                    disabled={cardId}
                     options={data[i]?.denominationsSelect}
                     value={formState[i]?.denomination}
                     className="!bg-purple !w-[10rem]"
@@ -299,6 +322,7 @@ const AddGiftcard = () => {
                     value={formState[i]?.ngn_rate}
                     className="w-20 p-1 font-normal text-black bg-white border rounded-lg outline-none"
                     type="number"
+                    disabled={cardId}
                     onChange={(e) => {
                       setFormState((prev) => {
                         const newArr = [...prev];
@@ -316,7 +340,10 @@ const AddGiftcard = () => {
                     type="primary"
                     onClick={() => {
                       if (cardId) {
-                        updateCard({ dollar_rate: formState[i].dollar_rate })
+                        updateCard({
+                          payload: { dollar_rate: formState[i].dollar_rate },
+                          id: cardId,
+                        })
                           .unwrap()
                           .then((res) => {
                             toast.success("card updated");
@@ -340,6 +367,7 @@ const AddGiftcard = () => {
                               newFormState[i] = initialState;
                               return newFormState;
                             });
+                            setCardId("");
                           });
                       } else {
                         createCard(formState[i])
@@ -379,6 +407,7 @@ const AddGiftcard = () => {
                   data={cards[e?.card_name] || []}
                   deleteCard={handleDelete}
                   index={i}
+                  setFormState={setFormState}
                 />
               </tbody>
             </table>

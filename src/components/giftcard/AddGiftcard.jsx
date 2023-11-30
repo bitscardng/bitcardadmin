@@ -177,7 +177,7 @@ const AddGiftcard = () => {
   };
 
   return (
-    <div className="capitalize">
+    <div className="capitalize relative">
       {(isCreatingCard ||
         isDeletingCard ||
         isUpdatingCard ||

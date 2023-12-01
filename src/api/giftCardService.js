@@ -32,11 +32,13 @@ export const giftCardSlice = apiSlice
           }));
           return result;
         },
+        providesTags: ["giftcard-info", "giftcard"],
       }),
       getGiftCard: builder.query({
         query: (body) => ({
           url: `gift-card/get-giftcard/${body?.name}`,
         }),
+        providesTags: ["giftcard", "giftcard-info"],
       }),
       createGiftCardInfo: builder.mutation({
         query: (body) => ({

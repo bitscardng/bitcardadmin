@@ -11,12 +11,16 @@ const usersQueries = apiSlice
           url: "users",
         }),
       }),
-      getUser: builder.query({
+      getSingleUser: builder.query({
         query: (id) => ({
-          url: `users/${id}`,
+          url: `users/user-details/${id}`,
         }),
       }),
     }),
   });
 
-export const { useGetUsersQuery, useGetUserQuery } = usersQueries;
+export const {
+  useGetUsersQuery,
+  useGetSingleUserQuery,
+  useLazyGetSingleUserQuery,
+} = usersQueries;

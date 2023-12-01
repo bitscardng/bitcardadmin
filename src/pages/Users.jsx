@@ -10,7 +10,6 @@ const Users = () => {
   //pagination end
   return (
     <div>
-
       <Search
         value={search}
         onChange={(e) => {

@@ -340,7 +340,13 @@ const AddGiftcard = () => {
                             setCardId("");
                           });
                       } else {
-                        createCard(formState[i])
+                        createCard({
+                          ...formState[i],
+                          ngn_rate:
+                            formState[i]?.dollar_rate * rates?.data?.rmd_rate -
+                            30,
+                          dollar_rate: Number(formState[i]?.dollar_rate),
+                        })
                           .unwrap()
                           .then((res) => {
                             toast.success("card created");

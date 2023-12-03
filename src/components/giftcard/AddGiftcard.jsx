@@ -10,40 +10,12 @@ import {
   useUpdateGiftCardMutation,
   useDeleteGiftCardMutation,
 } from "../../api/giftCardService";
+import { useUpdateRmdRateMutation } from "../../api/cryptoQueries";
+import { useGetCryptoRatesQuery } from "../../api/cryptoQueries";
 import { Btn as Button } from "../antd/Btn";
 import { toast } from "react-toastify";
 import Loader from "../Loader";
 
-const cardType = [
-  { cardTypeData: "E-code" },
-  { cardTypeData: "Physical" },
-  { cardTypeData: "Cash Receipt" },
-  { cardTypeData: "Credit Receipt" },
-  { cardTypeData: "Debit Receipt" },
-  { cardTypeData: "No Receipt" },
-];
-
-const country = [
-  { countryData: "USA" },
-  { countryData: "UK" },
-  { countryData: "Australia" },
-  { countryData: "Canada" },
-  { countryData: "New Zealand" },
-  { countryData: "Germany" },
-  { countryData: "Spain" },
-  { countryData: "Switzerland" },
-];
-
-const denomination = [
-  { data: "10 - 49" },
-  { data: "50 - 99" },
-  { data: "100" },
-  { data: "101 - 199" },
-  { data: "200 - 299" },
-  { data: "300 - 499" },
-  { data: "500" },
-  { data: "501 - 5000" },
-];
 const DisplayData = ({ data, setCardId, deleteCard, index, setFormState }) => {
   return (
     <>
@@ -108,18 +80,16 @@ const initialState = {
   ngn_rate: 0,
 };
 const AddGiftcard = () => {
-  const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState({});
-  const [selectedCardType, setCardTypeSelected] = useState();
-  const [selectedCountry, setCountrySelected] = useState();
   const { data, isLoading, isSuccess } = useGetGiftCardInfoQuery();
   const [fetchCard, { isLoading: isFetchingCard }] = useLazyGetGiftCardQuery();
   const [createCard, { isLoading: isCreatingCard }] =
     useCreateGiftCardMutation();
-  const [datas, setDatas] = useState(giftCard);
+  const { data: rates, isLoading: isFetchingRate } = useGetCryptoRatesQuery();
+  const [updateRate, { isLoading: isUpdatingRate }] =
+    useUpdateRmdRateMutation();
   const [cards, setCards] = useState({});
-  const [modalOpen, setModalOpen] = useState(false);
-  const [amount, setAmount] = useState([]);
+  const [editRmd, setEditRmd] = useState(true);
+  const [rmdRate, setRmdRate] = useState();
   const [formState, setFormState] = useState([]);
   const [updateCard, { isLoading: isUpdatingCard }] =
     useUpdateGiftCardMutation();
@@ -148,9 +118,6 @@ const AddGiftcard = () => {
         });
       });
   };
-  const handleSubmit = (newFormState) => {
-    setAmount(...amount, newFormState);
-  };
   useEffect(() => {
     if (isSuccess)
       data?.map((e) => {
@@ -164,18 +131,7 @@ const AddGiftcard = () => {
             ]);
           });
       });
-  }, [isSuccess]);
-
-  // paginations start
-  const [pageNumber, setPageNumber] = useState(0);
-  //data view page is datasperpage so you can change the number 5 to what you want...
-  const datasPerPage = 5;
-  const pageVisited = pageNumber * datasPerPage;
-  const pageCount = Math.ceil(datas.length / datasPerPage);
-  const changePage = ({ selected }) => {
-    setPageNumber(selected);
-  };
-
+  }, [isSuccess, data]);
   return (
     <div className="capitalize relative">
       {(isCreatingCard ||
@@ -189,15 +145,37 @@ const AddGiftcard = () => {
         <div className="flex items-center justify-between gap-8">
           <p className="p-2 px-4 rounded-full bg-sec text-active">
             RMD :
-            <span className="pl-2 text-xl font-semibold text-center text-white">
-              {"107"}
-            </span>
+            {/* <span className="pl-2 text-xl font-semibold text-center text-white">
+              {rates?.data?.rmd_rate}
+            </span> */}
+            <input
+              className="pl-2 text-xl font-semibold text-center text-white w-[5rem]"
+              value={rmdRate || rates?.data?.rmd_rate}
+              defaultValue={rates?.data?.rmd_rate}
+              disabled={editRmd}
+              onChange={(e) => {
+                setRmdRate(e.target.value);
+              }}
+            />
           </p>
           <div
             className={`${styles.btn} max-w-fit px-10 `}
-            // onClick={() => setModalOpen(true)}
+            onClick={() => {
+              setEditRmd((prev) => {
+                if (!prev) {
+                  updateRate({ rmd_rate: Number(rmdRate) })
+                    .unwrap()
+                    .then(() => {
+                      toast.success("rmd rate updated");
+                      setEditRmd(true);
+                      setRmdRate(null);
+                    });
+                }
+                return !prev;
+              });
+            }}
           >
-            Edit
+            {editRmd ? "Edit" : "Update"}
           </div>
           <p className="p-2 px-4 rounded-full bg-sec text-active">
             Profit :
@@ -310,7 +288,7 @@ const AddGiftcard = () => {
                         const newArr = [...prev];
                         newArr[i] = {
                           ...newArr[i],
-                          dollar_rate: Number(e.target.value),
+                          dollar_rate: e.target.value,
                         };
                         return newArr;
                       });
@@ -319,20 +297,12 @@ const AddGiftcard = () => {
                 </td>
                 <td className="p-2 border">
                   <input
-                    value={formState[i]?.ngn_rate}
+                    value={
+                      formState[i]?.dollar_rate * rates?.data?.rmd_rate - 30
+                    }
                     className="w-20 p-1 font-normal text-black bg-white border rounded-lg outline-none"
                     type="number"
                     disabled={cardId}
-                    onChange={(e) => {
-                      setFormState((prev) => {
-                        const newArr = [...prev];
-                        newArr[i] = {
-                          ...newArr[i],
-                          ngn_rate: Number(e.target.value),
-                        };
-                        return newArr;
-                      });
-                    }}
                   />
                 </td>
                 <td className="p-2 border">
@@ -390,7 +360,10 @@ const AddGiftcard = () => {
                             );
                             setFormState((prev) => {
                               const newFormState = [...prev];
-                              newFormState[i] = initialState;
+                              newFormState[i] = {
+                                ...initialState,
+                                card_name: e?.card_name,
+                              };
                               return newFormState;
                             });
                           });

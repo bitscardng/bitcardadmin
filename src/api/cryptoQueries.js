@@ -80,6 +80,14 @@ export const cryptoQueries = apiSlice
         }),
         providesTags: ["crypto-rates"],
       }),
+      updateRmdRate: builder.mutation({
+        query: (body) => ({
+          url: `gift-card/edit-rmdrate`,
+          method: "PATCH",
+          body,
+        }),
+        invalidatesTags: ["crypto-rates"],
+      }),
     }),
   });
 
@@ -94,4 +102,5 @@ export const {
   useUsdBuyProfitMutation,
   useUsdSellProfitMutation,
   useGetCryptoRatesQuery,
+  useUpdateRmdRateMutation,
 } = cryptoQueries;

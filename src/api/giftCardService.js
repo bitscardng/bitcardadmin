@@ -1,7 +1,9 @@
 import { apiSlice } from "./apiSlice";
 
 export const giftCardSlice = apiSlice
-  .enhanceEndpoints({ addTagTypes: ["giftcard", "giftcard-info"] })
+  .enhanceEndpoints({
+    addTagTypes: ["giftcard", "giftcard-info", "crypto-rates"],
+  })
   .injectEndpoints({
     endpoints: (builder) => ({
       getPendingBuyTranx: builder.query({

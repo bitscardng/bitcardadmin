@@ -1,20 +1,20 @@
-import CryptoTable from "../components/antd/CryptoTable";
+import PendingCryptoTable from "../components/antd/PendingCryptoTable";
 import Search from "../components/Search";
 
-const CryptoTranx = () => {
+const PendingCryptoTranx = () => {
   return (
     <div className="capitalize ">
-      {/* <Search
+      <Search
         // value={}
         onChange={(e) => {
           // setSearch(e.target.value);
         }}
-      /> */}
+      />
       <div className="mt-4">
-        <CryptoTable />
+        <PendingCryptoTable />
       </div>
     </div>
   );
 };
 
-export default CryptoTranx;
+export default PendingCryptoTranx;

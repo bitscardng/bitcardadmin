@@ -38,6 +38,7 @@ import {
   NewsList,
   FaqList,
   Chat,
+  PendingCryptoTranx,
 } from "./pages";
 import SignIn from "./auth/SignIn";
 import SignInOtp from "./auth/SignInOtp";
@@ -95,6 +96,10 @@ function App() {
           <Route path="/p2p-tranx" element={<P2P />} />
           <Route path="/virtual-card" element={<VirtualCard />} />
           <Route path="/crypto-tranx" element={<CryptoTranx />} />
+          <Route
+            path="/pending-crypto-tranx"
+            element={<PendingCryptoTranx />}
+          />
           <Route path="/users" element={<Users />} />
           <Route path="/user-details/:id" element={<UserDetails />} />
           <Route path="/create-news" element={<News />} />

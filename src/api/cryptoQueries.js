@@ -12,6 +12,12 @@ export const cryptoQueries = apiSlice
         }),
         providesTags: ["transfer"],
       }),
+      getCryptoTransactions: builder.query({
+        query: (type) => ({
+          url: `crypto-transactions/get-crypto-transactions?type=${type}`,
+        }),
+        providesTags: ["transfer"],
+      }),
       btcBuyProfit: builder.mutation({
         query: (profit) => ({
           url: "crypto-transactions/btc-buy-profit",
@@ -103,4 +109,6 @@ export const {
   useUsdSellProfitMutation,
   useGetCryptoRatesQuery,
   useUpdateRmdRateMutation,
+  useGetCryptoTransactionsQuery,
+  useLazyGetCryptoTransactionsQuery,
 } = cryptoQueries;

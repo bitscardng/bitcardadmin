@@ -1,24 +1,17 @@
 import React, { useEffect, useState, useMemo } from "react";
-import qs from "qs";
-import { Table } from "antd";
-import ConfirmModal from "./ConfirmModal";
-import {
-  useGetKyc1_2Query,
-  useVerifyKyc1_2Mutation,
-  useDeclineKyc1_2Mutation,
-} from "../../api/kycQueries";
-import {
-  useGetTransferListQuery,
-  useApproveTransferMutation,
-  useDeclineTransferMutation,
-} from "../../api/cryptoQueries";
-import { ConfigProvider } from "antd";
-import { toast } from "react-toastify";
+import { useLazyGetCryptoTransactionsQuery } from "../../api/cryptoQueries";
+import { ConfigProvider, Select, Table } from "antd";
 const getRandomuserParams = (params) => ({
   results: params.pagination?.pageSize,
   page: params.pagination?.current,
   ...params,
 });
+const options = [
+  { value: "sell", label: "Sell" },
+  { value: "buy", label: "Buy" },
+  { value: "send", label: "Send" },
+  { value: "receive", label: "Receive" },
+];
 const CryptoTable = () => {
   const [tableParams, setTableParams] = useState({
     pagination: {
@@ -26,40 +19,8 @@ const CryptoTable = () => {
       pageSize: 10,
     },
   });
-  const [openApprove, setOpenApprove] = useState(false);
-  const [openDecline, setOpenDecline] = useState(false);
-  const [id, setId] = useState("");
-  const [verify, { isLoading: isVerifying }] = useVerifyKyc1_2Mutation();
-  const [decline, { isLoading: isDeclining }] = useDeclineKyc1_2Mutation();
-  const handleVerifyDetails = (id) => {
-    console.log(id);
-    verify(id)
-      .unwrap()
-      .then(() => {
-        toast.success("kyc details approved");
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error(
-          err.message ||
-            err.msg ||
-            err?.data?.message ||
-            err?.data?.msg ||
-            "an error occured"
-        );
-      });
-  };
-  const handleDeclineDetails = (id) => {
-    console.log(id);
-    decline(id)
-      .unwrap()
-      .then(() => {
-        toast.success("kyc details approved");
-      })
-      .catch((err) => {
-        toast.error(err.message || err.msg || "an error occured");
-      });
-  };
+  const [fetchTransaction, { isLoading, data: result = [] }] =
+    useLazyGetCryptoTransactionsQuery();
   const columns = useMemo(
     () => [
       {
@@ -75,52 +36,29 @@ const CryptoTable = () => {
         width: "20%",
       },
       {
-        title: "Wallet Address",
-        dataIndex: "wallet_address",
-        render: (address) => `${address}`,
+        title: "Naira Amount",
+        dataIndex: "naira_amount",
+        render: (amount) => `${amount ? `N${amount}` : "N/A"}`,
         width: "20%",
       },
       {
-        title: "Amount",
-        dataIndex: "amount",
-        render: (amount) => `${amount}$`,
+        title: "Dollar Amount",
+        dataIndex: "dollar_amount",
+        render: (amount) => `$${amount}`,
         width: "10%",
       },
       {
-        dataIndex: "_id",
-        fixed: "right",
-        render: (id) => (
-          <div className="flex flex-col gap-[0.2rem]">
-            <button
-              onClick={() => {
-                setOpenDecline(true);
-                setId(id);
-              }}
-              className="bg-[#FF6464] rounded-[20px] font-[Poppins]"
-            >
-              Decline
-            </button>
-            <button
-              onClick={() => {
-                setOpenApprove(true);
-                setId(id);
-              }}
-              className="bg-[#5FC88F] rounded-[20px] font-[Poppins]"
-            >
-              Approve
-            </button>
-          </div>
-        ),
-        width: "20%",
+        title: "Crypto Type",
+        dataIndex: "crypto_type",
+        render: (type) => `${type}`,
+        width: "10%",
       },
-      ,
     ],
     []
   );
-  const { data: result = [], isLoading, refetch } = useGetTransferListQuery();
-  const fetchData = () => {
-    const params = qs.stringify(getRandomuserParams(tableParams));
-    refetch()
+  const fetchData = (type) => {
+    fetchTransaction(type)
+      .unwrap()
       .then((result) => {
         setTableParams({
           ...tableParams,
@@ -133,10 +71,10 @@ const CryptoTable = () => {
       })
       .catch();
   };
-
+  const [type, setType] = useState(options[0].value);
   useEffect(() => {
-    fetchData();
-  }, [JSON.stringify(tableParams)]);
+    fetchData(type);
+  }, [JSON.stringify(tableParams), type]);
   const handleTableChange = (pagination) => {
     setTableParams({
       pagination,
@@ -149,6 +87,15 @@ const CryptoTable = () => {
   };
   return (
     <div className="capitalize ">
+      <Select
+        value={type}
+        onSelect={(value) => {
+          setType(value);
+        }}
+        options={options}
+        defaultValue={options[0].value}
+        className="!w-[10rem]"
+      />
       <ConfigProvider
         theme={{
           token: {
@@ -175,24 +122,6 @@ const CryptoTable = () => {
           scroll={{ x: 1000, y: 1200 }}
         />
       </ConfigProvider>
-      <ConfirmModal
-        open={openApprove}
-        setOpen={setOpenApprove}
-        loading={isVerifying}
-        action={handleVerifyDetails}
-        data={id}
-      >
-        <p>Approve Crypto Transaction</p>
-      </ConfirmModal>
-      <ConfirmModal
-        open={openDecline}
-        setOpen={setOpenDecline}
-        loading={isDeclining}
-        action={handleDeclineDetails}
-        data={id}
-      >
-        <p>Decline Crypto Transaction</p>
-      </ConfirmModal>
     </div>
   );
 };

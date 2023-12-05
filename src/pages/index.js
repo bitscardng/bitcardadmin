@@ -33,6 +33,7 @@ import BulkSms from "./BulkSms";
 import NewsList from "./NewsList";
 import FaqList from "./FaqList";
 import Chat from "./chat";
+import PendingCryptoTranx from "./PendingCryptoTranx";
 
 export {
   Paybills,
@@ -70,4 +71,5 @@ export {
   NewsList,
   FaqList,
   Chat,
+  PendingCryptoTranx,
 };

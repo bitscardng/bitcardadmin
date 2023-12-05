@@ -7,6 +7,7 @@ const menu = [
   { name: "P2P tranx", link: "/p2p-tranx", count: "3" },
   { name: "virtual card", link: "/virtual-card", count: "7" },
   { name: "crypto tranx", link: "/crypto-tranx", count: "3" },
+  { name: "pending crypto tranx", link: "/pending-crypto-tranx", count: "3" },
   { name: "users", link: "/users", count: "" },
   { name: "news", link: "/news", count: "" },
   { name: "FAQ", link: "/faq", count: "" },

@@ -122,4 +122,6 @@ export const {
   useUpdateGiftCardMutation,
   useSendGiftCardMailMutation,
   useSendGiftCardSmsMutation,
+  useLazyGetPendingSellTranxQuery,
+  useLazyGetPendingBuyTranxQuery,
 } = giftCardSlice;

@@ -3,18 +3,14 @@ import qs from "qs";
 import { Table } from "antd";
 import ConfirmModal from "./ConfirmModal";
 import {
-  useGetTransferListQuery,
-  useApproveTransferMutation,
-  useDeclineTransferMutation,
-} from "../../api/cryptoQueries";
+  useGetPendingSellTranxQuery,
+  useAcceptGiftCardMutation,
+  useProcessGiftCardMutation,
+  useDeclineGiftCardMutation,
+} from "../../api/giftCardService";
 import { ConfigProvider } from "antd";
 import { toast } from "react-toastify";
-const getRandomuserParams = (params) => ({
-  results: params.pagination?.pageSize,
-  page: params.pagination?.current,
-  ...params,
-});
-const CryptoTable = () => {
+const SellGiftCardTable = () => {
   const [tableParams, setTableParams] = useState({
     pagination: {
       current: 1,
@@ -24,13 +20,13 @@ const CryptoTable = () => {
   const [openApprove, setOpenApprove] = useState(false);
   const [openDecline, setOpenDecline] = useState(false);
   const [id, setId] = useState("");
-  const [verify, { isLoading: isVerifying }] = useApproveTransferMutation();
-  const [decline, { isLoading: isDeclining }] = useDeclineTransferMutation();
+  const [verify, { isLoading: isVerifying }] = useAcceptGiftCardMutation();
+  const [decline, { isLoading: isDeclining }] = useDeclineGiftCardMutation();
   const handleVerifyDetails = (id) => {
-    verify(id)
+    verify({ id })
       .unwrap()
       .then(() => {
-        toast.success("Transaction approved");
+        toast.success("Gift Card approved");
       })
       .catch((err) => {
         console.log(err);
@@ -44,10 +40,10 @@ const CryptoTable = () => {
       });
   };
   const handleDeclineDetails = (id) => {
-    decline(id)
+    decline({ id })
       .unwrap()
       .then(() => {
-        toast.success("Transaction declined");
+        toast.success("Gift Card Declined");
       })
       .catch((err) => {
         toast.error(err.message || err.msg || "an error occured");
@@ -57,27 +53,110 @@ const CryptoTable = () => {
     () => [
       {
         title: "Email",
-        dataIndex: "user_email",
+        dataIndex: "email",
         render: (email) => `${email}`,
         width: "20%",
       },
       {
-        title: "Type",
-        dataIndex: "transaction_type",
+        title: "Gift Card",
+        dataIndex: "gift_card",
         render: (type) => `${type}`,
         width: "20%",
       },
       {
-        title: "Wallet Address",
-        dataIndex: "wallet_address",
-        render: (address) => `${address}`,
+        title: "Country",
+        dataIndex: "country",
+        render: (country) => `${country}`,
         width: "20%",
       },
       {
+        title: "Card Type",
+        dataIndex: "card_type",
+        render: (type) => `${type}`,
+        width: "10%",
+      },
+      {
         title: "Amount",
-        dataIndex: "amount",
+        dataIndex: "dollar_amount",
         render: (amount) => `${amount}$`,
         width: "10%",
+      },
+      {
+        title: "Payout",
+        dataIndex: "ngn_amount",
+        render: (amount) => `N${amount}`,
+        width: "10%",
+      },
+      {
+        title: "Status",
+        dataIndex: "status",
+        render: (status) => (
+          <div className="flex flex-col gap-[0.2rem]">
+            {status?.pending && (
+              <button
+                onClick={() => {
+                  setOpenDecline(true);
+                  setId(id);
+                }}
+                className="bg-[#F7931A] rounded-[20px] font-[Poppins]"
+              >
+                Pending
+              </button>
+            )}
+            {status?.processed && (
+              <button
+                onClick={() => {
+                  setOpenDecline(true);
+                  setId(id);
+                }}
+                className="bg-[#5FC88F] rounded-[20px] font-[Poppins]"
+              >
+                Processed
+              </button>
+            )}
+            {status?.declined && (
+              <button
+                onClick={() => {
+                  setOpenDecline(true);
+                  setId(id);
+                }}
+                className="bg-[#FF6464] rounded-[20px] font-[Poppins]"
+              >
+                Declined
+              </button>
+            )}
+          </div>
+        ),
+        width: "10%",
+      },
+      {
+        title: "Transaction Date",
+        dataIndex: "createdAt",
+        render: (date) => {
+          const newDate = new Date(date).toLocaleDateString();
+          return `${newDate}`;
+        },
+        width: "10%",
+      },
+
+      {
+        title: "Receipt Image",
+        dataIndex: "",
+        fixed: "right",
+        render: (id) => (
+          <div className="flex flex-col gap-[0.2rem]">
+            <button
+              onClick={() => {
+                setOpenDecline(true);
+                setId(id);
+              }}
+              className="bg-[#767DFF] rounded-[20px] font-[Poppins]"
+            >
+              Preview
+            </button>
+          </div>
+        ),
+        width: "20%",
       },
       {
         dataIndex: "_id",
@@ -110,9 +189,12 @@ const CryptoTable = () => {
     ],
     []
   );
-  const { data: result = [], isLoading, refetch } = useGetTransferListQuery();
+  const {
+    data: result = [],
+    isLoading,
+    refetch,
+  } = useGetPendingSellTranxQuery({});
   const fetchData = () => {
-    const params = qs.stringify(getRandomuserParams(tableParams));
     refetch()
       .then((result) => {
         setTableParams({
@@ -134,11 +216,6 @@ const CryptoTable = () => {
     setTableParams({
       pagination,
     });
-
-    // // `dataSource` is useless since `pageSize` changed
-    // if (pagination.pageSize !== tableParams.pagination?.pageSize) {
-    //   setData([]);
-    // }
   };
   return (
     <div className="capitalize ">
@@ -165,7 +242,7 @@ const CryptoTable = () => {
           pagination={tableParams.pagination}
           loading={isLoading}
           onChange={handleTableChange}
-          scroll={{ x: 1000, y: 1200 }}
+          scroll={{ x: 1800, y: 1200 }}
         />
       </ConfigProvider>
       <ConfirmModal
@@ -175,7 +252,7 @@ const CryptoTable = () => {
         action={handleVerifyDetails}
         data={id}
       >
-        <p>Approve Crypto Transaction</p>
+        <p>Approve Gift Card</p>
       </ConfirmModal>
       <ConfirmModal
         open={openDecline}
@@ -184,9 +261,9 @@ const CryptoTable = () => {
         action={handleDeclineDetails}
         data={id}
       >
-        <p>Decline Crypto Transaction</p>
+        <p>Decline Gift Card</p>
       </ConfirmModal>
     </div>
   );
 };
-export default CryptoTable;
+export default SellGiftCardTable;

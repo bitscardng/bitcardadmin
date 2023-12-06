@@ -3,6 +3,7 @@ import Search from "../components/Search";
 import { giftCard } from "../constant";
 import ReactPaginate from "react-paginate";
 import { styles } from "../styles";
+import SellGiftCardTable from "../components/antd/SellGiftCardTable";
 
 const SellGiftCard = () => {
   const [datas, setDatas] = useState(giftCard);
@@ -66,50 +67,7 @@ const SellGiftCard = () => {
           setSearch(e.target.value);
         }}
       />
-      <div className="p-2 pt-8">
-        <div className="w-full overflow-x-auto">
-          <table className="w-full ">
-            {/* head */}
-            <thead className="">
-              <tr className="rounded-full">
-                <th className="p-2 text-xl font-semibold border"></th>
-                <th className="p-2 text-xl font-semibold border">Email</th>
-                <th className="p-2 text-xl font-semibold border">GiftCard</th>
-                <th className="p-2 text-xl font-semibold border">Country</th>
-                <th className="p-2 text-xl font-semibold border">Card Type</th>
-                <th className="p-2 text-xl font-semibold border">Amount</th>
-                <th className="p-2 text-xl font-semibold border">Payout</th>
-                <th className="p-2 text-xl font-semibold border">Status</th>
-                <th className="p-2 text-xl font-semibold border">
-                  Transaction date
-                </th>
-                <th className="p-2 text-xl font-semibold border">Approval</th>
-              </tr>
-            </thead>
-            <tbody>{displayDatas}</tbody>
-          </table>
-        </div>
-      </div>
-
-      {/* pagenating */}
-      <ReactPaginate
-        containerClassName="flex gap-2 text-center rounded-lg items-center outline-none justify-center items-center mt-4"
-        previousLabel={
-          <span className="p-3 border rounded-lg outline-none hover:bg-active border-sec bg-sec">
-            Prev
-          </span>
-        }
-        nextLabel={
-          <span className="p-3 border rounded-lg outline-none hover:bg-active border-sec bg-sec">
-            Next
-          </span>
-        }
-        pageCount={pageCount}
-        onPageChange={changePage}
-        pageClassName="hover:bg-active p-3 rounded-lg outline-none"
-        disabledClassName={"bg-transparent outline-none"}
-        activeLinkClassName={"p-3 bg-active rounded-lg outline-none"}
-      />
+      <SellGiftCardTable />
     </div>
   );
 };

@@ -52,7 +52,15 @@ export const giftCardSlice = apiSlice
       }),
       createGiftCard: builder.mutation({
         query: (body) => ({
-          url: "gift-card/create-giftcard",
+          url: "gift-card/create-giftcard-sell",
+          body,
+          method: "POST",
+        }),
+        invalidatesTags: ["giftcard-info", "giftcard"],
+      }),
+      createBuyGiftCard: builder.mutation({
+        query: (body) => ({
+          url: "gift-card/create-giftcard-buy",
           body,
           method: "POST",
         }),
@@ -81,7 +89,7 @@ export const giftCardSlice = apiSlice
       }),
       processGiftCard: builder.mutation({
         query: (body) => ({
-          url: `gift-card/process-giftcard-sell/${body.id}`,
+          url: `gift-card/process-giftcard-buy/${body.id}`,
           method: "PATCH",
         }),
       }),
@@ -112,6 +120,7 @@ export const {
   useAcceptGiftCardMutation,
   useCreateGiftCardInfoMutation,
   useCreateGiftCardMutation,
+  useCreateBuyGiftCardMutation,
   useDeclineGiftCardMutation,
   useDeleteGiftCardMutation,
   useGetGiftCardInfoQuery,

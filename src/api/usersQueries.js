@@ -7,8 +7,10 @@ const usersQueries = apiSlice
   .injectEndpoints({
     endpoints: (builder) => ({
       getUsers: builder.query({
-        query: () => ({
-          url: "users",
+        query: (param) => ({
+          url: `users?page=${param?.page}&sort=${
+            param?.searchQuery || ""
+          }&limit=10`,
         }),
       }),
       getSingleUser: builder.query({
@@ -23,4 +25,5 @@ export const {
   useGetUsersQuery,
   useGetSingleUserQuery,
   useLazyGetSingleUserQuery,
+  useLazyGetUsersQuery,
 } = usersQueries;

@@ -6,7 +6,9 @@ const depositQueries = apiSlice
     endpoints: (builder) => ({
       ngnDeposit: builder.query({
         query: (param) => ({
-          url: `deposit/ngn-deposit?page=${param?.page}&searchQuery=sikiru&limit=10`,
+          url: `deposit/ngn-deposit?page=${param?.page}&searchQuery=${
+            param?.searchQuery || ""
+          }&limit=10`,
         }),
         providesTags: ["deposit"],
       }),

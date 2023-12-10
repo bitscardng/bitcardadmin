@@ -1,100 +1,76 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { Table } from "antd";
+import { useLazyNgnDepositQuery } from "../../api/depositqueries";
+import { ConfigProvider, Table } from "antd";
 import Search from "../Search";
-import { useLazyGetUsersQuery } from "../../api/usersQueries";
-import { ConfigProvider } from "antd";
-import { useNavigate } from "react-router-dom";
-const UsersTable = () => {
-  const navigate = useNavigate();
-  const [search, setSearch] = useState("");
+const options = [
+  { value: "sell", label: "Sell" },
+  { value: "buy", label: "Buy" },
+  { value: "send", label: "Send" },
+  { value: "receive", label: "Receive" },
+];
+const NgnTable = () => {
   const [tableParams, setTableParams] = useState({
     pagination: {
       current: 1,
       pageSize: 10,
     },
   });
+  const [search, setSearch] = useState("");
+  const [fetchDeposit, { isLoading, data: result }] = useLazyNgnDepositQuery();
   const columns = useMemo(
     () => [
-      {
-        title: "Username",
-        dataIndex: "username",
-        render: (username) => `${username}`,
-        width: "20%",
-      },
       {
         title: "Email",
         dataIndex: "email",
         render: (email) => `${email}`,
-        width: "30%",
+        width: "20%",
       },
       {
-        title: "Joined",
+        title: "Type",
+        dataIndex: "type",
+        render: (type) => `${type}`,
+        width: "20%",
+      },
+      {
+        title: "Amount",
+        dataIndex: "amount",
+        render: (amount) => `${amount ? `N${amount}` : "N/A"}`,
+        width: "20%",
+      },
+      {
+        title: "Date",
         dataIndex: "createdAt",
         render: (date) => `${new Date(date).toDateString()}`,
         width: "20%",
       },
       {
-        title: "Virtual card Balance",
-        dataIndex: "card_balance",
-        render: (balance) => `${balance || "N/A"}`,
-        width: "20%",
-      },
-      {
-        title: "Usd Balance",
-        dataIndex: "usd_balance",
-        render: (balance) => `${balance || "N/A"}`,
-        width: "20%",
-      },
-      {
-        title: "Naira Balance",
-        dataIndex: "ngn_balance",
-        render: (balance) => `${balance || "N/A"}`,
-        width: "20%",
-      },
-      {
-        title: "Verified",
-        dataIndex: "status",
-        render: (status) => `${status || "N/A"}`,
-        width: "10%",
-      },
-      {
-        title: "Preview",
-        dataIndex: "_id",
-        fixed: "right",
-        render: (id) => (
-          <div className="flex justify-center">
-            <button
-              onClick={() => {
-                navigate(`/user-details/${id}`);
-              }}
-              className="bg-[rgb(95,200,143)] rounded-[20px] font-[Poppins] px-[1rem] py-[0.5rem]"
-            >
-              Details
-            </button>
-          </div>
+        title: "Status",
+        dataIndex: "reference_validated",
+        render: (status) => (
+          <button className="bg-green-500 text-white px-3 py-1 rounded">
+            {status ? "Received" : "Pending"}
+          </button>
         ),
         width: "10%",
       },
-      ,
     ],
     []
   );
-  const [fetchUser, { data: result, isLoading }] = useLazyGetUsersQuery();
-  const fetchData = (query) => {
-    fetchUser(query)
+  const fetchData = (type) => {
+    fetchDeposit(type)
+      .unwrap()
       .then((result) => {
         setTableParams({
           ...tableParams,
           pagination: {
             ...tableParams.pagination,
-            total: result?.data?.pagination?.totalItems,
+            total: result?.pagination?.totalItems,
             // pageSize: result?.pagination?.totalItems,
           },
         });
       })
       .catch();
   };
-
   useEffect(() => {
     fetchData({
       searchQuery: search,
@@ -134,15 +110,14 @@ const UsersTable = () => {
         <Table
           columns={columns}
           rowKey={(record) => record?._id}
-          dataSource={result?.data}
+          dataSource={result?.data || []}
           pagination={tableParams.pagination}
           loading={isLoading}
           onChange={handleTableChange}
-          scroll={{ x: 2000, y: 1200 }}
+          scroll={{ x: 1000, y: 1200 }}
         />
       </ConfigProvider>
     </div>
   );
 };
-
-export default UsersTable;
+export default NgnTable;

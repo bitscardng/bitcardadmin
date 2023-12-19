@@ -6,6 +6,8 @@ import {
   useGetKyc3Query,
   useVerifyKyc3Mutation,
   useDeclineKyc3Mutation,
+  useDeclineKyc4Mutation,
+  useVerifyKyc4Mutation,
 } from "../../api/kycQueries";
 import { ConfigProvider } from "antd";
 import { toast } from "react-toastify";
@@ -26,15 +28,31 @@ const Kyc3Table = () => {
   const [id, setId] = useState("");
   const [verify, { isLoading: isVerifying }] = useVerifyKyc3Mutation();
   const [decline, { isLoading: isDeclining }] = useDeclineKyc3Mutation();
+  const [verifyKyc4, { isLoading: isVerifyingKyc4 }] = useVerifyKyc4Mutation();
+  const [declineKyc4, { isLoading: isDecliningKyc4 }] =
+    useDeclineKyc4Mutation();
   const handleVerifyDetails = (id) => {
     console.log(id);
     verify(id)
       .unwrap()
       .then(() => {
-        toast.success("kyc details approved");
+        toast.success("kyc3 details approved");
+        verifyKyc4(id)
+          .unwrap()
+          .then(() => {
+            toast.success("kyc4 details approved");
+          })
+          .catch((err) => {
+            toast.error(
+              err.message ||
+                err.msg ||
+                err?.data?.message ||
+                err?.data?.msg ||
+                "an error occured"
+            );
+          });
       })
       .catch((err) => {
-        console.log(err);
         toast.error(
           err.message ||
             err.msg ||
@@ -49,7 +67,15 @@ const Kyc3Table = () => {
     decline(id)
       .unwrap()
       .then(() => {
-        toast.success("kyc details approved");
+        toast.success("kyc3 details declined");
+        declineKyc4(id)
+          .unwrap()
+          .then(() => {
+            toast.success("kyc4 details declined");
+          })
+          .catch((err) => {
+            toast.error(err.message || err.msg || "an error occured");
+          });
       })
       .catch((err) => {
         toast.error(err.message || err.msg || "an error occured");

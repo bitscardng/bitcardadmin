@@ -41,7 +41,7 @@ const menu = [
   { name: "Paybills", link: "/paybills", count: "" },
   { name: "KYC 1 & 2", link: "/kyc-1&2", count: "" },
   { name: "KYC 3", link: "/kyc-3", count: "" },
-  { name: "KYC 4", link: "/kyc-4", count: "" },
+  // { name: "KYC 4", link: "/kyc-4", count: "" },
 ];
 
 export default menu;

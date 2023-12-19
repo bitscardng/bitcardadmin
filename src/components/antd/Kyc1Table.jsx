@@ -1,19 +1,14 @@
 import React, { useEffect, useState, useMemo } from "react";
-import qs from "qs";
 import { Table } from "antd";
 import ConfirmModal from "./ConfirmModal";
 import {
   useGetKyc1_2Query,
-  useVerifyKyc1_2Mutation,
+  useVerifyKyc1Mutation,
+  useVerifyKyc2Mutation,
   useDeclineKyc1_2Mutation,
 } from "../../api/kycQueries";
 import { ConfigProvider } from "antd";
 import { toast } from "react-toastify";
-const getRandomuserParams = (params) => ({
-  results: params.pagination?.pageSize,
-  page: params.pagination?.current,
-  ...params,
-});
 const Kyc1Table = () => {
   const [tableParams, setTableParams] = useState({
     pagination: {
@@ -24,17 +19,32 @@ const Kyc1Table = () => {
   const [openApprove, setOpenApprove] = useState(false);
   const [openDecline, setOpenDecline] = useState(false);
   const [id, setId] = useState("");
-  const [verify, { isLoading: isVerifying }] = useVerifyKyc1_2Mutation();
-  const [decline, { isLoading: isDeclining }] = useDeclineKyc1_2Mutation();
+  const [verifyKyc1, { isLoading: isVerifyingKyc1 }] = useVerifyKyc1Mutation();
+  const [declineKyc, { isLoading: isDecliningKyc }] =
+    useDeclineKyc1_2Mutation();
+  const [verifyKyc2, { isLoading: isVerifyingKyc2 }] = useVerifyKyc2Mutation();
   const handleVerifyDetails = (id) => {
     console.log(id);
-    verify(id)
+    verifyKyc1(id)
       .unwrap()
       .then(() => {
-        toast.success("kyc details approved");
+        toast.success("kyc1 details approved");
+        verifyKyc2(id)
+          .unwrap()
+          .then(() => {
+            toast.success("kyc2 details approved");
+          })
+          .catch((err) => {
+            toast.error(
+              err.message ||
+                err.msg ||
+                err?.data?.message ||
+                err?.data?.msg ||
+                "an error occured"
+            );
+          });
       })
       .catch((err) => {
-        console.log(err);
         toast.error(
           err.message ||
             err.msg ||
@@ -46,7 +56,7 @@ const Kyc1Table = () => {
   };
   const handleDeclineDetails = (id) => {
     console.log(id);
-    decline(id)
+    declineKyc(id)
       .unwrap()
       .then(() => {
         toast.success("kyc details approved");
@@ -151,7 +161,6 @@ const Kyc1Table = () => {
   );
   const { data: result = [], isLoading, refetch } = useGetKyc1_2Query();
   const fetchData = () => {
-    const params = qs.stringify(getRandomuserParams(tableParams));
     refetch()
       .then((result) => {
         setTableParams({
@@ -173,11 +182,6 @@ const Kyc1Table = () => {
     setTableParams({
       pagination,
     });
-
-    // // `dataSource` is useless since `pageSize` changed
-    // if (pagination.pageSize !== tableParams.pagination?.pageSize) {
-    //   setData([]);
-    // }
   };
   return (
     <>
@@ -210,7 +214,7 @@ const Kyc1Table = () => {
       <ConfirmModal
         open={openApprove}
         setOpen={setOpenApprove}
-        loading={isVerifying}
+        loading={isVerifyingKyc1 || isVerifyingKyc2}
         text={"Approve kyc details"}
         action={handleVerifyDetails}
         data={id}
@@ -218,7 +222,7 @@ const Kyc1Table = () => {
       <ConfirmModal
         open={openDecline}
         setOpen={setOpenDecline}
-        loading={isDeclining}
+        loading={isDecliningKyc}
         text={"Decline kyc details"}
         action={handleDeclineDetails}
         data={id}

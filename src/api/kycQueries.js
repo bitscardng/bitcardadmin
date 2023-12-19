@@ -22,9 +22,16 @@ export const kycSlice = apiSlice
         }),
         providesTags: ["kyc4"],
       }),
-      verifyKyc1_2: builder.mutation({
+      verifyKyc1: builder.mutation({
         query: (id) => ({
-          url: `kyc/verify1&2/${id}`,
+          url: `kyc/verify1/${id}`,
+          method: "PATCH",
+        }),
+        invalidatesTags: ["kyc1&2"],
+      }),
+      verifyKyc2: builder.mutation({
+        query: (id) => ({
+          url: `kyc/verify2/${id}`,
           method: "PATCH",
         }),
         invalidatesTags: ["kyc1&2"],
@@ -74,7 +81,8 @@ export const {
   useGetKyc1_2Query,
   useGetKyc3Query,
   useGetKyc4Query,
-  useVerifyKyc1_2Mutation,
+  useVerifyKyc1Mutation,
+  useVerifyKyc2Mutation,
   useVerifyKyc3Mutation,
   useVerifyKyc4Mutation,
 } = kycSlice;

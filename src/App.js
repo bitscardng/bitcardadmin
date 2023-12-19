@@ -128,7 +128,7 @@ function App() {
 
           <Route path="/kyc-1&2" element={<Kyc1 />} />
           <Route path="/kyc-3" element={<Kyc3 />} />
-          <Route path="/kyc-4" element={<Kyc4 />} />
+          {/* <Route path="/kyc-4" element={<Kyc4 />} /> */}
           <Route path="/chat" element={<Chat />} />
           {/* ticketing section */}
 

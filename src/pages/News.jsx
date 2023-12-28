@@ -221,7 +221,7 @@ const News = () => {
           </button>
         </div>
       </div>
-      
+
       <div className={styles.formField}>
         <div className="flex flex-row items-center gap-2 text-center">
           <div className="p-2 text-center rounded-full bg-[#3b3a62]">
@@ -266,7 +266,10 @@ const News = () => {
             theme="snow"
             placeholder="write your content here"
             value={content}
-            onChange={setContent}
+            onChange={(value) => {
+              console.log(value);
+              setContent(value);
+            }}
             modules={News.modules}
             formats={News.formats}
             className="w-full p-2 mx-1 bg-transparent outline-none"

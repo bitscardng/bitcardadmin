@@ -59,7 +59,7 @@ const Kyc1Table = () => {
     declineKyc(id)
       .unwrap()
       .then(() => {
-        toast.success("kyc details approved");
+        toast.success("kyc details declined");
       })
       .catch((err) => {
         toast.error(err.message || err.msg || "an error occured");
@@ -74,7 +74,7 @@ const Kyc1Table = () => {
       {
         title: "country",
         dataIndex: "address",
-        render: (address) => `${address.country}`,
+        render: (address) => `${address?.country}`,
         width: "20%",
       },
       {
@@ -104,15 +104,15 @@ const Kyc1Table = () => {
       {
         title: "Phone Number",
         dataIndex: "phone",
-        render: ({ phone_number, phone_country_code }) =>
-          `${phone_country_code + phone_number}`,
+        render: (contact) =>
+          `${contact?.phone_country_code + contact?.phone_number}`,
         width: "30%",
       },
       {
         title: "Address",
         dataIndex: "address",
-        render: ({ street, city, state }) =>
-          `${street + "," + city + "," + state}`,
+        render: (address) =>
+          `${address?.street + "," + address?.city + "," + address?.state}`,
         width: "30%",
       },
       {
@@ -124,7 +124,7 @@ const Kyc1Table = () => {
       {
         title: "Postal Code",
         dataIndex: "address",
-        render: ({ postal_code }) => `${postal_code}`,
+        render: (address) => `${address?.postal_code}`,
         width: "20%",
       },
       {

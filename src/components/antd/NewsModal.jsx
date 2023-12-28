@@ -49,7 +49,14 @@ const NewsModal = ({ open, setOpen, id }) => {
       }
     >
       <div
-        dangerouslySetInnerHTML={{ __html: sanitizeHtml(data?.data?.content) }}
+        dangerouslySetInnerHTML={{
+          __html: sanitizeHtml(
+            data?.data?.content.replace(
+              'style="color: rgb(255,255,255);"',
+              'style="color: rgb(0,0,0);"'
+            )
+          ),
+        }}
       />
       <div className="flex justify-between items-center w-full">
         <span>Author: {data?.data?.author}</span>

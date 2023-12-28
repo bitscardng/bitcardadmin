@@ -18,6 +18,42 @@ import {
 } from "../api/newsApiSlice";
 import { toast } from "react-toastify";
 
+const modules = {
+  toolbar: [
+    [{ header: "1" }, { header: "2" }, { font: [] }],
+    [{ size: [] }],
+    ["bold", "italic", "underline", "strike", "blockquote"],
+    [{ align: [] }],
+    [{ color: [] }, { background: [] }],
+    [
+      { list: "ordered" },
+      { list: "bullet" },
+      { indent: "-1" },
+      { indent: "+1" },
+    ],
+    ["clean"],
+  ],
+};
+const formats = [
+  "header",
+  "font",
+  "size",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "blockquote",
+  "color",
+  "background",
+  "list",
+  "bullet",
+  "indent",
+  "link",
+  "video",
+  "image",
+  "code-block",
+  "align",
+];
 const News = () => {
   const [upload, { isLoading: isUploading }] = useUploadFileMutation();
   const { data: category, isLoading: isLoadingCategory } =
@@ -72,7 +108,7 @@ const News = () => {
     createNews({
       image: imagePreview,
       category: selected._id,
-      content,
+      content: `<div style="color: rgb(255,255,255);">${content}</div>`,
       ...newsData,
     })
       .unwrap()
@@ -270,8 +306,8 @@ const News = () => {
               console.log(value);
               setContent(value);
             }}
-            modules={News.modules}
-            formats={News.formats}
+            modules={modules}
+            formats={formats}
             className="w-full p-2 mx-1 bg-transparent outline-none"
           />
         </div>
@@ -282,42 +318,5 @@ const News = () => {
     </form>
   );
 };
-
-News.modules = {
-  toolbar: [
-    [{ header: "1" }, { header: "2" }, { font: [] }],
-    [{ size: [] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [{ align: [] }],
-    [{ color: [] }, { background: [] }],
-    [
-      { list: "ordered" },
-      { list: "bullet" },
-      { indent: "-1" },
-      { indent: "+1" },
-    ],
-    ["clean"],
-  ],
-};
-News.formats = [
-  "header",
-  "font",
-  "size",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "blockquote",
-  "color",
-  "background",
-  "list",
-  "bullet",
-  "indent",
-  "link",
-  "video",
-  "image",
-  "code-block",
-  "align",
-];
 
 export default News;

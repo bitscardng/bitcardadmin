@@ -41,7 +41,7 @@ const BuyGiftCard = () => {
             }`}
           >
             <ul className={`p-2 rounded-2xl w-72 bg-sec text-center`}>
-              <Link to="/giftcard/upload">
+              <Link to="/giftcard/upload-buy">
                 <p
                   className={`w-full p-2 my-1 hover:bg-active text-[#9CA3AF]  hover:text-white duration-500 cursor-pointer rounded-xl`}
                 >

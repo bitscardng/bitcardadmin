@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
-import UploadGiftcard from "./components/giftcard/UploadGiftcard";
+import UploadSellGiftcard from "./components/giftcard/UploadSellGiftcard";
+import UploadBuyGiftcard from "./components/giftcard/UploadBuyGiftcard";
 import AddGiftcard from "./components/giftcard/AddGiftcard";
 import AddBuyGiftcard from "./components/giftcard/AddBuyGiftcard";
 import Authlayout from "./layout/authlayout";
@@ -112,8 +113,12 @@ function App() {
           <Route path="/ghs-withdraw" element={<GhsWithdraw />} />
           <Route path="/fx-rate" element={<FxRate />} />
           <Route path="/crypto-rate" element={<CryptoRate />} />
-          <Route path="/giftcard/upload" element={<UploadGiftcard />} />
-          <Route path="/giftcard/add" element={<AddGiftcard />} />
+          <Route path="/giftcard/upload-buy" element={<UploadBuyGiftcard />} />
+          <Route
+            path="/giftcard/upload-sell"
+            element={<UploadSellGiftcard />}
+          />
+          <Route path="/giftcard/add-sell" element={<AddGiftcard />} />
           <Route path="/giftcard/add-buy" element={<AddBuyGiftcard />} />
           <Route path="/ngn-deposit" element={<NgnDeposit />} />
           <Route path="/usd-deposit" element={<UsdDeposit />} />

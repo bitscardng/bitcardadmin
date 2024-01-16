@@ -39,7 +39,7 @@ const denomination = [
   // { id: "rad08", value: "501-5000",label:"501-500" },
 ];
 
-const UploadGiftcard = () => {
+const UploadSellGiftcard = () => {
   const [search, setSearch] = useState("");
   const [countries, setCountries] = useState({});
   const [denominations, setDenominations] = useState({ 10: "10" });
@@ -51,6 +51,7 @@ const UploadGiftcard = () => {
     countries: [],
     card_types: [],
     denominations: [],
+    transaction_type: "SELL",
   });
   const [createCard, { isLoading }] = useCreateGiftCardInfoMutation();
   const [denominationCheck, setDenominationCheck] = useState([
@@ -290,4 +291,4 @@ const UploadGiftcard = () => {
   );
 };
 
-export default UploadGiftcard;
+export default UploadSellGiftcard;

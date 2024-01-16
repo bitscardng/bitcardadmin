@@ -16,19 +16,6 @@ const menu = [
   { name: "GHS withdrawal", link: "/ghs-withdraw", count: "" },
   { name: "FX Rate", link: "/fx-Rate", count: "" },
   { name: "Crypto Rate", link: "/crypto-Rate", count: "" },
-  {
-    name: "Gift Card Rate",
-    subMenu: [
-      {
-        name: "Upload",
-        link: "/giftcard/upload",
-      },
-      {
-        name: "Add",
-        link: "/giftcard/add",
-      },
-    ],
-  },
   { name: "NGN Deposit", link: "/ngn-deposit", count: "" },
   { name: "USD Deposit", link: "/usd-deposit", count: "" },
   { name: "push notification", link: "/push-notice", count: "" },

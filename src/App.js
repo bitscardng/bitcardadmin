@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import UploadGiftcard from "./components/giftcard/UploadGiftcard";
 import AddGiftcard from "./components/giftcard/AddGiftcard";
+import AddBuyGiftcard from "./components/giftcard/AddBuyGiftcard";
 import Authlayout from "./layout/authlayout";
 import {
   AdminControl,
@@ -113,6 +114,7 @@ function App() {
           <Route path="/crypto-rate" element={<CryptoRate />} />
           <Route path="/giftcard/upload" element={<UploadGiftcard />} />
           <Route path="/giftcard/add" element={<AddGiftcard />} />
+          <Route path="/giftcard/add-buy" element={<AddBuyGiftcard />} />
           <Route path="/ngn-deposit" element={<NgnDeposit />} />
           <Route path="/usd-deposit" element={<UsdDeposit />} />
           <Route path="/push-notice" element={<PushNotify />} />

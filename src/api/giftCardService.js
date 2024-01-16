@@ -18,6 +18,12 @@ export const giftCardSlice = apiSlice
         }),
         providesTags: ["giftcard"],
       }),
+      getPendingBuyTranx: builder.query({
+        query: () => ({
+          url: "gift-card/pending-buy-transactions",
+        }),
+        providesTags: ["giftcard-buy"],
+      }),
       getGiftCardInfo: builder.query({
         query: () => ({
           url: `gift-card/get-giftcard-info`,
@@ -36,9 +42,15 @@ export const giftCardSlice = apiSlice
         },
         providesTags: ["giftcard-info", "giftcard"],
       }),
-      getGiftCard: builder.query({
+      getBuyGiftCard: builder.query({
         query: (body) => ({
-          url: `gift-card/get-giftcard/${body?.name}`,
+          url: `gift-card/get-giftcard/${body?.name}/buy`,
+        }),
+        providesTags: ["giftcard", "giftcard-info"],
+      }),
+      getSellGiftCard: builder.query({
+        query: (body) => ({
+          url: `gift-card/get-giftcard/${body?.name}/sell`,
         }),
         providesTags: ["giftcard", "giftcard-info"],
       }),
@@ -87,6 +99,12 @@ export const giftCardSlice = apiSlice
           method: "PATCH",
         }),
       }),
+      acceptBuyGiftCard: builder.mutation({
+        query: (body) => ({
+          url: `gift-card/accept-giftcard-buy/${body.id}`,
+          method: "PATCH",
+        }),
+      }),
       processGiftCard: builder.mutation({
         query: (body) => ({
           url: `gift-card/process-giftcard-buy/${body.id}`,
@@ -96,6 +114,12 @@ export const giftCardSlice = apiSlice
       declineGiftCard: builder.mutation({
         query: (body) => ({
           url: `gift-card/decline-giftcard-sell/${body.id}`,
+          method: "PATCH",
+        }),
+      }),
+      declineBuyGiftCard: builder.mutation({
+        query: (body) => ({
+          url: `gift-card/decline-giftcard-buy/${body.id}`,
           method: "PATCH",
         }),
       }),
@@ -118,13 +142,16 @@ export const giftCardSlice = apiSlice
 
 export const {
   useAcceptGiftCardMutation,
+  useAcceptBuyGiftCardMutation,
   useCreateGiftCardInfoMutation,
   useCreateGiftCardMutation,
   useCreateBuyGiftCardMutation,
   useDeclineGiftCardMutation,
+  useDeclineBuyGiftCardMutation,
   useDeleteGiftCardMutation,
   useGetGiftCardInfoQuery,
-  useLazyGetGiftCardQuery,
+  useLazyGetBuyGiftCardQuery,
+  useLazyGetSellGiftCardQuery,
   useGetPendingBuyTranxQuery,
   useGetPendingSellTranxQuery,
   useProcessGiftCardMutation,

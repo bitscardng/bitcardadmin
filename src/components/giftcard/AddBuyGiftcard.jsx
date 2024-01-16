@@ -6,11 +6,11 @@ import { Select } from "antd";
 import {
   useGetGiftCardInfoQuery,
   useCreateGiftCardMutation,
-  useLazyGetSellGiftCardQuery,
+  useLazyGetBuyGiftCardQuery,
   useUpdateGiftCardMutation,
   useDeleteGiftCardMutation,
 } from "../../api/giftCardService";
-import { useUpdateRmdRateMutation } from "../../api/cryptoQueries";
+import { useUpdateNgnRateMutation } from "../../api/cryptoQueries";
 import { useGetCryptoRatesQuery } from "../../api/cryptoQueries";
 import { Btn as Button } from "../antd/Btn";
 import { toast } from "react-toastify";
@@ -79,18 +79,18 @@ const initialState = {
   dollar_rate: 0,
   ngn_rate: 0,
 };
-const AddGiftcard = () => {
+const AddBuyGiftcard = () => {
   const { data, isLoading, isSuccess } = useGetGiftCardInfoQuery();
   const [fetchCard, { isLoading: isFetchingCard }] =
-    useLazyGetSellGiftCardQuery();
+    useLazyGetBuyGiftCardQuery();
   const [createCard, { isLoading: isCreatingCard }] =
     useCreateGiftCardMutation();
   const { data: rates, isLoading: isFetchingRate } = useGetCryptoRatesQuery();
   const [updateRate, { isLoading: isUpdatingRate }] =
-    useUpdateRmdRateMutation();
+    useUpdateNgnRateMutation();
   const [cards, setCards] = useState({});
-  const [editRmd, setEditRmd] = useState(true);
-  const [rmdRate, setRmdRate] = useState();
+  const [editNgn, setEditNgn] = useState(true);
+  const [ngnRate, setNgnRate] = useState();
   const [formState, setFormState] = useState([]);
   const [updateCard, { isLoading: isUpdatingCard }] =
     useUpdateGiftCardMutation();
@@ -140,43 +140,43 @@ const AddGiftcard = () => {
         isUpdatingCard ||
         isLoading ||
         isFetchingCard) && <Loader />}
-      <p className={`${styles.topic} mb-0`}>add new sell gift card</p>
+      <p className={`${styles.topic} mb-0`}>add new buy gift card</p>
       <div className="flex items-center justify-between p-2">
         <p className="text-2xl font-bold text-end">Add Rate</p>
         <div className="flex items-center justify-between gap-8">
           <p className="p-2 px-4 rounded-full bg-sec text-active">
-            RMD :
+            Ngn Rate :
             {/* <span className="pl-2 text-xl font-semibold text-center text-white">
               {rates?.data?.rmd_rate}
             </span> */}
             <input
               className="pl-2 text-xl font-semibold text-center text-white w-[5rem]"
-              value={rmdRate || rates?.data?.rmd_rate}
-              defaultValue={rates?.data?.rmd_rate}
-              disabled={editRmd}
+              value={ngnRate || rates?.data?.ngn_rate}
+              defaultValue={rates?.data?.ngn_rate}
+              disabled={editNgn}
               onChange={(e) => {
-                setRmdRate(e.target.value);
+                setNgnRate(e.target.value);
               }}
             />
           </p>
           <div
             className={`${styles.btn} max-w-fit px-10 `}
             onClick={() => {
-              setEditRmd((prev) => {
+              setEditNgn((prev) => {
                 if (!prev) {
-                  updateRate({ rmd_rate: Number(rmdRate) })
+                  updateRate({ ngn_rate: Number(ngnRate) })
                     .unwrap()
                     .then(() => {
-                      toast.success("rmd rate updated");
-                      setEditRmd(true);
-                      setRmdRate(null);
+                      toast.success("ngn rate updated");
+                      setEditNgn(true);
+                      setNgnRate(null);
                     });
                 }
                 return !prev;
               });
             }}
           >
-            {editRmd ? "Edit" : "Update"}
+            {editNgn ? "Edit" : "Update"}
           </div>
           <p className="p-2 px-4 rounded-full bg-sec text-active">
             Profit :
@@ -398,4 +398,4 @@ const AddGiftcard = () => {
   );
 };
 
-export default AddGiftcard;
+export default AddBuyGiftcard;

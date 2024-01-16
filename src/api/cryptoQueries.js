@@ -94,6 +94,14 @@ export const cryptoQueries = apiSlice
         }),
         invalidatesTags: ["crypto-rates"],
       }),
+      updateNgnRate: builder.mutation({
+        query: (body) => ({
+          url: `gift-card/edit-ngnrate`,
+          method: "PATCH",
+          body,
+        }),
+        invalidatesTags: ["crypto-rates"],
+      }),
     }),
   });
 
@@ -109,6 +117,7 @@ export const {
   useUsdSellProfitMutation,
   useGetCryptoRatesQuery,
   useUpdateRmdRateMutation,
+  useUpdateNgnRateMutation,
   useGetCryptoTransactionsQuery,
   useLazyGetCryptoTransactionsQuery,
 } = cryptoQueries;

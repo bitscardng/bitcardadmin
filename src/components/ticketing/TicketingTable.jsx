@@ -26,7 +26,19 @@ const TicketingTable = ({ query }) => {
         title: "Issues",
         dataIndex: "issues",
         render: (issues) => `${issues}`,
-        width: "75%",
+        width: "45%",
+      },
+      {
+        title: "name",
+        dataIndex: "name",
+        render: (issues) => `${issues}`,
+        width: "15%",
+      },
+      {
+        title: "Department",
+        dataIndex: "department",
+        render: (department) => `${department}`,
+        width: "15%",
       },
       {
         dataIndex: "_id",

@@ -69,12 +69,12 @@ const Ticketing = ({ children }) => {
             {menu.map((menu, index) => (
               <li className="relative my-3 ml-2 font-light">
                 <Link to={`/ticketing/${menu.title}`} key={index}>
-                  <div
+                  {/* <div
                     className={`w-[32px] p-1 rounded-full bg-[#ED1E79] 
                     text-white text-center left-28 -top-4 absolute font-thin`}
                   >
                     {menu.num}
-                  </div>
+                  </div> */}
                   <div
                     className={`${
                       active === menu.title ? "bg-active" : "bg-[#6C6AEB]"

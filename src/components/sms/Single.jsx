@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ReactQuill from "react-quill";
 import { styles } from "../../styles";
 import { FiUser, FiPhone } from "react-icons/fi";
 import { useSingle_smsMutation } from "../../api/smsApiSlice";
@@ -54,7 +53,7 @@ const Single = () => {
         </div>
       </div>
       <div className="mt-4">
-        <ReactQuill
+        {/* <ReactQuill
           theme="snow"
           placeholder="write your content here"
           value={content}
@@ -62,6 +61,12 @@ const Single = () => {
           modules={Single.modules}
           formats={Single.formats}
           className="w-full p-2 mx-1 bg-transparent outline-none"
+        /> */}
+        <p>message</p>
+        <textarea
+          value={content}
+          className="w-full bg-white text-black p-[0.5rem]"
+          onChange={(e) => setContent(e.target.value)}
         />
       </div>
       <button type="submit" className={styles.btn}>
@@ -71,42 +76,42 @@ const Single = () => {
   );
 };
 
-Single.modules = {
-  toolbar: [
-    [{ header: "1" }, { header: "2" }, { font: [] }],
-    [{ size: [] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [{ align: [] }],
-    [{ color: [] }, { background: [] }],
-    [
-      { list: "ordered" },
-      { list: "bullet" },
-      { indent: "-1" },
-      { indent: "+1" },
-    ],
-    ["clean"],
-  ],
-};
+// Single.modules = {
+//   toolbar: [
+//     [{ header: "1" }, { header: "2" }, { font: [] }],
+//     [{ size: [] }],
+//     ["bold", "italic", "underline", "strike", "blockquote"],
+//     [{ align: [] }],
+//     [{ color: [] }, { background: [] }],
+//     [
+//       { list: "ordered" },
+//       { list: "bullet" },
+//       { indent: "-1" },
+//       { indent: "+1" },
+//     ],
+//     ["clean"],
+//   ],
+// };
 
-Single.formats = [
-  "header",
-  "font",
-  "size",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "blockquote",
-  "color",
-  "background",
-  "list",
-  "bullet",
-  "indent",
-  "link",
-  "video",
-  "image",
-  "code-block",
-  "align",
-];
+// Single.formats = [
+//   "header",
+//   "font",
+//   "size",
+//   "bold",
+//   "italic",
+//   "underline",
+//   "strike",
+//   "blockquote",
+//   "color",
+//   "background",
+//   "list",
+//   "bullet",
+//   "indent",
+//   "link",
+//   "video",
+//   "image",
+//   "code-block",
+//   "align",
+// ];
 
 export default Single;

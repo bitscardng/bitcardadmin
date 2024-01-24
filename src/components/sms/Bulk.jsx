@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ReactQuill from "react-quill";
 import { styles } from "../../styles";
 import { FiUpload, FiUser } from "react-icons/fi";
 const Bulk = () => {
@@ -60,7 +59,7 @@ const Bulk = () => {
         </div>
       </div>
       <div className="mt-4">
-        <ReactQuill
+        {/* <ReactQuill
           theme="snow"
           placeholder="write your content here"
           value={content}
@@ -68,6 +67,12 @@ const Bulk = () => {
           modules={Bulk.modules}
           formats={Bulk.formats}
           className="w-full p-2 mx-1 bg-transparent outline-none"
+        /> */}
+        <p>message</p>
+        <textarea
+          value={content}
+          className="w-full bg-white text-black p-[0.5rem]"
+          onChange={(e) => setContent(e.target.value)}
         />
       </div>
       <button type="submit" className={styles.btn}>
@@ -77,42 +82,42 @@ const Bulk = () => {
   );
 };
 
-Bulk.modules = {
-  toolbar: [
-    [{ header: "1" }, { header: "2" }, { font: [] }],
-    [{ size: [] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [{ align: [] }],
-    [{ color: [] }, { background: [] }],
-    [
-      { list: "ordered" },
-      { list: "bullet" },
-      { indent: "-1" },
-      { indent: "+1" },
-    ],
-    ["clean"],
-  ],
-};
+// Bulk.modules = {
+//   toolbar: [
+//     [{ header: "1" }, { header: "2" }, { font: [] }],
+//     [{ size: [] }],
+//     ["bold", "italic", "underline", "strike", "blockquote"],
+//     [{ align: [] }],
+//     [{ color: [] }, { background: [] }],
+//     [
+//       { list: "ordered" },
+//       { list: "bullet" },
+//       { indent: "-1" },
+//       { indent: "+1" },
+//     ],
+//     ["clean"],
+//   ],
+// };
 
-Bulk.formats = [
-  "header",
-  "font",
-  "size",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "blockquote",
-  "color",
-  "background",
-  "list",
-  "bullet",
-  "indent",
-  "link",
-  "video",
-  "image",
-  "code-block",
-  "align",
-];
+// Bulk.formats = [
+//   "header",
+//   "font",
+//   "size",
+//   "bold",
+//   "italic",
+//   "underline",
+//   "strike",
+//   "blockquote",
+//   "color",
+//   "background",
+//   "list",
+//   "bullet",
+//   "indent",
+//   "link",
+//   "video",
+//   "image",
+//   "code-block",
+//   "align",
+// ];
 
 export default Bulk;

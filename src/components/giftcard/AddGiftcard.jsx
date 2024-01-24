@@ -120,11 +120,14 @@ const AddGiftcard = () => {
       });
   };
   useEffect(() => {
-    if (isSuccess)
-      data?.map((e) => {
+    console.log(data);
+    if (isSuccess) {
+      console.log(data);
+      data?.data?.map((e) => {
         fetchCard({ name: e.card_name })
           .unwrap()
           .then((res) => {
+            console.log(res);
             setCards((prev) => ({ ...prev, [e.card_name]: res.data }));
             setFormState((prev) => [
               ...prev,
@@ -132,6 +135,7 @@ const AddGiftcard = () => {
             ]);
           });
       });
+    }
   }, [isSuccess, data]);
   return (
     <div className="capitalize relative">

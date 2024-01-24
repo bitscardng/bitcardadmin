@@ -12,7 +12,10 @@ const NgnWithdrawalTable = () => {
     },
   });
   const [preview, setPreview] = useState(false);
-  const [id, setId] = useState("");
+  const [detailsParam, setDetailsParam] = useState({
+    email: '',
+    id: '',
+  });
   const columns = useMemo(
     () => [
       {
@@ -35,12 +38,14 @@ const NgnWithdrawalTable = () => {
       },
       {
         title: "Details",
-        dataIndex: "_id",
-        render: (id) => (
+        render: (_, record) => (
           <div className="flex flex-col gap-[0.2rem]">
             <button
               onClick={() => {
-                setId(id);
+                setDetailsParam({
+                  email: record.email,
+                  id: record._id
+                })
                 setPreview(true);
               }}
               className="bg-[#F7931A] rounded-[20px] font-[Poppins]"
@@ -137,7 +142,7 @@ const NgnWithdrawalTable = () => {
           scroll={{ x: 1000, y: 1200 }}
         />
       </ConfigProvider>
-      <WithdrawalDetailsModal open={preview} setOpen={setPreview} id={id} />
+      <WithdrawalDetailsModal open={preview} setOpen={setPreview} email={detailsParam.email} id={detailsParam.id} />
     </>
   );
 };

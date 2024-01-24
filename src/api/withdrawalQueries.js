@@ -30,9 +30,9 @@ const withdrawalQueries = apiSlice
         }),
         invalidatesTags: ["withdrawal"],
       }),
-      getWithdrawal: builder.query({
-        query: ({ id }) => ({
-          url: `withdrawal/ngn-withdrawals/${id}`,
+      getWithdrawalInfo: builder.query({
+        query: ({ id, email }) => ({
+          url: `withdrawal/withdrawal-info/${id}/${email}`,
         }),
         providesTags: ["withdrawal"],
       }),
@@ -44,5 +44,5 @@ export const {
   useApprovengnWithdrawalsMutation,
   useDeclinengnWithdrawalsMutation,
   useNgnWithdrawalsQuery,
-  useGetWithdrawalQuery,
+  useGetWithdrawalInfoQuery,
 } = withdrawalQueries;

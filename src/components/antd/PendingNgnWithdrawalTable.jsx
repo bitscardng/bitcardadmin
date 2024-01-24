@@ -26,6 +26,10 @@ const PendingNgnWithdrawalTable = () => {
   const [openApprove, setOpenApprove] = useState(false);
   const [openDecline, setOpenDecline] = useState(false);
   const [preview, setPreview] = useState(false);
+  const [detailsParam, setDetailsParam] = useState({
+    email: '',
+    id: '',
+  });
   const [id, setId] = useState("");
   const [verify, { isLoading: isVerifying }] =
     useApprovengnWithdrawalsMutation();
@@ -81,12 +85,14 @@ const PendingNgnWithdrawalTable = () => {
       },
       {
         title: "Details",
-        dataIndex: "_id",
-        render: (id) => (
+        render: (_, record) => (
           <div className="flex flex-col gap-[0.2rem]">
             <button
               onClick={() => {
-                setId(id);
+                setDetailsParam({
+                  email: record.email,
+                  id: record._id
+                })
                 setPreview(true);
               }}
               className="bg-[#F7931A] rounded-[20px] font-[Poppins]"
@@ -218,7 +224,7 @@ const PendingNgnWithdrawalTable = () => {
         action={handleDeclineDetails}
         data={id}
       />
-      <WithdrawalDetailsModal open={preview} setOpen={setPreview} id={id} />
+      <WithdrawalDetailsModal open={preview} setOpen={setPreview} email={detailsParam.email} id={detailsParam.id} />
     </>
   );
 };

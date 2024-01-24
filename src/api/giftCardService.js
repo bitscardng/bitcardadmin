@@ -44,13 +44,13 @@ export const giftCardSlice = apiSlice
       }),
       getBuyGiftCard: builder.query({
         query: (body) => ({
-          url: `gift-card/get-giftcard/${body?.name}/buy`,
+          url: `gift-card/get-giftcard/${body?.name}/Buy`,
         }),
         providesTags: ["giftcard", "giftcard-info"],
       }),
       getSellGiftCard: builder.query({
         query: (body) => ({
-          url: `gift-card/get-giftcard/${body?.name}/sell`,
+          url: `gift-card/get-giftcard/${body?.name}/Sell`,
         }),
         providesTags: ["giftcard", "giftcard-info"],
       }),

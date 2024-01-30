@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.4b98803b.css",
-    "main.js": "/static/js/main.fbdbd6b7.js",
-    "static/media/human.png": "/static/media/human.1922e77ea51a16f356ba.png",
-    "static/media/robot.png": "/static/media/robot.8086aab3bf3f20571767.png",
-    "static/media/loaderImg.gif": "/static/media/loaderImg.ca718ff9cf858c25bcb7.gif",
-    "static/media/googleplay.png": "/static/media/googleplay.7daa05e4b4dfe4acd930.png",
-    "static/media/itunes.png": "/static/media/itunes.7ed1019a4e9b8d441c24.png",
-    "index.html": "/index.html",
-    "static/media/Bitcoin.svg": "/static/media/Bitcoin.585d528bbcb66a96881dde0d6efea218.svg",
-    "main.4b98803b.css.map": "/static/css/main.4b98803b.css.map",
-    "main.fbdbd6b7.js.map": "/static/js/main.fbdbd6b7.js.map"
+    "main.css": "./static/css/main.9d825290.css",
+    "main.js": "./static/js/main.547122c5.js",
+    "static/media/human.png": "./static/media/human.1922e77ea51a16f356ba.png",
+    "static/media/robot.png": "./static/media/robot.8086aab3bf3f20571767.png",
+    "static/media/loaderImg.gif": "./static/media/loaderImg.ca718ff9cf858c25bcb7.gif",
+    "static/media/googleplay.png": "./static/media/googleplay.7daa05e4b4dfe4acd930.png",
+    "static/media/itunes.png": "./static/media/itunes.7ed1019a4e9b8d441c24.png",
+    "index.html": "./index.html",
+    "static/media/Bitcoin.svg": "./static/media/Bitcoin.d5b1a6d853e6c5f555676437a9a22d51.svg",
+    "main.9d825290.css.map": "./static/css/main.9d825290.css.map",
+    "main.547122c5.js.map": "./static/js/main.547122c5.js.map"
   },
   "entrypoints": [
-    "static/css/main.4b98803b.css",
-    "static/js/main.fbdbd6b7.js"
+    "static/css/main.9d825290.css",
+    "static/js/main.547122c5.js"
   ]
 }

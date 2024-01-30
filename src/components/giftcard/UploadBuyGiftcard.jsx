@@ -51,7 +51,7 @@ const UploadBuyGiftcard = () => {
     countries: [],
     card_types: [],
     denominations: [],
-    transaction_type: "BUY",
+    transaction_type: "Buy",
   });
   const [createCard, { isLoading }] = useCreateGiftCardInfoMutation();
   const [denominationCheck, setDenominationCheck] = useState([

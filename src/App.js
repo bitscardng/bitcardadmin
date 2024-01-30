@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { createBrowserHistory, createHashHistory } from 'history';
+import { isElectron } from "./utils";
 import "./index.css";
 import UploadSellGiftcard from "./components/giftcard/UploadSellGiftcard";
 import UploadBuyGiftcard from "./components/giftcard/UploadBuyGiftcard";
@@ -74,9 +76,11 @@ import TicketingDetails from "./components/ticketing/TicketingDetails";
 import AddBuyGiftCard from "./components/buyGiftcard/AddBuyGiftCard";
 import UploadBuyGiftCard from "./components/buyGiftcard/UploadBuyGiftCard";
 
+const history = isElectron() ? createHashHistory() : createBrowserHistory();
+
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter history={history}>
       <Routes>
         <Route path="/" element={<SignIn />} />
         <Route path="/sign-in" element={<SignIn />} />

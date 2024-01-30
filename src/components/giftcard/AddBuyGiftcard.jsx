@@ -4,11 +4,13 @@ import { giftCard } from "../../constant";
 import { FiArrowDownCircle } from "react-icons/fi";
 import { Select } from "antd";
 import {
-  useGetGiftCardInfoQuery,
+  useGetGiftCardBuyInfoQuery,
   useCreateGiftCardMutation,
+  useCreateBuyGiftCardMutation,
   useLazyGetBuyGiftCardQuery,
   useUpdateGiftCardMutation,
   useDeleteGiftCardMutation,
+  useDeleteGiftCardInfoMutation,
 } from "../../api/giftCardService";
 import { useUpdateNgnRateMutation } from "../../api/cryptoQueries";
 import { useGetCryptoRatesQuery } from "../../api/cryptoQueries";
@@ -37,7 +39,7 @@ const DisplayData = ({ data, setCardId, deleteCard, index, setFormState }) => {
             {e?.ngn_rate}
           </td>
           <td className="flex justify-center gap-2 p-2 text-xl font-thin border">
-            <btn
+            {/* <btn
               onClick={() => {
                 setCardId(e?._id);
                 setFormState((prev) => {
@@ -56,7 +58,7 @@ const DisplayData = ({ data, setCardId, deleteCard, index, setFormState }) => {
               className="p-1 duration-500 rounded-lg cursor-pointer bg-active hover:font-normal"
             >
               Edit
-            </btn>
+            </btn> */}
             <btn
               onClick={() => {
                 deleteCard(e?._id, index);
@@ -80,11 +82,11 @@ const initialState = {
   ngn_rate: 0,
 };
 const AddBuyGiftcard = () => {
-  const { data, isLoading, isSuccess } = useGetGiftCardInfoQuery();
+  const { data, isLoading, isSuccess } = useGetGiftCardBuyInfoQuery();
   const [fetchCard, { isLoading: isFetchingCard }] =
     useLazyGetBuyGiftCardQuery();
   const [createCard, { isLoading: isCreatingCard }] =
-    useCreateGiftCardMutation();
+  useCreateBuyGiftCardMutation();
   const { data: rates, isLoading: isFetchingRate } = useGetCryptoRatesQuery();
   const [updateRate, { isLoading: isUpdatingRate }] =
     useUpdateNgnRateMutation();
@@ -96,6 +98,7 @@ const AddBuyGiftcard = () => {
     useUpdateGiftCardMutation();
   const [deleteCard, { isLoading: isDeletingCard }] =
     useDeleteGiftCardMutation();
+  const [deleteCardInfo, { isLoading: isDeletingCardInfo }] = useDeleteGiftCardInfoMutation();
   const [cardId, setCardId] = useState("");
   const handleDelete = (id, index) => {
     deleteCard({ id })
@@ -108,6 +111,7 @@ const AddBuyGiftcard = () => {
           newFormState[index] = initialState;
           return newFormState;
         });
+        window.location.reload();
       })
       .catch((err) => {
         toast.error(err?.message || err?.msg || "an error occured");
@@ -119,6 +123,20 @@ const AddBuyGiftcard = () => {
         });
       });
   };
+
+  const handleDeleteCardInfo = (card_name, index) => {
+    deleteCardInfo({ card_name })
+      .unwrap()
+      .then(() => {
+        toast.success("card deleted");
+        window.location.reload();
+      })
+      .catch((err) => {
+        toast.error(err?.message || err?.msg || "an error occured");
+      });
+  };
+
+  console.log(formState);
   useEffect(() => {
     if (isSuccess)
       data?.map((e) => {
@@ -126,8 +144,7 @@ const AddBuyGiftcard = () => {
           .unwrap()
           .then((res) => {
             setCards((prev) => ({ ...prev, [e.card_name]: res.data }));
-            setFormState((prev) => [
-              ...prev,
+            setFormState([
               { ...initialState, card_name: e.card_name },
             ]);
           });
@@ -141,18 +158,23 @@ const AddBuyGiftcard = () => {
         isLoading ||
         isFetchingCard) && <Loader />}
       <p className={`${styles.topic} mb-0`}>add new buy gift card</p>
-      <div className="flex items-center justify-between p-2">
-        <p className="text-2xl font-bold text-end">Add Rate</p>
+      <div className="flex items-center justify-around py-6">
+        <p className="text-end">
+          {/* Add Rate */}
+          <input
+              className="p-2 px-4 rounded-full bg-sec"
+              placeholder="search"
+            />
+        </p>
         <div className="flex items-center justify-between gap-8">
-          <p className="p-2 px-4 rounded-full bg-sec text-active">
-            Ngn Rate :
-            {/* <span className="pl-2 text-xl font-semibold text-center text-white">
-              {rates?.data?.rmd_rate}
-            </span> */}
+          <p className="p-2 px-6 rounded-full bg-white text-active">
+            <span className="pl-2 text-xl font-semibold text-center text-black">
+              
+            </span>
             <input
-              className="pl-2 text-xl font-semibold text-center text-white w-[5rem]"
-              value={ngnRate || rates?.data?.ngn_rate}
-              defaultValue={rates?.data?.ngn_rate}
+              className="text-xl font-semibold text-center text-black w-[5rem]"
+              value={ngnRate || rates?.data?.usd?.buy}
+              defaultValue={rates?.data?.usd?.buy}
               disabled={editNgn}
               onChange={(e) => {
                 setNgnRate(e.target.value);
@@ -178,12 +200,12 @@ const AddBuyGiftcard = () => {
           >
             {editNgn ? "Edit" : "Update"}
           </div>
-          <p className="p-2 px-4 rounded-full bg-sec text-active">
+          {/* <p className="p-2 px-4 rounded-full bg-sec text-active">
             Profit :
             <span className="pl-2 text-xl font-semibold text-center text-white">
               {"30"}
             </span>
-          </p>
+          </p> */}
         </div>
       </div>
       <div className="flex flex-col gap-[1rem]">
@@ -194,6 +216,14 @@ const AddBuyGiftcard = () => {
                 {e?.card_name}
               </h1>
               <img src={e?.card_image} alt="" className="w-40 p-2 mt-20" />
+              <btn
+                className="bg-[red] p-1 rounded-lg cursor-pointer hover:font-normal duration-500 ml-6 px-6"
+                onClick={() => {
+                  handleDeleteCardInfo(e?.card_name, i)
+                }}
+              >
+                delete
+              </btn>
             </div>
             <table className="w-full">
               {/* head */}
@@ -281,9 +311,10 @@ const AddBuyGiftcard = () => {
 
                 <td className="p-2 border ">
                   <input
-                    value={formState[i]?.dollar_rate}
+                    value={rates?.data?.usd?.buy}
                     className="w-20 p-1 font-normal text-black bg-white border rounded-lg outline-none"
                     type="number"
+                    disabled={true}
                     onChange={(e) => {
                       setFormState((prev) => {
                         const newArr = [...prev];
@@ -298,9 +329,7 @@ const AddBuyGiftcard = () => {
                 </td>
                 <td className="p-2 border">
                   <input
-                    value={
-                      formState[i]?.dollar_rate * rates?.data?.rmd_rate - 30
-                    }
+                    value={rates?.data?.usd?.buy}
                     className="w-20 p-1 font-normal text-black bg-white border rounded-lg outline-none"
                     type="number"
                     disabled={cardId}
@@ -343,10 +372,9 @@ const AddBuyGiftcard = () => {
                       } else {
                         createCard({
                           ...formState[i],
-                          ngn_rate:
-                            formState[i]?.dollar_rate * rates?.data?.rmd_rate -
-                            30,
-                          dollar_rate: Number(formState[i]?.dollar_rate),
+                          card_name: e?.card_name,
+                          ngn_rate: rates?.data?.usd.buy,
+                          dollar_rate: rates?.data?.usd.buy,
                         })
                           .unwrap()
                           .then((res) => {
@@ -356,6 +384,7 @@ const AddBuyGiftcard = () => {
                               newFormState[i] = initialState;
                               return newFormState;
                             });
+                            window.location.reload();
                           })
                           .catch((err) => {
                             toast.error(

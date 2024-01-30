@@ -18,6 +18,11 @@ const BuyGiftCardTable = () => {
   });
   const [openApprove, setOpenApprove] = useState(false);
   const [openDecline, setOpenDecline] = useState(false);
+  const [buttonEnabled, setButtonEnabled] = useState({
+    purchaseBtn: true,
+    smsBtn: false,
+    emailBtn: true
+  })
   const [id, setId] = useState("");
   const [verify, { isLoading: isVerifying }] = useAcceptBuyGiftCardMutation();
   const [decline, { isLoading: isDeclining }] = useDeclineBuyGiftCardMutation();
@@ -49,11 +54,18 @@ const BuyGiftCardTable = () => {
       });
   };
   const columns = useMemo(
+    // eslint-disable-next-line no-sparse-arrays
     () => [
       {
         title: "Email",
         dataIndex: "email",
         render: (email) => `${email}`,
+        width: "20%",
+      },
+      {
+        title: "Phone",
+        dataIndex: "phone",
+        render: (phone) => `${phone}`,
         width: "20%",
       },
       {
@@ -81,7 +93,7 @@ const BuyGiftCardTable = () => {
         width: "10%",
       },
       {
-        title: "Payout",
+        title: "Ngn Amount",
         dataIndex: "ngn_amount",
         render: (amount) => `N${amount}`,
         width: "10%",
@@ -138,48 +150,62 @@ const BuyGiftCardTable = () => {
         width: "10%",
       },
 
-      {
-        title: "Receipt Image",
-        dataIndex: "",
-        fixed: "right",
-        render: (id) => (
-          <div className="flex flex-col gap-[0.2rem]">
-            <button
-              onClick={() => {
-                setOpenDecline(true);
-                setId(id);
-              }}
-              className="bg-[#767DFF] rounded-[20px] font-[Poppins]"
-            >
-              Preview
-            </button>
-          </div>
-        ),
-        width: "20%",
-      },
+      // {
+      //   title: "Receipt Image",
+      //   dataIndex: "",
+      //   fixed: "right",
+      //   render: (id) => (
+      //     <div className="flex flex-col gap-[0.2rem]">
+      //       <button
+      //         onClick={() => {
+      //           setOpenDecline(true);
+      //           setId(id);
+      //         }}
+      //         className="bg-[#767DFF] rounded-[20px] font-[Poppins]"
+      //       >
+      //         Preview
+      //       </button>
+      //     </div>
+      //   ),
+      //   width: "20%",
+      // },
       {
         dataIndex: "_id",
         fixed: "right",
         render: (id) => (
           <div className="flex flex-col gap-[0.2rem]">
             <button
-              onClick={() => {
-                setOpenDecline(true);
-                setId(id);
-              }}
-              className="bg-[#FF6464] rounded-[20px] font-[Poppins]"
-            >
-              Decline
-            </button>
-            <button
+              disabled={buttonEnabled.purchaseBtn}
               onClick={() => {
                 setOpenApprove(true);
                 setId(id);
               }}
-              className="bg-[#5FC88F] rounded-[20px] font-[Poppins]"
+              className="bg-[#5FC88F] rounded-[20px] font-[Poppins] py-[5px]"
             >
-              Approve
+              Purchase
             </button>
+            <div className="w-full flex gap-[1.5rem] ml-6">
+              <button
+                disabled={buttonEnabled.smsBtn}
+                onClick={() => {
+                  setOpenDecline(true);
+                  setId(id);
+                }}
+                className="bg-[#767DFF] rounded-[20px] font-[Poppins] py-[3px] px-4"
+              >
+                SMS
+              </button>
+              <button
+                disabled={buttonEnabled.emailBtn}
+                onClick={() => {
+                  setOpenDecline(true);
+                  setId(id);
+                }}
+                className="bg-[#FF6464] rounded-[20px] font-[Poppins] py-[3px] px-4"
+              >
+                Email
+              </button>
+            </div>
           </div>
         ),
         width: "20%",
@@ -234,6 +260,18 @@ const BuyGiftCardTable = () => {
           },
         }}
       >
+        <Table
+          columns={columns}
+          rowKey={(record) => record?._id}
+          dataSource={result?.data}
+          pagination={tableParams.pagination}
+          loading={isLoading}
+          onChange={handleTableChange}
+          scroll={{ x: 1800, y: 1200 }}
+        />
+        <div className="w-full justify-around">
+          <p className="text-xl text-white ml-20">Processed Transaction</p>
+        </div>
         <Table
           columns={columns}
           rowKey={(record) => record?._id}

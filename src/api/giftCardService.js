@@ -24,9 +24,27 @@ export const giftCardSlice = apiSlice
         }),
         providesTags: ["giftcard-buy"],
       }),
-      getGiftCardInfo: builder.query({
+      getGiftCardBuyInfo: builder.query({
         query: () => ({
-          url: `gift-card/get-giftcard-info`,
+          url: `gift-card/get-giftcard-info/Buy`,
+        }),
+        transformResponse: (response) => {
+          const result = response?.data?.map((e) => ({
+            ...e,
+            countriesSelect: e?.countries.map((c) => ({ label: c, value: c })),
+            cardSelect: e?.card_types.map((c) => ({ label: c, value: c })),
+            denominationsSelect: e?.denominations.map((c) => ({
+              label: c,
+              value: c,
+            })),
+          }));
+          return result;
+        },
+        providesTags: ["giftcard-info", "giftcard"],
+      }),
+      getGiftCardSellInfo: builder.query({
+        query: () => ({
+          url: `gift-card/get-giftcard-info/Sell`,
         }),
         transformResponse: (response) => {
           const result = response?.data?.map((e) => ({
@@ -93,6 +111,13 @@ export const giftCardSlice = apiSlice
         }),
         invalidatesTags: ["giftcard-info", "giftcard"],
       }),
+      deleteGiftCardInfo: builder.mutation({
+        query: (body) => ({
+          url: `gift-card/delete-giftcard-info/${body.card_name}`,
+          method: "DELETE",
+        }),
+        invalidatesTags: ["giftcard-info", "giftcard"],
+      }),
       acceptGiftCard: builder.mutation({
         query: (body) => ({
           url: `gift-card/accept-giftcard-sell/${body.id}`,
@@ -149,7 +174,9 @@ export const {
   useDeclineGiftCardMutation,
   useDeclineBuyGiftCardMutation,
   useDeleteGiftCardMutation,
-  useGetGiftCardInfoQuery,
+  useDeleteGiftCardInfoMutation,
+  useGetGiftCardBuyInfoQuery,
+  useGetGiftCardSellInfoQuery,
   useLazyGetBuyGiftCardQuery,
   useLazyGetSellGiftCardQuery,
   useGetPendingBuyTranxQuery,

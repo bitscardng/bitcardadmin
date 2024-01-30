@@ -1,0 +1,14 @@
+directories:
+  output: dist
+  buildResources: build
+appId: com.bitscard.app
+productName: Bitscard
+files:
+  - filter:
+      - build/**/*
+      - electron/main.js
+      - package.json
+extends: null
+mac:
+  type: distribution
+electronVersion: 28.2.0

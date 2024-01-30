@@ -4,7 +4,7 @@ import { giftCard } from "../../constant";
 import { FiArrowDownCircle } from "react-icons/fi";
 import { Select } from "antd";
 import {
-  useGetGiftCardInfoQuery,
+  useGetGiftCardSellInfoQuery,
   useCreateGiftCardMutation,
   useLazyGetSellGiftCardQuery,
   useUpdateGiftCardMutation,
@@ -80,7 +80,7 @@ const initialState = {
   ngn_rate: 0,
 };
 const AddGiftcard = () => {
-  const { data, isLoading, isSuccess } = useGetGiftCardInfoQuery();
+  const { data, isLoading, isSuccess } = useGetGiftCardSellInfoQuery();
   const [fetchCard, { isLoading: isFetchingCard }] =
     useLazyGetSellGiftCardQuery();
   const [createCard, { isLoading: isCreatingCard }] =

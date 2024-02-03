@@ -5,12 +5,17 @@ const virtualCardQueries = apiSlice
   .injectEndpoints({
     endpoints: (builder) => ({
       virtualCardTransactions: builder.query({
-        query: () => ({
-          url: "virtual-card/virtual-card-transactions",
+        query: (param) => ({
+          url: `virtual-card/virtual-card-transactions?page=${param?.page}&searchQuery=${
+            param?.searchQuery || ""
+          }&limit=10`,
         }),
         providesTags: ["virtual-card-transactions"],
       }),
     }),
   });
 
-export const { useVirtualCardTransactionsQuery } = virtualCardQueries;
+export const {
+  useVirtualCardTransactionsQuery,
+  useLazyVirtualCardTransactionsQuery,
+} = virtualCardQueries;

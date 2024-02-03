@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { Table } from "antd";
+import { Table, Tooltip } from "antd";
 import Search from "../Search";
 import { useLazyGetTeleSalesQuery } from "../../api/tele-salesqueries";
 import { ConfigProvider } from "antd";
@@ -53,7 +53,9 @@ const TeleSalesTable = () => {
           <div className="flex flex-col">
             <p className="px-1">{phone}</p>
             <button
-              onClick={increaseProgressBtn}
+              onClick={() => {
+                navigator.clipboard(`${phone}`);
+              }}
               className={`${styles.btn} flex items-center justify-between`}
             >
               <span className="pr-2">

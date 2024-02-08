@@ -15,7 +15,7 @@ const usersQueries = apiSlice
       }),
       getSingleUser: builder.query({
         query: (id) => ({
-          url: `users/user-details/${id}`,
+          url: `users/${id}`,
         }),
       }),
     }),

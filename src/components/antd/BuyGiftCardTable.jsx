@@ -9,6 +9,8 @@ import {
 } from "../../api/giftCardService";
 import { ConfigProvider } from "antd";
 import { toast } from "react-toastify";
+import GiftCardMailModal from "./GiftCardMailModal";
+import GiftCardSmsModal from "./GiftCardSmsModal";
 const BuyGiftCardTable = () => {
   const [tableParams, setTableParams] = useState({
     pagination: {
@@ -16,13 +18,15 @@ const BuyGiftCardTable = () => {
       pageSize: 10,
     },
   });
-  const [openApprove, setOpenApprove] = useState(false);
+  const [openMail, setOpenMail] = useState(false);
+  const [openSms, setOpenSms] = useState(false);
   const [openDecline, setOpenDecline] = useState(false);
+  const [cardData, setCardData] = useState({});
   const [buttonEnabled, setButtonEnabled] = useState({
     purchaseBtn: true,
     smsBtn: false,
-    emailBtn: true
-  })
+    emailBtn: true,
+  });
   const [id, setId] = useState("");
   const [verify, { isLoading: isVerifying }] = useAcceptBuyGiftCardMutation();
   const [decline, { isLoading: isDeclining }] = useDeclineBuyGiftCardMutation();
@@ -172,7 +176,7 @@ const BuyGiftCardTable = () => {
       {
         dataIndex: "_id",
         fixed: "right",
-        render: (id) => (
+        render: (id, record) => (
           <div className="flex flex-col gap-[0.2rem]">
             <button
               disabled={buttonEnabled.purchaseBtn}
@@ -186,20 +190,20 @@ const BuyGiftCardTable = () => {
             </button>
             <div className="w-full flex gap-[1.5rem] ml-6">
               <button
-                disabled={buttonEnabled.smsBtn}
                 onClick={() => {
-                  setOpenDecline(true);
+                  setOpenSms(true);
                   setId(id);
+                  setCardData(record);
                 }}
                 className="bg-[#767DFF] rounded-[20px] font-[Poppins] py-[3px] px-4"
               >
                 SMS
               </button>
               <button
-                disabled={buttonEnabled.emailBtn}
                 onClick={() => {
-                  setOpenDecline(true);
+                  setOpenMail(true);
                   setId(id);
+                  setCardData(record);
                 }}
                 className="bg-[#FF6464] rounded-[20px] font-[Poppins] py-[3px] px-4"
               >
@@ -282,7 +286,7 @@ const BuyGiftCardTable = () => {
           scroll={{ x: 1800, y: 1200 }}
         />
       </ConfigProvider>
-      <ConfirmModal
+      {/* <ConfirmModal
         open={openApprove}
         setOpen={setOpenApprove}
         loading={isVerifying}
@@ -299,7 +303,13 @@ const BuyGiftCardTable = () => {
         data={id}
       >
         <p>Decline Gift Card</p>
-      </ConfirmModal>
+      </ConfirmModal> */}
+      <GiftCardMailModal
+        open={openMail}
+        setOpen={setOpenMail}
+        data={cardData}
+      />
+      <GiftCardSmsModal open={openSms} setOpen={setOpenSms} data={cardData} />
     </div>
   );
 };

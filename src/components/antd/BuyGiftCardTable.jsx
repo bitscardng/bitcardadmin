@@ -181,7 +181,6 @@ const BuyGiftCardTable = () => {
             <button
               disabled={buttonEnabled.purchaseBtn}
               onClick={() => {
-                setOpenApprove(true);
                 setId(id);
               }}
               className="bg-[#5FC88F] rounded-[20px] font-[Poppins] py-[5px]"

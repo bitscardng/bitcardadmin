@@ -353,6 +353,7 @@ const AddBuyGiftcard = () => {
                               return newFormState;
                             });
                             setCardId("");
+                            window.location.reload();
                           })
                           .catch((err) => {
                             toast.error(

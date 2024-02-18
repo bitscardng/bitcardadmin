@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { giftCard } from "../../constant";
+import { useGetEscrowListQuery } from "../../api/p2pQueries";
 
 const Merchant = () => {
+  const { data: result = [], isLoading, refetch} = useGetEscrowListQuery();
   const [datas, setDatas] = useState(giftCard);
 
   // paginations start
@@ -10,36 +12,41 @@ const Merchant = () => {
   //data view page is datasperpage so you can change the number 5 to what you want...
   const datasPerPage = 10;
   const pageVisited = pageNumber * datasPerPage;
-  const pageCount = Math.ceil(datas.length / datasPerPage);
+  const pageCount = Math.ceil(result?.data?.results / datasPerPage);
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
-  const displayDatas = datas
+
+  useEffect(() => {
+    refetch()
+  }, [])
+
+  const displayDatas = result?.data?.results
     .slice(pageVisited, pageVisited + datasPerPage)
     .map((data, index) => {
       return (
         <tr className="text-center hover:bg-sec" key={index}>
           <th className="p-1 px-2 text-xl duration-500 border">{index + 1}</th>
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
-            {data.email}
+            {data?.user_info['username']}
           </td>
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
-            {data.giftCard}
+            {data['asset']}
           </td>
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
             {"$ "}
-            {data.amount}
+            {data['crypto_amount']}
           </td>
           <td className="flex flex-col gap-2 p-2 text-xl font-thin border">
-            <btn className="bg-[green] p-1 rounded-lg cursor-pointer hover:font-normal duration-500">
+            <btn disabled className="bg-[green] p-1 rounded-lg cursor-pointer hover:font-normal duration-500">
               Approved
             </btn>
-            <btn className="bg-[red] p-1 rounded-lg cursor-pointer hover:font-normal duration-500">
+            <btn disabled className="bg-[red] p-1 rounded-lg cursor-pointer hover:font-normal duration-500">
               Decline
             </btn>
           </td>
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
-            {data.cardType}
+            {data['order_type']}
           </td>
         </tr>
       );

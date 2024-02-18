@@ -9,6 +9,7 @@ import {
   useLazyGetSellGiftCardQuery,
   useUpdateGiftCardMutation,
   useDeleteGiftCardMutation,
+  useDeleteGiftCardInfoMutation,
 } from "../../api/giftCardService";
 import { useUpdateRmdRateMutation } from "../../api/cryptoQueries";
 import { useGetCryptoRatesQuery } from "../../api/cryptoQueries";
@@ -96,6 +97,7 @@ const AddGiftcard = () => {
     useUpdateGiftCardMutation();
   const [deleteCard, { isLoading: isDeletingCard }] =
     useDeleteGiftCardMutation();
+    const [deleteCardInfo, { isLoading: isDeletingCardInfo }] = useDeleteGiftCardInfoMutation();
   const [cardId, setCardId] = useState("");
   const handleDelete = (id, index) => {
     deleteCard({ id })
@@ -108,6 +110,7 @@ const AddGiftcard = () => {
           newFormState[index] = initialState;
           return newFormState;
         });
+        window.location.reload();
       })
       .catch((err) => {
         toast.error(err?.message || err?.msg || "an error occured");
@@ -119,11 +122,23 @@ const AddGiftcard = () => {
         });
       });
   };
+
+  const handleDeleteCardInfo = (card_name, index) => {
+    deleteCardInfo({ card_name })
+      .unwrap()
+      .then(() => {
+        toast.success("card deleted");
+        window.location.reload();
+      })
+      .catch((err) => {
+        toast.error(err?.message || err?.msg || "an error occured");
+      });
+  };
+
   useEffect(() => {
     console.log(data);
     if (isSuccess) {
-      console.log(data);
-      data?.data?.map((e) => {
+      data?.map((e) => {
         fetchCard({ name: e.card_name })
           .unwrap()
           .then((res) => {
@@ -198,6 +213,14 @@ const AddGiftcard = () => {
                 {e?.card_name}
               </h1>
               <img src={e?.card_image} alt="" className="w-40 p-2 mt-20" />
+              <btn
+                className="bg-[red] p-1 rounded-lg cursor-pointer hover:font-normal duration-500 ml-6 px-6"
+                onClick={() => {
+                  handleDeleteCardInfo(e?.card_name, i)
+                }}
+              >
+                delete
+              </btn>
             </div>
             <table className="w-full">
               {/* head */}
@@ -328,6 +351,7 @@ const AddGiftcard = () => {
                               return newFormState;
                             });
                             setCardId("");
+                            window.location.reload();
                           })
                           .catch((err) => {
                             toast.error(
@@ -347,6 +371,7 @@ const AddGiftcard = () => {
                       } else {
                         createCard({
                           ...formState[i],
+                          card_name: e?.card_name,
                           ngn_rate:
                             formState[i]?.dollar_rate * rates?.data?.rmd_rate -
                             30,
@@ -360,6 +385,7 @@ const AddGiftcard = () => {
                               newFormState[i] = initialState;
                               return newFormState;
                             });
+                            window.location.reload();
                           })
                           .catch((err) => {
                             toast.error(

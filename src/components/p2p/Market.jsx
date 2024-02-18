@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import { giftCard } from "../../constant";
+import { useGetTransactionListQuery } from "../../api/p2pQueries";
 
 const Market = () => {
+  const { data: result = [], isLoading, refetch} = useGetTransactionListQuery();
   const [datas, setDatas] = useState(giftCard);
 
   // paginations start
@@ -10,28 +12,33 @@ const Market = () => {
   //data view page is datasperpage so you can change the number 5 to what you want...
   const datasPerPage = 10;
   const pageVisited = pageNumber * datasPerPage;
-  const pageCount = Math.ceil(datas.length / datasPerPage);
+  const pageCount = Math.ceil(result?.data?.results / datasPerPage);
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
-  const displayDatas = datas
+
+  useEffect(() => {
+    refetch()
+  }, [])
+
+  const displayDatas = result?.data?.results
     .slice(pageVisited, pageVisited + datasPerPage)
     .map((data, index) => {
       return (
         <tr className="text-center hover:bg-sec" key={index}>
           <th className="p-1 px-2 text-xl duration-500 border">{index + 1}</th>
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
-            {data.email}
+            {data?.user_info['username']}
           </td>
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
-            {data.giftCard}
+            {data['asset']}
           </td>
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
             {"$ "}
-            {data.amount}
+            {data['crypto_amount']}
           </td>
           <td className="p-1 px-2 text-xl font-thin duration-500 border">
-            {data.cardType}
+            {data['order_type']}
           </td>
         </tr>
       );
@@ -55,7 +62,7 @@ const Market = () => {
                   <th className="p-2 text-xl font-semibold border">Crypto</th>
                 </tr>
               </thead>
-              <tbody>{displayDatas}</tbody>
+              <tbody>{result?.data?.results.length === 0 ? 'No Available Data' : displayDatas}</tbody>
             </table>
           </div>
         </div>

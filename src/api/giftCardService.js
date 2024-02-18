@@ -24,6 +24,12 @@ export const giftCardSlice = apiSlice
         }),
         providesTags: ["giftcard-buy"],
       }),
+      getProcessedBuyTranx: builder.query({
+        query: () => ({
+          url: "gift-card/pending-buy-transactions?query=processed",
+        }),
+        providesTags: ["giftcard-buy"],
+      }),
       getGiftCardBuyInfo: builder.query({
         query: () => ({
           url: `gift-card/get-giftcard-info/Buy`,
@@ -180,6 +186,7 @@ export const {
   useLazyGetBuyGiftCardQuery,
   useLazyGetSellGiftCardQuery,
   useGetPendingBuyTranxQuery,
+  useGetProcessedBuyTranxQuery,
   useGetPendingSellTranxQuery,
   useProcessGiftCardMutation,
   useUpdateGiftCardMutation,

@@ -20,7 +20,7 @@ const GiftCardMailModal = ({ open, setOpen, data }) => {
           sendMail({
             ...formData,
             email: data?.email,
-            amount: data?.ngn_amount,
+            amount: JSON.stringify(data?.ngn_amount),
             country: data?.country,
             card_name: data?.gift_card,
           })

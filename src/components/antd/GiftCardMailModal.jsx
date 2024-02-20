@@ -69,7 +69,7 @@ const GiftCardMailModal = ({ open, setOpen, data }) => {
         </span>
         <span className="flex flex-col">
           <label>amount</label>
-          <Input value={data?.ngn_amount} prefix="NGN" disabled />
+          <Input value={JSON.stringify(data?.ngn_amount)} prefix="NGN" disabled />
         </span>
         <span className="flex flex-col">
           <label>expiration date</label>

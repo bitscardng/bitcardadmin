@@ -10,6 +10,12 @@ export const kycSlice = apiSlice
         }),
         providesTags: ["kyc1&2"],
       }),
+      getUsdVerification: builder.query({
+        query: () => ({
+            url: "kyc/get-usd-account-creation-info"
+        }),
+        providesTags: ["UsdAccount"]
+      }),
       getKyc3: builder.query({
         query: () => ({
           url: "kyc/get-kyc3",
@@ -50,6 +56,13 @@ export const kycSlice = apiSlice
         }),
         invalidatesTags: ["kyc4"],
       }),
+      verifyUsdAccount: builder.mutation({
+        query: (id) => ({
+            url: `kyc/verify-usd-account/${id}`,
+            method: "PATCH",
+        }),
+        providesTags: ["UsdAccount"]
+      }),
       declineKyc1_2: builder.mutation({
         query: (id) => ({
           url: `kyc/decline1&2/${id}`,
@@ -71,6 +84,13 @@ export const kycSlice = apiSlice
         }),
         invalidatesTags: ["kyc4"],
       }),
+      declineUsdAccount: builder.mutation({
+        query: (id) => ({
+            url: `kyc/decline-usd-account-creation/${id}`,
+            method: "PATCH",
+        }),
+        providesTags: ["UsdAccount"]
+      }),
     }),
   });
 
@@ -78,11 +98,14 @@ export const {
   useDeclineKyc1_2Mutation,
   useDeclineKyc3Mutation,
   useDeclineKyc4Mutation,
+  useDeclineUsdAccountMutation,
   useGetKyc1_2Query,
+  useGetUsdVerificationQuery,
   useGetKyc3Query,
   useGetKyc4Query,
   useVerifyKyc1Mutation,
   useVerifyKyc2Mutation,
   useVerifyKyc3Mutation,
   useVerifyKyc4Mutation,
+  useVerifyUsdAccountMutation,
 } = kycSlice;

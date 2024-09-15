@@ -75,6 +75,7 @@ import Cable from "./components/paybills/Cable";
 import TicketingDetails from "./components/ticketing/TicketingDetails";
 import AddBuyGiftCard from "./components/buyGiftcard/AddBuyGiftCard";
 import UploadBuyGiftCard from "./components/buyGiftcard/UploadBuyGiftCard";
+import UsdVerification from "./pages/UsdVerification";
 
 const history = isElectron() ? createHashHistory() : createBrowserHistory();
 
@@ -138,6 +139,7 @@ function App() {
           <Route path="/telesales" element={<TeleSales />} />
 
           <Route path="/kyc-1&2" element={<Kyc1 />} />
+          <Route path="/usd-verification" element={<UsdVerification />} />
           <Route path="/kyc-3" element={<Kyc3 />} />
           {/* <Route path="/kyc-4" element={<Kyc4 />} /> */}
           <Route path="/chat" element={<Chat />} />

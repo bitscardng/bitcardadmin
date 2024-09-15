@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styles } from "../styles";
 import { FiUser } from "react-icons/fi";
 import { HiOutlineMail } from "react-icons/hi";
@@ -6,6 +6,7 @@ import { BiLockOpen } from "react-icons/bi";
 import { BsTelephone } from "react-icons/bs";
 import { toast } from "react-toastify";
 import { useCreateAdminMutation } from "../api/authQueries";
+import { FaSpinner } from "react-icons/fa";
 
 const denomination = [
   { id: "rad01", name: "Admin", value: "admin" },
@@ -13,7 +14,8 @@ const denomination = [
 ];
 
 const AdminControl = () => {
-  const [createAdmin, { isLoading }] = useCreateAdminMutation();
+  const [createAdmin, { isLoading, error }] = useCreateAdminMutation();
+  const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({});
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -22,17 +24,26 @@ const AdminControl = () => {
     });
   };
   const handleSubmit = (e) => {
+    setLoading(true)
     e.preventDefault();
     createAdmin(formData)
       .unwrap()
       .then(() => {
+        setLoading(false)
         toast.success("user created successfully");
         e.target.reset();
       })
       .catch((err) => {
+        setLoading(false)
         toast.error(err.message || err.data.message || "error creating user");
       });
   };
+
+  useEffect(() => {
+    if (error) {
+        toast.error(error);
+    }
+  }, [])
   return (
     <div className="w-[80%] mx-auto">
       <form onSubmit={handleSubmit}>
@@ -128,8 +139,13 @@ const AdminControl = () => {
             })}
           </div>
         </div>
-        <button type="submit" className={`${styles.btn}`}>
-          Create user
+        <button type="submit" className={`bg-[#6C6AEB] capitalize text-xl text-white rounded-2xl cursor-pointer hover:font-normal font-light flex justify-center items-center w-full p-2 my-4 duration-400 hover:bg-active"`}>
+            { loading  === true ? (
+                <div className="flex gap-2 items-center">
+                    <FaSpinner />
+                    {"Creating User"}
+                </div>
+            ) : "Create user"}
         </button>
       </form>
     </div>

@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, useCallback } from "react";
 import qs from "qs";
 import { Table } from "antd";
 import ConfirmModal from "./ConfirmModal";
 import {
   useGetPendingBuyTranxQuery,
-  useAcceptBuyGiftCardMutation,
+  useProcessGiftCardMutation,
   useDeclineBuyGiftCardMutation,
   useGetProcessedBuyTranxQuery,
 } from "../../api/giftCardService";
@@ -29,19 +29,21 @@ const BuyGiftCardTable = () => {
   const [openSms, setOpenSms] = useState(false);
   const [openDecline, setOpenDecline] = useState(false);
   const [cardData, setCardData] = useState({});
-  const [buttonEnabled, setButtonEnabled] = useState({
-    purchaseBtn: true,
-    smsBtn: false,
-    emailBtn: true,
-  });
+//   const [buttonEnabled, setButtonEnabled] = useState({
+//     recordId: '',
+//     purchaseBtn: false,
+//     smsBtn: false,
+//     emailBtn: false,
+//   });
   const [id, setId] = useState("");
-  const [verify, { isLoading: isVerifying }] = useAcceptBuyGiftCardMutation();
+  const [process, { isLoading: isProcessing }] = useProcessGiftCardMutation();
   const [decline, { isLoading: isDeclining }] = useDeclineBuyGiftCardMutation();
   const handleVerifyDetails = (id) => {
-    verify({ id })
+    process({ id })
       .unwrap()
       .then(() => {
-        toast.success("Gift Card approved");
+        toast.success("Gift Card approved, Please forward card info to customer via sms and email");
+        window.location.reload()
       })
       .catch((err) => {
         console.log(err);
@@ -54,6 +56,17 @@ const BuyGiftCardTable = () => {
         );
       });
   };
+
+  const validateProcess = useCallback((id) => {
+    const extracted = localStorage.getItem("buttonEnabled");
+    const buttonEnabled = JSON.parse(extracted);
+    if (buttonEnabled.recordId === id && buttonEnabled.smsBtn && buttonEnabled.emailBtn) {
+        handleVerifyDetails(id)
+        localStorage.removeItem("buttonEnabled");
+    } else if (buttonEnabled.recordId != id && !buttonEnabled.smsBtn && !buttonEnabled.emailBtn) {
+        toast.error("Please send card info through sms and email to customer")
+    }
+  }, []);
   const handleDeclineDetails = (id) => {
     decline({ id })
       .unwrap()
@@ -186,10 +199,7 @@ const BuyGiftCardTable = () => {
         render: (id, record) => (
           <div className="flex flex-col gap-[0.2rem]">
             <button
-              disabled={buttonEnabled.purchaseBtn}
-              onClick={() => {
-                setId(id);
-              }}
+              onClick={() => validateProcess(id)}
               className="bg-[#5FC88F] rounded-[20px] font-[Poppins] py-[5px]"
             >
               Purchase
@@ -200,6 +210,12 @@ const BuyGiftCardTable = () => {
                   setOpenSms(true);
                   setId(id);
                   setCardData(record);
+                  localStorage.setItem("buttonEnabled", JSON.stringify({
+                    recordId: id,
+                    purchaseBtn: true,
+                    smsBtn: true,
+                    emailBtn: true,
+                  }))
                 }}
                 className="bg-[#767DFF] rounded-[20px] font-[Poppins] py-[3px] px-4"
               >
@@ -210,6 +226,12 @@ const BuyGiftCardTable = () => {
                   setOpenMail(true);
                   setId(id);
                   setCardData(record);
+                  localStorage.setItem("buttonEnabled", JSON.stringify({
+                    recordId: id,
+                    purchaseBtn: true,
+                    smsBtn: true,
+                    emailBtn: true,
+                  }))
                 }}
                 className="bg-[#FF6464] rounded-[20px] font-[Poppins] py-[3px] px-4"
               >

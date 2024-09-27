@@ -1,17 +1,42 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { styles } from "../styles";
 import { FiUser } from "react-icons/fi";
 import "react-quill/dist/quill.snow.css";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { SendEmailBcTemplate } from "../template/email-bsc";
+import { useSend_bulk_emailMutation } from "../api/sendEmailSlice";
 
 // const templateData = [
 //   { id: "rad01", name: "A Customer" },
 //   { id: "rad02", name: "All Customer" },
 // ];
 
-const SendEmail = ({ sendEmail, handleInputChange }) => {
-  const [template, setTemplate] = useState("");
-  const [content, setContent] = useState("");
+const SendEmail = () => {
+    const [email, setEmail] = useState('')
+    const [subject, setSubject] = useState('');
+    const [content, setContent] = useState('');
+    const [sendBulkEmail, { isLoading: isSendBulkEmail }] = useSend_bulk_emailMutation();
+
+  const handleSendEmailBc = () => {
+    sendBulkEmail({
+        emails: [email],
+        title: subject,
+        template: SendEmailBcTemplate(content)
+    })
+        .unwrap()
+        .then(() => {
+            toast.success('Mail Successfully Sent');
+        })
+        .catch((err) => {
+            toast.error(
+                err.message ||
+                err?.data?.message ||
+                err?.data?.msg ||
+                "an error occurred"
+            )
+        })
+  }
   return (
     <div className="flex flex-col">
       <p className={`${styles.topic} mb-0`}>send email</p>
@@ -26,9 +51,9 @@ const SendEmail = ({ sendEmail, handleInputChange }) => {
             </div>
             <input
               type="text"
-              name="name"
-              value={sendEmail?.name}
-              onChange={handleInputChange}
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="John Doe"
               className="w-full p-2 mx-1 bg-transparent outline-none"
@@ -57,9 +82,9 @@ const SendEmail = ({ sendEmail, handleInputChange }) => {
           </div>
           <input
             type="text"
-            name="name"
-            value={sendEmail?.name}
-            onChange={handleInputChange}
+            name="subject"
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
             required
             placeholder="John Doe"
             className="w-full p-2 mx-1 bg-transparent outline-none"
@@ -74,6 +99,7 @@ const SendEmail = ({ sendEmail, handleInputChange }) => {
             <textarea
               required
               placeholder="Type here"
+              name="content"
               rows={10}
               className="p-4 outline-none bg-primary rounded-2xl"
               value={content}
@@ -85,7 +111,7 @@ const SendEmail = ({ sendEmail, handleInputChange }) => {
           {/* <Link to="/email1preview" className={styles.btn}>
             Preview
           </Link> */}
-          <btn className={styles.btn}>Send</btn>
+          <btn className={styles.btn} onClick={handleSendEmailBc}>Send</btn>
         </div>
       </form>
 

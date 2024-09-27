@@ -11,7 +11,18 @@ export const sendEmailSlice = apiSlice
                     body
                 }),
             }),
+            users: builder.query({
+                query: () => ({
+                    url: `users`
+                })
+            }),
+            getAllusers: builder.mutation({
+                query: (limit) => ({
+                    url: `users?limit=${limit}`,
+                    method: "GET"
+                })
+            })
         })
     })
 
-    export const { useSend_bulk_emailMutation } = sendEmailSlice;
+    export const { useSend_bulk_emailMutation, useUsersQuery, useGetAllusersMutation } = sendEmailSlice;

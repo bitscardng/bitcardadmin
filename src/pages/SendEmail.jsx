@@ -1,11 +1,11 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { styles } from "../styles";
 import { FiUser } from "react-icons/fi";
 import "react-quill/dist/quill.snow.css";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { SendEmailBcTemplate } from "../template/email-bsc";
-import { useSend_bulk_emailMutation } from "../api/sendEmailSlice";
+import { useGetAllusersMutation, useSend_bulk_emailMutation, useUsersQuery } from "../api/sendEmailSlice";
 
 // const templateData = [
 //   { id: "rad01", name: "A Customer" },
@@ -13,14 +13,58 @@ import { useSend_bulk_emailMutation } from "../api/sendEmailSlice";
 // ];
 
 const SendEmail = () => {
-    const [email, setEmail] = useState('')
+    const [emails, setEmails] = useState([]);
+    const [limit, setLimit] = useState(0);
     const [subject, setSubject] = useState('');
+    const [isChecked, setIsChecked] = useState(false);
     const [content, setContent] = useState('');
     const [sendBulkEmail, { isLoading: isSendBulkEmail }] = useSend_bulk_emailMutation();
+    const {data, isLoading, refetch } = useUsersQuery();
+    const [getAllUsers, { isLoading: isGetAllUsers }] = useGetAllusersMutation()
+
+    useEffect(() => {
+        if (data) {
+            setLimit(data?.pagination?.totalItems)
+        }
+    }, [data])
+
+    const fetchData = () => {
+        if (limit > 0) {
+            toast.info('Getting Users Email')
+            getAllUsers(limit).then((result) => {
+                const usersEmail = result?.data?.data?.map(user => user.email);
+                setEmails(usersEmail);
+                toast.info('All Users Email Ready')
+            })
+            .catch((err) => {
+                toast.error(
+                    err.message ||
+                    err?.data?.message ||
+                    err?.data?.msg ||
+                    "an error occurred"
+                )
+            })
+        } else {
+            toast.error('Error Getting Users Email')
+        }
+    }
+
+    if (emails) {
+        console.log(emails);
+    }
+
+        // Handle checkbox change
+        const handleCheckboxChange = (e) => {
+            const checked = e.target.checked;
+            setIsChecked(checked);
+            if (checked) {
+                fetchData();
+            }
+        };
 
   const handleSendEmailBc = () => {
     sendBulkEmail({
-        emails: [email],
+        emails: emails,
         title: subject,
         template: SendEmailBcTemplate(content)
     })
@@ -52,8 +96,8 @@ const SendEmail = () => {
             <input
               type="text"
               name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={emails}
+              onChange={(e) => setEmails([e.target.value])}
               required
               placeholder="John Doe"
               className="w-full p-2 mx-1 bg-transparent outline-none"
@@ -61,11 +105,12 @@ const SendEmail = () => {
           </div>
           <p className="m-2 text-2xl font-semibold">OR</p>
           <div className="flex flex-row items-center justify-between">
-            <input
-              type="checkbox"
-              name="check-all"
-              id=""
-              className="mr-1 checkbox peer"
+          <input
+                type="checkbox"
+                name="check-all"
+                className="mr-1 checkbox peer"
+                checked={isChecked}
+                onChange={handleCheckboxChange}
             />
             <p className="w-[20rem] mx-2 p-4 text-center rounded-full bg-sec peer-checked:bg-active duration-500">
               Check, to send to all customer

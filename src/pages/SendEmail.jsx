@@ -1,22 +1,26 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { styles } from "../styles";
 import { FiUser } from "react-icons/fi";
+import Template1 from '../assets/template1.png'
+import Template2 from '../assets/template2.png'
 import "react-quill/dist/quill.snow.css";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { SendEmailBcTemplate } from "../template/email-bsc";
+import { SendEmailBcTemplate2 } from "../template/email-bsc2";
 import { useGetAllusersMutation, useSend_bulk_emailMutation, useUsersQuery } from "../api/sendEmailSlice";
 
-// const templateData = [
-//   { id: "rad01", name: "A Customer" },
-//   { id: "rad02", name: "All Customer" },
-// ];
+const templateData = [
+  { id: "rad01", name: "Template 1", asset: Template1 },
+  { id: "rad02", name: "Template 2", asset: Template2 },
+];
 
 const SendEmail = () => {
     const [emails, setEmails] = useState([]);
     const [limit, setLimit] = useState(0);
     const [subject, setSubject] = useState('');
     const [isChecked, setIsChecked] = useState(false);
+    const [template, setTemplate] = useState();
     const [content, setContent] = useState('');
     const [sendBulkEmail, { isLoading: isSendBulkEmail }] = useSend_bulk_emailMutation();
     const {data, isLoading, refetch } = useUsersQuery();
@@ -66,7 +70,7 @@ const SendEmail = () => {
     sendBulkEmail({
         emails: emails,
         title: subject,
-        template: SendEmailBcTemplate(content)
+        template: template === 'Template 1' ? SendEmailBcTemplate(content) : SendEmailBcTemplate2(content)
     })
         .unwrap()
         .then(() => {
@@ -161,7 +165,7 @@ const SendEmail = () => {
       </form>
 
       {/* Template*/}
-      {/* <div className="flex flex-row items-start justify-between w-full h-full">
+      <div className="flex flex-row items-start justify-between w-full h-full">
         {templateData.map((item, i) => {
           return (
             <div
@@ -180,14 +184,12 @@ const SendEmail = () => {
                 className="w-full p-2 duration-500 rounded-2xl cursor-pointer hover:bg-active bg-sec peer-checked:bg-active h-[40vh]"
               >
                 <p className="pl-2 text-2xl font-semibold">{item.name}</p>
-                <div className="p-2 overflow-y-scroll bg-primary h-[32vh] rounded-2xl mt-2 font-light">
-                  <div>{content}</div>
-                </div>
+                <img src={item.asset} alt="template1" className="p-2 h-[32vh] rounded-2xl mt-2 mx-auto" />
               </label>
             </div>
           );
         })}
-      </div> */}
+      </div>
     </div>
   );
 };

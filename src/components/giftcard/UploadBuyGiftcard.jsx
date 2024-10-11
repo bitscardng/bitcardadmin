@@ -83,12 +83,12 @@ const UploadBuyGiftcard = () => {
     const denominationsList = Object.values(denominations).filter(
       (value) => value
     );
-    console.log(cards, countrieslist, denominationsList);
+   const newDenominationList = denominationsList.map((dn) => (parseInt(dn)))
     createCard({
       ...cardInfo,
       card_types: cards,
       countries: countrieslist,
-      denominations: denominationsList,
+      denominations: newDenominationList,
     })
       .unwrap()
       .then((res) => {

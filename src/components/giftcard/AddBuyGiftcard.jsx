@@ -169,7 +169,7 @@ const AddBuyGiftcard = () => {
         <div className="flex items-center justify-between gap-8">
           <p className="p-2 px-6 rounded-full bg-white text-active">
             <span className="pl-2 text-xl font-semibold text-center text-black">
-              
+
             </span>
             <input
               className="text-xl font-semibold text-center text-black w-[5rem]"
@@ -301,7 +301,7 @@ const AddBuyGiftcard = () => {
                         const newArr = [...prev];
                         newArr[i] = {
                           ...newArr[i],
-                          denomination: value,
+                          denomination: parseInt(value),
                         };
                         return newArr;
                       });
@@ -340,6 +340,7 @@ const AddBuyGiftcard = () => {
                     type="primary"
                     onClick={() => {
                       if (cardId) {
+                        alert('hello')
                         updateCard({
                           payload: { dollar_rate: formState[i].dollar_rate },
                           id: cardId,

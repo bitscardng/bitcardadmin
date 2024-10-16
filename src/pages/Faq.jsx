@@ -72,7 +72,7 @@ const Faq = () => {
   const handleSubmit = () => {
     createFaq({
       image: imagePreview,
-      category: selected._id,
+    //   category: selected._id,
       content: `<div style="color: rgb(255,255,255);">${content}</div>`,
       ...faqData,
     })
